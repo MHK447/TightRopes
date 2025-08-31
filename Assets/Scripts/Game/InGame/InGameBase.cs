@@ -5,27 +5,13 @@ using UnityEngine.AddressableAssets;
 using BanpoFri;
 using UniRx;
 using System.Linq;
-using UnityEngine.AI;
-using NavMeshPlus.Components;
-using Unity.VisualScripting;
 
-public class InGameTycoon : InGameMode
+public class InGameBase : InGameMode
 {
-    public IReactiveProperty<bool> MaxMode = new ReactiveProperty<bool>(true);
-
-    [SerializeField]
-    private InGameScrollSea ScrollSea;
-
-    public InGameScrollSea GetScrollSea { get { return ScrollSea; } }
-
-
-    private int ProductHeroIdxs = 0;
     public override void Load()
     {
         base.Load();
-        GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().StartGame();
-
-        ScrollSea.Init();
+        GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StartGame();
     }
 
 

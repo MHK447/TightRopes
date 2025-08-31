@@ -437,7 +437,7 @@ public class GameRoot : Singleton<GameRoot>
 		}
 		else
 		{
-			if (InGameSystem.GetInGame<InGameTycoon>() == null) return;
+			if (InGameSystem.GetInGame<InGameBase>() == null) return;
 
 
 			if (GameRoot.Instance.TutorialSystem.IsActive())
