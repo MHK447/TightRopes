@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1efbd8d0fe74dcdb2bf5806ca18b55, type: 3}
+  m_Name: Localize
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - fish_name_1
+  - fish_name_2
+  - fish_name_3
+  - fish_name_4
+  - fish_name_5
+  - str_upgrade
+  - str_speed
+  - str_depth
+  - str_income
+  - str_speed_value
+  - str_depth_value
+  - str_income_income
+  - str_collection
+  mSecondKey: []
+  mDataList:
+  - _idx: fish_name_1
+    _ko: "\uACE0\uB4F1\uC5B4"
+    _en: 
+    _ja: 
+  - _idx: fish_name_2
+    _ko: "\uAC00\uC790\uBBF8"
+    _en: 
+    _ja: 
+  - _idx: fish_name_3
+    _ko: "\uAE30\uB7EC\uAE30"
+    _en: 
+    _ja: 
+  - _idx: fish_name_4
+    _ko: "\uBCFC\uB77D"
+    _en: 
+    _ja: 
+  - _idx: fish_name_5
+    _ko: "\uC6B0\uB7ED"
+    _en: 
+    _ja: 
+  - _idx: str_upgrade
+    _ko: "\uC5C5\uB4DC\uB808\uC774\uB4DC"
+    _en: 
+    _ja: 
+  - _idx: str_speed
+    _ko: "\uB0B4\uB824\uAC00\uB294 \uC18D\uB3C4"
+    _en: 
+    _ja: 
+  - _idx: str_depth
+    _ko: "\uCD5C\uB300 \uC218\uC2EC"
+    _en: 
+    _ja: 
+  - _idx: str_income
+    _ko: "\uC218\uC785 \uC99D\uAC00"
+    _en: 
+    _ja: 
+  - _idx: str_speed_value
+    _ko: "<color=#6AB040>+{0}%</color> \uB0B4\uB824\uAC00\uB294 \uC18D\uB3C4 \uC99D\uAC00"
+    _en: 
+    _ja: 
+  - _idx: str_depth_value
+    _ko: "<color=#6AB040>{0}m</color> \uCD5C\uB300 \uC218\uC2EC \uC99D\uAC00"
+    _en: 
+    _ja: 
+  - _idx: str_income_income
+    _ko: "<color=#6AB040> {0}%</color> \uC218\uC785 \uC99D\uAC00"
+    _en: 
+    _ja: 
+  - _idx: str_collection
+    _ko: "\uB3C4\uAC10"
+    _en: 
+    _ja: 
