@@ -34,11 +34,11 @@ table UserData {
   gamestarttime:long = 0;
   uuid:long = 0;
   recordvalue:[RecordCount];
-  fishingautoproperty:bool; //@ReactiveProperty
-  upgradedata:[UpgradeData];
-  aquariumdata:AquariumData;
 // @EndCreate
   money:string;
+
+  upgradedatas:[UpgradeData];
+
 }
 
 table OptionData {
@@ -59,6 +59,12 @@ table RecordCount {
 table AquariumData
 {
   fishidxs:[int];
+}
+
+table UpgradeData
+{
+   upgradeidx:int = 0;
+   upgradelevel:int = 0;
 }
 
 

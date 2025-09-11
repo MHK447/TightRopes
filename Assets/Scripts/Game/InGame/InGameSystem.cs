@@ -231,32 +231,6 @@ public class InGameSystem
         };
 
 
-
-        // if (diff.TotalSeconds > minRewardTime && time != DateTime.MinValue)
-        // {
-        //     int rewardTime = (int)diff.TotalSeconds;
-
-        //     if ((int)diff.TotalSeconds >= maxRewardTime)
-        //     {
-        //         rewardTime = maxRewardTime;
-
-        //         ActionQueue.Enqueue(() =>
-        //         {
-        //             if (!GameRoot.Instance.TutorialSystem.IsActive())
-        //                 GameRoot.Instance.UISystem.OpenUI<PopupOfflineReward>(popup => popup.Set(maxRewardTime), () => NextAction());
-        //         });
-        //     }
-        //     else
-        //     {
-        //         ActionQueue.Enqueue(() =>
-        //         {
-        //             if(!GameRoot.Instance.TutorialSystem.IsActive())
-        //             GameRoot.Instance.UISystem.OpenUI<PopupOfflineReward>(popup => popup.Set((int)diff.TotalSeconds), () => NextAction()); //offline not max value
-        //         });
-        //     }
-        // }
-
-
         if (!firstInit)
         {
             firstInit = true;

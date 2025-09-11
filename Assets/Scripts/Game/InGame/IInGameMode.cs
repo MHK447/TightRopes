@@ -16,12 +16,7 @@ public abstract class InGameMode : MonoBehaviour, IInGameMode
     [SerializeField]
     private PanAndZoom MainCam;
 
-    [SerializeField]
-    private PanAndZoom SubCam;
-
-
     public PanAndZoom GetMainCam { get { return MainCam; } }
-    public PanAndZoom GetSubCam { get { return SubCam; } }
 
     public float CamPixelWidth { get; private set; }
     public float CamPixelHeight { get; private set; }
@@ -29,12 +24,12 @@ public abstract class InGameMode : MonoBehaviour, IInGameMode
 
     private void Awake()
     {
-        CamPixelWidth = MainCam.cam.pixelWidth;
-        CamPixelHeight = MainCam.cam.pixelHeight;
+        // CamPixelWidth = MainCam.cam.pixelWidth;
+        // CamPixelHeight = MainCam.cam.pixelHeight;
         if (GameRoot.IsInit())
         {
             GameRoot.Instance.InGameSystem.RegisteInGame(this);
-            GameRoot.Instance.UISystem.WorldCanvas.worldCamera = MainCam.cam;
+            //GameRoot.Instance.UISystem.WorldCanvas.worldCamera = MainCam.cam;
             // ingameCamera.onPinch += (oldd, newd) => {
             //     if(GameRoot.Instance.TutorialSystem.IsActive())
             //         return;
@@ -96,7 +91,6 @@ public abstract class InGameMode : MonoBehaviour, IInGameMode
     public void SetCameraBoundMinY(float value)
     {
         MainCam.boundMinY = value;
-        SubCam.boundMinY = value;
     }
 
     public virtual void Load()
