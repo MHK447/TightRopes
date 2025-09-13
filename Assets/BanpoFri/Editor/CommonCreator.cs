@@ -97,7 +97,7 @@ public class CommonCreator
     {
         var loadResource =
             AssetDatabase.LoadAssetAtPath<GameObject>(
-                "Assets/Arts/Prefabs/Common/Popup.prefab");
+                "Assets/Arts/Prefabs/Base/Common/Popup.prefab");
 
         var obj = PrefabUtility.InstantiatePrefab(loadResource) as GameObject;
         if (Selection.activeGameObject != null)

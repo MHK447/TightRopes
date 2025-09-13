@@ -52,7 +52,7 @@ public class InGamePlayer : MonoBehaviour
         {
             BanlanceDeltime = 0f;
             // 랜덤 목표 각도 갱신 (조금씩 누적 흔들림)
-            randomZ += Random.Range(-10f, 10f);
+            randomZ += Random.Range(-10, 10);
             randomZ = Mathf.Clamp(randomZ, -10f, 10f); // 너무 과하게 안 흔들리도록 제한
         }
 

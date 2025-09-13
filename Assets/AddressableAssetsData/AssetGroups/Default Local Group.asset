@@ -35,11 +35,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0ca7532bea97c7a4387034d0ae0367ec
-    m_Address: UI/Popup/PopupInGameUI
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 13c699775dd24d8469b6d3226c7b6a72
     m_Address: UI/Component/GoodsEffect
     m_ReadOnly: 0
@@ -52,11 +47,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ddce761f390f014aa94071f8c1c0812
     m_Address: UI/Popup/PopupToastmessage
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1e9a4a5e5a9ff4237a1aff4f19a44c48
-    m_Address: UI/Popup/PopupUpgrade
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -337,16 +327,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c7a1092cf31ef4ddcae7552b5d37686d
     m_Address: UI/Popup/Popup_Signup
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c97746ea2134df84987f4e784296ab23
-    m_Address: UI/Popup/PopupPurchaseLightning
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cbbfb779e4df8724a8073e970556f4b1
-    m_Address: UI/Popup/PopupAdRemove
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

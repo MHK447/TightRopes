@@ -1,0 +1,58 @@
+Thank you for choosing and using our asset!  
+This document provides information about third-party components included in this package.
+
+------------------------------------------------------------
+## Font Information & License
+------------------------------------------------------------
+
+This asset includes the **M PLUS 1p** font provided by Google.
+
+- **M PLUS 1p**
+    
+    - Source: https://fonts.google.com/specimen/M+PLUS+1p
+        
+    - License: https://fonts.google.com/specimen/M+PLUS+1p/license
+        
+
+------------------------------------------------------------
+## Image Content
+------------------------------------------------------------
+
+Some 2D images in this asset, specifically the PNG files located in:
+
+**`HyperCasual/Textures/Demo/Backgrounds`**
+
+were created by rendering and capturing 3D models.  
+The sources of the 3D models used are as follows:
+
+- **Unity Asset Store assets:**
+    
+    - **SimplePoly City - Low Poly Assets**  
+        https://assetstore.unity.com/packages/3d/environments/simplepoly-city-low-poly-assets-58899
+        
+    - **Lowpoly Man**  
+        https://assetstore.unity.com/packages/3d/characters/humanoids/humans/lowpoly-man-198679
+        
+- **Original 3D models:**  
+    Other rendered 3D assets used in the background images were created by the developer (us) and are fully original creations.
+    
+
+- - - - - - - - - - - - - - - 
+
+- These images are used **only as demo background images** to illustrate how the GUI asset may appear in an actual game.
+    
+- They are **not intended for use in production games** and are included purely for demonstration/reference purposes.
+    
+- All rendered 3D models used for these background images are subject to the Unity Asset Store EULA:  
+    https://unity.com/legal/as-terms
+    
+
+- - - - - - - - - - - - - - - 
+
+Additionally, some fruit images sourced from **ぱくたそ (PAKUTASO)** were used in the demo backgrounds.
+
+- Source: https://www.pakutaso.com/20220625175post-41048.html
+    
+- License: https://www.pakutaso.com/userpolicy.html
+    
+- Summary: Images from ぱくたそ are used in accordance with their licensing terms, which allow for free use including commercial purposes with proper attribution.

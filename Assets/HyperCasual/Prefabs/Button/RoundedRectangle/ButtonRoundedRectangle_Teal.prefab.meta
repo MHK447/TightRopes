@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b7a7df9fc362ff14580b71ad8b69ab33
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317509
+  packageName: Hyper Casual GUI Pack
+  packageVersion: 1.0
+  assetPath: Assets/HyperCasual/Prefabs/Button/RoundedRectangle/ButtonRoundedRectangle_Teal.prefab
+  uploadId: 753555

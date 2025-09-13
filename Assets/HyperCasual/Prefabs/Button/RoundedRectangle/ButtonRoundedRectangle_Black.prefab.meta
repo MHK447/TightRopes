@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ec8b86b65f2dc4341969b71b948b3bf3
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317509
+  packageName: Hyper Casual GUI Pack
+  packageVersion: 1.0
+  assetPath: Assets/HyperCasual/Prefabs/Button/RoundedRectangle/ButtonRoundedRectangle_Black.prefab
+  uploadId: 753555
