@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 
+
+[UIPath("UI/Popup/PopupInGameLobby")]
 public class PopupInGameLobby : UIBase
 {
     [SerializeField]

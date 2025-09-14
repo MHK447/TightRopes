@@ -14,10 +14,12 @@ public partial class UserDataSystem
         Offset<BanpoFri.Data.UpgradeData>[] upgradedata_Array = null;
         VectorOffset upgradedata_Vector = default;
 
-        if(Upgradedata.Count > 0){
+        if (Upgradedata.Count > 0)
+        {
             upgradedata_Array = new Offset<BanpoFri.Data.UpgradeData>[Upgradedata.Count];
             int index = 0;
-            foreach(var pair in Upgradedata){
+            foreach (var pair in Upgradedata)
+            {
                 var item = pair;
                 upgradedata_Array[index++] = BanpoFri.Data.UpgradeData.CreateUpgradeData(
                     builder,
@@ -30,7 +32,8 @@ public partial class UserDataSystem
 
 
 
-        Action cbAddDatas = () => {
+        Action cbAddDatas = () =>
+        {
             BanpoFri.Data.UserData.AddUpgradedata(builder, upgradedata_Vector);
         };
 
@@ -52,8 +55,11 @@ public partial class UserDataSystem
                 var upgradedata = new UpgradeData
                 {
                     Upgradeidx = Upgradedata_item.Value.Upgradeidx,
-                    Upgradelevel = Upgradedata_item.Value.Upgradelevel
+                    Upgradelevel = Upgradedata_item.Value.Upgradelevel,
                 };
+
+                upgradedata.Create();
+        
                 Upgradedata.Add(upgradedata);
             }
         }
@@ -65,5 +71,16 @@ public class UpgradeData
 {
     public int Upgradeidx { get; set; } = 0;
     public int Upgradelevel { get; set; } = 0;
+
+
+    public ReactiveProperty<int> UpgradelevelProperty { get; set; } = new ReactiveProperty<int>(0);
+
+
+    public void Create()
+    {
+        UpgradelevelProperty.Value = Upgradelevel;
+
+        UpgradelevelProperty.Subscribe(x=> { Upgradelevel = x; });
+    }
 
 }

@@ -94,6 +94,7 @@ SpriteAtlas:
     - 37be62b2a4e9b154a923503c1800929b: 21300000
     - 4bddbab2bbef4a44a8ee8f3541f0e85a: 21300000
     - d7419fd278d274bcbbf46a7db41e5095: 21300000
+    - 8aaf9fd210eb24b44bd04b92af54ee36: 21300000
     - 878da233615924fc29c1d1e1898f6857: 21300000
     - f74b2d832490c4d1492c33d1cfd0b55a: 21300000
     - ed3815a3cc4f323429345df54245c945: 21300000
@@ -135,8 +136,11 @@ SpriteAtlas:
     - bce69da832d9442c190380778c8dee48: 21300000
     - b3b952b81aa37a7428c8fd921763d132: 21300000
     - 563a51c8a547f4f00b07db6794b3e1db: 21300000
+    - 9601b6c87f05d4df5886528cd7ef97fa: 21300000
     - 5e3e0e39837ee468fafafb257f9d037e: 21300000
+    - 9e047149f0ca44c22add8f565c451c1b: 21300000
     - 46cc967942ab51e4e9e276cb0b354822: 21300000
+    - 887d6a79f4453446690b13fa0c1c2b7f: 21300000
     - 19044189ee2ab46b08a7440d3025af57: 21300000
     - cd2894d915d60ac46b18739682204165: 21300000
     - 9ff6df2a290d441d09f2bd2d9b4bfbff: 21300000
@@ -182,6 +186,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 37be62b2a4e9b154a923503c1800929b, type: 3}
   - {fileID: 21300000, guid: 4bddbab2bbef4a44a8ee8f3541f0e85a, type: 3}
   - {fileID: 21300000, guid: d7419fd278d274bcbbf46a7db41e5095, type: 3}
+  - {fileID: 21300000, guid: 8aaf9fd210eb24b44bd04b92af54ee36, type: 3}
   - {fileID: 21300000, guid: 878da233615924fc29c1d1e1898f6857, type: 3}
   - {fileID: 21300000, guid: f74b2d832490c4d1492c33d1cfd0b55a, type: 3}
   - {fileID: 21300000, guid: ed3815a3cc4f323429345df54245c945, type: 3}
@@ -223,8 +228,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bce69da832d9442c190380778c8dee48, type: 3}
   - {fileID: 21300000, guid: b3b952b81aa37a7428c8fd921763d132, type: 3}
   - {fileID: 21300000, guid: 563a51c8a547f4f00b07db6794b3e1db, type: 3}
+  - {fileID: 21300000, guid: 9601b6c87f05d4df5886528cd7ef97fa, type: 3}
   - {fileID: 21300000, guid: 5e3e0e39837ee468fafafb257f9d037e, type: 3}
+  - {fileID: 21300000, guid: 9e047149f0ca44c22add8f565c451c1b, type: 3}
   - {fileID: 21300000, guid: 46cc967942ab51e4e9e276cb0b354822, type: 3}
+  - {fileID: 21300000, guid: 887d6a79f4453446690b13fa0c1c2b7f, type: 3}
   - {fileID: 21300000, guid: 19044189ee2ab46b08a7440d3025af57, type: 3}
   - {fileID: 21300000, guid: cd2894d915d60ac46b18739682204165, type: 3}
   - {fileID: 21300000, guid: 9ff6df2a290d441d09f2bd2d9b4bfbff, type: 3}
@@ -269,6 +277,7 @@ SpriteAtlas:
   - Common_Frame_R16
   - Common_Icon_ShopGems_03
   - Pictoicon_Hourglass 1
+  - Common_Frame_SelectRewardBg_Legendary
   - Pictoicon_Life 1
   - Pictoicon_Detail 1
   - Common_Icon_Goods_Star
@@ -310,8 +319,11 @@ SpriteAtlas:
   - Pictoicon_Dislike 1
   - Common_Icon_ShopGems_04
   - Common_Icon_Arrow_Back
+  - Common_Frame_SelectRewardBg_Epic
   - Pictoicon_Chat 1
+  - Common_Frame_SelectRewardBg_Rare
   - Common_Icon_Time
+  - Common_Frame_SelectRewardBg_Mythic
   - Common_Icon_Plus
   - Common_Btn_Default_Yes
   - Pictoicon_Calendar 1

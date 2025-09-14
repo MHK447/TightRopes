@@ -19,17 +19,20 @@ MonoBehaviour:
   mSecondKey: []
   mDataList:
   - _upgrade_idx: 0
-    _start_value: 0
+    _upgrade_start_value: 0
     _level_up_value: 1
     _base_upgrade_cost: 10
-    _inceease_upgrade_cost: 110
+    _inceease_upgrade_cost: 10
+    _level_up_multi: 5
   - _upgrade_idx: 1
-    _start_value: 0
+    _upgrade_start_value: 0
     _level_up_value: 1
     _base_upgrade_cost: 10
-    _inceease_upgrade_cost: 110
+    _inceease_upgrade_cost: 10
+    _level_up_multi: 5
   - _upgrade_idx: 2
-    _start_value: 0
+    _upgrade_start_value: 1
     _level_up_value: 1
     _base_upgrade_cost: 10
-    _inceease_upgrade_cost: 110
+    _inceease_upgrade_cost: 10
+    _level_up_multi: 5

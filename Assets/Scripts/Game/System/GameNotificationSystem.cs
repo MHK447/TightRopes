@@ -107,9 +107,9 @@ public class GameNotificationSystem
 
                             if (td != null)
                             {
-                                var costvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeCost(upgrade.Upgradelevel, td.base_upgrade_cost, (((float)td.inceease_upgrade_cost * 0.01f) * (upgrade.Upgradelevel)));
+                                //var costvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeCost(upgrade.Upgradelevel, td.base_upgrade_cost, (((float)td.inceease_upgrade_cost * 0.01f) * (upgrade.Upgradelevel)));
 
-                                ison = GameRoot.Instance.UserData.Money.Value >= costvalue;
+                                //ison = GameRoot.Instance.UserData.Money.Value >= costvalue;
 
                                 if(ison) break;
                             }

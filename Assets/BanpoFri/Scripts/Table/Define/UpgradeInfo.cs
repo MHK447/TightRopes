@@ -14,11 +14,11 @@ namespace BanpoFri
 			set { _upgrade_idx = value;}
 		}
 		[SerializeField]
-		private int _start_value;
-		public int start_value
+		private int _upgrade_start_value;
+		public int upgrade_start_value
 		{
-			get { return _start_value;}
-			set { _start_value = value;}
+			get { return _upgrade_start_value;}
+			set { _upgrade_start_value = value;}
 		}
 		[SerializeField]
 		private int _level_up_value;
@@ -40,6 +40,13 @@ namespace BanpoFri
 		{
 			get { return _inceease_upgrade_cost;}
 			set { _inceease_upgrade_cost = value;}
+		}
+		[SerializeField]
+		private int _level_up_multi;
+		public int level_up_multi
+		{
+			get { return _level_up_multi;}
+			set { _level_up_multi = value;}
 		}
 
     }

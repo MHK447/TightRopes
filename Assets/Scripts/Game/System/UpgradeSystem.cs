@@ -8,16 +8,16 @@ public class UpgradeSystem
 
     public enum UpgradeType
     {
-        FisihngSpeeed,
-        WaterDepth,
-        PriceMulti,
+        GroundSizeUpgrade = 0,
+        ConteringUpgrade,
+        MoneyMultiUpgrade
     }
 
     public void Create()
     {
         if (GameRoot.Instance.UserData.Upgradedata.Count == 0)
         {
-            for (int i = 0; i < (int)UpgradeType.PriceMulti + 1; i++)
+            for (int i = 0; i < (int)UpgradeType.GroundSizeUpgrade + 1; i++)
             {
                 GameRoot.Instance.UserData.Upgradedata.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = 1 });
             }
@@ -28,18 +28,18 @@ public class UpgradeSystem
 
 
 
-    public float GetUpgradeValue(UpgradeType type)
+    public float GetUpgradeValue(int idx)
     {
 
         float value = 0f;
-        var td = Tables.Instance.GetTable<UpgradeInfo>().GetData((int)type);
+        var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(idx);
 
         if (td != null)
         {
-            var level = GameRoot.Instance.UserData.Upgradedata[(int)type].Upgradelevel;
+            var level = GameRoot.Instance.UserData.Upgradedata[idx].Upgradelevel;
 
 
-            value = td.start_value + (td.level_up_value * level);
+            value = td.upgrade_start_value + (td.level_up_value * level);
 
         }
 
@@ -49,12 +49,22 @@ public class UpgradeSystem
     }
 
 
-    public BigInteger GetUpgradeCost(int level, int baseCost, float power)
+    public BigInteger GetUpgradeCost(int idx)
     {
-        if (level <= 0) return new BigInteger(baseCost);
+        var finddata = GameRoot.Instance.UserData.Upgradedata[idx];
 
-        double costMultiplier = Math.Pow(level, power) * 100;
-        BigInteger finalCost = baseCost * new BigInteger(costMultiplier);
-        return finalCost / 100;
+        var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(idx);
+
+        if(td == null) return 0;
+
+        int multivalue = finddata.Upgradelevel / td.level_up_multi;
+
+        multivalue = multivalue ==  0 ? 1 : multivalue;
+
+        var inceeaseCost = (td.inceease_upgrade_cost  *  100 + (td.inceease_upgrade_cost * finddata.Upgradelevel)) / 100;
+
+        inceeaseCost *= multivalue;
+        
+        return inceeaseCost;
     }
 }
