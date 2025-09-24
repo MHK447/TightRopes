@@ -2,6 +2,8 @@ using BanpoFri;
 using UnityEngine;
 using System.Numerics;
 using System;
+using BanpoFri.Data;
+using UniRx;
 
 public class UpgradeSystem
 {
@@ -15,11 +17,11 @@ public class UpgradeSystem
 
     public void Create()
     {
-        if (GameRoot.Instance.UserData.Upgradedata.Count == 0)
+        if (GameRoot.Instance.UserData.Upgradedatas.Count == 0)
         {
             for (int i = 0; i < (int)UpgradeType.GroundSizeUpgrade + 1; i++)
             {
-                GameRoot.Instance.UserData.Upgradedata.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = 1 });
+                GameRoot.Instance.UserData.Upgradedatas.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = new ReactiveProperty<int>(1) });
             }
         }
 
@@ -36,7 +38,7 @@ public class UpgradeSystem
 
         if (td != null)
         {
-            var level = GameRoot.Instance.UserData.Upgradedata[idx].Upgradelevel;
+            var level = GameRoot.Instance.UserData.Upgradedatas[idx].Upgradelevel.Value;
 
 
             value = td.upgrade_start_value + (td.level_up_value * level);
@@ -51,17 +53,17 @@ public class UpgradeSystem
 
     public BigInteger GetUpgradeCost(int idx)
     {
-        var finddata = GameRoot.Instance.UserData.Upgradedata[idx];
+        var finddata = GameRoot.Instance.UserData.Upgradedatas[idx];
 
         var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(idx);
 
         if(td == null) return 0;
 
-        int multivalue = finddata.Upgradelevel / td.level_up_multi;
+        int multivalue = finddata.Upgradelevel.Value / td.level_up_multi;
 
         multivalue = multivalue ==  0 ? 1 : multivalue;
 
-        var inceeaseCost = (td.inceease_upgrade_cost  *  100 + (td.inceease_upgrade_cost * finddata.Upgradelevel)) / 100;
+        var inceeaseCost = (td.inceease_upgrade_cost  *  100 + (td.inceease_upgrade_cost * finddata.Upgradelevel.Value)) / 100;
 
         inceeaseCost *= multivalue;
         

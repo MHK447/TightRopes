@@ -8,6 +8,9 @@ using System.Linq;
 
 public class InGameBase : InGameMode
 {
+    
+
+
     public override void Load()
     {
         base.Load();
@@ -24,7 +27,6 @@ public class InGameBase : InGameMode
     protected override void LoadUI()
     {
         base.LoadUI();
-
         GameRoot.Instance.InGameSystem.InitPopups();
         GameRoot.Instance.UISystem.OpenUI<HudTotal>();
     }

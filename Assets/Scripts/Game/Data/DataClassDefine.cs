@@ -91,8 +91,14 @@ public class NoticeData
 public class PlayerData
 {
 	public IReactiveProperty<int> VehiclePropertyIdx = new ReactiveProperty<int>();
-	
+}
 
+
+
+public class RaceData
+{
+	public IReactiveProperty<float> RaceStreetProeprty = new ReactiveProperty<float>();
+	
 
 }
 

@@ -9,7 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 324cc1eaac72b2d42a3808f197864943, type: 3}
-  m_Name: Settings
+  m_Script: {fileID: 11500000, guid: 537616cb057a44defa9e1b3b6d1901ca, type: 3}
+  m_Name: StageInfo
   m_EditorClassIdentifier: 
-  ShowStartScreen: 2
+  mFirstKey:
+  - 1
+  - 2
+  - 3
+  mSecondKey: []
+  mDataList:
+  - _stage_idx: 1
+    _end_goal_value: 1000
+  - _stage_idx: 2
+    _end_goal_value: 2000
+  - _stage_idx: 3
+    _end_goal_value: 3000

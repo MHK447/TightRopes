@@ -34,9 +34,10 @@ table UserData {
   gamestarttime:long = 0;
   uuid:long = 0;
   recordvalue:[RecordCount];
-// @EndCreate
+  stageidx:int = 0;// @ReactiveProperty
+  // @EndCreate
   money:string;
-
+  // @AutoCreate
   upgradedatas:[UpgradeData];
 
 }
@@ -64,14 +65,8 @@ table AquariumData
 table UpgradeData
 {
    upgradeidx:int = 0;
-   upgradelevel:int = 0;
+   upgradelevel:int = 0; @ReactiveProperty
 }
 
-
-table UpgradeData
-{
-   upgradeidx:int = 0;
-   upgradelevel:int = 0;
-}
 
 root_type UserData;

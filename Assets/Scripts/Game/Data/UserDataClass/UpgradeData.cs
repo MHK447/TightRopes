@@ -5,36 +5,36 @@ using Google.FlatBuffers;
 
 public partial class UserDataSystem
 {
-    public List<UpgradeData> Upgradedata { get; private set; } = new List<UpgradeData>();
+    public List<UpgradeData> Upgradedatas { get; private set; } = new List<UpgradeData>();
+
+
+
     private void SaveData_UpgradeData(FlatBufferBuilder builder)
     {
         // 선언된 변수들은 모두 저장되어야함
 
-        // Upgradedata Array 저장
-        Offset<BanpoFri.Data.UpgradeData>[] upgradedata_Array = null;
-        VectorOffset upgradedata_Vector = default;
+        // Upgradedatas Array 저장
+        Offset<BanpoFri.Data.UpgradeData>[] upgradedatas_Array = null;
+        VectorOffset upgradedatas_Vector = default;
 
-        if (Upgradedata.Count > 0)
-        {
-            upgradedata_Array = new Offset<BanpoFri.Data.UpgradeData>[Upgradedata.Count];
+        if(Upgradedatas.Count > 0){
+            upgradedatas_Array = new Offset<BanpoFri.Data.UpgradeData>[Upgradedatas.Count];
             int index = 0;
-            foreach (var pair in Upgradedata)
-            {
+            foreach(var pair in Upgradedatas){
                 var item = pair;
-                upgradedata_Array[index++] = BanpoFri.Data.UpgradeData.CreateUpgradeData(
+                upgradedatas_Array[index++] = BanpoFri.Data.UpgradeData.CreateUpgradeData(
                     builder,
                     item.Upgradeidx,
-                    item.Upgradelevel
+                    item.Upgradelevel.Value
                 );
             }
-            upgradedata_Vector = BanpoFri.Data.UserData.CreateUpgradedataVector(builder, upgradedata_Array);
+            upgradedatas_Vector = BanpoFri.Data.UserData.CreateUpgradedatasVector(builder, upgradedatas_Array);
         }
 
 
 
-        Action cbAddDatas = () =>
-        {
-            BanpoFri.Data.UserData.AddUpgradedata(builder, upgradedata_Vector);
+        Action cbAddDatas = () => {
+            BanpoFri.Data.UserData.AddUpgradedatas(builder, upgradedatas_Vector);
         };
 
         cb_SaveAddDatas += cbAddDatas;
@@ -44,23 +44,20 @@ public partial class UserDataSystem
     {
         // 로드 함수 내용
 
-        // Upgradedata 로드
-        Upgradedata.Clear();
-        int Upgradedata_length = flatBufferUserData.UpgradedataLength;
-        for (int i = 0; i < Upgradedata_length; i++)
+        // Upgradedatas 로드
+        Upgradedatas.Clear();
+        int Upgradedatas_length = flatBufferUserData.UpgradedatasLength;
+        for (int i = 0; i < Upgradedatas_length; i++)
         {
-            var Upgradedata_item = flatBufferUserData.Upgradedata(i);
-            if (Upgradedata_item.HasValue)
+            var Upgradedatas_item = flatBufferUserData.Upgradedatas(i);
+            if (Upgradedatas_item.HasValue)
             {
                 var upgradedata = new UpgradeData
                 {
-                    Upgradeidx = Upgradedata_item.Value.Upgradeidx,
-                    Upgradelevel = Upgradedata_item.Value.Upgradelevel,
+                    Upgradeidx = Upgradedatas_item.Value.Upgradeidx,
+                    Upgradelevel = new ReactiveProperty<int>(Upgradedatas_item.Value.Upgradelevel)
                 };
-
-                upgradedata.Create();
-        
-                Upgradedata.Add(upgradedata);
+                Upgradedatas.Add(upgradedata);
             }
         }
     }
@@ -70,17 +67,6 @@ public partial class UserDataSystem
 public class UpgradeData
 {
     public int Upgradeidx { get; set; } = 0;
-    public int Upgradelevel { get; set; } = 0;
-
-
-    public ReactiveProperty<int> UpgradelevelProperty { get; set; } = new ReactiveProperty<int>(0);
-
-
-    public void Create()
-    {
-        UpgradelevelProperty.Value = Upgradelevel;
-
-        UpgradelevelProperty.Subscribe(x=> { Upgradelevel = x; });
-    }
+    public IReactiveProperty<int> Upgradelevel { get; set; } = new ReactiveProperty<int>(0);
 
 }

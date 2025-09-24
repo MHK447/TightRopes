@@ -129,6 +129,7 @@ SpriteAtlas:
     - 2262dd97220f146e9ad0efd693dd5768: 21300000
     - 37e530a798bcec346be4a64c009493af: 21300000
     - f3df3eb728ace45f8ac486dccb38a9a6: 21300000
+    - e77967d75ba644186862781f2726b053: 21300000
     - 14b2cc08b5b094f5a9e249b6e662a931: 21300000
     - ba902b385eca14a49a79b5149194014b: 21300000
     - 7b7bd868905c5914a8b35e9a5c320bec: 21300000
@@ -148,6 +149,7 @@ SpriteAtlas:
     - 9c6b349a02fa24640842af102055eb5b: 21300000
     - f00192ba367468143931fa2d04c5c2c6: 21300000
     - 034a516b58822bf4ca7b7d8d8c309bdf: 21300000
+    - df14598b52c444b9d9dfd52e81daec52: 21300000
     - 21fd8e6c8f46f2345bdbe4be38f7d3e9: 21300000
     - 135ec3ac624374d1eb93212520c5727a: 21300000
     - d65acabc04c81284b99dcf08238eeb2f: 21300000
@@ -221,6 +223,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2262dd97220f146e9ad0efd693dd5768, type: 3}
   - {fileID: 21300000, guid: 37e530a798bcec346be4a64c009493af, type: 3}
   - {fileID: 21300000, guid: f3df3eb728ace45f8ac486dccb38a9a6, type: 3}
+  - {fileID: 21300000, guid: e77967d75ba644186862781f2726b053, type: 3}
   - {fileID: 21300000, guid: 14b2cc08b5b094f5a9e249b6e662a931, type: 3}
   - {fileID: 21300000, guid: ba902b385eca14a49a79b5149194014b, type: 3}
   - {fileID: 21300000, guid: 7b7bd868905c5914a8b35e9a5c320bec, type: 3}
@@ -240,6 +243,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9c6b349a02fa24640842af102055eb5b, type: 3}
   - {fileID: 21300000, guid: f00192ba367468143931fa2d04c5c2c6, type: 3}
   - {fileID: 21300000, guid: 034a516b58822bf4ca7b7d8d8c309bdf, type: 3}
+  - {fileID: 21300000, guid: df14598b52c444b9d9dfd52e81daec52, type: 3}
   - {fileID: 21300000, guid: 21fd8e6c8f46f2345bdbe4be38f7d3e9, type: 3}
   - {fileID: 21300000, guid: 135ec3ac624374d1eb93212520c5727a, type: 3}
   - {fileID: 21300000, guid: d65acabc04c81284b99dcf08238eeb2f, type: 3}
@@ -312,6 +316,8 @@ SpriteAtlas:
   - Pictoicon_Bulb 1
   - Common_Icon_LightningSet
   - Pictoicon_Info 1
+  - "ChatGPT Image 2025\u1102\u1167\u11AB 9\u110B\u116F\u11AF 24\u110B\u1175\u11AF
+    \u110B\u1169\u1112\u116E 11_56_54"
   - Pictoicon_Fish_Bone 1
   - Common_Icon_Close
   - Common_Btn_HUD_Plus
@@ -331,6 +337,7 @@ SpriteAtlas:
   - Common_Bg_RayEffect
   - Common_Frame_Gradation
   - Common_Icon_ShopGems_02
+  - Common_Walk_Icon
   - Common_Frame_BubbleMsg
   - Common_Lightning_2
   - Common_Icon_Goods_Shop

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using BanpoFri;
 using UniRx;
+using BanpoFri.Data;
 
 
 public class LobbyUpgradeComponent : MonoBehaviour
@@ -38,11 +39,11 @@ public class LobbyUpgradeComponent : MonoBehaviour
     {
         UpgradeIdx = upgradeidx;
 
-        UpgradeData = GameRoot.Instance.UserData.Upgradedata[upgradeidx];
+        UpgradeData = GameRoot.Instance.UserData.Upgradedatas[upgradeidx];
 
         disposables.Clear();
 
-        UpgradeData.UpgradelevelProperty.Subscribe(x=> { SetUpgradeValue(); }).AddTo(disposables);
+        UpgradeData.Upgradelevel.Subscribe(x=> { SetUpgradeValue(); }).AddTo(disposables);
 
         GameRoot.Instance.UserData.Money.Subscribe(x=> { SetUpgradeValue(); }).AddTo(disposables);
     }
@@ -73,7 +74,7 @@ public class LobbyUpgradeComponent : MonoBehaviour
         if(GameRoot.Instance.UserData.Money.Value >= UpgradeCost)
         {
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency , (int)Config.CurrencyID.Money , -UpgradeCost);
-            UpgradeData.UpgradelevelProperty.Value += 1;
+            UpgradeData.Upgradelevel.Value += 1;
 
             SetUpgradeValue();
         }

@@ -71,6 +71,7 @@ public partial class UserDataSystem
     public IReactiveProperty<double> HUDArtifactStone = new ReactiveProperty<double>(0);
 
     // @변수 자동 등록 위치
+    public IReactiveProperty<int> Stageidx { get; set; } = new ReactiveProperty<int>(0);
     public IReactiveProperty<bool> Fishingautoproperty { get; set; } = new ReactiveProperty<bool>(false);
     public DateTime Dayinitialtime { get; set; }
     public int Energycreatefood { get; set; } = 0;
@@ -90,13 +91,14 @@ public partial class UserDataSystem
     public long Lastlogintime { get; set; } = 0;
     public string Buyinappids { get; set; } = "";
 
+    public RaceData RaceData { get; private set; } = new RaceData();
+
 
     void SetLoadDatas()
     {
         /* 아래 @주석 위치를 찾아서 함수가 자동 추가됩니다 ConnectReadOnlyDatas 함수에서 SetLoadDatas를 호출해주세요 */
         // @자동 로드 데이터 함수들
         LoadData_UpgradeData();
-        LoadData_AquariumData();
         LoadData_RecordCount();
         LoadData_OptionData();
     }
@@ -153,7 +155,8 @@ public partial class UserDataSystem
         SetLoadDatas();
 
         // @변수 자동 데이터 추가
-        Fishingautoproperty.Value = flatBufferUserData.Fishingautoproperty;
+        Money.Value = BigInteger.Parse(flatBufferUserData.Money);
+        Stageidx.Value = flatBufferUserData.Stageidx;
         Cash.Value = flatBufferUserData.Cash;
 
 

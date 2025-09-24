@@ -169,7 +169,6 @@ public partial class UserDataSystem
         /* 아래 @주석 위치를 찾아서 함수가 자동 추가됩니다 SaveFile 함수에서 SetSaveDatas를 호출해주세요 */
         // @자동 저장 데이터 함수들
         SaveData_UpgradeData(builder);
-        SaveData_AquariumData(builder);
         SaveData_RecordCount(builder);
         SaveData_OptionData(builder);
     }
@@ -189,6 +188,8 @@ public partial class UserDataSystem
 
 
         var money = builder.CreateString(Money.Value.ToString());
+        var upgradedatasVec = builder.CreateString(Upgradedatas.ToString());
+        var upgradedatas = builder.CreateString(Upgradedatas.ToString());
 
         //option
         var option = BanpoFri.Data.OptionData.CreateOptionData(builder, builder.CreateString(Language.ToString()), Bgm, Effect, SlowGraphic, Vib, SubscribeOrder, AutoFelling);
@@ -230,6 +231,7 @@ public partial class UserDataSystem
             tutorialVec = BanpoFri.Data.UserData.CreateTutorialVector(builder, tutorialArray);
 
 
+        var strMoney = builder.CreateString(Money.Value.ToString());
         // @add userdata
 
         BanpoFri.Data.UserData.StartUserData(builder);
@@ -242,8 +244,8 @@ public partial class UserDataSystem
         BanpoFri.Data.UserData.AddOptiondata(builder, option);
         BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
         BanpoFri.Data.UserData.AddTutorial(builder, tutorialVec);
-        BanpoFri.Data.UserData.AddFishingautoproperty(builder, Fishingautoproperty.Value);
         BanpoFri.Data.UserData.AddMoney(builder, money);
+        BanpoFri.Data.UserData.AddStageidx(builder, Stageidx.Value);
         var orc = BanpoFri.Data.UserData.EndUserData(builder);
         builder.Finish(orc.Value);
 

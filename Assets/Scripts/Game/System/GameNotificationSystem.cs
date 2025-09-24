@@ -101,7 +101,7 @@ public class GameNotificationSystem
                     var data = GetData(category, -1, -1);
                     if (data != null)
                     {
-                        foreach (var upgrade in GameRoot.Instance.UserData.Upgradedata)
+                        foreach (var upgrade in GameRoot.Instance.UserData.Upgradedatas)
                         {
                             var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(upgrade.Upgradeidx);
 
