@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 6550997583325672994}
   - component: {fileID: 915976988769525936}
   - component: {fileID: 5383223260958054766}
-  - component: {fileID: 7885501625976148898}
+  - component: {fileID: 1108489606483265490}
   m_Layer: 0
   m_Name: PopupIngame
   m_TagString: Untagged
@@ -435,7 +435,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7885501625976148898
+--- !u!114 &1108489606483265490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4575456115777603097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07090e86bfe424de5a177ab9f0df2cf0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a45cd1fd9c0140a388051622a3369be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CurrencyTop: {fileID: 0}
@@ -456,10 +456,7 @@ MonoBehaviour:
   batchParticleOrder: 0
   DontCloseInteraction: 0
   touchLockTime: 0.5
-  LobbyUpgradeComponents:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  RaceUIComponent: {fileID: 0}
 --- !u!1 &5809415752495439711
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7548134197152297216}
+  - component: {fileID: 8340999531608138949}
   m_Layer: 0
   m_Name: RaceUIComponent
   m_TagString: Untagged
@@ -496,6 +494,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8340999531608138949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809415752495439711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bba9a37d42c436b90fb83a19f6a8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RaceSlider: {fileID: 8616280021702038784}
+  RaceStreetText: {fileID: 8431417569099757778}
 --- !u!1 &7842852676457487199
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +721,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6682107120597384051, guid: 41309970361210c42ac8c7d7049dbfb1, type: 3}
   m_PrefabInstance: {fileID: 1543175220479658185}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8616280021702038784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7131828965646818761, guid: 41309970361210c42ac8c7d7049dbfb1, type: 3}
+  m_PrefabInstance: {fileID: 1543175220479658185}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4465083848671034125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -827,3 +850,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8745925318361794790, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
   m_PrefabInstance: {fileID: 4465083848671034125}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8431417569099757778 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
+  m_PrefabInstance: {fileID: 4465083848671034125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

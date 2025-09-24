@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UniRx;
 using BanpoFri;
 
+
 public class RaceUIComponent : MonoBehaviour
 {
     [SerializeField]
@@ -14,11 +15,21 @@ public class RaceUIComponent : MonoBehaviour
 
     private int RaceStreet = 0;
 
+    private StageInfoData InfoData;
+    
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     void OnEnable()
     {
-        //var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
-        //var td = Tables.Instance.GetTable<StageInfo>().GetData()
+        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
+        InfoData = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+        disposables.Clear();
+
+        GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Subscribe(x=> {
+            RaceStatusCheck((int)x);
+        }).AddTo(disposables);
+
         
     }
 
@@ -26,8 +37,18 @@ public class RaceUIComponent : MonoBehaviour
 
     public void RaceStatusCheck(int value)
     {
-        //RaceSlider.value = (float)value / (float);
+        RaceSlider.value = (float)value / (float)InfoData.end_goal_value;
         RaceStreetText.text = $"{value}m";
     }
-    
+
+    void OnDisable()
+    {
+        disposables.Clear();
+    }
+
+    void OnDestroy()
+    {
+        disposables.Clear();
+    }
+
 }

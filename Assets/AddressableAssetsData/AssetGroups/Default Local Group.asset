@@ -175,6 +175,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68944d35078234cd984ea89c37dad385
+    m_Address: UI/Popup/PopupInGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c5bf84e2ad49434fb617cf2974424c6
     m_Address: UI/Popup/Popup_Slide01_Navy
     m_ReadOnly: 0
