@@ -14,9 +14,9 @@ public interface IInGameMode
 public abstract class InGameMode : MonoBehaviour, IInGameMode
 {
     [SerializeField]
-    private PanAndZoom MainCam;
+    private InGameCamera MainCam;
 
-    public PanAndZoom GetMainCam { get { return MainCam; } }
+    public InGameCamera GetMainCam { get { return MainCam; } }
 
     public float CamPixelWidth { get; private set; }
     public float CamPixelHeight { get; private set; }
@@ -90,7 +90,7 @@ public abstract class InGameMode : MonoBehaviour, IInGameMode
 
     public void SetCameraBoundMinY(float value)
     {
-        MainCam.boundMinY = value;
+        MainCam.GetCam.transform.position = new Vector3(0f, value, -10f);
     }
 
     public virtual void Load()

@@ -98,7 +98,13 @@ public class PlayerData
 public class RaceData
 {
 	public IReactiveProperty<float> RaceStreetProeprty = new ReactiveProperty<float>();
-	
+
+	public IReactiveProperty<float> BalanceValueProperty = new ReactiveProperty<float>();
+
+	public void Init()
+	{
+		
+	}	
 
 }
 

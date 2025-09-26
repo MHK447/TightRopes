@@ -19,14 +19,13 @@ public class UpgradeSystem
     {
         if (GameRoot.Instance.UserData.Upgradedatas.Count == 0)
         {
-            for (int i = 0; i < (int)UpgradeType.GroundSizeUpgrade + 1; i++)
+            for (int i = 0; i < (int)UpgradeType.MoneyMultiUpgrade + 1; i++)
             {
                 GameRoot.Instance.UserData.Upgradedatas.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = new ReactiveProperty<int>(1) });
             }
         }
 
     }
-
 
 
 

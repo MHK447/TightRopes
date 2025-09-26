@@ -7,7 +7,7 @@ public class TutorialEntityHoldToMove : TutorialEntity
     [SerializeField]
     private Slider Slider;
 
-    PanAndZoom Cam;
+    InGameCamera Cam;
 
     private float touchtime = 0f;
 
@@ -18,7 +18,7 @@ public class TutorialEntityHoldToMove : TutorialEntity
 
         Slider.value = 0f;
 
-        Cam = GameRoot.Instance.InGameSystem.CurInGame.GetMainCam;
+        //Cam = GameRoot.Instance.InGameSystem.CurInGame.GetMainCam.GetCam;
 
     }
 
@@ -28,23 +28,23 @@ public class TutorialEntityHoldToMove : TutorialEntity
         if (Cam == null) return;
 
 
-        if(Cam.isTouching)
-        {
-            touchtime += Time.deltaTime * speed;
+        // if(Cam.IsTouching)
+        // {
+        //     touchtime += Time.deltaTime * speed;
 
-            Slider.value = touchtime;
+        //     Slider.value = touchtime;
 
 
-            if (touchtime >= 1f)
-            {
-                Done();
-            }
-        }
-        else
-        {
-            Slider.value = 0f;
-            touchtime = 0f;
-        }
+        //     if (touchtime >= 1f)
+        //     {
+        //         Done();
+        //     }
+        // }
+        // else
+        // {
+        //     Slider.value = 0f;
+        //     touchtime = 0f;
+        // }
     }
 
 }

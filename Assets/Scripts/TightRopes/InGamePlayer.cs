@@ -8,14 +8,17 @@ public class InGamePlayer : MonoBehaviour
     [SerializeField]
     private float forwardSpeed = 5f;
 
+    [SerializeField]
+    private Animator Anim;
+
+
+
+    private InGameBase InGameBase;
+
 
     private float RandBanlanceTime = 0.5f;
 
     private float BanlanceDeltime = 0f;
-
-
-    private float EndZpos = -30f;
-
 
     public void Init()
     {
@@ -23,13 +26,35 @@ public class InGamePlayer : MonoBehaviour
             Rb = GetComponent<Rigidbody>();
 
 
-        // Y축 -90도로 고정
-        transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+        InGameBase = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>();
+
+
+        WaitPlayGame();
+    }
+
+
+
+    public void WaitPlayGame()
+    {
+        Anim.Play("Idle");
+        this.transform.position = InGameBase.StartTr.position;
+        transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+
+
+
+    }
+
+
+    public void PlayGame()
+    {
+        Anim.Play("Walk");
     }
 
 
     void Update()
     {
+        if (InGameBase.CurState != InGameBase.InGameState.Playing) return;
+
         InputBalance();
         ApplyForwardMovement();
         ApplySwingMovement();
@@ -103,7 +128,7 @@ public class InGamePlayer : MonoBehaviour
         // 범위 체크
         if (zRot <= -30f || zRot >= 30f)
         {
-            var dir = zRot > 0 ? Vector3.left : Vector3.right;
+            var dir = zRot > 0 ? Vector3.right : Vector3.left;
             OnTiltLimitReached(dir);
         }
     }

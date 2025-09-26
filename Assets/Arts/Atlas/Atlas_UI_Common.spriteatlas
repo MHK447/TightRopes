@@ -107,6 +107,7 @@ SpriteAtlas:
     - 59cd16342688c774b9736dd6ea20ceeb: 21300000
     - 2174bc4436dee8d4497e601bba82061a: 21300000
     - 73c1da6456f68434d975aa170a67769f: 21300000
+    - 738688942ded84983ada9598bb322a54: 21300000
     - 59cfb1c4407fc46739c3383a302f15cc: 21300000
     - 5841a33592c5d4d6ab931690641bc40d: 21300000
     - e75c71451e7bd488c9b89314465ef546: 21300000
@@ -129,11 +130,11 @@ SpriteAtlas:
     - 2262dd97220f146e9ad0efd693dd5768: 21300000
     - 37e530a798bcec346be4a64c009493af: 21300000
     - f3df3eb728ace45f8ac486dccb38a9a6: 21300000
-    - e77967d75ba644186862781f2726b053: 21300000
     - 14b2cc08b5b094f5a9e249b6e662a931: 21300000
     - ba902b385eca14a49a79b5149194014b: 21300000
     - 7b7bd868905c5914a8b35e9a5c320bec: 21300000
     - e62cbb88590ec5c4cb5f405c0eb9de63: 21300000
+    - c6fa7ca8d594a47ab850055d7febe6f3: 21300000
     - bce69da832d9442c190380778c8dee48: 21300000
     - b3b952b81aa37a7428c8fd921763d132: 21300000
     - 563a51c8a547f4f00b07db6794b3e1db: 21300000
@@ -148,6 +149,7 @@ SpriteAtlas:
     - c9cdd38a392ded24589ff7b49afa1556: 21300000
     - 9c6b349a02fa24640842af102055eb5b: 21300000
     - f00192ba367468143931fa2d04c5c2c6: 21300000
+    - 6cf34f5bd8fa545f7920579e6711b6d5: 21300000
     - 034a516b58822bf4ca7b7d8d8c309bdf: 21300000
     - df14598b52c444b9d9dfd52e81daec52: 21300000
     - 21fd8e6c8f46f2345bdbe4be38f7d3e9: 21300000
@@ -201,6 +203,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 59cd16342688c774b9736dd6ea20ceeb, type: 3}
   - {fileID: 21300000, guid: 2174bc4436dee8d4497e601bba82061a, type: 3}
   - {fileID: 21300000, guid: 73c1da6456f68434d975aa170a67769f, type: 3}
+  - {fileID: 21300000, guid: 738688942ded84983ada9598bb322a54, type: 3}
   - {fileID: 21300000, guid: 59cfb1c4407fc46739c3383a302f15cc, type: 3}
   - {fileID: 21300000, guid: 5841a33592c5d4d6ab931690641bc40d, type: 3}
   - {fileID: 21300000, guid: e75c71451e7bd488c9b89314465ef546, type: 3}
@@ -223,11 +226,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2262dd97220f146e9ad0efd693dd5768, type: 3}
   - {fileID: 21300000, guid: 37e530a798bcec346be4a64c009493af, type: 3}
   - {fileID: 21300000, guid: f3df3eb728ace45f8ac486dccb38a9a6, type: 3}
-  - {fileID: 21300000, guid: e77967d75ba644186862781f2726b053, type: 3}
   - {fileID: 21300000, guid: 14b2cc08b5b094f5a9e249b6e662a931, type: 3}
   - {fileID: 21300000, guid: ba902b385eca14a49a79b5149194014b, type: 3}
   - {fileID: 21300000, guid: 7b7bd868905c5914a8b35e9a5c320bec, type: 3}
   - {fileID: 21300000, guid: e62cbb88590ec5c4cb5f405c0eb9de63, type: 3}
+  - {fileID: 21300000, guid: c6fa7ca8d594a47ab850055d7febe6f3, type: 3}
   - {fileID: 21300000, guid: bce69da832d9442c190380778c8dee48, type: 3}
   - {fileID: 21300000, guid: b3b952b81aa37a7428c8fd921763d132, type: 3}
   - {fileID: 21300000, guid: 563a51c8a547f4f00b07db6794b3e1db, type: 3}
@@ -242,6 +245,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c9cdd38a392ded24589ff7b49afa1556, type: 3}
   - {fileID: 21300000, guid: 9c6b349a02fa24640842af102055eb5b, type: 3}
   - {fileID: 21300000, guid: f00192ba367468143931fa2d04c5c2c6, type: 3}
+  - {fileID: 21300000, guid: 6cf34f5bd8fa545f7920579e6711b6d5, type: 3}
   - {fileID: 21300000, guid: 034a516b58822bf4ca7b7d8d8c309bdf, type: 3}
   - {fileID: 21300000, guid: df14598b52c444b9d9dfd52e81daec52, type: 3}
   - {fileID: 21300000, guid: 21fd8e6c8f46f2345bdbe4be38f7d3e9, type: 3}
@@ -294,6 +298,7 @@ SpriteAtlas:
   - Common_Frame_S0_R9
   - Common_Icon_Goods_NoAds
   - Pictoicon_Help 1
+  - Common_Balance_Icon
   - Pictoicon_Home_1 1
   - Pictoicon_Fish 1
   - Common_Icon_Setting
@@ -316,12 +321,11 @@ SpriteAtlas:
   - Pictoicon_Bulb 1
   - Common_Icon_LightningSet
   - Pictoicon_Info 1
-  - "ChatGPT Image 2025\u1102\u1167\u11AB 9\u110B\u116F\u11AF 24\u110B\u1175\u11AF
-    \u110B\u1169\u1112\u116E 11_56_54"
   - Pictoicon_Fish_Bone 1
   - Common_Icon_Close
   - Common_Btn_HUD_Plus
   - Common_Icon_Goods_Lightning
+  - Balance_Test
   - Pictoicon_Dislike 1
   - Common_Icon_ShopGems_04
   - Common_Icon_Arrow_Back
@@ -336,6 +340,7 @@ SpriteAtlas:
   - Common_Frame_R0
   - Common_Bg_RayEffect
   - Common_Frame_Gradation
+  - Common_Icon_RaceEnd
   - Common_Icon_ShopGems_02
   - Common_Walk_Icon
   - Common_Frame_BubbleMsg
