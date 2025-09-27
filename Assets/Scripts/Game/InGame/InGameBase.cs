@@ -170,19 +170,19 @@ public class InGameBase : InGameMode
     {
         if (CurState != InGameState.Playing) return;
 
+        GameRoot.Instance.UISystem.OpenUI<HudTotal>();
 
-        SetState(InGameState.WaitPlay);
+        SetState(InGameState.WaitPlay); 
 
-
-
-
-        GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() =>
+        ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 100, () =>
         {
-            ReadyPlayingGame();
-            GameRoot.Instance.WaitTimeAndCallback(2f, () =>
+            GameRoot.Instance.WaitTimeAndCallback(1f, () =>
             {
-                ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 100);
+                GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() =>
+                {
+                    ReadyPlayingGame();
+                }));
             });
-        }));
+        });
     }
 }

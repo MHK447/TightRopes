@@ -17,6 +17,9 @@ public class CurrencyEffect : MonoBehaviour
     [SerializeField]
     private List<ParticleSystem> ParticleSystems = new List<ParticleSystem>();
 
+    [SerializeField]
+    private TextMeshProUGUI CurrencyText;
+
 
     public void Set(
         int rewardidx,
@@ -36,6 +39,13 @@ public class CurrencyEffect : MonoBehaviour
 
 
         var rewardsprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Currency_Coin");
+
+        CurrencyText.text = ProjectUtility.CalculateMoneyToString((System.Numerics.BigInteger)currencyCount);
+        
+        // CurrencyText 초기 설정
+        CurrencyText.gameObject.SetActive(true);
+        CurrencyText.alpha = 1f;
+        CurrencyText.transform.position = worldStartPos;
 
         foreach (var particle in ParticleSystems)
         {
@@ -114,10 +124,23 @@ public class CurrencyEffect : MonoBehaviour
         });
 
         // 기존 대로 부모를 움직임
-        sequence.Append(DOTween.To(() => TargetObj.transform.position, x =>
+        var mainMove = DOTween.To(() => TargetObj.transform.position, x =>
         {
             TargetObj.transform.position = x;
-        }, worldEndPos, 1.6f).SetEase(Ease.InExpo).SetUpdate(true));
+        }, worldEndPos, 1.6f).SetEase(Ease.InExpo).SetUpdate(true);
+        
+        // CurrencyText도 함께 날아가도록 애니메이션 추가
+        var textMove = CurrencyText.transform.DOMove(worldEndPos, 1.6f).SetEase(Ease.InExpo).SetUpdate(true);
+        
+        // 텍스트가 날아가면서 크기도 조금씩 커지도록
+        var textScale = CurrencyText.transform.DOScale(1.2f, 0.8f).SetEase(Ease.OutQuad).SetUpdate(true)
+            .OnComplete(() => {
+                // 크기가 커진 후 다시 작아지면서 페이드아웃
+                CurrencyText.transform.DOScale(0.8f, 0.8f).SetEase(Ease.InQuad).SetUpdate(true);
+                CurrencyText.DOFade(0f, 0.8f).SetEase(Ease.InQuad).SetUpdate(true);
+            });
+        
+        sequence.Append(mainMove);
 
         // 자식들이 뭉쳐지는 느낌을 줄이기 위해 움직임
         int moveCount = TargetObj.transform.childCount;
@@ -140,6 +163,8 @@ public class CurrencyEffect : MonoBehaviour
         sequence.AppendCallback(() =>
         {
             ProjectUtility.SetActiveCheck(TargetObj, false);
+            CurrencyText.gameObject.SetActive(false); // CurrencyText도 비활성화
+            
             CompositeDisposable disposables = new CompositeDisposable();
             var startcount = GameRoot.Instance.PlayTimeSystem.CreateCountDownObservable(1f);
             startcount.Subscribe(_ => {; }, () =>

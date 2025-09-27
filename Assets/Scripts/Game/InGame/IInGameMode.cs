@@ -24,8 +24,8 @@ public abstract class InGameMode : MonoBehaviour, IInGameMode
 
     private void Awake()
     {
-        // CamPixelWidth = MainCam.cam.pixelWidth;
-        // CamPixelHeight = MainCam.cam.pixelHeight;
+        CamPixelWidth = MainCam.GetCam.pixelWidth;
+        CamPixelHeight = MainCam.GetCam.pixelHeight;
         if (GameRoot.IsInit())
         {
             GameRoot.Instance.InGameSystem.RegisteInGame(this);

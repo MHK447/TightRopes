@@ -275,7 +275,7 @@ public class ProjectUtility
                             pos = currencyHud.MoneyIconTr.position;
                             break;
                     }
-                    PlayGoodsEffect(pos, (int)Config.RewardType.Currency, rewardIndex, 0, amount, true, OnEnd, 0f, "", null, false, true, pos);
+                    PlayGoodsEffect(Vector3.zero, (int)Config.RewardType.Currency, rewardIndex, 0, amount, true, OnEnd, 0f, "", null, false, true, pos);
                 }
                 break;
 
