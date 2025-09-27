@@ -15,10 +15,16 @@ public class InGamePlayer : MonoBehaviour
 
     private InGameBase InGameBase;
 
+    [HideInInspector]
+    public bool IsDead = false;
 
-    private float RandBanlanceTime = 0.5f;
+
+    private float RandBanlanceTime = 0.1f;
 
     private float BanlanceDeltime = 0f;
+
+
+
 
     public void Init()
     {
@@ -29,14 +35,16 @@ public class InGamePlayer : MonoBehaviour
         InGameBase = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>();
 
 
-        WaitPlayGame();
+        ReadyPlayr();
     }
 
 
 
-    public void WaitPlayGame()
+    public void ReadyPlayr()
     {
+        Rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         Anim.Play("Idle");
+        IsDead = false;
         this.transform.position = InGameBase.StartTr.position;
         transform.rotation = Quaternion.Euler(0f, -180f, 0f);
 
@@ -48,17 +56,19 @@ public class InGamePlayer : MonoBehaviour
     public void PlayGame()
     {
         Anim.Play("Walk");
+        IsDead = false;
     }
 
 
     void Update()
     {
+
         if (InGameBase.CurState != InGameBase.InGameState.Playing) return;
 
         InputBalance();
         ApplyForwardMovement();
         ApplySwingMovement();
-
+        DeadCheck();
         CheckTiltLimit();
     }
 
@@ -77,8 +87,8 @@ public class InGamePlayer : MonoBehaviour
         {
             BanlanceDeltime = 0f;
             // 랜덤 목표 각도 갱신 (조금씩 누적 흔들림)
-            randomZ += Random.Range(-10, 10);
-            randomZ = Mathf.Clamp(randomZ, -10f, 10f); // 너무 과하게 안 흔들리도록 제한
+            randomZ += Random.Range(-20, 20);
+            randomZ = Mathf.Clamp(randomZ, -20f, 20f); // 너무 과하게 안 흔들리도록 제한
         }
 
         // 최종 목표 각도 = 랜덤 흔들림 + 입력 보정
@@ -106,6 +116,11 @@ public class InGamePlayer : MonoBehaviour
 
     private void ApplyForwardMovement()
     {
+        if(IsDead) return;
+        if(InGameBase == null) return;
+        if(InGameBase.CurState != InGameBase.InGameState.Playing) return;
+
+
         Vector3 velocity = Rb.linearVelocity; // 현재 속도 유지
         velocity = transform.forward * forwardSpeed + Vector3.up * velocity.y;
         Rb.linearVelocity = velocity;
@@ -116,7 +131,6 @@ public class InGamePlayer : MonoBehaviour
     {
     }
 
-    private bool IsDead = false;
     private void CheckTiltLimit()
     {
         if (IsDead) return;
@@ -150,4 +164,22 @@ public class InGamePlayer : MonoBehaviour
     }
 
     // Debug visualization
+
+    public void DeadCheck()
+    {
+        if (InGameBase == null) return;
+
+        if (!IsDead && InGameBase.CurState == InGameBase.InGameState.Playing)
+        {
+            if (this.transform.position.y < InGameBase.DeadYPos)
+            {
+                IsDead = true;
+                Rb.linearVelocity = Vector3.zero;  // 이동 속도 초기화
+                Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화 
+                InGameBase.GetMainCam.SetFocus(false);
+                InGameBase.EndGame();
+            }
+
+        }
+    }
 }

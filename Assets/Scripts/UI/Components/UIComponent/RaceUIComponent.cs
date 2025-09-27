@@ -13,8 +13,8 @@ public class RaceUIComponent : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI RaceGoalText;
 
-    [SerializeField]
-    private Slider BalanceSlider;
+
+
 
     private int RaceStreet = 0;
 
@@ -30,20 +30,14 @@ public class RaceUIComponent : MonoBehaviour
         disposables.Clear();
 
         GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Subscribe(RaceStatusCheck).AddTo(disposables);
-
-        GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Subscribe(BalanceStatusCheck).AddTo(disposables);
-
         
     }
 
-    public void BalanceStatusCheck(float value)
-    {
-        BalanceSlider.value = value;
-    }
-
-
     public void RaceStatusCheck(float value)
     {
+        if(InfoData == null) return;
+
+
         GoalSlider.value = (float)value / (float)InfoData.end_goal_value;
         RaceGoalText.text = $"{value}m";
     }

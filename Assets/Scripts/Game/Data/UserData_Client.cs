@@ -71,7 +71,7 @@ public partial class UserDataSystem
     public IReactiveProperty<double> HUDArtifactStone = new ReactiveProperty<double>(0);
 
     // @변수 자동 등록 위치
-    public IReactiveProperty<int> Stageidx { get; set; } = new ReactiveProperty<int>(0);
+    public IReactiveProperty<int> Stageidx { get; set; } = new ReactiveProperty<int>(1);
     public IReactiveProperty<bool> Fishingautoproperty { get; set; } = new ReactiveProperty<bool>(false);
     public DateTime Dayinitialtime { get; set; }
     public int Energycreatefood { get; set; } = 0;

@@ -22,6 +22,9 @@ public class InGameBase : InGameMode
 
     public Transform StartTr;
 
+    [HideInInspector]
+    public float DeadYPos = 190f;
+
     public override void Load()
     {
         base.Load();
@@ -41,6 +44,7 @@ public class InGameBase : InGameMode
     {
         SetState(InGameState.NoneInit);
         Player.Init();
+        ReadyPlayingGame();
         SetState(InGameState.WaitPlay);
         yield return new WaitUntil(() => CurState == InGameState.WaitPlay);
     }
@@ -56,8 +60,6 @@ public class InGameBase : InGameMode
     {
         base.LoadUI();
         GameRoot.Instance.InGameSystem.InitPopups();
-        GameRoot.Instance.UISystem.OpenUI<HudTotal>();
-        GameRoot.Instance.UISystem.OpenUI<PopupInGameLobby>(popup => popup.Init());
     }
 
 
@@ -82,18 +84,28 @@ public class InGameBase : InGameMode
         }
     }
 
+    public void ReadyPlayingGame()
+    {
+        SetState(InGameState.WaitPlay);
+        GameRoot.Instance.UISystem.OpenUI<PopupInGameLobby>(popup => popup.Init());
+        GameRoot.Instance.UISystem.OpenUI<HudTotal>();
+        GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.Hide();
+        Player.ReadyPlayr();
+        GetMainCam.SetFocus(true);
+    }
+
 
 
 
     protected override void Update()
     {
         base.Update();
-        HandleInput();
+        GameStartCheck();
     }
 
-    private void HandleInput()
+    private void GameStartCheck()
     {
-        if (CurState != InGameState.WaitPlay)
+        if (CurState == InGameState.Playing)
             return;
 
         bool inputDetected = false;
@@ -151,5 +163,19 @@ public class InGameBase : InGameMode
         }
 
         return false;
+    }
+
+
+    public void EndGame()
+    {
+        if(CurState != InGameState.Playing) return;
+
+
+        SetState(InGameState.WaitPlay);
+
+
+        GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() => {
+            ReadyPlayingGame();
+        }));
     }
 }

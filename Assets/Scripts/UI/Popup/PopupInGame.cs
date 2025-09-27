@@ -9,4 +9,10 @@ public class PopupInGame : UIBase
 {
     [SerializeField]
     private RaceUIComponent RaceUIComponent; 
+
+    [SerializeField]
+    private BalanceUIComponent BalanceUIComponent;
+
+
+
 }
