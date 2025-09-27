@@ -116,9 +116,9 @@ public class InGamePlayer : MonoBehaviour
 
     private void ApplyForwardMovement()
     {
-        if(IsDead) return;
-        if(InGameBase == null) return;
-        if(InGameBase.CurState != InGameBase.InGameState.Playing) return;
+        if (IsDead) return;
+        if (InGameBase == null) return;
+        if (InGameBase.CurState != InGameBase.InGameState.Playing) return;
 
 
         Vector3 velocity = Rb.linearVelocity; // 현재 속도 유지
@@ -163,8 +163,6 @@ public class InGamePlayer : MonoBehaviour
         Rb.AddForce(bounceDir * bouncePower, ForceMode.Impulse);
     }
 
-    // Debug visualization
-
     public void DeadCheck()
     {
         if (InGameBase == null) return;
@@ -173,13 +171,15 @@ public class InGamePlayer : MonoBehaviour
         {
             if (this.transform.position.y < InGameBase.DeadYPos)
             {
+                randomZ = 0f;
+                inputZ = 0f;
                 IsDead = true;
                 Rb.linearVelocity = Vector3.zero;  // 이동 속도 초기화
                 Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화 
+                transform.rotation = Quaternion.Euler(0f, -180f, 0f);
                 InGameBase.GetMainCam.SetFocus(false);
                 InGameBase.EndGame();
             }
-
         }
     }
 }

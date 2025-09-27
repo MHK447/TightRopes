@@ -207,6 +207,7 @@ MonoBehaviour:
   batchParticleOrder: 0
   DontCloseInteraction: 0
   touchLockTime: 0.5
+  MoneyIconTr: {fileID: 7005197179107321448}
 --- !u!1 &8903678948020275373
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,11 +472,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6770391697282562350, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ce291c1b9ffc9467aa926749212f3882, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
+--- !u!224 &7005197179107321448 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2480969388455989221, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
+  m_PrefabInstance: {fileID: 4853008186557016461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9087414610857361162 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4415113453871814279, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}

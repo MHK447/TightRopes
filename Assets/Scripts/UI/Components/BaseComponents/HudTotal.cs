@@ -8,6 +8,7 @@ using UniRx;
 [UIPath("UI/Page/HudTotal", true)]
 public class HudTotal : UIBase
 {
+    public Transform MoneyIconTr;
 
     protected override void Awake()
     {

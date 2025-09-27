@@ -258,6 +258,31 @@ public class ProjectUtility
     }
 
 
+    public static void SetRewardAndEffect(int rewardType, int rewardIndex, int amount, System.Action OnEnd = null)
+    {
+        switch ((Config.RewardType)(int)Config.RewardType.Currency)
+        {
+            case Config.RewardType.Currency:
+                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, rewardIndex, amount);
+
+                var currencyHud = GameRoot.Instance.UISystem.GetUI<HudTotal>();
+                if (currencyHud != null && currencyHud.gameObject.activeInHierarchy)
+                {
+                    UnityEngine.Vector3 pos = currencyHud.transform.position;
+                    switch ((Config.CurrencyID)rewardIndex)
+                    {
+                        case Config.CurrencyID.Money:
+                            pos = currencyHud.MoneyIconTr.position;
+                            break;
+                    }
+                    PlayGoodsEffect(pos, (int)Config.RewardType.Currency, rewardIndex, 0, amount, true, OnEnd, 0f, "", null, false, true, pos);
+                }
+                break;
+
+        }
+    }
+
+
 
 
     public static void PlayGoodsEffect(UnityEngine.Vector3 startPos, int rewardType, int rewardIdx, int rewardGrade, System.Numerics.BigInteger value, bool isCenterStart = true, System.Action OnEnd = null, float delay = 0f, string viewText = "", UIBase curui = null, bool reward = true, bool underOrder = false, UnityEngine.Vector3 endPos = default(UnityEngine.Vector3)
@@ -314,6 +339,7 @@ public class ProjectUtility
         iscurrencytext);
     }
 
+
     public static void GoodsGetEffect(
         UnityEngine.Vector3 worldStartPos,
         UnityEngine.Vector3 worldMiddlePos,
@@ -330,113 +356,145 @@ public class ProjectUtility
         string ani = "Show",
         bool iscurrencytext = true)
     {
+        //bool isseasonal = (int)Config.RewardType.Item == (int)goodsType && (int)Config.ItemType.OneTimeValue == (int)goodsIdx;
 
-        var prefab = "UI/Component/GoodsEffect";
-        Addressables.InstantiateAsync(prefab).Completed += (obj) =>
+        if (goodsType == (int)Config.RewardType.Currency)
         {
-            if (obj.Result)
+            string prefab = "";
+            prefab = "UI/Component/RewardEffect";
+
+            Addressables.InstantiateAsync(prefab).Completed += (obj) =>
             {
-                var inst = obj.Result;
-                inst.transform.SetParent(GameRoot.Instance.UISystem.UIRootT, false);
-
-                var goodsEff = inst.GetComponent<GoodEffect>();
-                if (goodsEff != null)
-                    goodsEff.Set(worldStartPos, worldMiddlePos, worldEndPos, goodsType, goodsIdx, goodsGrade, goodsCnt, OnEnd, delay, viewText, isreward, ani);
-
-                if (underOrder)
+                if (obj.Result)
                 {
-                    var canvas = inst.GetComponent<Canvas>();
-                    if (canvas != null)
-                        canvas.sortingOrder = 9999;
+                    var inst = obj.Result;
+                    inst.transform.SetParent(GameRoot.Instance.UISystem.UIRootT, false);
+
+                    var goodsEff = inst.GetComponent<CurrencyEffect>();
+                    if (goodsEff != null)
+                        goodsEff.Set(goodsIdx, (double)goodsCnt, worldStartPos, worldEndPos, OnEnd, delay, iscurrencytext, goodsType);
+
+
+                    if (underOrder)
+                    {
+                        var canvas = inst.GetComponent<Canvas>();
+                        if (canvas != null)
+                            canvas.sortingOrder = 30000;
+                    }
                 }
-            }
-        };
+            };
+        }
+        else
+        {
+            var prefab = "UI/Component/GoodsEffect";
+            Addressables.InstantiateAsync(prefab).Completed += (obj) =>
+            {
+                if (obj.Result)
+                {
+                    var inst = obj.Result;
+                    inst.transform.SetParent(GameRoot.Instance.UISystem.UIRootT, false);
+
+                    var goodsEff = inst.GetComponent<GoodEffect>();
+                    if (goodsEff != null)
+                        goodsEff.Set(worldStartPos, worldMiddlePos, worldEndPos, goodsType, goodsIdx, goodsGrade, (System.Numerics.BigInteger)goodsCnt, OnEnd, delay, viewText, isreward, ani);
+
+                    if (underOrder)
+                    {
+                        var canvas = inst.GetComponent<Canvas>();
+                        if (canvas != null)
+                            canvas.sortingOrder = 30000;
+                    }
+                }
+            };
+        }
+
     }
+
 }
 
 public static class ScrollViewFocusFunctions
-{
-    public static Vector2 CalculateFocusedScrollPosition(this ScrollRect scrollView, Vector2 focusPoint)
     {
-        Vector2 contentSize = scrollView.content.rect.size;
-        Vector2 viewportSize = ((RectTransform)scrollView.content.parent).rect.size;
-        Vector2 contentScale = scrollView.content.localScale;
-
-        contentSize.Scale(contentScale);
-        focusPoint.Scale(contentScale);
-
-        Vector2 scrollPosition = scrollView.normalizedPosition;
-        if (scrollView.horizontal && contentSize.x > viewportSize.x)
-            scrollPosition.x = Mathf.Clamp01((focusPoint.x - viewportSize.x * 0.5f) / (contentSize.x - viewportSize.x));
-        if (scrollView.vertical && contentSize.y > viewportSize.y)
-            scrollPosition.y = Mathf.Clamp01((focusPoint.y - viewportSize.y * 0.5f) / (contentSize.y - viewportSize.y));
-
-        return scrollPosition;
-    }
-
-    public static Vector2 CalculateFocusedScrollPosition(this ScrollRect scrollView, RectTransform item)
-    {
-        Vector2 itemCenterPoint = scrollView.content.InverseTransformPoint(item.transform.TransformPoint(item.rect.center));
-
-        Vector2 contentSizeOffset = scrollView.content.rect.size;
-        contentSizeOffset.Scale(scrollView.content.pivot);
-
-        return scrollView.CalculateFocusedScrollPosition(itemCenterPoint + contentSizeOffset);
-    }
-
-    public static void FocusAtPoint(this ScrollRect scrollView, Vector2 focusPoint)
-    {
-        scrollView.normalizedPosition = scrollView.CalculateFocusedScrollPosition(focusPoint);
-    }
-
-    public static void FocusOnItem(this ScrollRect scrollView, RectTransform item)
-    {
-        scrollView.normalizedPosition = scrollView.CalculateFocusedScrollPosition(item);
-    }
-
-
-
-    private static IEnumerator LerpToScrollPositionCoroutine(this ScrollRect scrollView, Vector2 targetNormalizedPos, float speed, System.Action endaction = null)
-    {
-        Vector2 initialNormalizedPos = scrollView.normalizedPosition;
-
-        float t = 0f;
-        while (t < 1f)
+        public static Vector2 CalculateFocusedScrollPosition(this ScrollRect scrollView, Vector2 focusPoint)
         {
-            scrollView.normalizedPosition = Vector2.LerpUnclamped(initialNormalizedPos, targetNormalizedPos, 1f - (1f - t) * (1f - t));
+            Vector2 contentSize = scrollView.content.rect.size;
+            Vector2 viewportSize = ((RectTransform)scrollView.content.parent).rect.size;
+            Vector2 contentScale = scrollView.content.localScale;
 
-            yield return null;
-            t += speed * Time.unscaledDeltaTime;
+            contentSize.Scale(contentScale);
+            focusPoint.Scale(contentScale);
+
+            Vector2 scrollPosition = scrollView.normalizedPosition;
+            if (scrollView.horizontal && contentSize.x > viewportSize.x)
+                scrollPosition.x = Mathf.Clamp01((focusPoint.x - viewportSize.x * 0.5f) / (contentSize.x - viewportSize.x));
+            if (scrollView.vertical && contentSize.y > viewportSize.y)
+                scrollPosition.y = Mathf.Clamp01((focusPoint.y - viewportSize.y * 0.5f) / (contentSize.y - viewportSize.y));
+
+            return scrollPosition;
         }
 
-        scrollView.normalizedPosition = targetNormalizedPos;
+        public static Vector2 CalculateFocusedScrollPosition(this ScrollRect scrollView, RectTransform item)
+        {
+            Vector2 itemCenterPoint = scrollView.content.InverseTransformPoint(item.transform.TransformPoint(item.rect.center));
 
-        endaction?.Invoke();
-    }
+            Vector2 contentSizeOffset = scrollView.content.rect.size;
+            contentSizeOffset.Scale(scrollView.content.pivot);
 
-    //exponet 1 균등 , 2 뽑기좀 어려움 , +3  많이 어려움 
-    public static int GetBiasedWeightRandomInt(int min, int max, float exponent = 2f)
-    {
-        float t = Mathf.Pow(UnityEngine.Random.value, exponent);
-        float result = Mathf.Lerp(min, max + 1, t);  // max 포함을 위해 +1
-        return Mathf.FloorToInt(result);
-    }
+            return scrollView.CalculateFocusedScrollPosition(itemCenterPoint + contentSizeOffset);
+        }
 
-    public static IEnumerator FocusAtPointCoroutine(this ScrollRect scrollView, Vector2 focusPoint, float speed)
-    {
-        yield return scrollView.LerpToScrollPositionCoroutine(scrollView.CalculateFocusedScrollPosition(focusPoint), speed);
-    }
+        public static void FocusAtPoint(this ScrollRect scrollView, Vector2 focusPoint)
+        {
+            scrollView.normalizedPosition = scrollView.CalculateFocusedScrollPosition(focusPoint);
+        }
 
-    public static IEnumerator FocusOnItemCoroutine(this ScrollRect scrollView, RectTransform item, float speed, System.Action endaction = null)
-    {
-        yield return scrollView.LerpToScrollPositionCoroutine(scrollView.CalculateFocusedScrollPosition(item), speed, endaction);
-    }
-    public static IEnumerator FocusOnItemCoroutine(this ScrollRect scrollView, RectTransform item, float speed, Vector2 addPos)
-    {
-        var pos = scrollView.CalculateFocusedScrollPosition(item);
-        pos += addPos;
-        yield return scrollView.LerpToScrollPositionCoroutine(pos, speed);
-    }
+        public static void FocusOnItem(this ScrollRect scrollView, RectTransform item)
+        {
+            scrollView.normalizedPosition = scrollView.CalculateFocusedScrollPosition(item);
+        }
 
-}
+
+
+        private static IEnumerator LerpToScrollPositionCoroutine(this ScrollRect scrollView, Vector2 targetNormalizedPos, float speed, System.Action endaction = null)
+        {
+            Vector2 initialNormalizedPos = scrollView.normalizedPosition;
+
+            float t = 0f;
+            while (t < 1f)
+            {
+                scrollView.normalizedPosition = Vector2.LerpUnclamped(initialNormalizedPos, targetNormalizedPos, 1f - (1f - t) * (1f - t));
+
+                yield return null;
+                t += speed * Time.unscaledDeltaTime;
+            }
+
+            scrollView.normalizedPosition = targetNormalizedPos;
+
+            endaction?.Invoke();
+        }
+
+        //exponet 1 균등 , 2 뽑기좀 어려움 , +3  많이 어려움 
+        public static int GetBiasedWeightRandomInt(int min, int max, float exponent = 2f)
+        {
+            float t = Mathf.Pow(UnityEngine.Random.value, exponent);
+            float result = Mathf.Lerp(min, max + 1, t);  // max 포함을 위해 +1
+            return Mathf.FloorToInt(result);
+        }
+
+        public static IEnumerator FocusAtPointCoroutine(this ScrollRect scrollView, Vector2 focusPoint, float speed)
+        {
+            yield return scrollView.LerpToScrollPositionCoroutine(scrollView.CalculateFocusedScrollPosition(focusPoint), speed);
+        }
+
+        public static IEnumerator FocusOnItemCoroutine(this ScrollRect scrollView, RectTransform item, float speed, System.Action endaction = null)
+        {
+            yield return scrollView.LerpToScrollPositionCoroutine(scrollView.CalculateFocusedScrollPosition(item), speed, endaction);
+        }
+        public static IEnumerator FocusOnItemCoroutine(this ScrollRect scrollView, RectTransform item, float speed, Vector2 addPos)
+        {
+            var pos = scrollView.CalculateFocusedScrollPosition(item);
+            pos += addPos;
+            yield return scrollView.LerpToScrollPositionCoroutine(pos, speed);
+        }
+
+    }
 

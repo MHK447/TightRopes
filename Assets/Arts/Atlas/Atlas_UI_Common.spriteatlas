@@ -149,6 +149,7 @@ SpriteAtlas:
     - c9cdd38a392ded24589ff7b49afa1556: 21300000
     - 9c6b349a02fa24640842af102055eb5b: 21300000
     - f00192ba367468143931fa2d04c5c2c6: 21300000
+    - ce291c1b9ffc9467aa926749212f3882: 21300000
     - 6cf34f5bd8fa545f7920579e6711b6d5: 21300000
     - 034a516b58822bf4ca7b7d8d8c309bdf: 21300000
     - df14598b52c444b9d9dfd52e81daec52: 21300000
@@ -245,6 +246,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c9cdd38a392ded24589ff7b49afa1556, type: 3}
   - {fileID: 21300000, guid: 9c6b349a02fa24640842af102055eb5b, type: 3}
   - {fileID: 21300000, guid: f00192ba367468143931fa2d04c5c2c6, type: 3}
+  - {fileID: 21300000, guid: ce291c1b9ffc9467aa926749212f3882, type: 3}
   - {fileID: 21300000, guid: 6cf34f5bd8fa545f7920579e6711b6d5, type: 3}
   - {fileID: 21300000, guid: 034a516b58822bf4ca7b7d8d8c309bdf, type: 3}
   - {fileID: 21300000, guid: df14598b52c444b9d9dfd52e81daec52, type: 3}
@@ -340,6 +342,7 @@ SpriteAtlas:
   - Common_Frame_R0
   - Common_Bg_RayEffect
   - Common_Frame_Gradation
+  - Common_Currency_Coin
   - Common_Icon_RaceEnd
   - Common_Icon_ShopGems_02
   - Common_Walk_Icon

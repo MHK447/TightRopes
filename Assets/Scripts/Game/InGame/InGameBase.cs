@@ -151,9 +151,9 @@ public class InGameBase : InGameMode
             UnityEngine.EventSystems.EventSystem.current.RaycastAll(eventData, results);
 
 
-            foreach(var result in results)
+            foreach (var result in results)
             {
-                if(result.gameObject.GetComponent<Button>() != null)
+                if (result.gameObject.GetComponent<Button>() != null)
                 {
                     return true;
                 }
@@ -168,14 +168,21 @@ public class InGameBase : InGameMode
 
     public void EndGame()
     {
-        if(CurState != InGameState.Playing) return;
+        if (CurState != InGameState.Playing) return;
 
 
         SetState(InGameState.WaitPlay);
 
 
-        GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() => {
+
+
+        GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() =>
+        {
             ReadyPlayingGame();
+            GameRoot.Instance.WaitTimeAndCallback(2f, () =>
+            {
+                ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 100);
+            });
         }));
     }
 }
