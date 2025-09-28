@@ -20,6 +20,13 @@ namespace BanpoFri
 			get { return _end_goal_value;}
 			set { _end_goal_value = value;}
 		}
+		[SerializeField]
+		private string _prefab;
+		public string prefab
+		{
+			get { return _prefab;}
+			set { _prefab = value;}
+		}
 
     }
 

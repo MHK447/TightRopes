@@ -80,12 +80,16 @@ public class InGameBase : InGameMode
             GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
             Player.PlayGame();
 
-            GameRoot.Instance.UserData.RaceData.Init();
+            GameRoot.Instance.UserData.RaceData.DataClear();
         }
     }
 
     public void ReadyPlayingGame()
     {
+        GameRoot.Instance.UserData.RaceData.DataClear();
+
+        
+
         SetState(InGameState.WaitPlay);
         GameRoot.Instance.UISystem.OpenUI<PopupInGameLobby>(popup => popup.Init());
         GameRoot.Instance.UISystem.OpenUI<HudTotal>();

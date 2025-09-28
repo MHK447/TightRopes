@@ -28,6 +28,8 @@ public class BalanceUIComponent : MonoBehaviour
         disposables.Clear();
         
         GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Subscribe(StatusSliderCheck).AddTo(disposables);
+
+        SetBalanceValue(30);
     }
 
     public void StatusSliderCheck(float value)
@@ -38,5 +40,23 @@ public class BalanceUIComponent : MonoBehaviour
     void OnDisable()
     {
         disposables.Clear();
+    }
+
+
+    public void SetBalanceValue(int anglevalue)
+    {
+        float dangevalue = (100 - anglevalue) * 0.01f;
+
+        LeftDangerImg.fillAmount = dangevalue;
+        RightDangeImg.fillAmount = dangevalue;
+
+        float slidervalue = anglevalue * 3;
+
+        CurPosSlider.minValue = -slidervalue;
+        CurPosSlider.maxValue = slidervalue;
+
+        CurPosSlider.value = 0;
+        
+
     }
 }

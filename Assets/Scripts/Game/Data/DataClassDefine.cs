@@ -101,10 +101,14 @@ public class RaceData
 
 	public IReactiveProperty<float> BalanceValueProperty = new ReactiveProperty<float>();
 
-	public void Init()
+	
+
+	public void DataClear()
 	{
-		
-	}	
+		RaceStreetProeprty.Value = 0;
+		BalanceValueProperty.Value = 0;
+	}
+
 
 }
 

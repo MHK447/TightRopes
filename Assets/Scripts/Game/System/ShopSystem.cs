@@ -51,10 +51,6 @@ public class ShopSystem
             isInterAdReady = !isVip;
         });
 
-        daily_reward_reset_time = Tables.Instance.GetTable<Define>().GetData("daily_reward_reset_time").value / 1000;
-
-        stage_energy_consume = Tables.Instance.GetTable<Define>().GetData("stage_energy_consume").value;
-
         DayInitTime();
     }
 

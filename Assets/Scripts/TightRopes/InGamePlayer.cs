@@ -1,4 +1,5 @@
 using UnityEngine;
+using BanpoFri;
 
 public class InGamePlayer : MonoBehaviour
 {
@@ -18,13 +19,21 @@ public class InGamePlayer : MonoBehaviour
     [HideInInspector]
     public bool IsDead = false;
 
+    private bool IsDeadWait = false;
+
 
     private float RandBanlanceTime = 0.1f;
 
     private float BanlanceDeltime = 0f;
 
+    private int GoalStreet = 0;
 
 
+    [Header("레이스 이동 계산 변수들")]
+    private Vector3 lastPosition;
+    private float totalDistance = 0f;
+    private float distanceUpdateTimer = 0f;
+    private float distanceUpdateInterval = 0.1f; // 1초마다 업데이트
 
     public void Init()
     {
@@ -42,14 +51,24 @@ public class InGamePlayer : MonoBehaviour
 
     public void ReadyPlayr()
     {
+        lastPosition = this.transform.position;
+        totalDistance = 0f;
         Rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         Anim.Play("Idle");
         IsDead = false;
+        IsDeadWait = false;
         this.transform.position = InGameBase.StartTr.position;
         transform.rotation = Quaternion.Euler(0f, -180f, 0f);
 
+        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
 
+        GoalStreet = Tables.Instance.GetTable<StageInfo>().GetData(stageidx).end_goal_value;
 
+        // 거리 추적 초기화
+        lastPosition = this.transform.position;
+        totalDistance = 0f;
+        distanceUpdateTimer = 0f;
+        GameRoot.Instance.UserData.RaceData.DataClear(); // RaceStreetProperty 초기화
     }
 
 
@@ -57,12 +76,13 @@ public class InGamePlayer : MonoBehaviour
     {
         Anim.Play("Walk");
         IsDead = false;
+        IsDeadWait = false;
     }
 
 
     void Update()
     {
-
+        if (InGameBase == null) return;
         if (InGameBase.CurState != InGameBase.InGameState.Playing) return;
 
         InputBalance();
@@ -81,6 +101,7 @@ public class InGamePlayer : MonoBehaviour
 
     private void ApplySwingMovement()
     {
+
         BanlanceDeltime += Time.deltaTime;
 
         if (BanlanceDeltime >= RandBanlanceTime)
@@ -121,15 +142,40 @@ public class InGamePlayer : MonoBehaviour
         if (InGameBase.CurState != InGameBase.InGameState.Playing) return;
 
 
+        RaceCalcUpdate();
+
         Vector3 velocity = Rb.linearVelocity; // 현재 속도 유지
         velocity = transform.forward * forwardSpeed + Vector3.up * velocity.y;
         Rb.linearVelocity = velocity;
     }
 
-
-    public void ResetPlayer()
+    public void RaceCalcUpdate()
     {
+        if (IsDeadWait || IsDead) return;
+        // 1초마다 거리 계산 및 업데이트
+        distanceUpdateTimer += Time.deltaTime;
+
+        if (distanceUpdateTimer >= distanceUpdateInterval)
+        {
+            Vector3 currentPosition = this.transform.position;
+            float deltaDistance = Vector3.Distance(currentPosition, lastPosition);
+
+            // 앞으로만 이동하는 경우만 거리에 추가 (뒤로 가는 것은 제외)
+            Vector3 moveDirection = (currentPosition - lastPosition).normalized;
+            float forwardDot = Vector3.Dot(moveDirection, transform.forward);
+
+            if (forwardDot > 0) // 앞으로 이동하는 경우만
+            {
+                totalDistance += deltaDistance;
+                GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value = totalDistance;
+            }
+
+            lastPosition = currentPosition;
+            distanceUpdateTimer = 0f; // 타이머 리셋
+        }
     }
+
+
 
     private void CheckTiltLimit()
     {
@@ -138,6 +184,9 @@ public class InGamePlayer : MonoBehaviour
         // 현재 z축 회전값 (0~360 → -180~180으로 변환)
         float zRot = transform.eulerAngles.z;
         if (zRot > 180f) zRot -= 360f;
+        
+        // 변환된 값을 BalanceValueProperty에 전달
+        GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Value = zRot;
 
         // 범위 체크
         if (zRot <= -30f || zRot >= 30f)
@@ -152,6 +201,7 @@ public class InGamePlayer : MonoBehaviour
     private void OnTiltLimitReached(Vector3 dir)
     {
         Debug.Log("좌우로 너무 기울어짐!");
+        IsDeadWait = true;
 
         // Rigidbody 제약 다 해제
         Rb.constraints = RigidbodyConstraints.None;

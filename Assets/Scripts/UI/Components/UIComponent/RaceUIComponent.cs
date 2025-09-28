@@ -13,13 +13,13 @@ public class RaceUIComponent : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI RaceGoalText;
 
-
-
+    [SerializeField]
+    private TextMeshProUGUI CurRaceText;
 
     private int RaceStreet = 0;
 
     private StageInfoData InfoData;
-    
+
     private CompositeDisposable disposables = new CompositeDisposable();
 
     void OnEnable()
@@ -29,17 +29,19 @@ public class RaceUIComponent : MonoBehaviour
 
         disposables.Clear();
 
+        RaceGoalText.text = $"{InfoData.end_goal_value}m";
+
         GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Subscribe(RaceStatusCheck).AddTo(disposables);
-        
+
     }
 
     public void RaceStatusCheck(float value)
     {
-        if(InfoData == null) return;
+        if (InfoData == null) return;
 
 
         GoalSlider.value = (float)value / (float)InfoData.end_goal_value;
-        RaceGoalText.text = $"{value}m";
+        CurRaceText.text = $"{value.ToString("F0")}m";
     }
 
     void OnDisable()

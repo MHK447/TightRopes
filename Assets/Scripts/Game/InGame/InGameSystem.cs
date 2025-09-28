@@ -25,44 +25,20 @@ public class InGameSystem
     public InGameMode CurInGame { get; private set; } = null;
 
     private bool firstInit = false;
-    private bool IsActiveEventTuto = false;
-    private bool IsTitle = false;
-
-    private System.Action NextStageAction = null;
-    private System.Action NextStageCloseAction = null;
-
     public bool nextStage = false;
 
     public System.Action NextActionClear = null;
 
-    public IReactiveProperty<int> LevelProperty = new ReactiveProperty<int>();
-    public IReactiveProperty<int> DeadCount = new ReactiveProperty<int>();
-
-
-    public int TicketEnemyIdx = 10001;
-
-    public int CounterIdx = 1000;
 
     CompositeDisposable disposables = new CompositeDisposable();
 
+    public int ingame_start_angle = 0;
 
-    public float casher_move_speed = 0f;
-    public float carry_sleep_time = 0f;
-    public int player_start_carry_count = 0;
-    public int carry_casher_count = 0;
-    public int max_offline_time = 0;
-    public int offline_value_time = 0;
-
-    public int stage_energy_consume = 0;
-
-    public int offline_reward_multiple = 0;
-
-    public float default_fishing_time = 0;
 
 
     public void Create()
     {
-        stage_energy_consume = Tables.Instance.GetTable<Define>().GetData("stage_energy_consume").value;
+        ingame_start_angle = Tables.Instance.GetTable<Define>().GetData("ingame_start_angle").value;
     }
 
     public T GetInGame<T>() where T : InGameMode
@@ -206,7 +182,6 @@ public class InGameSystem
     {
         disposables.Clear();
         var ActionQueue = new Queue<System.Action>();
-        IsActiveEventTuto = false;
         inInitPopups = true;
 
 
