@@ -57,7 +57,7 @@ public class InGamePlayer : MonoBehaviour
         Anim.Play("Idle");
         IsDead = false;
         IsDeadWait = false;
-        this.transform.position = InGameBase.StartTr.position;
+        this.transform.position = InGameBase.StageMap.StartTr.position;
         transform.rotation = Quaternion.Euler(0f, -180f, 0f);
 
         var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
@@ -89,7 +89,7 @@ public class InGamePlayer : MonoBehaviour
     void Update()
     {
         if (InGameBase == null) return;
-        if (InGameBase.CurState != InGameBase.InGameState.Playing) return;
+        if (InGameBase.StageMap.CurState != InGameBase.StageMap.InGameState.Playing) return;
 
         InputBalance();
         ApplyForwardMovement();
@@ -161,7 +161,7 @@ public class InGamePlayer : MonoBehaviour
     {
         if (IsDead) return;
         if (InGameBase == null) return;
-        if (InGameBase.CurState != InGameBase.InGameState.Playing) return;
+        if (InGameBase.StageMap.CurState != InGameStage.InGameState.Playing) return;
 
 
         RaceCalcUpdate();
@@ -239,9 +239,9 @@ public class InGamePlayer : MonoBehaviour
     {
         if (InGameBase == null) return;
 
-        if (!IsDead && InGameBase.CurState == InGameBase.InGameState.Playing)
+        if (!IsDead && InGameBase.StageMap.CurState == InGameStage.InGameState.Playing)
         {
-            if (this.transform.position.y < InGameBase.DeadYPos)
+            if (this.transform.position.y < InGameBase.StageMap.DeadYPos)
             {
                 randomZ = 0f;
                 inputZ = 0f;
@@ -250,7 +250,7 @@ public class InGamePlayer : MonoBehaviour
                 Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화 
                 transform.rotation = Quaternion.Euler(0f, -180f, 0f);
                 InGameBase.GetMainCam.SetFocus(false);
-                InGameBase.EndGame();
+                InGameBase.StageMap.EndGame();
             }
         }
     }
