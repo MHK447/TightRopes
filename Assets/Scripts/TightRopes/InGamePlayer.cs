@@ -69,6 +69,12 @@ public class InGamePlayer : MonoBehaviour
         totalDistance = 0f;
         distanceUpdateTimer = 0f;
         GameRoot.Instance.UserData.RaceData.DataClear(); // RaceStreetProperty 초기화
+        
+        // 방향 기울기 변수 초기화
+        directionTimer = 0f;
+        currentDirection = Random.Range(0, 2) == 0 ? -1 : 1; // 시작 시 랜덤 방향 선택
+        randomZ = 0f;
+        inputZ = 0f;
     }
 
 
@@ -98,21 +104,37 @@ public class InGamePlayer : MonoBehaviour
     private float randomZ = 0f;       // 랜덤 흔들림 각도
     private float inputZ = 0f;        // 입력 보정 각도
     private float inputTiltAmount = 2f;
+    
+    // 3초 주기 방향 기울기 변수들
+    private float directionTimer = 0f;    // 방향 타이머
+    private float directionDuration = 3f; // 3초 주기
+    private int currentDirection = 0;     // 현재 방향 (-1: 왼쪽, 1: 오른쪽, 0: 중앙)
+    private float directionTiltAngle = 15f; // 방향별 기울기 각도
 
     private void ApplySwingMovement()
     {
+        // 3초 주기 방향 타이머 업데이트
+        directionTimer += Time.deltaTime;
+        
+        if (directionTimer >= directionDuration)
+        {
+            directionTimer = 0f;
+            // 랜덤으로 방향 선택 (-1: 왼쪽, 1: 오른쪽)
+            currentDirection = Random.Range(0, 2) == 0 ? -1 : 1;
+            Debug.Log($"새로운 방향 선택: {(currentDirection == -1 ? "왼쪽" : "오른쪽")}");
+        }
 
+        // 기존 미세 흔들림 로직 (더 작은 범위로 조정)
         BanlanceDeltime += Time.deltaTime;
 
         if (BanlanceDeltime >= RandBanlanceTime)
         {
             BanlanceDeltime = 0f;
-            // 랜덤 목표 각도 갱신 (조금씩 누적 흔들림)
-            randomZ += Random.Range(-20, 20);
-            randomZ = Mathf.Clamp(randomZ, -20f, 20f); // 너무 과하게 안 흔들리도록 제한
+            randomZ += currentDirection == -1 ? -1f : 1f;
         }
 
-        // 최종 목표 각도 = 랜덤 흔들림 + 입력 보정
+        
+        // 최종 목표 각도 = 방향 기울기 + 미세 흔들림 + 입력 보정
         targetZ = randomZ + inputZ;
 
         // 부드럽게 회전 적용
@@ -126,11 +148,11 @@ public class InGamePlayer : MonoBehaviour
         // A, D 입력 반영
         if (Input.GetKey(KeyCode.A))
         {
-            inputZ += 2f;
+            inputZ += 1f;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            inputZ -= 2f;
+            inputZ -= 1f;
         }
     }
 

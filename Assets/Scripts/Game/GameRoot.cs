@@ -460,19 +460,7 @@ public class GameRoot : Singleton<GameRoot>
 				action.Invoke();
 			};
 
-			var diff = TimeSystem.GetCurTime().Subtract(time);
-
-			// 최대 오프라인 시간 제한 (테이블에서 가져옴)
-			var maxOfflineTime = Tables.Instance.GetTable<Define>().GetData("max_offline_time").value;
-
-			if (diff.TotalSeconds >= 120)
-			{
-				// 시간 차이를 최대 오프라인 시간으로 제한
-				var limitedSeconds = System.Math.Min(diff.TotalSeconds, maxOfflineTime);
-				var addenergycoin = (int)limitedSeconds / 120;
-
-				GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
-			}
+		
 
 			NextAction.Invoke();
 		}

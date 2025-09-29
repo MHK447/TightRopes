@@ -1251,11 +1251,11 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6682107120597384051, guid: 41309970361210c42ac8c7d7049dbfb1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4030201946569716447}
+      insertIndex: 0
+      addedObject: {fileID: 2061085375093527959}
     - targetCorrespondingSourceObject: {fileID: 6682107120597384051, guid: 41309970361210c42ac8c7d7049dbfb1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2061085375093527959}
+      addedObject: {fileID: 4030201946569716447}
     - targetCorrespondingSourceObject: {fileID: 6682107120597384051, guid: 41309970361210c42ac8c7d7049dbfb1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1480009199326502702}
