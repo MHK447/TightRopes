@@ -26,7 +26,8 @@ public class InGamePlayer : MonoBehaviour
 
     private float BanlanceDeltime = 0f;
 
-    private int GoalStreet = 0;
+    [HideInInspector]
+    public int GoalStreet = 0;
 
 
     [Header("레이스 이동 계산 변수들")]
@@ -77,6 +78,12 @@ public class InGamePlayer : MonoBehaviour
         inputZ = 0f;
     }
 
+
+    public void StageClearEnd()
+    {
+        Anim.Play("Idle");
+        IsDead = true;
+    }
 
     public void PlayGame()
     {
@@ -199,6 +206,9 @@ public class InGamePlayer : MonoBehaviour
 
 
 
+
+
+
     private void CheckTiltLimit()
     {
         if (IsDead) return;
@@ -257,8 +267,7 @@ public class InGamePlayer : MonoBehaviour
         Rb.linearVelocity = Vector3.zero;  // 이동 속도 초기화
         Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화 
         InGameBase.GetMainCam.SetFocus(false);
-        InGameBase.StageMap.EndGame();
-
+        InGameBase.StageMap.RetryGame();
     }
 
     public void HighScoreCheck()

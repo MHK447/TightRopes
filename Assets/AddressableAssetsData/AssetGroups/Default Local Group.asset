@@ -121,6 +121,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d8d970a5a036416486f9911942ce292
+    m_Address: UI/Popup/PopupStageClear
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4ebc312c749484458beb54a576e53df2
     m_Address: UI/Popup/Popup_FullWidth03_White
     m_ReadOnly: 0
@@ -178,6 +183,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7324086926b6b4e9689f83fa106c169b
     m_Address: UI/Popup/Popup_Inbox
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7500b6d09474b473796141c020e34c4a
+    m_Address: ClearEffect
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

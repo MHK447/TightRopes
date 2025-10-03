@@ -29,10 +29,14 @@ public class InGameStage : MonoBehaviour
     [HideInInspector]
     public float DeadYPos = 190f;
 
+    [SerializeField]
+    private GameObject ClearEffectObj;
+
 
 
     public void StartPlaying()
     {
+        ProjectUtility.SetActiveCheck(ClearEffectObj, false);
         if (CurState == InGameState.WaitPlay)
         {
             SetState(InGameState.Playing);
@@ -42,7 +46,7 @@ public class InGameStage : MonoBehaviour
             GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
             Player.PlayGame();
             HighScoreInit();
-            
+
             GameRoot.Instance.UserData.RaceData.DataClear();
         }
     }
@@ -50,7 +54,7 @@ public class InGameStage : MonoBehaviour
     public void ReadyPlayingGame()
     {
         GameRoot.Instance.UserData.RaceData.DataClear();
-
+        ProjectUtility.SetActiveCheck(ClearEffectObj, false);
         ActiveHighScoreObj(false);
         SetState(InGameState.WaitPlay);
         GameRoot.Instance.UISystem.OpenUI<PopupInGameLobby>(popup => popup.Init());
@@ -124,10 +128,8 @@ public class InGameStage : MonoBehaviour
     }
 
 
-    public void EndGame()
+    public void RetryGame()
     {
-        if (CurState != InGameState.Playing) return;
-
         GameRoot.Instance.UISystem.OpenUI<HudTotal>();
 
         SetState(InGameState.WaitPlay);
@@ -144,10 +146,28 @@ public class InGameStage : MonoBehaviour
         });
     }
 
+    public void StageClearEnd()
+    {
+        ProjectUtility.SetActiveCheck(ClearEffectObj, true);
+        SetState(InGameState.WaitPlay);
+        Player.StageClearEnd();
+
+        GameRoot.Instance.WaitTimeAndCallback(2f, () =>
+        {
+            GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.Hide();
+            GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(100), RetryGame);
+        });
+    }
+
 
     void Update()
     {
         GameStartCheck();
+
+        if (GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value >= Player.GoalStreet && CurState == InGameState.Playing)
+        {
+            StageClearEnd();
+        }
     }
 
     public void HighScoreInit()
@@ -187,6 +207,7 @@ public class InGameStage : MonoBehaviour
         Player.Init();
         ReadyPlayingGame();
         SetState(InGameState.WaitPlay);
+        ProjectUtility.SetActiveCheck(ClearEffectObj, false);
         yield return new WaitUntil(() => CurState == InGameState.WaitPlay);
     }
 
