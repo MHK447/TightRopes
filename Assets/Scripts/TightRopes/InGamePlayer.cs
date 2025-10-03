@@ -89,7 +89,7 @@ public class InGamePlayer : MonoBehaviour
     void Update()
     {
         if (InGameBase == null) return;
-        if (InGameBase.StageMap.CurState != InGameBase.StageMap.InGameState.Playing) return;
+        if (InGameBase.StageMap.CurState != InGameStage.InGameState.Playing) return;
 
         InputBalance();
         ApplyForwardMovement();

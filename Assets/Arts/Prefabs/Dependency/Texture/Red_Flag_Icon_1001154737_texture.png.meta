@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 738688942ded84983ada9598bb322a54
+guid: f3759714e17174d05811899a0f1fd972
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5904195925024236951
-    second: Common_Balance_Icon_0
+      213: 2527218724910934922
+    second: Red_Flag_Icon_1001154737_texture_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Common_Balance_Icon_0
+      name: Red_Flag_Icon_1001154737_texture_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 25
-        width: 84
-        height: 83
+        x: 0
+        y: 0
+        width: 2048
+        height: 2048
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 795e06b79eaefe150800000000000000
-      internalID: 5904195925024236951
+      spriteID: a8b28006a0c721320800000000000000
+      internalID: 2527218724910934922
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Common_Balance_Icon_0: 5904195925024236951
+      Red_Flag_Icon_1001154737_texture_0: 2527218724910934922
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

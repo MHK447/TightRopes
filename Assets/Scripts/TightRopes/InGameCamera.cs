@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class InGameCamera : MonoBehaviour
 {
-    [SerializeField]
-    private InGamePlayer InGamePlayer;
+    private InGameBase CurInGameBase;
 
     [SerializeField]    
     private Camera Cam;
@@ -20,12 +19,23 @@ public class InGameCamera : MonoBehaviour
         IsFocus = true;
     }
 
+    public void Init()
+    {
+        CurInGameBase = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>();
+
+
+    }
+
     
     private void Update()
     {
         if(!IsFocus) return;
 
-        transform.position = InGamePlayer.transform.position + Offset;
+        if(CurInGameBase == null) return;
+
+        if(CurInGameBase.StageMap == null) return;
+
+        transform.position = CurInGameBase.StageMap.Player.transform.position + Offset;
     }
 
 

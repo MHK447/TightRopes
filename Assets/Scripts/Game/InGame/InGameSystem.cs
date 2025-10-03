@@ -57,6 +57,7 @@ public class InGameSystem
         StartGame(type, () =>
         {
             firstInit = false;
+            LoadCallBack();
         });
     }
     private void StartGame(InGameType type, System.Action loadCallback = null)
@@ -153,9 +154,14 @@ public class InGameSystem
 
     public void LoadCallBack()
     {
-        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 10);
+        // SoundPlayer.Instance.PlayBGM("bgm", true);
 
-        SoundPlayer.Instance.PlayBGM("bgm", true);
+        // 스테이지 로드 시작
+        var inGameBase = GetInGame<InGameBase>();
+        if (inGameBase != null)
+        {
+            inGameBase.StartCoroutine(inGameBase.WaitStageLoad());
+        }
 
         // 스테이지 로드 완료 후 광고 관련 작업 재개
         try
@@ -169,6 +175,8 @@ public class InGameSystem
                     adManager.gameObject.SendMessage("PauseAdOperations", false, SendMessageOptions.DontRequireReceiver);
                 });
             }
+
+            
         }
         catch (System.Exception e)
         {
@@ -209,12 +217,13 @@ public class InGameSystem
         if (!firstInit)
         {
             firstInit = true;
-            GameRoot.Instance.Loading.Hide(true, () =>
-            {
-                NextAction();
-            });
+            // 로딩은 스테이지 로드 완료 후에 숨기도록 변경
+            // GameRoot.Instance.Loading.Hide(true, () =>
+            // {
+            //     NextAction();
+            // });
 
-
+            NextAction();
             GameRoot.Instance.UISystem.OpenUI<PopupInGameLobby>(popup=> popup.Init());
         }
 

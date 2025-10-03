@@ -240,6 +240,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fc492f3c5b7640748f08d5bb3a9ce7f
+    m_Address: StageMap_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fdadb506c7e24b0883e00116d9aa5f3
     m_Address: UI/Popup/Popup_RewardWeek
     m_ReadOnly: 0

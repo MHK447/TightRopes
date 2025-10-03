@@ -17,19 +17,33 @@ public class InGameBase : InGameMode
     public override void Load()
     {
         base.Load();
-        SetStage(1);
     }
+
+
+    public IEnumerator WaitStageLoad()
+    {
+        SetStage(GameRoot.Instance.UserData.Stageidx.Value);
+        yield return new WaitUntil(() => StageMap != null);
+        GetMainCam.Init();
+        
+        // 스테이지 로드 완료 후 로딩 숨기기
+        GameRoot.Instance.Loading.Hide(true);
+    }
+
 
     public void SetStage(int stageidx)
     {
+        var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-        //temp  
-        Addressables.LoadAssetAsync<GameObject>("Stage" + stageidx).Completed += (handle) =>
+        if (stageinfotd != null)
         {
-            StageMap = handle.Result.GetComponent<InGameStage>();
-            StageMap.CallStartGame();
-        };
-
+            //temp  
+            Addressables.InstantiateAsync(stageinfotd.prefab).Completed += (handle) =>
+            {
+                StageMap = handle.Result.GetComponent<InGameStage>();
+                StageMap.CallStartGame();
+            };
+        }
     }
 
 
