@@ -244,24 +244,33 @@ public class InGamePlayer : MonoBehaviour
             if (this.transform.position.y < InGameBase.StageMap.DeadYPos)
             {
                 HighScoreCheck();
-                randomZ = 0f;
-                inputZ = 0f;
-                IsDead = true;
-                Rb.linearVelocity = Vector3.zero;  // 이동 속도 초기화
-                Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화 
-                transform.rotation = Quaternion.Euler(0f, -180f, 0f);
-                InGameBase.GetMainCam.SetFocus(false);
-                InGameBase.StageMap.EndGame();
             }
         }
     }
 
+
+    public void EndGameClear()
+    {
+        randomZ = 0f;
+        inputZ = 0f;
+        IsDead = true;
+        Rb.linearVelocity = Vector3.zero;  // 이동 속도 초기화
+        Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화 
+        InGameBase.GetMainCam.SetFocus(false);
+        InGameBase.StageMap.EndGame();
+
+    }
 
     public void HighScoreCheck()
     {
         if (GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value > GameRoot.Instance.UserData.Highscorevalue)
         {
             GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value;
+            GameRoot.Instance.UISystem.OpenUI<PopupNewRecord>(null, EndGameClear);
+        }
+        else
+        {
+            EndGameClear();
         }
 
     }
