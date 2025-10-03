@@ -6,9 +6,6 @@ using Google.FlatBuffers;
 public partial class UserDataSystem
 {
     public List<UpgradeData> Upgradedatas { get; private set; } = new List<UpgradeData>();
-
-
-
     private void SaveData_UpgradeData(FlatBufferBuilder builder)
     {
         // 선언된 변수들은 모두 저장되어야함

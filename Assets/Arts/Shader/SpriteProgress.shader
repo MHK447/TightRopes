@@ -35,7 +35,6 @@ Shader "Treeplla/SpriteProgress"
 			#pragma fragment frag
 			#pragma multi_compile _ PIXELSNAP_ON
 			#pragma shader_feature _VERTICAL_ON
-			#pragma multi_compile _VERTICAL_ON
 			#include "UnityCG.cginc"
 			
 			struct appdata_t

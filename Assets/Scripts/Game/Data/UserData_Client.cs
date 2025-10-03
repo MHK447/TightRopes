@@ -71,6 +71,7 @@ public partial class UserDataSystem
     public IReactiveProperty<double> HUDArtifactStone = new ReactiveProperty<double>(0);
 
     // @변수 자동 등록 위치
+    public int Highscorevalue { get; set; } = 0;
     public IReactiveProperty<int> Stageidx { get; set; } = new ReactiveProperty<int>(1);
     public IReactiveProperty<bool> Fishingautoproperty { get; set; } = new ReactiveProperty<bool>(false);
     public DateTime Dayinitialtime { get; set; }
@@ -155,6 +156,7 @@ public partial class UserDataSystem
         SetLoadDatas();
 
         // @변수 자동 데이터 추가
+        Highscorevalue = flatBufferUserData.Highscorevalue;
         Money.Value = BigInteger.Parse(flatBufferUserData.Money);
         Stageidx.Value = flatBufferUserData.Stageidx;
         Cash.Value = flatBufferUserData.Cash;

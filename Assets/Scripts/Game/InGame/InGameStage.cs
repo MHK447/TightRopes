@@ -23,6 +23,9 @@ public class InGameStage : MonoBehaviour
 
     public Transform StartTr;
 
+    [SerializeField]
+    private GameObject HighScoreObj;
+
     [HideInInspector]
     public float DeadYPos = 190f;
 
@@ -38,7 +41,8 @@ public class InGameStage : MonoBehaviour
             GameRoot.Instance.UISystem.GetUI<PopupInGameLobby>()?.Hide();
             GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
             Player.PlayGame();
-
+            HighScoreInit();
+            
             GameRoot.Instance.UserData.RaceData.DataClear();
         }
     }
@@ -47,6 +51,7 @@ public class InGameStage : MonoBehaviour
     {
         GameRoot.Instance.UserData.RaceData.DataClear();
 
+        ActiveHighScoreObj(false);
         SetState(InGameState.WaitPlay);
         GameRoot.Instance.UISystem.OpenUI<PopupInGameLobby>(popup => popup.Init());
         GameRoot.Instance.UISystem.OpenUI<HudTotal>();
@@ -143,6 +148,22 @@ public class InGameStage : MonoBehaviour
     void Update()
     {
         GameStartCheck();
+    }
+
+    public void HighScoreInit()
+    {
+        var scorevalue = GameRoot.Instance.UserData.Highscorevalue;
+
+        ActiveHighScoreObj(scorevalue > 0);
+
+        var zpos = StartTr.position.z - scorevalue;
+
+        HighScoreObj.transform.position = new Vector3(HighScoreObj.transform.position.x, HighScoreObj.transform.position.y, zpos);
+    }
+
+    public void ActiveHighScoreObj(bool value)
+    {
+        ProjectUtility.SetActiveCheck(HighScoreObj, value);
     }
 
 

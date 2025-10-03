@@ -175,6 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154269673}
   - component: {fileID: 154269672}
+  - component: {fileID: 154269674}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -262,6 +263,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 42.056, y: 131.928, z: 198.394}
+--- !u!114 &154269674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154269671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &861045022
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +328,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -403,7 +427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204108e3c69c74e19b3d26fc33cd6e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InGamePlayer: {fileID: 0}
   Cam: {fileID: 861045025}
   Offset: {x: 0, y: 5.5, z: 9.1}
 --- !u!1 &1008968887

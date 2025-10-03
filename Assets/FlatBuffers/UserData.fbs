@@ -39,6 +39,7 @@ table UserData {
   money:string;
   // @AutoCreate
   upgradedatas:[UpgradeData];
+  highscorevalue:int = 0;
 
 }
 
@@ -57,15 +58,10 @@ table RecordCount {
   count:int = 0;
 }
 
-table AquariumData
-{
-  fishidxs:[int];
-}
-
 table UpgradeData
 {
    upgradeidx:int = 0;
-   upgradelevel:int = 0; @ReactiveProperty
+   upgradelevel:int = 0; //@ReactiveProperty
 }
 
 

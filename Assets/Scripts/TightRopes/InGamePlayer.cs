@@ -69,7 +69,7 @@ public class InGamePlayer : MonoBehaviour
         totalDistance = 0f;
         distanceUpdateTimer = 0f;
         GameRoot.Instance.UserData.RaceData.DataClear(); // RaceStreetProperty 초기화
-        
+
         // 방향 기울기 변수 초기화
         directionTimer = 0f;
         currentDirection = Random.Range(0, 2) == 0 ? -1 : 1; // 시작 시 랜덤 방향 선택
@@ -104,7 +104,7 @@ public class InGamePlayer : MonoBehaviour
     private float randomZ = 0f;       // 랜덤 흔들림 각도
     private float inputZ = 0f;        // 입력 보정 각도
     private float inputTiltAmount = 2f;
-    
+
     // 3초 주기 방향 기울기 변수들
     private float directionTimer = 0f;    // 방향 타이머
     private float directionDuration = 3f; // 3초 주기
@@ -115,7 +115,7 @@ public class InGamePlayer : MonoBehaviour
     {
         // 3초 주기 방향 타이머 업데이트
         directionTimer += Time.deltaTime;
-        
+
         if (directionTimer >= directionDuration)
         {
             directionTimer = 0f;
@@ -133,7 +133,7 @@ public class InGamePlayer : MonoBehaviour
             randomZ += currentDirection == -1 ? -1f : 1f;
         }
 
-        
+
         // 최종 목표 각도 = 방향 기울기 + 미세 흔들림 + 입력 보정
         targetZ = randomZ + inputZ;
 
@@ -206,7 +206,7 @@ public class InGamePlayer : MonoBehaviour
         // 현재 z축 회전값 (0~360 → -180~180으로 변환)
         float zRot = transform.eulerAngles.z;
         if (zRot > 180f) zRot -= 360f;
-        
+
         // 변환된 값을 BalanceValueProperty에 전달
         GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Value = zRot;
 
@@ -243,6 +243,7 @@ public class InGamePlayer : MonoBehaviour
         {
             if (this.transform.position.y < InGameBase.StageMap.DeadYPos)
             {
+                HighScoreCheck();
                 randomZ = 0f;
                 inputZ = 0f;
                 IsDead = true;
@@ -253,5 +254,15 @@ public class InGamePlayer : MonoBehaviour
                 InGameBase.StageMap.EndGame();
             }
         }
+    }
+
+
+    public void HighScoreCheck()
+    {
+        if (GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value > GameRoot.Instance.UserData.Highscorevalue)
+        {
+            GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value;
+        }
+
     }
 }

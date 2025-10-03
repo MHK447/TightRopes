@@ -55,6 +55,8 @@ public struct UserData : IFlatbufferObject
   public byte[] GetMoneyArray() { return __p.__vector_as_array<byte>(24); }
   public BanpoFri.Data.UpgradeData? Upgradedatas(int j) { int o = __p.__offset(26); return o != 0 ? (BanpoFri.Data.UpgradeData?)(new BanpoFri.Data.UpgradeData()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int UpgradedatasLength { get { int o = __p.__offset(26); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public int Highscorevalue { get { int o = __p.__offset(28); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateHighscorevalue(int highscorevalue) { int o = __p.__offset(28); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, highscorevalue); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       int cash = 0,
@@ -68,11 +70,13 @@ public struct UserData : IFlatbufferObject
       VectorOffset recordvalueOffset = default(VectorOffset),
       int stageidx = 0,
       StringOffset moneyOffset = default(StringOffset),
-      VectorOffset upgradedatasOffset = default(VectorOffset)) {
-    builder.StartTable(12);
+      VectorOffset upgradedatasOffset = default(VectorOffset),
+      int highscorevalue = 0) {
+    builder.StartTable(13);
     UserData.AddUuid(builder, uuid);
     UserData.AddGamestarttime(builder, gamestarttime);
     UserData.AddLastlogintime(builder, lastlogintime);
+    UserData.AddHighscorevalue(builder, highscorevalue);
     UserData.AddUpgradedatas(builder, upgradedatasOffset);
     UserData.AddMoney(builder, moneyOffset);
     UserData.AddStageidx(builder, stageidx);
@@ -85,7 +89,7 @@ public struct UserData : IFlatbufferObject
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(12); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(13); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(0, cash, 0); }
   public static void AddBuyinappids(FlatBufferBuilder builder, StringOffset buyinappidsOffset) { builder.AddOffset(1, buyinappidsOffset.Value, 0); }
   public static void AddTutorial(FlatBufferBuilder builder, VectorOffset tutorialOffset) { builder.AddOffset(2, tutorialOffset.Value, 0); }
@@ -118,6 +122,7 @@ public struct UserData : IFlatbufferObject
   public static VectorOffset CreateUpgradedatasVectorBlock(FlatBufferBuilder builder, ArraySegment<Offset<BanpoFri.Data.UpgradeData>> data) { builder.StartVector(4, data.Count, 4); builder.Add(data); return builder.EndVector(); }
   public static VectorOffset CreateUpgradedatasVectorBlock(FlatBufferBuilder builder, IntPtr dataPtr, int sizeInBytes) { builder.StartVector(1, sizeInBytes, 1); builder.Add<Offset<BanpoFri.Data.UpgradeData>>(dataPtr, sizeInBytes); return builder.EndVector(); }
   public static void StartUpgradedatasVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddHighscorevalue(FlatBufferBuilder builder, int highscorevalue) { builder.AddInt(12, highscorevalue, 0); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);
@@ -146,6 +151,7 @@ public struct UserData : IFlatbufferObject
     _o.Money = this.Money;
     _o.Upgradedatas = new List<BanpoFri.Data.UpgradeDataT>();
     for (var _j = 0; _j < this.UpgradedatasLength; ++_j) {_o.Upgradedatas.Add(this.Upgradedatas(_j).HasValue ? this.Upgradedatas(_j).Value.UnPack() : null);}
+    _o.Highscorevalue = this.Highscorevalue;
   }
   public static Offset<BanpoFri.Data.UserData> Pack(FlatBufferBuilder builder, UserDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.UserData>);
@@ -189,7 +195,8 @@ public struct UserData : IFlatbufferObject
       _recordvalue,
       _o.Stageidx,
       _money,
-      _upgradedatas);
+      _upgradedatas,
+      _o.Highscorevalue);
   }
 }
 
@@ -219,6 +226,8 @@ public class UserDataT
   public string Money { get; set; }
   [Newtonsoft.Json.JsonProperty("upgradedatas")]
   public List<BanpoFri.Data.UpgradeDataT> Upgradedatas { get; set; }
+  [Newtonsoft.Json.JsonProperty("highscorevalue")]
+  public int Highscorevalue { get; set; }
 
   public UserDataT() {
     this.Cash = 0;
@@ -233,6 +242,7 @@ public class UserDataT
     this.Stageidx = 0;
     this.Money = null;
     this.Upgradedatas = null;
+    this.Highscorevalue = 0;
   }
 
   public static UserDataT DeserializeFromJson(string jsonText) {
@@ -269,6 +279,7 @@ static public class UserDataVerify
       && verifier.VerifyField(tablePos, 22 /*Stageidx*/, 4 /*int*/, 4, false)
       && verifier.VerifyString(tablePos, 24 /*Money*/, false)
       && verifier.VerifyVectorOfTables(tablePos, 26 /*Upgradedatas*/, BanpoFri.Data.UpgradeDataVerify.Verify, false)
+      && verifier.VerifyField(tablePos, 28 /*Highscorevalue*/, 4 /*int*/, 4, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }
