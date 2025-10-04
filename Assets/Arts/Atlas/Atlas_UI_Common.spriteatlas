@@ -107,6 +107,7 @@ SpriteAtlas:
     - 59cd16342688c774b9736dd6ea20ceeb: 21300000
     - 2174bc4436dee8d4497e601bba82061a: 21300000
     - 73c1da6456f68434d975aa170a67769f: 21300000
+    - 4eb6b4940ae5f46e49e1b6486ae0755f: 21300000
     - 738688942ded84983ada9598bb322a54: 21300000
     - 59cfb1c4407fc46739c3383a302f15cc: 21300000
     - 5841a33592c5d4d6ab931690641bc40d: 21300000
@@ -150,6 +151,7 @@ SpriteAtlas:
     - 9c6b349a02fa24640842af102055eb5b: 21300000
     - f00192ba367468143931fa2d04c5c2c6: 21300000
     - ce291c1b9ffc9467aa926749212f3882: 21300000
+    - 431eb13bb0b9d4e52948d4c73bba5cd8: 21300000
     - 6cf34f5bd8fa545f7920579e6711b6d5: 21300000
     - 034a516b58822bf4ca7b7d8d8c309bdf: 21300000
     - df14598b52c444b9d9dfd52e81daec52: 21300000
@@ -158,6 +160,7 @@ SpriteAtlas:
     - d65acabc04c81284b99dcf08238eeb2f: 21300000
     - bb36eefc86c394e2bbe2184a0cd8f1aa: 21300000
     - f311e61d146ef4aecb940a5ad24f0b4e: 21300000
+    - fda7542de10cb49caa9c9b967bcdeb71: 21300000
     - 17086b2df86db436a93b4e47fc1a8c06: 21300000
     - 5da4e95dc82a54ae4a8fce551fdff085: 21300000
     - cb81cf5d2a1ac4f49b47bb5c6f404371: 21300000
@@ -168,6 +171,7 @@ SpriteAtlas:
     - 095e082e7123a4991ae43d54c2855c96: 21300000
     - abba995ea30294b11b094e18844794bf: 21300000
     - 5a6fb38ee51ee427ea98f97153596cba: 21300000
+    - 01da998edf66c4ca78b801c713bcc395: 21300000
     - 042e8baec872a5049adf8843350b7a28: 21300000
     - ea3f607f004da2046bed6add8747f8c5: 21300000
     - d428b0af32b464104955186f91974a4d: 21300000
@@ -204,6 +208,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 59cd16342688c774b9736dd6ea20ceeb, type: 3}
   - {fileID: 21300000, guid: 2174bc4436dee8d4497e601bba82061a, type: 3}
   - {fileID: 21300000, guid: 73c1da6456f68434d975aa170a67769f, type: 3}
+  - {fileID: 21300000, guid: 4eb6b4940ae5f46e49e1b6486ae0755f, type: 3}
   - {fileID: 21300000, guid: 738688942ded84983ada9598bb322a54, type: 3}
   - {fileID: 21300000, guid: 59cfb1c4407fc46739c3383a302f15cc, type: 3}
   - {fileID: 21300000, guid: 5841a33592c5d4d6ab931690641bc40d, type: 3}
@@ -247,6 +252,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9c6b349a02fa24640842af102055eb5b, type: 3}
   - {fileID: 21300000, guid: f00192ba367468143931fa2d04c5c2c6, type: 3}
   - {fileID: 21300000, guid: ce291c1b9ffc9467aa926749212f3882, type: 3}
+  - {fileID: 21300000, guid: 431eb13bb0b9d4e52948d4c73bba5cd8, type: 3}
   - {fileID: 21300000, guid: 6cf34f5bd8fa545f7920579e6711b6d5, type: 3}
   - {fileID: 21300000, guid: 034a516b58822bf4ca7b7d8d8c309bdf, type: 3}
   - {fileID: 21300000, guid: df14598b52c444b9d9dfd52e81daec52, type: 3}
@@ -255,6 +261,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d65acabc04c81284b99dcf08238eeb2f, type: 3}
   - {fileID: 21300000, guid: bb36eefc86c394e2bbe2184a0cd8f1aa, type: 3}
   - {fileID: 21300000, guid: f311e61d146ef4aecb940a5ad24f0b4e, type: 3}
+  - {fileID: 21300000, guid: fda7542de10cb49caa9c9b967bcdeb71, type: 3}
   - {fileID: 21300000, guid: 17086b2df86db436a93b4e47fc1a8c06, type: 3}
   - {fileID: 21300000, guid: 5da4e95dc82a54ae4a8fce551fdff085, type: 3}
   - {fileID: 21300000, guid: cb81cf5d2a1ac4f49b47bb5c6f404371, type: 3}
@@ -265,6 +272,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 095e082e7123a4991ae43d54c2855c96, type: 3}
   - {fileID: 21300000, guid: abba995ea30294b11b094e18844794bf, type: 3}
   - {fileID: 21300000, guid: 5a6fb38ee51ee427ea98f97153596cba, type: 3}
+  - {fileID: 21300000, guid: 01da998edf66c4ca78b801c713bcc395, type: 3}
   - {fileID: 21300000, guid: 042e8baec872a5049adf8843350b7a28, type: 3}
   - {fileID: 21300000, guid: ea3f607f004da2046bed6add8747f8c5, type: 3}
   - {fileID: 21300000, guid: d428b0af32b464104955186f91974a4d, type: 3}
@@ -300,6 +308,7 @@ SpriteAtlas:
   - Common_Frame_S0_R9
   - Common_Icon_Goods_NoAds
   - Pictoicon_Help 1
+  - Common_Icon_Money
   - Common_Balance_Icon
   - Pictoicon_Home_1 1
   - Pictoicon_Fish 1
@@ -343,6 +352,7 @@ SpriteAtlas:
   - Common_Bg_RayEffect
   - Common_Frame_Gradation
   - Common_Currency_Coin
+  - Common_Rope_Upgrade
   - Common_Icon_RaceEnd
   - Common_Icon_ShopGems_02
   - Common_Walk_Icon
@@ -351,6 +361,7 @@ SpriteAtlas:
   - Common_Icon_Goods_Shop
   - Pictoicon_Bell 1
   - Common_Icon_Collection
+  - Common_Upgrade_BalanceIcon
   - Pictoicon_Documnet 1
   - Common_Icon_Anchor02
   - Common_Frame_S0_R35
@@ -361,6 +372,7 @@ SpriteAtlas:
   - Pictoicon_Bell_Mute 1
   - Common_Icon_Arrow_Down
   - Common_Lightning_3
+  - Common_Icon_RopeUpgrade
   - Common_Bg_IngameSlot
   - Common_Icon_ShopGems_01
   - Pictoicon_Light 1

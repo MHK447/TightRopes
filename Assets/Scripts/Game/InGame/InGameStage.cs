@@ -201,9 +201,24 @@ public class InGameStage : MonoBehaviour
 
         ActiveHighScoreObj(scorevalue > 0);
 
-        var zpos = StartTr.position.z - scorevalue;
+        // EndTr이 StartTr보다 앞에 있는지(z값이 더 큰지) 뒤에 있는지(z값이 더 작은지) 판단
+        bool isEndTrAhead = EndTr.position.z > StartTr.position.z;
+        
+        float zpos;
+        if (isEndTrAhead)
+        {
+            // EndTr이 앞에 있으면 StartTr에서 scorevalue만큼 앞으로 (+ 방향)
+            zpos = StartTr.position.z + scorevalue;
+        }
+        else
+        {
+            // EndTr이 뒤에 있으면 StartTr에서 scorevalue만큼 뒤로 (- 방향)
+            zpos = StartTr.position.z - scorevalue;
+        }
 
         HighScoreObj.transform.position = new Vector3(HighScoreObj.transform.position.x, HighScoreObj.transform.position.y, zpos);
+        
+        Debug.Log($"HighScore Position: EndTr이 {(isEndTrAhead ? "앞" : "뒤")}에 있음, StartTr.z: {StartTr.position.z}, EndTr.z: {EndTr.position.z}, 계산된 zpos: {zpos}");
     }
 
     public void ActiveHighScoreObj(bool value)

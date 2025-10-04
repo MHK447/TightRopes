@@ -133,9 +133,18 @@ public class InGamePlayer : MonoBehaviour
         if (directionTimer >= directionDuration)
         {
             directionTimer = 0f;
-            // 랜덤으로 방향 선택 (-1: 왼쪽, 1: 오른쪽)
-            currentDirection = Random.Range(0, 2) == 0 ? -1 : 1;
-            Debug.Log($"새로운 방향 선택: {(currentDirection == -1 ? "왼쪽" : "오른쪽")}");
+            
+            // StartTr과 EndTr의 위치 관계를 기반으로 방향 결정
+            Vector3 startToEnd = (InGameBase.StageMap.EndTr.position - InGameBase.StageMap.StartTr.position).normalized;
+            Vector3 playerToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
+            
+            // Cross product를 사용하여 플레이어가 목표 방향의 왼쪽/오른쪽에 있는지 판단
+            Vector3 cross = Vector3.Cross(startToEnd, playerToEnd);
+            
+            // Y축 기준으로 방향 결정 (+ = 오른쪽으로 기울어야 함, - = 왼쪽으로 기울어야 함)
+            currentDirection = cross.y > 0 ? 1 : -1;
+            
+            Debug.Log($"StartTr-EndTr 기반 방향 선택: {(currentDirection == -1 ? "왼쪽" : "오른쪽")}, Cross.y: {cross.y}");
         }
 
         // 기존 미세 흔들림 로직 (더 작은 범위로 조정)
