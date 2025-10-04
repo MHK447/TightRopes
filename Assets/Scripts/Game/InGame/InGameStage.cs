@@ -23,6 +23,8 @@ public class InGameStage : MonoBehaviour
 
     public Transform StartTr;
 
+    public Transform EndTr;
+
     [SerializeField]
     private GameObject HighScoreObj;
 
@@ -155,7 +157,30 @@ public class InGameStage : MonoBehaviour
         GameRoot.Instance.WaitTimeAndCallback(2f, () =>
         {
             GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.Hide();
-            GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(100), RetryGame);
+            GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(100, NextStage));
+        });
+    }
+
+    public void NextStage()
+    {
+        GameRoot.Instance.UserData.Highscorevalue = 0;
+        // 스테이지 인덱스 증가
+        GameRoot.Instance.UserData.Stageidx.Value++;
+
+        // 로딩 화면 표시
+        GameRoot.Instance.Loading.Show();
+
+        // 현재 스테이지 정리 후 새 스테이지 로드
+        GameRoot.Instance.WaitTimeAndCallback(0.5f, () =>
+        {
+            // 현재 스테이지 오브젝트 파괴
+            if (this.gameObject != null)
+            {
+                Destroy(this.gameObject);
+            }
+
+            // 새 스테이지 로드
+            GameRoot.Instance.StartCoroutine(GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().WaitStageLoad());
         });
     }
 

@@ -366,6 +366,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da983337f9487462ca9e7cc483fb4d10
+    m_Address: StageMap_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dcfa341710a3941c397651ce9ebaf892
     m_Address: UI/Popup/Popup01_Single_Purple
     m_ReadOnly: 0

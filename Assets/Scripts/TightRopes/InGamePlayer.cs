@@ -59,7 +59,14 @@ public class InGamePlayer : MonoBehaviour
         IsDead = false;
         IsDeadWait = false;
         this.transform.position = InGameBase.StageMap.StartTr.position;
-        transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+        
+        // EndTr 방향을 바라보도록 회전 설정
+        Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
+        directionToEnd.y = 0; // Y축 회전 제거 (수평 회전만)
+        if (directionToEnd != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(directionToEnd);
+        }
 
         var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
 
@@ -144,9 +151,19 @@ public class InGamePlayer : MonoBehaviour
         // 최종 목표 각도 = 방향 기울기 + 미세 흔들림 + 입력 보정
         targetZ = randomZ + inputZ;
 
+        // EndTr 방향을 기준으로 회전 계산
+        Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
+        directionToEnd.y = 0; // Y축 회전 제거 (수평 회전만)
+        
+        float baseYRotation = 0f;
+        if (directionToEnd != Vector3.zero)
+        {
+            baseYRotation = Quaternion.LookRotation(directionToEnd).eulerAngles.y;
+        }
+        
         // 부드럽게 회전 적용
         float smoothZ = Mathf.LerpAngle(Rb.rotation.eulerAngles.z, targetZ, Time.fixedDeltaTime * rotateSpeed);
-        Quaternion targetRot = Quaternion.Euler(0f, -180f, smoothZ);
+        Quaternion targetRot = Quaternion.Euler(0f, baseYRotation, smoothZ);
         Rb.MoveRotation(targetRot);
     }
 
@@ -173,8 +190,12 @@ public class InGamePlayer : MonoBehaviour
 
         RaceCalcUpdate();
 
+        // EndTr 방향으로 이동하도록 변경
+        Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
+        directionToEnd.y = 0; // Y축 이동 제거 (수평 이동만)
+        
         Vector3 velocity = Rb.linearVelocity; // 현재 속도 유지
-        velocity = transform.forward * forwardSpeed + Vector3.up * velocity.y;
+        velocity = directionToEnd * forwardSpeed + Vector3.up * velocity.y;
         Rb.linearVelocity = velocity;
     }
 
@@ -189,9 +210,11 @@ public class InGamePlayer : MonoBehaviour
             Vector3 currentPosition = this.transform.position;
             float deltaDistance = Vector3.Distance(currentPosition, lastPosition);
 
-            // 앞으로만 이동하는 경우만 거리에 추가 (뒤로 가는 것은 제외)
+            // EndTr 방향으로만 이동하는 경우만 거리에 추가 (뒤로 가는 것은 제외)
             Vector3 moveDirection = (currentPosition - lastPosition).normalized;
-            float forwardDot = Vector3.Dot(moveDirection, transform.forward);
+            Vector3 endDirection = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
+            endDirection.y = 0; // Y축 제거
+            float forwardDot = Vector3.Dot(moveDirection, endDirection);
 
             if (forwardDot > 0) // 앞으로 이동하는 경우만
             {

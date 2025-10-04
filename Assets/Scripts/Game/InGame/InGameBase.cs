@@ -22,6 +22,11 @@ public class InGameBase : InGameMode
 
     public IEnumerator WaitStageLoad()
     {
+        if(StageMap != null)
+        {
+            Destroy(StageMap.gameObject);
+        }
+
         SetStage(GameRoot.Instance.UserData.Stageidx.Value);
         yield return new WaitUntil(() => StageMap != null);
         GetMainCam.Init();
@@ -34,6 +39,8 @@ public class InGameBase : InGameMode
     public void SetStage(int stageidx)
     {
         var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+
 
         if (stageinfotd != null)
         {

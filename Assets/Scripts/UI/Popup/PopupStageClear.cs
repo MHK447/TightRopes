@@ -29,6 +29,7 @@ public class PopupStageClear : UIBase
     private int RewardValue = 0;
     private int currentDisplayRewardValue = 0;
     private int currentDisplayAdRewardValue = 0;
+    private System.Action OnNextStageCallback;
     
     [Header("Animation Settings")]
     [SerializeField] private float textAppearDelay = 0.3f;
@@ -58,11 +59,12 @@ public class PopupStageClear : UIBase
         BaseRewardBtn.gameObject.SetActive(false);
     }
 
-    public void Set(int rewardvalue)
+    public void Set(int rewardvalue, System.Action onNextStageCallback = null)
     {
         RewardValue = rewardvalue;
         currentDisplayRewardValue = 0;
         currentDisplayAdRewardValue = 0;
+        OnNextStageCallback = onNextStageCallback;
         
         // 초기 텍스트 설정
         RewardAdValueText.text = ProjectUtility.CalculateMoneyToString(0);
@@ -77,15 +79,28 @@ public class PopupStageClear : UIBase
         GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
         {
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue * 2);
+            ProceedToNextStage();
         });
-
-        Hide();
     }
 
     public void OnBaseRewardBtnClick()
     {
         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue);
+        ProceedToNextStage();
+    }
+    
+    private void ProceedToNextStage()
+    {
         Hide();
+        
+        // 다음 스테이지로 넘어가기
+        if (OnNextStageCallback != null)
+        {
+            GameRoot.Instance.WaitTimeAndCallback(0.5f, () =>
+            {
+                OnNextStageCallback.Invoke();
+            });
+        }
     }
     
     private IEnumerator PlayStageClearAnimation()

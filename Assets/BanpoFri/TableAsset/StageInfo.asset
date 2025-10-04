@@ -22,7 +22,7 @@ MonoBehaviour:
     _end_goal_value: 100
     _prefab: StageMap_01
   - _stage_idx: 2
-    _end_goal_value: 200
+    _end_goal_value: 150
     _prefab: StageMap_02
   - _stage_idx: 3
     _end_goal_value: 300
