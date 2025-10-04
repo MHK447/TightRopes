@@ -54,7 +54,7 @@ public class InGamePlayer : MonoBehaviour
     {
         lastPosition = this.transform.position;
         totalDistance = 0f;
-        Rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         Anim.Play("Idle");
         IsDead = false;
         IsDeadWait = false;
