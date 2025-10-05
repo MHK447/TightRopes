@@ -10,7 +10,7 @@ public class UpgradeSystem
 
     public enum UpgradeType
     {
-        GroundSizeUpgrade = 0,
+        RopeUpgrade = 0,
         ConteringUpgrade,
         MoneyMultiUpgrade
     }

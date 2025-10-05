@@ -94,6 +94,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
 
 
+
     [System.Serializable]
     public class ColorDefine
     {
@@ -108,6 +109,9 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     [SerializeField]
     private List<ColorDefine> _eventTextColorDefines = new List<ColorDefine>();
     private Dictionary<string, Color> _textColorDefinesDic = new Dictionary<string, Color>();
+
+    [SerializeField]
+    private List<Material> RopeUpgradeMat = new List<Material>();
     public List<ColorDefine> TextColorDefines
     {
         get
@@ -159,6 +163,14 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
             return _textColorDefinesDic[key];
 
         return Color.white;
+    }
+
+    public Material GetRopeUpgradeMat(int idx)
+    {
+        if(idx >= RopeUpgradeMat.Count)
+            return RopeUpgradeMat[0];
+
+        return RopeUpgradeMat[idx];
     }
 
 

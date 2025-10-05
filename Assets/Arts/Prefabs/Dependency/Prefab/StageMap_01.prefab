@@ -25287,6 +25287,7 @@ GameObject:
   - component: {fileID: 2605922631439430577}
   - component: {fileID: 4827754952263878080}
   - component: {fileID: 345149455375276042}
+  - component: {fileID: 1346220341936929319}
   m_Layer: 0
   m_Name: Rope
   m_TagString: Untagged
@@ -25340,7 +25341,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2473524cdbebb4ab18347277855176ff, type: 2}
+  - {fileID: 2100000, guid: 273eb01fe82054534b1aa48b2d733696, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25384,6 +25385,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1346220341936929319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6335665779404107592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6cf6df54459411cb0f80a60ecf8088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RopeObj: {fileID: 6335665779404107592}
+  RopeMat: {fileID: 2100000, guid: 273eb01fe82054534b1aa48b2d733696, type: 2}
+  ropeRenderer: {fileID: 4827754952263878080}
 --- !u!1 &6367903967583734323
 GameObject:
   m_ObjectHideFlags: 0
@@ -33897,6 +33913,7 @@ MonoBehaviour:
   HighScoreObj: {fileID: 8281411277610923237}
   DeadYPos: 190
   ClearEffectObj: {fileID: 5454849980847686146}
+  RopeComponent: {fileID: 1346220341936929319}
 --- !u!1 &8479226120645327776
 GameObject:
   m_ObjectHideFlags: 0

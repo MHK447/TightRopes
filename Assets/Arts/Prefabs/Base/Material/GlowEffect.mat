@@ -8,11 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GlowEffect
-  m_Shader: {fileID: 4800000, guid: cf38c13a145a54d94aaac3417902c72c, type: 3}
+  m_Shader: {fileID: 4800000, guid: bb95e411519ff480a924075b3789d227, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _ADDITIVE_ON
   - _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -84,6 +85,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
+    - _Additive: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -101,11 +103,13 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _GlowStrength: 4.97
     - _Intensity: 1
     - _Metallic: 0.629
     - _OcclusionStrength: 1
     - _OneSideBias: 1
     - _Parallax: 0.005
+    - _PulseSpeed: 3
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _ScrollSpeed: 0.5
@@ -122,6 +126,7 @@ Material:
     - _BaseColor: {r: 0.16785331, g: 0.5370829, b: 0.8679245, a: 1}
     - _Color: {r: 0.16785331, g: 0.5370829, b: 0.8679245, a: 1}
     - _EmissionColor: {r: 0.74513406, g: 2.9671416, b: 7.9067, a: 1}
+    - _GlowColor: {r: 0, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class InGameCamera : MonoBehaviour
 {
@@ -16,6 +17,15 @@ public class InGameCamera : MonoBehaviour
 
     private Vector3 fixedBehindDirection; // 고정된 뒤쪽 방향
     private bool isDirectionSet = false;  // 방향이 설정되었는지 확인
+
+    // 카메라 무브 관련 변수들
+    private bool isMoving = false;
+    private Vector3 moveStartPosition;
+    private Vector3 moveTargetPosition;
+    private Quaternion moveStartRotation;
+    private Quaternion moveTargetRotation;
+    private float moveDuration = 1f;
+    private float moveElapsedTime = 0f;
 
     void Awake()
     {
@@ -58,6 +68,9 @@ public class InGameCamera : MonoBehaviour
 
     private void Update()
     {
+        // 카메라가 이동 중이면 일반 추적을 중단
+        if (isMoving) return;
+
         if (!IsFocus) return;
 
         if (CurInGameBase == null) return;
@@ -99,5 +112,106 @@ public class InGameCamera : MonoBehaviour
     public void SetFocus(bool value)
     {
         IsFocus = value;
+    }
+
+    /// <summary>
+    /// 카메라를 특정 위치로 부드럽게 이동시킵니다
+    /// </summary>
+    /// <param name="targetPosition">목표 위치</param>
+    /// <param name="duration">이동 시간 (초)</param>
+    /// <param name="lookAtTarget">바라볼 대상 (null이면 현재 회전 유지)</param>
+    public void MoveTo(Vector3 targetPosition, float duration = 1f, Vector3? lookAtTarget = null)
+    {
+        if (isMoving)
+        {
+            StopCoroutine(nameof(MoveCoroutine));
+        }
+
+        moveStartPosition = transform.position;
+        moveTargetPosition = targetPosition;
+        moveStartRotation = transform.rotation;
+        
+        if (lookAtTarget.HasValue)
+        {
+            Vector3 direction = (lookAtTarget.Value - targetPosition).normalized;
+            moveTargetRotation = Quaternion.LookRotation(direction);
+        }
+        else
+        {
+            moveTargetRotation = transform.rotation;
+        }
+
+        moveDuration = duration;
+        moveElapsedTime = 0f;
+        isMoving = true;
+
+        StartCoroutine(MoveCoroutine());
+    }
+
+    /// <summary>
+    /// 카메라를 특정 위치로 즉시 이동시킵니다
+    /// </summary>
+    /// <param name="targetPosition">목표 위치</param>
+    /// <param name="lookAtTarget">바라볼 대상 (null이면 현재 회전 유지)</param>
+    public void MoveToImmediate(Vector3 targetPosition, Vector3? lookAtTarget = null)
+    {
+        if (isMoving)
+        {
+            StopCoroutine(nameof(MoveCoroutine));
+            isMoving = false;
+        }
+
+        transform.position = targetPosition;
+        
+        if (lookAtTarget.HasValue)
+        {
+            transform.LookAt(lookAtTarget.Value);
+        }
+    }
+
+    /// <summary>
+    /// 카메라 이동을 중단하고 일반 추적 모드로 돌아갑니다
+    /// </summary>
+    public void StopMoving()
+    {
+        if (isMoving)
+        {
+            StopCoroutine(nameof(MoveCoroutine));
+            isMoving = false;
+        }
+    }
+
+    /// <summary>
+    /// 카메라가 현재 이동 중인지 확인합니다
+    /// </summary>
+    public bool IsMoving()
+    {
+        return isMoving;
+    }
+
+    private IEnumerator MoveCoroutine()
+    {
+        while (moveElapsedTime < moveDuration)
+        {
+            moveElapsedTime += Time.deltaTime;
+            float t = moveElapsedTime / moveDuration;
+            
+            // Ease-in-out 곡선 적용
+            t = t * t * (3f - 2f * t);
+
+            // 위치 보간
+            transform.position = Vector3.Lerp(moveStartPosition, moveTargetPosition, t);
+            
+            // 회전 보간
+            transform.rotation = Quaternion.Lerp(moveStartRotation, moveTargetRotation, t);
+
+            yield return null;
+        }
+
+        // 최종 위치와 회전 설정
+        transform.position = moveTargetPosition;
+        transform.rotation = moveTargetRotation;
+        
+        isMoving = false;
     }
 }

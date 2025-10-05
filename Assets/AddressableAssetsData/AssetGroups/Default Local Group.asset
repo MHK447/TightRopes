@@ -347,7 +347,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d4b75c725782a4485970f8c567eb9637
-    m_Address: UpgradeEffect
+    m_Address: InGame/UpgradeEffect
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -393,6 +393,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6cf8fb0ef06587438dcc3f1430c6d7f
     m_Address: UI/Page/HudTotal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7600b9ed329d4e85990c879f7184ab3
+    m_Address: UI/Popup/PopupNewUpgrade
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

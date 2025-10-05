@@ -34,6 +34,8 @@ public class InGameStage : MonoBehaviour
     [SerializeField]
     private GameObject ClearEffectObj;
 
+    public RopeComponent RopeComponent;
+
 
 
     public void StartPlaying()
@@ -48,6 +50,7 @@ public class InGameStage : MonoBehaviour
             GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
             Player.PlayGame();
             HighScoreInit();
+            RopeComponent.Init();
 
             GameRoot.Instance.UserData.RaceData.DataClear();
         }
@@ -203,7 +206,7 @@ public class InGameStage : MonoBehaviour
 
         // EndTr이 StartTr보다 앞에 있는지(z값이 더 큰지) 뒤에 있는지(z값이 더 작은지) 판단
         bool isEndTrAhead = EndTr.position.z > StartTr.position.z;
-        
+
         float zpos;
         if (isEndTrAhead)
         {
@@ -217,7 +220,7 @@ public class InGameStage : MonoBehaviour
         }
 
         HighScoreObj.transform.position = new Vector3(HighScoreObj.transform.position.x, HighScoreObj.transform.position.y, zpos);
-        
+
         Debug.Log($"HighScore Position: EndTr이 {(isEndTrAhead ? "앞" : "뒤")}에 있음, StartTr.z: {StartTr.position.z}, EndTr.z: {EndTr.position.z}, 계산된 zpos: {zpos}");
     }
 
@@ -245,6 +248,7 @@ public class InGameStage : MonoBehaviour
     {
         SetState(InGameState.NoneInit);
         Player.Init();
+        RopeComponent.Init();
         ReadyPlayingGame();
         SetState(InGameState.WaitPlay);
         ProjectUtility.SetActiveCheck(ClearEffectObj, false);

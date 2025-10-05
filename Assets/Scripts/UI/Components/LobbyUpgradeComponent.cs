@@ -120,9 +120,16 @@ public class LobbyUpgradeComponent : MonoBehaviour
         {
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency , (int)Config.CurrencyID.Money , -UpgradeCost);
             UpgradeData.Upgradelevel.Value += 1;
+            DirectionUpgrade();
+            
 
             SetUpgradeValue();
         }
+    }
+
+    public void DirectionUpgrade()
+    {
+        GameRoot.Instance.UISystem.OpenUI<PopupNewUpgrade>(popup => popup.Set(UpgradeIdx));
     }
 
     public Color GetStateColor()
