@@ -346,6 +346,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4b75c725782a4485970f8c567eb9637
+    m_Address: UpgradeEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d71acdde421ef4404aabb9f4d9370a89
     m_Address: UI/Popup/Popup_UserInfo
     m_ReadOnly: 0
