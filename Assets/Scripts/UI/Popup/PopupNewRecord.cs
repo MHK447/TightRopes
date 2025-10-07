@@ -33,6 +33,7 @@ public class PopupNewRecord : UIBase
 
         ProjectUtility.SetActiveCheck(NewRecordDesc.gameObject , true);
         ProjectUtility.SetActiveCheck(RecrdCountText.gameObject , true);
+        RecrdCountText.text = "0m";
         PlayNewRecordAnimation();
     }
 

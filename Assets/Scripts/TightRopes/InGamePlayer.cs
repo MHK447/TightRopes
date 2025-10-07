@@ -18,8 +18,8 @@ public class InGamePlayer : MonoBehaviour
 
     [HideInInspector]
     public bool IsDead = false;
-
-    private bool IsDeadWait = false;
+    [HideInInspector]
+    public bool IsDeadWait = false;
 
 
     private float RandBanlanceTime = 0.1f;
@@ -304,6 +304,8 @@ public class InGamePlayer : MonoBehaviour
 
     public void HighScoreCheck()
     {
+        IsDead = true;
+
         if (GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value > GameRoot.Instance.UserData.Highscorevalue)
         {
             GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value;

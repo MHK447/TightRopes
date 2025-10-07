@@ -18,7 +18,7 @@ public class RopeComponent : MonoBehaviour
     private bool isAnimating = false;
     private float targetIntensity = 0f;
     private float animationDuration = 2f;
-    
+
     // Emission 설정
     private Color whiteEmission = Color.white;
     private float minIntensity = -10f;
@@ -27,27 +27,32 @@ public class RopeComponent : MonoBehaviour
     // 액션 시스템
     public Action OnUpgradeEffectComplete;
 
+    private InGameStage StageMap;
+
     public void Init()
     {
         var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].Upgradelevel.Value % 6;
 
         RopeMat = Config.Instance.GetRopeUpgradeMat(level);
-        
+
         // Renderer 컴포넌트 자동 할당
         if (ropeRenderer == null && RopeObj != null)
         {
             ropeRenderer = RopeObj.GetComponent<Renderer>();
         }
-        
+
         // 초기 intensity를 -10으로 설정
         if (ropeRenderer != null && ropeRenderer.material != null)
         {
             SetMaterialIntensity(minIntensity);
         }
+
+        StageMap = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap;
     }
 
     public void SetRopeDirection(System.Action endaction = null)
     {
+        StageMap.SetState(InGameStage.InGameState.Direction);
         // 이미 애니메이션 중이면 중단
         if (isAnimating)
         {
@@ -57,6 +62,7 @@ public class RopeComponent : MonoBehaviour
 
         var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].Upgradelevel.Value % 6;
         Material newMaterial = Config.Instance.GetRopeUpgradeMat(level);
+
 
         OnUpgradeEffectComplete = endaction;
 
@@ -109,7 +115,7 @@ public class RopeComponent : MonoBehaviour
         {
             RopeMat = newMaterial;
             ropeRenderer.material = RopeMat;
-            
+
             // 머티리얼 변경 후 잠시 최대 intensity 유지
             SetMaterialIntensity(maxIntensity);
         }
@@ -137,10 +143,10 @@ public class RopeComponent : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / duration;
-            
+
             // Ease-in-out 곡선 적용
             t = t * t * (3f - 2f * t);
-            
+
             float currentIntensity = Mathf.Lerp(startIntensity, endIntensity, t);
             SetMaterialIntensity(currentIntensity);
 

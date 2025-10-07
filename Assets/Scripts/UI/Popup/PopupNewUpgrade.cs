@@ -70,6 +70,14 @@ public class PopupNewUpgrade : UIBase
     }
 
 
+    public override void Hide()
+    {
+        base.Hide();
+
+        GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.SetState(InGameStage.InGameState.WaitPlay);
+    }
+
+
 
 
 }

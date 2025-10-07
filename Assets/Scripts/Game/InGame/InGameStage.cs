@@ -15,6 +15,7 @@ public class InGameStage : MonoBehaviour
         NoneInit,
         WaitPlay,
         Playing,
+        Direction,
     }
 
     public InGameState CurState { get; private set; } = InGameState.NoneInit;
@@ -72,8 +73,7 @@ public class InGameStage : MonoBehaviour
 
     private void GameStartCheck()
     {
-        if (CurState == InGameState.Playing)
-            return;
+        
 
         bool inputDetected = false;
 
@@ -98,7 +98,7 @@ public class InGameStage : MonoBehaviour
             }
         }
 
-        if (inputDetected)
+        if (inputDetected && !Player.IsDead && !Player.IsDeadWait)
         {
             StartPlaying();
         }
@@ -106,6 +106,10 @@ public class InGameStage : MonoBehaviour
 
     private bool IsPointerOverUI(Vector2 screenPosition)
     {
+            
+        if(CurState != InGameState.WaitPlay)
+            return false;
+
         // UI 위에 있는지 체크 (EventSystem 사용)
         if (UnityEngine.EventSystems.EventSystem.current != null)
         {
