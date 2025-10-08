@@ -5,6 +5,7 @@ using BanpoFri;
 using UniRx;
 using BanpoFri.Data;
 using System.Collections.Generic;
+using DG.Tweening;
 
 
 
@@ -28,7 +29,17 @@ public class LobbyUpgradeComponent : MonoBehaviour
     private TextMeshProUGUI UpgradeCostText;
 
     [SerializeField]
+    private TextMeshProUGUI InComeMultiText;
+
+    
+    public Transform InComeMultiTr {get {return InComeMultiText.transform;}}
+
+    [SerializeField]
     private List<Image> UpgradeImgList = new List<Image>();
+
+
+    [SerializeField]
+    private Image UpgradeImg;
 
     [SerializeField]
     private UpgradeState State;
@@ -63,11 +74,11 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
         disposables.Clear();
 
-        UpgradeData.Upgradelevel.Subscribe(x=> { SetUpgradeValue(); }).AddTo(disposables);
+        UpgradeData.Upgradelevel.Subscribe(x => { SetUpgradeValue(); }).AddTo(disposables);
 
-        GameRoot.Instance.UserData.Money.Subscribe(x=> { SetUpgradeValue(); }).AddTo(disposables);
+        GameRoot.Instance.UserData.Money.Subscribe(x => { SetUpgradeValue(); }).AddTo(disposables);
 
-        
+
     }
 
     void OnDestroy()
@@ -86,22 +97,22 @@ public class LobbyUpgradeComponent : MonoBehaviour
         LevelText.text = UpgradeData.Upgradelevel.ToString();
         UpgradeCost = GameRoot.Instance.UpgradeSystem.GetUpgradeCost(UpgradeIdx);
 
-        UpgradeCostText.text = ProjectUtility.CalculateMoneyToString(UpgradeCost);      
+        UpgradeCostText.text = ProjectUtility.CalculateMoneyToString(UpgradeCost);
 
         UpgradeBtn.interactable = GameRoot.Instance.UserData.Money.Value >= UpgradeCost;
-        
+
         SetUpgradeImg();
     }
 
     public void SetUpgradeImg()
     {
-        if(UpgradeData == null) return;
-        
+        if (UpgradeData == null) return;
+
         int activeCount = UpgradeData.Upgradelevel.Value % UpgradeImgList.Count + 1;
 
-        for(int i = 0; i < UpgradeImgList.Count; i++)
+        for (int i = 0; i < UpgradeImgList.Count; i++)
         {
-            if(i < activeCount)
+            if (i < activeCount)
             {
                 // 활성화된 이미지는 빨간색으로
                 UpgradeImgList[i].color = GetStateColor();
@@ -116,12 +127,12 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
     public void OnClickUpgradeBtn()
     {
-        if(GameRoot.Instance.UserData.Money.Value >= UpgradeCost)
+        if (GameRoot.Instance.UserData.Money.Value >= UpgradeCost)
         {
-            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency , (int)Config.CurrencyID.Money , -UpgradeCost);
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
             UpgradeData.Upgradelevel.Value += 1;
             DirectionUpgrade();
-            
+
 
             SetUpgradeValue();
         }
@@ -129,12 +140,17 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
     public void DirectionUpgrade()
     {
-        GameRoot.Instance.UISystem.OpenUI<PopupNewUpgrade>(popup => popup.Set(UpgradeIdx));
+        // bool isnewupgrade = UpgradeData.Upgradelevel.Value % 6 == 0;
+
+        // if (isnewupgrade)
+        // {
+            GameRoot.Instance.UISystem.OpenUI<PopupNewUpgrade>(popup => popup.Set(UpgradeIdx));
+        //}
     }
 
     public Color GetStateColor()
     {
-        switch(State)
+        switch (State)
         {
             case UpgradeState.RopeUp:
                 return Config.Instance.GetImageColor("Upgrade_Blue");
@@ -145,5 +161,19 @@ public class LobbyUpgradeComponent : MonoBehaviour
         }
 
         return Color.white;
+    }
+
+
+
+    public void InComeUpgradeAction()
+    {
+        //UpgradeImg.sprite = Config.Instance.GetImageSprite("Upgrade_Green");
+        InComeMultiText.text = $"x25";
+        
+        // 스케일 애니메이션: 1 → 1.2 → 1
+        InComeMultiText.transform.localScale = Vector3.one;
+        var sequence = DOTween.Sequence();
+        sequence.Append(InComeMultiText.transform.DOScale(1.4f, 0.15f).SetEase(Ease.OutQuad));
+        sequence.Append(InComeMultiText.transform.DOScale(1.0f, 0.15f).SetEase(Ease.InOutQuad));
     }
 }

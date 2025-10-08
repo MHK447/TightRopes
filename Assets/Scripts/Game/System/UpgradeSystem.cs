@@ -11,8 +11,9 @@ public class UpgradeSystem
     public enum UpgradeType
     {
         RopeUpgrade = 0,
-        ConteringUpgrade,
-        MoneyMultiUpgrade
+        ConteringUpgrade = 1,
+        MoneyMultiUpgrade = 2,
+
     }
 
     public void Create()
@@ -26,8 +27,6 @@ public class UpgradeSystem
         }
 
     }
-
-
 
     public float GetUpgradeValue(int idx)
     {

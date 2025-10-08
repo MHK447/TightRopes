@@ -336,6 +336,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfc34132792f1418bb311c3f3b4c4542
+    m_Address: Effect/TextEffectMoneyUpgrade
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d15130e03be424c33ac9a12ed9010246
     m_Address: UI/Popup/Popup_Subscribe
     m_ReadOnly: 0

@@ -13,6 +13,8 @@ public class PopupInGameLobby : UIBase
     private List<LobbyUpgradeComponent> LobbyUpgradeComponents = new List<LobbyUpgradeComponent>();
 
 
+
+
     [SerializeField]
     private TextMeshProUGUI TapToStartText;
 
@@ -32,6 +34,12 @@ public class PopupInGameLobby : UIBase
         {
             LobbyUpgradeComponents[i].Set(i);
         }
+    }
+
+
+    public LobbyUpgradeComponent GetLobbyUpgradeComponent(int index)
+    {
+        return LobbyUpgradeComponents[index];
     }
 
     private void StartTapToStartAnimation()
