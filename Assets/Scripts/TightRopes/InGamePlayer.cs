@@ -1,6 +1,7 @@
 using UnityEngine;
 using BanpoFri;
-
+using System.Collections.Generic;
+using DG.Tweening;
 public class InGamePlayer : MonoBehaviour
 {
     [SerializeField]
@@ -11,6 +12,9 @@ public class InGamePlayer : MonoBehaviour
 
     [SerializeField]
     private Animator Anim;
+
+    [SerializeField]
+    private List<GameObject> ProductItemList = new List<GameObject>();
 
 
 
@@ -30,6 +34,11 @@ public class InGamePlayer : MonoBehaviour
     public int GoalStreet = 0;
 
 
+    [Header("Product Item")]
+    private int ProductItemCount = 1;
+
+
+
     [Header("레이스 이동 계산 변수들")]
     private Vector3 lastPosition;
     private float totalDistance = 0f;
@@ -46,6 +55,7 @@ public class InGamePlayer : MonoBehaviour
 
 
         ReadyPlayr();
+
     }
 
 
@@ -59,7 +69,15 @@ public class InGamePlayer : MonoBehaviour
         IsDead = false;
         IsDeadWait = false;
         this.transform.position = InGameBase.StageMap.StartTr.position;
-        
+
+        foreach (var product in ProductItemList)
+        {
+            ProjectUtility.SetActiveCheck(product, false);
+        }
+        ProductItemCount = 1;
+
+        SetProductItem(ProductItemCount);
+
         // EndTr 방향을 바라보도록 회전 설정
         Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
         directionToEnd.y = 0; // Y축 회전 제거 (수평 회전만)
@@ -133,17 +151,17 @@ public class InGamePlayer : MonoBehaviour
         if (directionTimer >= directionDuration)
         {
             directionTimer = 0f;
-            
+
             // StartTr과 EndTr의 위치 관계를 기반으로 방향 결정
             Vector3 startToEnd = (InGameBase.StageMap.EndTr.position - InGameBase.StageMap.StartTr.position).normalized;
             Vector3 playerToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
-            
+
             // Cross product를 사용하여 플레이어가 목표 방향의 왼쪽/오른쪽에 있는지 판단
             Vector3 cross = Vector3.Cross(startToEnd, playerToEnd);
-            
+
             // Y축 기준으로 방향 결정 (+ = 오른쪽으로 기울어야 함, - = 왼쪽으로 기울어야 함)
             currentDirection = cross.y > 0 ? 1 : -1;
-            
+
             Debug.Log($"StartTr-EndTr 기반 방향 선택: {(currentDirection == -1 ? "왼쪽" : "오른쪽")}, Cross.y: {cross.y}");
         }
 
@@ -163,13 +181,13 @@ public class InGamePlayer : MonoBehaviour
         // EndTr 방향을 기준으로 회전 계산
         Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
         directionToEnd.y = 0; // Y축 회전 제거 (수평 회전만)
-        
+
         float baseYRotation = 0f;
         if (directionToEnd != Vector3.zero)
         {
             baseYRotation = Quaternion.LookRotation(directionToEnd).eulerAngles.y;
         }
-        
+
         // 부드럽게 회전 적용
         float smoothZ = Mathf.LerpAngle(Rb.rotation.eulerAngles.z, targetZ, Time.fixedDeltaTime * rotateSpeed);
         Quaternion targetRot = Quaternion.Euler(0f, baseYRotation, smoothZ);
@@ -202,7 +220,7 @@ public class InGamePlayer : MonoBehaviour
         // EndTr 방향으로 이동하도록 변경
         Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
         directionToEnd.y = 0; // Y축 이동 제거 (수평 이동만)
-        
+
         Vector3 velocity = Rb.linearVelocity; // 현재 속도 유지
         velocity = directionToEnd * forwardSpeed + Vector3.up * velocity.y;
         Rb.linearVelocity = velocity;
@@ -316,5 +334,20 @@ public class InGamePlayer : MonoBehaviour
             EndGameClear();
         }
 
+    }
+
+
+    public void AddProductItem()
+    {
+        ProductItemCount++;
+        SetProductItem(ProductItemCount);
+    }
+
+
+    public void SetProductItem(int idx)
+    {
+        ProjectUtility.SetActiveCheck(ProductItemList[idx], true);
+        ProductItemList[idx].transform.localScale = Vector3.zero;
+        ProductItemList[idx].transform.DOScale(0.3f, 0.3f).SetEase(Ease.OutBack);
     }
 }

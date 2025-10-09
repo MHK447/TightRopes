@@ -37,6 +37,8 @@ public class InGameStage : MonoBehaviour
 
     public RopeComponent RopeComponent;
 
+    [SerializeField]
+    private List<ProductEntityComponent> ProductEntityList = new List<ProductEntityComponent>();
 
 
     public void StartPlaying()
@@ -54,6 +56,11 @@ public class InGameStage : MonoBehaviour
             RopeComponent.Init();
 
             GameRoot.Instance.UserData.RaceData.DataClear();
+
+            foreach(var product in ProductEntityList)
+            {
+                product.Init();
+            }
         }
     }
 
