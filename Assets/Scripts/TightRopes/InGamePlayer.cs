@@ -35,7 +35,7 @@ public class InGamePlayer : MonoBehaviour
 
 
     [Header("Product Item")]
-    private int ProductItemCount = 1;
+    private int ProductItemCount = 0;
 
 
 
@@ -74,7 +74,7 @@ public class InGamePlayer : MonoBehaviour
         {
             ProjectUtility.SetActiveCheck(product, false);
         }
-        ProductItemCount = 1;
+        ProductItemCount = 0;
 
         SetProductItem(ProductItemCount);
 
@@ -311,6 +311,8 @@ public class InGamePlayer : MonoBehaviour
 
     public void EndGameClear()
     {
+        ProductItemCount = 0;
+        SetProductItem(ProductItemCount);
         randomZ = 0f;
         inputZ = 0f;
         IsDead = true;
