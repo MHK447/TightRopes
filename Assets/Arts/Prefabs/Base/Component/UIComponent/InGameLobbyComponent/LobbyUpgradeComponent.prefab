@@ -931,12 +931,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelText: {fileID: 6838192284211722941}
   UpgradeCostText: {fileID: 1847674554702218124}
+  InComeMultiText: {fileID: 0}
   UpgradeImgList:
   - {fileID: 7706263373348299326}
   - {fileID: 1850253965531383006}
   - {fileID: 6577080654634820150}
   - {fileID: 2207768277365251100}
   - {fileID: 3943197052627057618}
+  UpgradeImg: {fileID: 0}
+  BgImg: {fileID: 586853250682026832}
+  State: 0
   UpgradeBtn: {fileID: 6918575699543750550}
 --- !u!95 &2845427064750081552
 Animator:

@@ -26,6 +26,22 @@ MonoBehaviour:
   - str_depth_value
   - str_income_income
   - str_collection
+  - rope_upgrade_desc_0
+  - rope_upgrade_desc_1
+  - rope_upgrade_desc_2
+  - rope_upgrade_desc_3
+  - rope_upgrade_desc_4
+  - rope_upgrade_desc_5
+  - rope_upgrade_desc_6
+  - rope_upgrade_desc_7
+  - balance_upgrade_desc_0
+  - balance_upgrade_desc_1
+  - balance_upgrade_desc_2
+  - balance_upgrade_desc_3
+  - balance_upgrade_desc_4
+  - balance_upgrade_desc_5
+  - balance_upgrade_desc_6
+  - balance_upgrade_desc_7
   mSecondKey: []
   mDataList:
   - _idx: fish_name_1
@@ -79,4 +95,68 @@ MonoBehaviour:
   - _idx: str_collection
     _ko: "\uB3C4\uAC10"
     _en: 
+    _ja: 
+  - _idx: rope_upgrade_desc_0
+    _ko: WHITE ROPE UPGRADE!!
+    _en: WHITE ROPE UPGRADE!!
+    _ja: 
+  - _idx: rope_upgrade_desc_1
+    _ko: GREEN ROPE UPGRADE!!
+    _en: GREEN ROPE UPGRADE!!
+    _ja: 
+  - _idx: rope_upgrade_desc_2
+    _ko: BLUE ROPE UPGRADE!!
+    _en: BLUE ROPE UPGRADE!!
+    _ja: 
+  - _idx: rope_upgrade_desc_3
+    _ko: PURPLE ROPE UPGRADE!!
+    _en: PURPLE ROPE UPGRADE!!
+    _ja: 
+  - _idx: rope_upgrade_desc_4
+    _ko: ORANGE ROPE UPGRADE!!
+    _en: ORANGE ROPE UPGRADE!!
+    _ja: 
+  - _idx: rope_upgrade_desc_5
+    _ko: YELLOW ROPE UPGRADE!!
+    _en: YELLOW ROPE UPGRADE!!
+    _ja: 
+  - _idx: rope_upgrade_desc_6
+    _ko: RED ROPE UPGRADE!!
+    _en: RED ROPE UPGRADE!!
+    _ja: 
+  - _idx: rope_upgrade_desc_7
+    _ko: GOLD ROPE UPGRADE!!
+    _en: GOLD ROPE UPGRADE!!
+    _ja: 
+  - _idx: balance_upgrade_desc_0
+    _ko: BALANCE UP!!
+    _en: BALANCE UP!!
+    _ja: 
+  - _idx: balance_upgrade_desc_1
+    _ko: BALANCE UP!!
+    _en: BALANCE UP!!
+    _ja: 
+  - _idx: balance_upgrade_desc_2
+    _ko: BALANCE UP!!
+    _en: BALANCE UP!!
+    _ja: 
+  - _idx: balance_upgrade_desc_3
+    _ko: BALANCE UP!!
+    _en: BALANCE UP!!
+    _ja: 
+  - _idx: balance_upgrade_desc_4
+    _ko: BALANCE UP!!
+    _en: BALANCE UP!!
+    _ja: 
+  - _idx: balance_upgrade_desc_5
+    _ko: BALANCE UP!!
+    _en: BALANCE UP!!
+    _ja: 
+  - _idx: balance_upgrade_desc_6
+    _ko: BALANCE UP!!
+    _en: BALANCE UP!!
+    _ja: 
+  - _idx: balance_upgrade_desc_7
+    _ko: BALANCE UP!!
+    _en: BALANCE UP!!
     _ja: 

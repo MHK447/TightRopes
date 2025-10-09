@@ -31,15 +31,15 @@ public class LobbyUpgradeComponent : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI InComeMultiText;
 
-    
-    public Transform InComeMultiTr {get {return InComeMultiText.transform;}}
+
+    public Transform InComeMultiTr { get { return InComeMultiText.transform; } }
 
     [SerializeField]
     private List<Image> UpgradeImgList = new List<Image>();
 
 
     [SerializeField]
-    private Image UpgradeImg;
+    private Image BgImg;
 
     [SerializeField]
     private UpgradeState State;
@@ -78,7 +78,9 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
         GameRoot.Instance.UserData.Money.Subscribe(x => { SetUpgradeValue(); }).AddTo(disposables);
 
+        SetInComeValue();
 
+        SetUpgradeImg();
     }
 
     void OnDestroy()
@@ -89,6 +91,14 @@ public class LobbyUpgradeComponent : MonoBehaviour
     void OnDisable()
     {
         disposables.Clear();
+    }
+
+    public void SetInComeValue()
+    {
+        if (InComeMultiText == null) return;
+
+
+        InComeMultiText.text = $"x{UpgradeData.GetUpgradeValue * 0.01f}";
     }
 
 
@@ -108,7 +118,7 @@ public class LobbyUpgradeComponent : MonoBehaviour
     {
         if (UpgradeData == null) return;
 
-        int activeCount = UpgradeData.Upgradelevel.Value % UpgradeImgList.Count + 1;
+        int activeCount = UpgradeData.Upgradelevel.Value  % (UpgradeImgList.Count + 1);
 
         for (int i = 0; i < UpgradeImgList.Count; i++)
         {
@@ -123,6 +133,9 @@ public class LobbyUpgradeComponent : MonoBehaviour
                 UpgradeImgList[i].color = Config.Instance.GetImageColor("Bg_Gray");
             }
         }
+
+        if (UpgradeData.Upgradeidx == (int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade)
+            BgImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Money_{UpgradeData.GetUpgradeOrder}");
     }
 
     public void OnClickUpgradeBtn()
@@ -131,6 +144,7 @@ public class LobbyUpgradeComponent : MonoBehaviour
         {
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
             UpgradeData.Upgradelevel.Value += 1;
+            UpgradeData.Upgradeternallevel += 1;
             DirectionUpgrade();
 
 
@@ -140,12 +154,12 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
     public void DirectionUpgrade()
     {
-        // bool isnewupgrade = UpgradeData.Upgradelevel.Value % 6 == 0;
+        bool isnewupgrade = UpgradeData.Upgradelevel.Value % 6 == 0;
 
-        // if (isnewupgrade)
-        // {
+        if (isnewupgrade)
+        {
             GameRoot.Instance.UISystem.OpenUI<PopupNewUpgrade>(popup => popup.Set(UpgradeIdx));
-        //}
+        }
     }
 
     public Color GetStateColor()
@@ -168,8 +182,8 @@ public class LobbyUpgradeComponent : MonoBehaviour
     public void InComeUpgradeAction()
     {
         //UpgradeImg.sprite = Config.Instance.GetImageSprite("Upgrade_Green");
-        InComeMultiText.text = $"x25";
-        
+        SetInComeValue();
+
         // 스케일 애니메이션: 1 → 1.2 → 1
         InComeMultiText.transform.localScale = Vector3.one;
         var sequence = DOTween.Sequence();

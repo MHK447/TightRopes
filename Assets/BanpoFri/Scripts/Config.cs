@@ -46,7 +46,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         CRITICALDAMAGE,
     }
 
-     public enum RecordKeys
+    public enum RecordKeys
     {
         StagePlayTime,
         EventStagePlayTime,
@@ -165,14 +165,16 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         return Color.white;
     }
 
-    public Material GetRopeUpgradeMat(int idx)
+
+    public Material GetRopeUpgradeMat(int index)
     {
-        if(idx >= RopeUpgradeMat.Count)
-            return RopeUpgradeMat[0];
+        if (RopeUpgradeMat == null || RopeUpgradeMat.Count == 0)
+            return null;
 
-        return RopeUpgradeMat[idx];
+        // 배열 크기를 넘어가면 % 연산으로 순환
+        int safeIndex = index % RopeUpgradeMat.Count;
+        return RopeUpgradeMat[safeIndex];
     }
-
 
     public Color GetImageColor(string key)
     {
@@ -182,7 +184,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         return Color.white;
     }
 
-    
+
     public Color GetUnitGradeColor(int grade)
     {
         switch (grade)

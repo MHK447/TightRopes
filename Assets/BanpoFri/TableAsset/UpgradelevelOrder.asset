@@ -1,0 +1,269 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99d78ddffac54da09d0555aadc05934, type: 3}
+  m_Name: UpgradelevelOrder
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  mSecondKey: []
+  mDataList:
+  - _upgrade_idx: 0
+    _order: 0
+    _value: 5
+  - _upgrade_idx: 0
+    _order: 1
+    _value: 10
+  - _upgrade_idx: 0
+    _order: 2
+    _value: 15
+  - _upgrade_idx: 0
+    _order: 3
+    _value: 20
+  - _upgrade_idx: 0
+    _order: 4
+    _value: 25
+  - _upgrade_idx: 0
+    _order: 5
+    _value: 30
+  - _upgrade_idx: 0
+    _order: 6
+    _value: 35
+  - _upgrade_idx: 0
+    _order: 7
+    _value: 40
+  - _upgrade_idx: 0
+    _order: 8
+    _value: 45
+  - _upgrade_idx: 0
+    _order: 9
+    _value: 50
+  - _upgrade_idx: 0
+    _order: 10
+    _value: 55
+  - _upgrade_idx: 0
+    _order: 11
+    _value: 60
+  - _upgrade_idx: 0
+    _order: 12
+    _value: 65
+  - _upgrade_idx: 0
+    _order: 13
+    _value: 70
+  - _upgrade_idx: 0
+    _order: 14
+    _value: 75
+  - _upgrade_idx: 0
+    _order: 15
+    _value: 80
+  - _upgrade_idx: 0
+    _order: 16
+    _value: 85
+  - _upgrade_idx: 0
+    _order: 17
+    _value: 90
+  - _upgrade_idx: 0
+    _order: 18
+    _value: 95
+  - _upgrade_idx: 0
+    _order: 19
+    _value: 100
+  - _upgrade_idx: 0
+    _order: 20
+    _value: 105
+  - _upgrade_idx: 1
+    _order: 0
+    _value: 5
+  - _upgrade_idx: 1
+    _order: 1
+    _value: 10
+  - _upgrade_idx: 1
+    _order: 2
+    _value: 15
+  - _upgrade_idx: 1
+    _order: 3
+    _value: 20
+  - _upgrade_idx: 1
+    _order: 4
+    _value: 25
+  - _upgrade_idx: 1
+    _order: 5
+    _value: 30
+  - _upgrade_idx: 1
+    _order: 6
+    _value: 35
+  - _upgrade_idx: 1
+    _order: 7
+    _value: 40
+  - _upgrade_idx: 1
+    _order: 8
+    _value: 45
+  - _upgrade_idx: 1
+    _order: 9
+    _value: 50
+  - _upgrade_idx: 1
+    _order: 10
+    _value: 55
+  - _upgrade_idx: 1
+    _order: 11
+    _value: 60
+  - _upgrade_idx: 1
+    _order: 12
+    _value: 65
+  - _upgrade_idx: 1
+    _order: 13
+    _value: 70
+  - _upgrade_idx: 1
+    _order: 14
+    _value: 75
+  - _upgrade_idx: 1
+    _order: 15
+    _value: 80
+  - _upgrade_idx: 1
+    _order: 16
+    _value: 85
+  - _upgrade_idx: 1
+    _order: 17
+    _value: 90
+  - _upgrade_idx: 1
+    _order: 18
+    _value: 95
+  - _upgrade_idx: 1
+    _order: 19
+    _value: 100
+  - _upgrade_idx: 1
+    _order: 20
+    _value: 105
+  - _upgrade_idx: 2
+    _order: 0
+    _value: 125
+  - _upgrade_idx: 2
+    _order: 1
+    _value: 150
+  - _upgrade_idx: 2
+    _order: 2
+    _value: 225
+  - _upgrade_idx: 2
+    _order: 3
+    _value: 250
+  - _upgrade_idx: 2
+    _order: 4
+    _value: 300
+  - _upgrade_idx: 2
+    _order: 5
+    _value: 350
+  - _upgrade_idx: 2
+    _order: 6
+    _value: 400
+  - _upgrade_idx: 2
+    _order: 7
+    _value: 450
+  - _upgrade_idx: 2
+    _order: 8
+    _value: 500
+  - _upgrade_idx: 2
+    _order: 9
+    _value: 550
+  - _upgrade_idx: 2
+    _order: 10
+    _value: 600
+  - _upgrade_idx: 2
+    _order: 11
+    _value: 700
+  - _upgrade_idx: 2
+    _order: 12
+    _value: 800
+  - _upgrade_idx: 2
+    _order: 13
+    _value: 900
+  - _upgrade_idx: 2
+    _order: 14
+    _value: 1000
+  - _upgrade_idx: 2
+    _order: 15
+    _value: 1100
+  - _upgrade_idx: 2
+    _order: 16
+    _value: 1200
+  - _upgrade_idx: 2
+    _order: 17
+    _value: 1300
+  - _upgrade_idx: 2
+    _order: 18
+    _value: 1400
+  - _upgrade_idx: 2
+    _order: 19
+    _value: 1500
+  - _upgrade_idx: 2
+    _order: 20
+    _value: 1600

@@ -102,14 +102,6 @@ public class BalanceUIComponent : MonoBehaviour
                 leftSequence.Append(LeftDangerImg.DOFillAmount(dangevalue, 0.5f));
                 rightSequence.Append(RightDangeImg.DOFillAmount(dangevalue, 0.5f));
 
-                // // 2단계: 스케일 1.5로 증가 후 1로 감소 (0.3초 + 0.2초)
-                // leftSequence.Append(LeftDangerImg.transform.DOScale(1.5f, 0.3f));
-                // leftSequence.Append(LeftDangerImg.transform.DOScale(1f, 0.2f));
-
-                // rightSequence.Append(RightDangeImg.transform.DOScale(1.5f, 0.3f));
-                // rightSequence.Append(RightDangeImg.transform.DOScale(1f, 0.2f));
-
-                // 애니메이션 실행
                 leftSequence.Play();
                 rightSequence.Play();
 

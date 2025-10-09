@@ -22,7 +22,7 @@ public class UpgradeSystem
         {
             for (int i = 0; i < (int)UpgradeType.MoneyMultiUpgrade + 1; i++)
             {
-                GameRoot.Instance.UserData.Upgradedatas.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = new ReactiveProperty<int>(1) });
+                GameRoot.Instance.UserData.Upgradedatas.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = new ReactiveProperty<int>(0) });
             }
         }
 

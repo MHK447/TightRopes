@@ -282,7 +282,6 @@ MonoBehaviour:
   - {fileID: 6424346281001520252}
   - {fileID: 3784581251009787076}
   - {fileID: 9125150354856855071}
-  DirectionBalanceUIComponent: {fileID: 0}
   TapToStartText: {fileID: 686448743832121355}
 --- !u!1001 &1336053916644828810
 PrefabInstance:

@@ -23,19 +23,24 @@ public struct UpgradeData : IFlatbufferObject
   public bool MutateUpgradeidx(int upgradeidx) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, upgradeidx); return true; } else { return false; } }
   public int Upgradelevel { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
   public bool MutateUpgradelevel(int upgradelevel) { int o = __p.__offset(6); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, upgradelevel); return true; } else { return false; } }
+  public int Upgradeternallevel { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateUpgradeternallevel(int upgradeternallevel) { int o = __p.__offset(8); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, upgradeternallevel); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.UpgradeData> CreateUpgradeData(FlatBufferBuilder builder,
       int upgradeidx = 0,
-      int upgradelevel = 0) {
-    builder.StartTable(2);
+      int upgradelevel = 0,
+      int upgradeternallevel = 0) {
+    builder.StartTable(3);
+    UpgradeData.AddUpgradeternallevel(builder, upgradeternallevel);
     UpgradeData.AddUpgradelevel(builder, upgradelevel);
     UpgradeData.AddUpgradeidx(builder, upgradeidx);
     return UpgradeData.EndUpgradeData(builder);
   }
 
-  public static void StartUpgradeData(FlatBufferBuilder builder) { builder.StartTable(2); }
+  public static void StartUpgradeData(FlatBufferBuilder builder) { builder.StartTable(3); }
   public static void AddUpgradeidx(FlatBufferBuilder builder, int upgradeidx) { builder.AddInt(0, upgradeidx, 0); }
   public static void AddUpgradelevel(FlatBufferBuilder builder, int upgradelevel) { builder.AddInt(1, upgradelevel, 0); }
+  public static void AddUpgradeternallevel(FlatBufferBuilder builder, int upgradeternallevel) { builder.AddInt(2, upgradeternallevel, 0); }
   public static Offset<BanpoFri.Data.UpgradeData> EndUpgradeData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UpgradeData>(o);
@@ -48,13 +53,15 @@ public struct UpgradeData : IFlatbufferObject
   public void UnPackTo(UpgradeDataT _o) {
     _o.Upgradeidx = this.Upgradeidx;
     _o.Upgradelevel = this.Upgradelevel;
+    _o.Upgradeternallevel = this.Upgradeternallevel;
   }
   public static Offset<BanpoFri.Data.UpgradeData> Pack(FlatBufferBuilder builder, UpgradeDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.UpgradeData>);
     return CreateUpgradeData(
       builder,
       _o.Upgradeidx,
-      _o.Upgradelevel);
+      _o.Upgradelevel,
+      _o.Upgradeternallevel);
   }
 }
 
@@ -64,10 +71,13 @@ public class UpgradeDataT
   public int Upgradeidx { get; set; }
   [Newtonsoft.Json.JsonProperty("upgradelevel")]
   public int Upgradelevel { get; set; }
+  [Newtonsoft.Json.JsonProperty("upgradeternallevel")]
+  public int Upgradeternallevel { get; set; }
 
   public UpgradeDataT() {
     this.Upgradeidx = 0;
     this.Upgradelevel = 0;
+    this.Upgradeternallevel = 0;
   }
 }
 
@@ -79,6 +89,7 @@ static public class UpgradeDataVerify
     return verifier.VerifyTableStart(tablePos)
       && verifier.VerifyField(tablePos, 4 /*Upgradeidx*/, 4 /*int*/, 4, false)
       && verifier.VerifyField(tablePos, 6 /*Upgradelevel*/, 4 /*int*/, 4, false)
+      && verifier.VerifyField(tablePos, 8 /*Upgradeternallevel*/, 4 /*int*/, 4, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }

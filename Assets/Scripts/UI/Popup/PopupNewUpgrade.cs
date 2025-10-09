@@ -15,13 +15,15 @@ public class PopupNewUpgrade : UIBase
     [SerializeField]
     private BalanceUIComponent BalanceUIComponent;
 
+    private UpgradeData UpgradeData;
+
     public void Set(int upgradeidx)
     {
         UpgradeIdx = upgradeidx;
 
-        var upgradedata = GameRoot.Instance.UserData.Upgradedatas[upgradeidx];
+        UpgradeData = GameRoot.Instance.UserData.Upgradedatas[upgradeidx];
 
-        if (upgradedata == null)
+        if (UpgradeData == null)
         {
             Hide();
             return;
@@ -35,10 +37,12 @@ public class PopupNewUpgrade : UIBase
 
     public void UpgradeSet()
     {
+        GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.SetState(InGameStage.InGameState.Direction);
         switch (UpgradeIdx)
         {
             case (int)UpgradeSystem.UpgradeType.RopeUpgrade:
                 {
+                    GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.SetState(InGameStage.InGameState.Direction);
                     GameRoot.Instance.UISystem.GetUI<PopupInGameLobby>().Hide();
                     GameRoot.Instance.WaitTimeAndCallback(0.5f, () =>
                     {
@@ -50,6 +54,7 @@ public class PopupNewUpgrade : UIBase
                 MoneyUpgradeAction();
                 break;
             case (int)UpgradeSystem.UpgradeType.ConteringUpgrade:
+                GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.SetState(InGameStage.InGameState.Direction);
                 GameRoot.Instance.UISystem.GetUI<PopupInGameLobby>().Hide();
                 GameRoot.Instance.WaitTimeAndCallback(0.5f, () =>
                 {
@@ -69,6 +74,8 @@ public class PopupNewUpgrade : UIBase
 
         // 초기 스케일을 0으로 설정
         UpgradeDescText.transform.localScale = Vector3.zero;
+
+        UpgradeDescText.text = Tables.Instance.GetTable<Localize>().GetString($"rope_upgrade_desc_{UpgradeData.GetUpgradeOrder}");
 
         // 스케일 0에서 1로 애니메이션 (0.5초 동안, Ease.OutBack 효과)
         UpgradeDescText.transform.DOScale(Vector3.one, 0.5f)
@@ -101,9 +108,11 @@ public class PopupNewUpgrade : UIBase
 
         var getupgradecomponent = getlobbyui.GetLobbyUpgradeComponent((int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade);
 
+        var getupgradevalue = Tables.Instance.GetTable<UpgradelevelOrder>().GetData(UpgradeData.GetUpgradeOrder).value * 0.01f;
+
         GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoneyUpgrade>(new Vector3(getupgradecomponent.transform.position.x, getupgradecomponent.transform.position.y + 30, getupgradecomponent.transform.position.z), (effect) =>
       {
-          effect.Set("x25", getupgradecomponent.InComeMultiTr, () =>
+          effect.Set($"x{getupgradevalue}", getupgradecomponent.InComeMultiTr, () =>
           {
               Hide();
               getupgradecomponent.InComeUpgradeAction();
@@ -120,6 +129,8 @@ public class PopupNewUpgrade : UIBase
 
         // 초기 스케일을 0으로 설정
         UpgradeDescText.transform.localScale = Vector3.zero;
+
+        UpgradeDescText.text = Tables.Instance.GetTable<Localize>().GetString($"balance_upgrade_desc_{UpgradeData.GetUpgradeOrder}");
 
         // 스케일 0에서 1로 애니메이션 (0.5초 동안, Ease.OutBack 효과)
         UpgradeDescText.transform.DOScale(Vector3.one, 0.5f)

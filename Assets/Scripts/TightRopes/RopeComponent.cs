@@ -52,7 +52,6 @@ public class RopeComponent : MonoBehaviour
 
     public void SetRopeDirection(System.Action endaction = null)
     {
-        StageMap.SetState(InGameStage.InGameState.Direction);
         // 이미 애니메이션 중이면 중단
         if (isAnimating)
         {

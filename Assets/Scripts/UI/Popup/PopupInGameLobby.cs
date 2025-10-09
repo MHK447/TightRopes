@@ -29,6 +29,7 @@ public class PopupInGameLobby : UIBase
 
     public void Init()
     {
+        GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.SetState(InGameStage.InGameState.WaitPlay);
 
         for (int i = 0; i < LobbyUpgradeComponents.Count; i++)
         {
@@ -48,7 +49,7 @@ public class PopupInGameLobby : UIBase
         {
             // 초기 스케일을 2로 설정
             TapToStartText.transform.localScale = Vector3.one * 1.3f;
-            
+
             // 2에서 1로 스케일 다운 후 다시 2로 스케일 업하는 무한 반복 애니메이션
             TapToStartText.transform.DOScale(1f, 0.8f)
                 .SetEase(Ease.InOutSine)

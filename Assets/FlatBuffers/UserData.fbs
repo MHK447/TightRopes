@@ -62,6 +62,7 @@ table UpgradeData
 {
    upgradeidx:int = 0;
    upgradelevel:int = 0; //@ReactiveProperty
+   upgradeternallevel:int = 0;
 }
 
 

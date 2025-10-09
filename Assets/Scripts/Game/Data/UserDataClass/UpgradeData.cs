@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UniRx;
 using Google.FlatBuffers;
-
+using BanpoFri;
 public partial class UserDataSystem
 {
     public List<UpgradeData> Upgradedatas { get; private set; } = new List<UpgradeData>();
@@ -22,7 +22,8 @@ public partial class UserDataSystem
                 upgradedatas_Array[index++] = BanpoFri.Data.UpgradeData.CreateUpgradeData(
                     builder,
                     item.Upgradeidx,
-                    item.Upgradelevel.Value
+                    item.Upgradelevel.Value,
+                    item.Upgradeternallevel
                 );
             }
             upgradedatas_Vector = BanpoFri.Data.UserData.CreateUpgradedatasVector(builder, upgradedatas_Array);
@@ -52,7 +53,8 @@ public partial class UserDataSystem
                 var upgradedata = new UpgradeData
                 {
                     Upgradeidx = Upgradedatas_item.Value.Upgradeidx,
-                    Upgradelevel = new ReactiveProperty<int>(Upgradedatas_item.Value.Upgradelevel)
+                    Upgradelevel = new ReactiveProperty<int>(Upgradedatas_item.Value.Upgradelevel),
+                    Upgradeternallevel = Upgradedatas_item.Value.Upgradeternallevel
                 };
                 Upgradedatas.Add(upgradedata);
             }
@@ -61,9 +63,24 @@ public partial class UserDataSystem
 
 }
 
+
 public class UpgradeData
 {
+    public int Upgradeternallevel { get; set; } = 0;
+
     public int Upgradeidx { get; set; } = 0;
     public IReactiveProperty<int> Upgradelevel { get; set; } = new ReactiveProperty<int>(0);
 
+
+    public int GetUpgradeOrder 
+    {
+        get 
+        {
+            return ((Upgradelevel.Value - 1) / 5);
+        }
+    }
+
+
+    public int GetUpgradeValue {get {return Tables.Instance.GetTable<UpgradelevelOrder>().GetData(GetUpgradeOrder).value;}}
+   
 }
