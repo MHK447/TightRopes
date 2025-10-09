@@ -31,9 +31,6 @@ public class RopeComponent : MonoBehaviour
 
     public void Init()
     {
-        var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].Upgradelevel.Value % 6;
-
-        RopeMat = Config.Instance.GetRopeUpgradeMat(level);
 
         // Renderer 컴포넌트 자동 할당
         if (ropeRenderer == null && RopeObj != null)
@@ -42,13 +39,23 @@ public class RopeComponent : MonoBehaviour
         }
 
         // 초기 intensity를 -10으로 설정
+
+        StageMap = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap;
+
+
+        var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder;
+
+        RopeMat = Config.Instance.GetRopeUpgradeMat(level);
+
+        ropeRenderer.material = RopeMat;
+
         if (ropeRenderer != null && ropeRenderer.material != null)
         {
             SetMaterialIntensity(minIntensity);
         }
 
-        StageMap = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap;
     }
+
 
     public void SetRopeDirection(System.Action endaction = null)
     {
@@ -59,7 +66,7 @@ public class RopeComponent : MonoBehaviour
             isAnimating = false;
         }
 
-        var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].Upgradelevel.Value % 6;
+        var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder;
         Material newMaterial = Config.Instance.GetRopeUpgradeMat(level);
 
 

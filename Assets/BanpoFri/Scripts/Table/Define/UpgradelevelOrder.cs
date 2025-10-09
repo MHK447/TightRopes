@@ -31,7 +31,7 @@ namespace BanpoFri
     }
 
     [System.Serializable]
-    public class UpgradelevelOrder : Table<UpgradelevelOrderData, int>
+    public class UpgradelevelOrder : Table<UpgradelevelOrderData, KeyValuePair<int,int>>
     {
     }
 }

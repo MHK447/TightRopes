@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using UniRx;
 using Google.FlatBuffers;
 using BanpoFri;
@@ -81,6 +82,6 @@ public class UpgradeData
     }
 
 
-    public int GetUpgradeValue {get {return Tables.Instance.GetTable<UpgradelevelOrder>().GetData(GetUpgradeOrder).value;}}
+    public int GetUpgradeValue {get {return Tables.Instance.GetTable<UpgradelevelOrder>().GetData(new KeyValuePair<int,int>(Upgradeidx, Upgradelevel.Value)).value;}}
    
 }

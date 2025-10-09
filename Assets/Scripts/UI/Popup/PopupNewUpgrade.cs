@@ -2,6 +2,7 @@ using UnityEngine;
 using BanpoFri;
 using TMPro;
 using DG.Tweening;
+using System.Collections.Generic;
 
 
 [UIPath("UI/Popup/PopupNewUpgrade")]
@@ -108,7 +109,7 @@ public class PopupNewUpgrade : UIBase
 
         var getupgradecomponent = getlobbyui.GetLobbyUpgradeComponent((int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade);
 
-        var getupgradevalue = Tables.Instance.GetTable<UpgradelevelOrder>().GetData(UpgradeData.GetUpgradeOrder).value * 0.01f;
+        var getupgradevalue = Tables.Instance.GetTable<UpgradelevelOrder>().GetData(new KeyValuePair<int,int>(UpgradeData.Upgradeidx, UpgradeData.Upgradelevel.Value)).value * 0.01f;
 
         GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoneyUpgrade>(new Vector3(getupgradecomponent.transform.position.x, getupgradecomponent.transform.position.y + 30, getupgradecomponent.transform.position.z), (effect) =>
       {
