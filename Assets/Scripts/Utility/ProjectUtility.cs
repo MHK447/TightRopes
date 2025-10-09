@@ -151,6 +151,18 @@ public class ProjectUtility
         return returnvalue;
     }
 
+    public static System.Numerics.BigInteger PercentCalc(System.Numerics.BigInteger value, int percent)
+    {
+        System.Numerics.BigInteger returnvalue = 0;
+
+        returnvalue = value * percent;
+
+
+        returnvalue = returnvalue / 100;
+
+        return returnvalue;
+    }
+
 
 
 

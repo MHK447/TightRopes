@@ -41,13 +41,6 @@ namespace BanpoFri
 			get { return _inceease_upgrade_cost;}
 			set { _inceease_upgrade_cost = value;}
 		}
-		[SerializeField]
-		private int _level_up_multi;
-		public int level_up_multi
-		{
-			get { return _level_up_multi;}
-			set { _level_up_multi = value;}
-		}
 
     }
 

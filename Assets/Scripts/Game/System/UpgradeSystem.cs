@@ -4,9 +4,16 @@ using System.Numerics;
 using System;
 using BanpoFri.Data;
 using UniRx;
-
+using Unity.Mathematics;
+using UnityEditor.Experimental.GraphView;
+using System.Collections.Generic;
 public class UpgradeSystem
 {
+    public float directincomevalue = 0f;
+
+    public Dictionary<int, float> UpgradeCostDic = new Dictionary<int, float>();
+
+    private int CostMaxLevel = 1000;
 
     public enum UpgradeType
     {
@@ -18,53 +25,59 @@ public class UpgradeSystem
 
     public void Create()
     {
+        // 각 업그레이드 타입별로 테이블 계산
+        for (int i = 0; i <= (int)UpgradeType.MoneyMultiUpgrade; i++)
+        {
+            var upgradeData = Tables.Instance.GetTable<UpgradeInfo>().GetData(i);
+            if (upgradeData != null)
+            {
+                upgradeData.CalculateUpgradeTable(i, CostMaxLevel);
+            }
+        }
+
         if (GameRoot.Instance.UserData.Upgradedatas.Count == 0)
         {
+            GameRoot.Instance.UserData.Incomemultivalue = GameRoot.Instance.UserData.Incomestartupgrade
+             = Tables.Instance.GetTable<Define>().GetData("start_income_value").value / 100;
+
             for (int i = 0; i < (int)UpgradeType.MoneyMultiUpgrade + 1; i++)
             {
-                GameRoot.Instance.UserData.Upgradedatas.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = new ReactiveProperty<int>(0) });
+                GameRoot.Instance.UserData.Upgradedatas.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = new ReactiveProperty<int>(1) });
             }
         }
 
     }
 
-    public float GetUpgradeValue(int idx)
+
+    public void InComeUpgrade()
     {
+        var finddata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeType.MoneyMultiUpgrade];
 
-        float value = 0f;
-        var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(idx);
+        if (finddata == null) return;
 
-        if (td != null)
+        directincomevalue = 0f;
+
+        float inc = ProjectUtility.PercentCalc(GameRoot.Instance.UserData.Incomestartupgrade, 10);
+        inc = Mathf.Round(inc * 10f) / 10f; // 소수점 1자리 반올림
+        GameRoot.Instance.UserData.Incomemultivalue += inc;
+
+        if (finddata.Upgradelevel.Value % 6 == 0)
         {
-            var level = GameRoot.Instance.UserData.Upgradedatas[idx].Upgradelevel.Value;
+            double powVal = System.Math.Pow(2.0, finddata.GetUpgradeOrder);
+            directincomevalue = (float)System.Math.Round(powVal, 1, MidpointRounding.AwayFromZero); // 한 자리 반올림
 
+            GameRoot.Instance.UserData.Incomemultivalue += directincomevalue;
 
-            value = td.upgrade_start_value + (td.level_up_value * level);
-
+            GameRoot.Instance.UserData.Incomestartupgrade = (int)directincomevalue;
         }
-
-
-        return value;
-
     }
 
 
-    public BigInteger GetUpgradeCost(int idx)
+    public BigInteger GetUpgradeCost(int idx, int level)
     {
-        var finddata = GameRoot.Instance.UserData.Upgradedatas[idx];
-
-        var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(idx);
-
-        if(td == null) return 0;
-
-        int multivalue = finddata.Upgradelevel.Value / td.level_up_multi;
-
-        multivalue = multivalue ==  0 ? 1 : multivalue;
-
-        var inceeaseCost = (td.inceease_upgrade_cost  *  100 + (td.inceease_upgrade_cost * finddata.Upgradelevel.Value)) / 100;
-
-        inceeaseCost *= multivalue;
-        
-        return inceeaseCost;
+        return Tables.Instance.GetTable<UpgradeInfo>().GetData(idx).GetCost(idx, level);
     }
+
+
+
 }

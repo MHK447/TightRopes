@@ -247,6 +247,8 @@ public partial class UserDataSystem
         BanpoFri.Data.UserData.AddMoney(builder, money);
         BanpoFri.Data.UserData.AddStageidx(builder, Stageidx.Value);
         BanpoFri.Data.UserData.AddHighscorevalue(builder, Highscorevalue);
+        BanpoFri.Data.UserData.AddIncomemultivalue(builder, Incomemultivalue);
+        BanpoFri.Data.UserData.AddIncomestartupgrade(builder, Incomestartupgrade);
         var orc = BanpoFri.Data.UserData.EndUserData(builder);
         builder.Finish(orc.Value);
 

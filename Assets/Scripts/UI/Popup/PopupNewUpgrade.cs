@@ -109,11 +109,9 @@ public class PopupNewUpgrade : UIBase
 
         var getupgradecomponent = getlobbyui.GetLobbyUpgradeComponent((int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade);
 
-        var getupgradevalue = Tables.Instance.GetTable<UpgradelevelOrder>().GetData(new KeyValuePair<int,int>(UpgradeData.Upgradeidx, UpgradeData.Upgradelevel.Value)).value * 0.01f;
-
         GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoneyUpgrade>(new Vector3(getupgradecomponent.transform.position.x, getupgradecomponent.transform.position.y + 30, getupgradecomponent.transform.position.z), (effect) =>
       {
-          effect.Set($"x{getupgradevalue}", getupgradecomponent.InComeMultiTr, () =>
+          effect.Set($"x{GameRoot.Instance.UserData.Incomemultivalue.ToString("0.0")}", getupgradecomponent.InComeMultiTr, () =>
           {
               Hide();
               getupgradecomponent.InComeUpgradeAction();

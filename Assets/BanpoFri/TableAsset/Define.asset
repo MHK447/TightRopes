@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mFirstKey:
   - ingame_start_angle
+  - start_income_value
   mSecondKey: []
   mDataList:
   - _index: ingame_start_angle
     _value: 30
+  - _index: start_income_value
+    _value: 200

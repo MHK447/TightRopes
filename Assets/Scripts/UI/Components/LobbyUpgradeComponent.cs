@@ -98,14 +98,14 @@ public class LobbyUpgradeComponent : MonoBehaviour
         if (InComeMultiText == null) return;
 
 
-        InComeMultiText.text = $"x{UpgradeData.GetUpgradeValue * 0.01f}";
+        InComeMultiText.text = $"x{GameRoot.Instance.UserData.Incomemultivalue.ToString("0.0")}";
     }
 
 
     public void SetUpgradeValue()
     {
         LevelText.text = UpgradeData.Upgradelevel.ToString();
-        UpgradeCost = GameRoot.Instance.UpgradeSystem.GetUpgradeCost(UpgradeIdx);
+        UpgradeCost = GameRoot.Instance.UpgradeSystem.GetUpgradeCost(UpgradeIdx, UpgradeData.Upgradelevel.Value);
 
         UpgradeCostText.text = ProjectUtility.CalculateMoneyToString(UpgradeCost);
 
@@ -118,7 +118,7 @@ public class LobbyUpgradeComponent : MonoBehaviour
     {
         if (UpgradeData == null) return;
 
-        int activeCount = UpgradeData.Upgradelevel.Value  % (UpgradeImgList.Count + 1);
+        int activeCount = UpgradeData.Upgradelevel.Value % (UpgradeImgList.Count + 1);
 
         for (int i = 0; i < UpgradeImgList.Count; i++)
         {
@@ -145,10 +145,16 @@ public class LobbyUpgradeComponent : MonoBehaviour
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
             UpgradeData.Upgradelevel.Value += 1;
             UpgradeData.Upgradeternallevel += 1;
+
+            if (UpgradeData.Upgradeidx == (int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade)
+            {
+                GameRoot.Instance.UpgradeSystem.InComeUpgrade();
+            }
+
             DirectionUpgrade();
-
-
             SetUpgradeValue();
+            SetInComeValue();
+
         }
     }
 
