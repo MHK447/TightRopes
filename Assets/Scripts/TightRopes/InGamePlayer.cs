@@ -80,7 +80,7 @@ public class InGamePlayer : MonoBehaviour
 
         lastPosition = this.transform.position;
         totalDistance = 0f;
-        Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        Rb.constraints = RigidbodyConstraints.FreezePositionX  | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         Anim.Play("Idle");
         IsDead = false;
         IsDeadWait = false;
@@ -214,6 +214,8 @@ public class InGamePlayer : MonoBehaviour
 
     public void InputBalance()
     {
+        if (IsDead) return;
+
         // A, D 입력 반영
         if (Input.GetKey(KeyCode.A))
         {
@@ -353,7 +355,7 @@ public class InGamePlayer : MonoBehaviour
         if (GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value > GameRoot.Instance.UserData.Highscorevalue)
         {
             GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value;
-            GameRoot.Instance.UISystem.OpenUI<PopupNewRecord>(null, EndGameClear);
+            GameRoot.Instance.UISystem.OpenUI<PopupNewRecord>(null, InGameBase.StageMap.RetryGame);
         }
         else
         {

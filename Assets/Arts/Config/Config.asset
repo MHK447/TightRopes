@@ -63,7 +63,7 @@ MonoBehaviour:
   - key_string: Btn_Blue
     color: {r: 0.2007832, g: 0.58494633, b: 0.9056604, a: 1}
   - key_string: Bg_Gray
-    color: {r: 0.827451, g: 0.827451, b: 0.827451, a: 1}
+    color: {r: 0.52156866, g: 0.52156866, b: 0.52156866, a: 1}
   - key_string: Upgrade_Orange
     color: {r: 0.85882354, g: 0.38039216, b: 0.14117648, a: 1}
   - key_string: Upgrade_Green

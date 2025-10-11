@@ -490,8 +490,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.33739853}
+  m_SizeDelta: {x: 0, y: 7.4219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4805286945146103920
 CanvasRenderer:
@@ -938,7 +938,7 @@ MonoBehaviour:
   - {fileID: 6577080654634820150}
   - {fileID: 2207768277365251100}
   - {fileID: 3943197052627057618}
-  UpgradeImg: {fileID: 0}
+  UpgradeBtnImg: {fileID: 649327083449941544}
   BgImg: {fileID: 586853250682026832}
   State: 0
   UpgradeBtn: {fileID: 6918575699543750550}
@@ -1895,6 +1895,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: cf841018c596ff94095b7aa7767ec9ae, type: 2}
     - target: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
       propertyPath: m_enableAutoSizing
       value: 0

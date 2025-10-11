@@ -478,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cam: {fileID: 861045025}
   Offset: {x: 0, y: 5.5, z: 9.1}
+  DirectionLightTr: {fileID: 154269673}
 --- !u!1 &1008968887
 GameObject:
   m_ObjectHideFlags: 0

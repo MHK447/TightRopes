@@ -37,6 +37,11 @@ public class LobbyUpgradeComponent : MonoBehaviour
     [SerializeField]
     private List<Image> UpgradeImgList = new List<Image>();
 
+    [SerializeField]
+    private Image UpgradeBtnImg;
+
+
+
 
     [SerializeField]
     private Image BgImg;
@@ -60,9 +65,13 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private Color DefaultColor;
+
     void Awake()
     {
         UpgradeBtn.onClick.AddListener(OnClickUpgradeBtn);
+
+        DefaultColor = UpgradeBtnImg.color;
     }
 
 
@@ -110,6 +119,8 @@ public class LobbyUpgradeComponent : MonoBehaviour
         UpgradeCostText.text = ProjectUtility.CalculateMoneyToString(UpgradeCost);
 
         UpgradeBtn.interactable = GameRoot.Instance.UserData.Money.Value >= UpgradeCost;
+
+        UpgradeBtnImg.color = UpgradeBtn.interactable ? DefaultColor : Config.Instance.GetImageColor("Bg_Gray");
 
         SetUpgradeImg();
     }

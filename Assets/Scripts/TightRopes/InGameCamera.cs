@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using BanpoFri;
 
 public class InGameCamera : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class InGameCamera : MonoBehaviour
 
     [SerializeField]
     private Vector3 Offset;
+
+    [SerializeField]
+    private Transform DirectionLightTr;
 
     private bool IsFocus = true;
 
@@ -38,6 +42,13 @@ public class InGameCamera : MonoBehaviour
 
         // 방향 초기화 (새 스테이지 시작 시)
         isDirectionSet = false;
+
+        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
+        var stageData = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+        
+        // 카메라 로테이션 설정
+        Vector3 cameraRotation = new Vector3(stageData.cam_rot[0], stageData.cam_rot[1], 0);
+        DirectionLightTr.rotation = Quaternion.Euler(cameraRotation);
 
         // 카메라 위치 초기화
         ResetCameraPosition();

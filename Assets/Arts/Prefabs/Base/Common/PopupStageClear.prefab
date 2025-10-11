@@ -281,6 +281,9 @@ MonoBehaviour:
   RewardBaseValueText: {fileID: 1261835923999807242}
   AdRewardBtn: {fileID: 8230382186732178087}
   BaseRewardBtn: {fileID: 8887379560123776265}
+  textAppearDelay: 0.3
+  textAppearDuration: 0.5
+  countUpDuration: 1.5
 --- !u!1 &5867632793148398635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1225,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 72
       objectReference: {fileID: 0}
+    - target: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0aa6dd0b05a134c4ebab5e5d2aee5c27, type: 2}
     - target: {fileID: 7607118684987216968, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
       propertyPath: m_Name
       value: TMP
