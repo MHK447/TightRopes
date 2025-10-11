@@ -27,6 +27,41 @@ namespace BanpoFri
 			get { return _prefab;}
 			set { _prefab = value;}
 		}
+		[SerializeField]
+		private int _base_balance_value;
+		public int base_balance_value
+		{
+			get { return _base_balance_value;}
+			set { _base_balance_value = value;}
+		}
+		[SerializeField]
+		private float _base_sway_value;
+		public float base_sway_value
+		{
+			get { return _base_sway_value;}
+			set { _base_sway_value = value;}
+		}
+		[SerializeField]
+		private int _end_balance_value;
+		public int end_balance_value
+		{
+			get { return _end_balance_value;}
+			set { _end_balance_value = value;}
+		}
+		[SerializeField]
+		private float _end_sway_value;
+		public float end_sway_value
+		{
+			get { return _end_sway_value;}
+			set { _end_sway_value = value;}
+		}
+		[SerializeField]
+		private List<int> _cam_rot;
+		public List<int> cam_rot
+		{
+			get { return _cam_rot;}
+			set { _cam_rot = value;}
+		}
 
     }
 

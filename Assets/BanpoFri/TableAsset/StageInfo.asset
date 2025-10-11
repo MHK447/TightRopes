@@ -21,9 +21,24 @@ MonoBehaviour:
   - _stage_idx: 1
     _end_goal_value: 100
     _prefab: StageMap_01
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 2a000000b4000000
   - _stage_idx: 2
-    _end_goal_value: 150
+    _end_goal_value: 200
     _prefab: StageMap_02
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000
   - _stage_idx: 3
     _end_goal_value: 300
     _prefab: StageMap_03
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000

@@ -14,7 +14,7 @@ public class InGamePlayer : MonoBehaviour
     private Animator Anim;
 
     [SerializeField]
-    private List<GameObject> ProductItemList = new List<GameObject>();
+    private List<PlayerProductComponent> ProductItemList = new List<PlayerProductComponent>();
 
 
 
@@ -45,6 +45,15 @@ public class InGamePlayer : MonoBehaviour
     private float distanceUpdateTimer = 0f;
     private float distanceUpdateInterval = 0.1f; // 1초마다 업데이트
 
+
+
+    [Header("기울기 변수")]
+    private float SwayValue = 0;
+
+    private float BalanceValue = 0;
+
+
+
     public void Init()
     {
         if (Rb == null)
@@ -62,6 +71,13 @@ public class InGamePlayer : MonoBehaviour
 
     public void ReadyPlayr()
     {
+
+        //스테이지마다 처음에 로프 기울기 및 허들을 정해준다. 
+
+
+        SwayValue = GameRoot.Instance.UpgradeSystem.RopeUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder);
+        BalanceValue = GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade].GetUpgradeOrder);
+
         lastPosition = this.transform.position;
         totalDistance = 0f;
         Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
@@ -72,11 +88,10 @@ public class InGamePlayer : MonoBehaviour
 
         foreach (var product in ProductItemList)
         {
-            ProjectUtility.SetActiveCheck(product, false);
+            ProjectUtility.SetActiveCheck(product.gameObject, false);
         }
-        ProductItemCount = 0;
 
-        SetProductItem(ProductItemCount);
+        ProductItemCount = 0;
 
         // EndTr 방향을 바라보도록 회전 설정
         Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
@@ -115,6 +130,9 @@ public class InGamePlayer : MonoBehaviour
         Anim.Play("Walk");
         IsDead = false;
         IsDeadWait = false;
+
+
+        SetProductItem(0);
     }
 
 
@@ -171,7 +189,7 @@ public class InGamePlayer : MonoBehaviour
         if (BanlanceDeltime >= RandBanlanceTime)
         {
             BanlanceDeltime = 0f;
-            randomZ += currentDirection == -1 ? -1f : 1f;
+            randomZ += currentDirection == -1 ? -SwayValue : SwayValue;
         }
 
 
@@ -271,7 +289,7 @@ public class InGamePlayer : MonoBehaviour
         GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Value = zRot;
 
         // 범위 체크
-        if (zRot <= -30f || zRot >= 30f)
+        if (zRot <= -BalanceValue || zRot >= BalanceValue)
         {
             var dir = zRot > 0 ? Vector3.right : Vector3.left;
             OnTiltLimitReached(dir);
@@ -292,7 +310,14 @@ public class InGamePlayer : MonoBehaviour
         Vector3 bounceDir = dir;
         float bouncePower = 20f; // 원하는 튕김 세기 (값 조절 가능)
 
+        foreach (var product in ProductItemList)
+        {
+            product.EndGame(bounceDir * bouncePower);
+        }
+
         Rb.AddForce(bounceDir * bouncePower, ForceMode.Impulse);
+
+        Anim.Play("Falling", 0 , 0f);
     }
 
     public void DeadCheck()
@@ -312,7 +337,6 @@ public class InGamePlayer : MonoBehaviour
     public void EndGameClear()
     {
         ProductItemCount = 0;
-        SetProductItem(ProductItemCount);
         randomZ = 0f;
         inputZ = 0f;
         IsDead = true;
@@ -333,7 +357,7 @@ public class InGamePlayer : MonoBehaviour
         }
         else
         {
-            EndGameClear();
+           GameRoot.Instance.WaitTimeAndCallback(1f, EndGameClear);
         }
 
     }
@@ -348,7 +372,8 @@ public class InGamePlayer : MonoBehaviour
 
     public void SetProductItem(int idx)
     {
-        ProjectUtility.SetActiveCheck(ProductItemList[idx], true);
+        ProjectUtility.SetActiveCheck(ProductItemList[idx].gameObject, true);
+        ProductItemList[idx].Init();
         ProductItemList[idx].transform.localScale = Vector3.zero;
         ProductItemList[idx].transform.DOScale(0.3f, 0.3f).SetEase(Ease.OutBack);
     }

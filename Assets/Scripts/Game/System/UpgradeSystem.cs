@@ -18,7 +18,7 @@ public class UpgradeSystem
     public enum UpgradeType
     {
         RopeUpgrade = 0,
-        ConteringUpgrade = 1,
+        BalanceUpgrade = 1,
         MoneyMultiUpgrade = 2,
 
     }
@@ -45,9 +45,63 @@ public class UpgradeSystem
                 GameRoot.Instance.UserData.Upgradedatas.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = new ReactiveProperty<int>(1) });
             }
         }
-
     }
 
+    public float RopeUpgradeValue(int upgradeorder)
+    {
+        var finddata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeType.RopeUpgrade];
+
+        if (finddata == null) return 0f;
+
+        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
+
+        var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+        float swayvalue = stageinfotd.base_sway_value;
+
+      
+
+        for (int i = 0; i < upgradeorder; i++)
+        {
+            swayvalue -= ProjectUtility.PercentCalc(swayvalue, 10);
+        }
+
+        if(swayvalue <= stageinfotd.end_sway_value)
+        {
+            swayvalue = stageinfotd.end_sway_value;
+        }
+
+
+
+        return swayvalue;
+    }
+
+    public float BalanceUpgradeValue(int upgradeorder)
+    {
+        var finddata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeType.BalanceUpgrade];
+
+        if (finddata == null) return 0f;
+
+        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
+
+        var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+        float balancevalue = stageinfotd.base_balance_value;
+
+        for (int i = 0; i < upgradeorder; i++)
+        {
+            balancevalue += ProjectUtility.PercentCalc(balancevalue, 20);
+        }
+
+        if(balancevalue >= stageinfotd.end_balance_value)
+        {
+            balancevalue = stageinfotd.end_balance_value;
+        }
+
+
+
+        return balancevalue;
+    }
 
     public void InComeUpgrade()
     {

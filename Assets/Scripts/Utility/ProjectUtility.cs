@@ -270,7 +270,7 @@ public class ProjectUtility
     }
 
 
-    public static void SetRewardAndEffect(int rewardType, int rewardIndex, int amount, System.Action OnEnd = null)
+    public static void SetRewardAndEffect(int rewardType, int rewardIndex, System.Numerics.BigInteger amount, System.Action OnEnd = null)
     {
         switch ((Config.RewardType)(int)Config.RewardType.Currency)
         {
@@ -287,6 +287,8 @@ public class ProjectUtility
                             pos = currencyHud.MoneyIconTr.position;
                             break;
                     }
+
+                    
                     PlayGoodsEffect(Vector3.zero, (int)Config.RewardType.Currency, rewardIndex, 0, amount, true, OnEnd, 0f, "", null, false, true, pos);
                 }
                 break;

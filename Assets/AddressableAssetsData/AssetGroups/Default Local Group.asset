@@ -111,6 +111,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4967bea7482277d48955ef26a2a50c7c
+    m_Address: Assets/SimplePoly City - Low Poly Assets/Materials/Building_Coffee
+      Shop.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 49d11929ccf7b42f58335a251b3a8e4c
     m_Address: GameRoot
     m_ReadOnly: 0

@@ -82,6 +82,5 @@ public class UpgradeData
     }
 
 
-    public int GetUpgradeValue {get {return Tables.Instance.GetTable<UpgradelevelOrder>().GetData(new KeyValuePair<int,int>(Upgradeidx, Upgradelevel.Value)).value;}}
    
 }

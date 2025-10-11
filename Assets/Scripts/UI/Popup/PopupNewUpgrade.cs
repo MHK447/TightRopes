@@ -54,12 +54,20 @@ public class PopupNewUpgrade : UIBase
             case (int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade:
                 MoneyUpgradeAction();
                 break;
-            case (int)UpgradeSystem.UpgradeType.ConteringUpgrade:
+            case (int)UpgradeSystem.UpgradeType.BalanceUpgrade:
+
+                var balancedata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade];
+
+
+
                 GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.SetState(InGameStage.InGameState.Direction);
                 GameRoot.Instance.UISystem.GetUI<PopupInGameLobby>().Hide();
                 GameRoot.Instance.WaitTimeAndCallback(0.5f, () =>
                 {
-                    BalanceUIComponent.SetDirectionBalanceValue(50f, 15f, BalanceUpgradeAction);
+
+
+                    BalanceUIComponent.SetDirectionBalanceValue(GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(balancedata.GetUpgradeOrder), 
+                    GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(balancedata.GetUpgradeOrder - 1), BalanceUpgradeAction);
                 });
                 break;
         }

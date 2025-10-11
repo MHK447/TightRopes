@@ -150,7 +150,13 @@ public class InGameStage : MonoBehaviour
 
         SetState(InGameState.WaitPlay);
 
-        ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 100, () =>
+        int incomevalue = (int)(GameRoot.Instance.UserData.Incomemultivalue * 100);
+
+        System.Numerics.BigInteger rewardvalue = (System.Numerics.BigInteger)Mathf.Round(GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value) *  incomevalue;
+
+        rewardvalue = rewardvalue / 100;
+
+        ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, rewardvalue, () =>
         {
             GameRoot.Instance.WaitTimeAndCallback(1f, () =>
             {
