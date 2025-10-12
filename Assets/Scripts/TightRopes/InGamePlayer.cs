@@ -163,6 +163,7 @@ public class InGamePlayer : MonoBehaviour
     private float randomZ = 0f;       // 랜덤 흔들림 각도
     private float inputZ = 0f;        // 입력 보정 각도
     private float inputTiltAmount = 2f;
+    private float lastSideOffset = 0f; // 이전 프레임의 사이드 오프셋
 
     // 3초 주기 방향 기울기 변수들
     private float directionTimer = 0f;    // 방향 타이머
@@ -202,8 +203,7 @@ public class InGamePlayer : MonoBehaviour
         }
 
 
-        // 최종 목표 각도 = 방향 기울기 + 미세 흔들림 + 입력 보정 (입력은 반대 방향으로 적용)
-        targetZ = randomZ + inputZ;
+        targetZ = (randomZ - inputZ);
 
         // EndTr 방향을 기준으로 회전 계산
         Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
@@ -228,11 +228,11 @@ public class InGamePlayer : MonoBehaviour
         // A, D 입력 반영 (유니티 에디터용)
         if (Input.GetKey(KeyCode.A) && !IsDead)
         {
-            inputZ += 1f;
+            inputZ -= 1f;
         }
         else if (Input.GetKey(KeyCode.D) && !IsDead)
         {
-            inputZ -= 1f;
+            inputZ += 1f;
         }
 
         // 터치 입력 처리 (모바일용) - A, D 키와 동일하게 계속 누르고 있는 동안 적용
@@ -256,13 +256,13 @@ public class InGamePlayer : MonoBehaviour
             if (inputPosition.x < screenCenterX)
             {
                 // 왼쪽 터치
-                inputZ += 1f;
+                inputZ -= 1f;
                 Debug.Log("왼쪽 터치 inputZ: " + inputZ);
             }
             else
             {
                 // 오른쪽 터치
-                inputZ -= 1f;
+                inputZ += 1f;
                 Debug.Log("오른쪽 터치 inputZ: " + inputZ);
             }
         }
@@ -282,6 +282,7 @@ public class InGamePlayer : MonoBehaviour
         Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
         directionToEnd.y = 0; // Y축 이동 제거 (수평 이동만)
 
+        // 기본 전진 이동
         Vector3 velocity = Rb.linearVelocity; // 현재 속도 유지
         velocity = directionToEnd * forwardSpeed + Vector3.up * velocity.y;
         Rb.linearVelocity = velocity;
@@ -329,12 +330,12 @@ public class InGamePlayer : MonoBehaviour
         if (zRot > 180f) zRot -= 360f;
 
         // 변환된 값을 BalanceValueProperty에 전달
-        GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Value = zRot;
+        GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Value = -zRot;
 
         // 범위 체크
         if (zRot <= -BalanceValue || zRot >= BalanceValue)
         {
-            var dir = zRot > 0 ? Vector3.right : Vector3.left;
+            var dir = zRot > 0 ? Vector3.left : Vector3.right;
             OnTiltLimitReached(dir);
         }
     }
