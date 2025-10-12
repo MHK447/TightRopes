@@ -53,11 +53,16 @@ public class InGamePlayer : MonoBehaviour
     private float BalanceValue = 0;
 
 
+    private BoxCollider Col;
+
+
 
     public void Init()
     {
         if (Rb == null)
             Rb = GetComponent<Rigidbody>();
+
+        Col = GetComponent<BoxCollider>();
 
 
         InGameBase = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>();
@@ -80,7 +85,8 @@ public class InGamePlayer : MonoBehaviour
 
         lastPosition = this.transform.position;
         totalDistance = 0f;
-        Rb.constraints = RigidbodyConstraints.FreezePositionX  | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        //Rb.constraints = RigidbodyConstraints.FreezePositionX  | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        Rb.constraints = RigidbodyConstraints.FreezeAll;
         Anim.Play("Idle");
         IsDead = false;
         IsDeadWait = false;
@@ -127,6 +133,8 @@ public class InGamePlayer : MonoBehaviour
 
     public void PlayGame()
     {
+        Col.enabled = true;
+        Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         Anim.Play("Walk");
         IsDead = false;
         IsDeadWait = false;
@@ -140,11 +148,12 @@ public class InGamePlayer : MonoBehaviour
     {
         if (InGameBase == null) return;
         if (InGameBase.StageMap.CurState != InGameStage.InGameState.Playing) return;
+        if (IsDead) return;
 
         InputBalance();
         ApplyForwardMovement();
         ApplySwingMovement();
-        DeadCheck();
+        //DeadCheck();
         CheckTiltLimit();
     }
 
@@ -193,7 +202,7 @@ public class InGamePlayer : MonoBehaviour
         }
 
 
-        // 최종 목표 각도 = 방향 기울기 + 미세 흔들림 + 입력 보정
+        // 최종 목표 각도 = 방향 기울기 + 미세 흔들림 + 입력 보정 (입력은 반대 방향으로 적용)
         targetZ = randomZ + inputZ;
 
         // EndTr 방향을 기준으로 회전 계산
@@ -216,14 +225,46 @@ public class InGamePlayer : MonoBehaviour
     {
         if (IsDead) return;
 
-        // A, D 입력 반영
-        if (Input.GetKey(KeyCode.A))
+        // A, D 입력 반영 (유니티 에디터용)
+        if (Input.GetKey(KeyCode.A) && !IsDead)
         {
             inputZ += 1f;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) && !IsDead)
         {
             inputZ -= 1f;
+        }
+
+        // 터치 입력 처리 (모바일용) - A, D 키와 동일하게 계속 누르고 있는 동안 적용
+        if (Input.GetMouseButton(0) || Input.touchCount > 0 && !IsDead)
+        {
+            Vector3 inputPosition = Vector3.zero;
+
+            // 마우스 또는 터치 위치 가져오기
+            if (Input.GetMouseButton(0))
+            {
+                inputPosition = Input.mousePosition;
+            }
+            else if (Input.touchCount > 0)
+            {
+                inputPosition = Input.GetTouch(0).position;
+            }
+
+            // 화면 중앙을 기준으로 좌우 판단
+            float screenCenterX = Screen.width * 0.5f;
+
+            if (inputPosition.x < screenCenterX)
+            {
+                // 왼쪽 터치
+                inputZ += 1f;
+                Debug.Log("왼쪽 터치 inputZ: " + inputZ);
+            }
+            else
+            {
+                // 오른쪽 터치
+                inputZ -= 1f;
+                Debug.Log("오른쪽 터치 inputZ: " + inputZ);
+            }
         }
     }
 
@@ -299,10 +340,24 @@ public class InGamePlayer : MonoBehaviour
     }
 
 
+
+
     // 호출할 함수
     private void OnTiltLimitReached(Vector3 dir)
     {
+
+
         Debug.Log("좌우로 너무 기울어짐!");
+        Col.enabled = false;
+
+        if (!IsDeadWait)
+        {
+            GameRoot.Instance.WaitTimeAndCallback(2f, () =>
+                {
+                    HighScoreCheck();
+                });
+        }
+        
         IsDeadWait = true;
 
         // Rigidbody 제약 다 해제
@@ -319,21 +374,22 @@ public class InGamePlayer : MonoBehaviour
 
         Rb.AddForce(bounceDir * bouncePower, ForceMode.Impulse);
 
-        Anim.Play("Falling", 0 , 0f);
+        Anim.Play("Falling", 0, 0f);
     }
 
-    public void DeadCheck()
-    {
-        if (InGameBase == null) return;
 
-        if (!IsDead && InGameBase.StageMap.CurState == InGameStage.InGameState.Playing)
-        {
-            if (this.transform.position.y < InGameBase.StageMap.DeadYPos)
-            {
-                HighScoreCheck();
-            }
-        }
-    }
+    // public void DeadCheck()
+    // {
+    //     if (InGameBase == null) return;
+
+    //     if (!IsDead && InGameBase.StageMap.CurState == InGameStage.InGameState.Playing)
+    //     {
+    //         if (this.transform.position.y < InGameBase.StageMap.DeadYPos)
+    //         {
+    //             HighScoreCheck();
+    //         }
+    //     }
+    // }
 
 
     public void EndGameClear()
@@ -341,7 +397,6 @@ public class InGamePlayer : MonoBehaviour
         ProductItemCount = 0;
         randomZ = 0f;
         inputZ = 0f;
-        IsDead = true;
         Rb.linearVelocity = Vector3.zero;  // 이동 속도 초기화
         Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화 
         InGameBase.GetMainCam.SetFocus(false);
@@ -350,16 +405,18 @@ public class InGamePlayer : MonoBehaviour
 
     public void HighScoreCheck()
     {
+        if (IsDead) return;
+
         IsDead = true;
 
         if (GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value > GameRoot.Instance.UserData.Highscorevalue)
         {
             GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value;
-            GameRoot.Instance.UISystem.OpenUI<PopupNewRecord>(null, InGameBase.StageMap.RetryGame);
+            GameRoot.Instance.UISystem.OpenUI<PopupNewRecord>(null, EndGameClear);
         }
         else
         {
-           GameRoot.Instance.WaitTimeAndCallback(1f, EndGameClear);
+            GameRoot.Instance.WaitTimeAndCallback(0.5f, EndGameClear);
         }
 
     }

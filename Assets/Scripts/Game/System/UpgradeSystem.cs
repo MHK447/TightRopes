@@ -4,8 +4,6 @@ using System.Numerics;
 using System;
 using BanpoFri.Data;
 using UniRx;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using System.Collections.Generic;
 public class UpgradeSystem
 {

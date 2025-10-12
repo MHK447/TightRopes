@@ -263,7 +263,6 @@ public class InGameStage : MonoBehaviour
 
     public IEnumerator StartGame()
     {
-        SetState(InGameState.NoneInit);
         Player.Init();
         RopeComponent.Init();
         ReadyPlayingGame();

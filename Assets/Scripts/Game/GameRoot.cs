@@ -483,11 +483,6 @@ public class GameRoot : Singleton<GameRoot>
 	{
 		PluginSystem.OnApplicationPause(true);
 		
-		// 앱 종료 시 데이터 저장
-		if (FoodSystem != null)
-		{
-			FoodSystem.SaveOnGameExit();
-		}
 	}
 #endif
 

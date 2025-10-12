@@ -723,7 +723,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2462756968719034318}
   - component: {fileID: 8416476456697232820}
-  - component: {fileID: 2443100562112559187}
   - component: {fileID: 2558411625112119016}
   - component: {fileID: 8009655307389435650}
   - component: {fileID: 1781536126159184708}
@@ -773,27 +772,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &2443100562112559187
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2983257374391663988}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.45529842, y: 1.6739655, z: 0.43969727}
-  m_Center: {x: 0.0708909, y: 0.901268, z: 0.061767578}
 --- !u!114 &2558411625112119016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfd23cce43ae421ebe9eff7594bd02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rb: {fileID: 0}
+  Rb: {fileID: 1781536126159184708}
   forwardSpeed: 2
   Anim: {fileID: 8416476456697232820}
   ProductItemList:

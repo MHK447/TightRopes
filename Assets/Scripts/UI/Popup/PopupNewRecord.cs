@@ -24,7 +24,7 @@ public class PopupNewRecord : UIBase
         ProjectUtility.SetActiveCheck(NewRecordDesc.gameObject , false);
         ProjectUtility.SetActiveCheck(RecrdCountText.gameObject , false);
         
-        GameRoot.Instance.WaitTimeAndCallback(4f , Hide);
+        GameRoot.Instance.WaitTimeAndCallback(3f , Hide);
     }
 
     public override void OnShowAfter()

@@ -1,9 +1,12 @@
 apply plugin: 'com.android.library'
+apply from: '../shared/keepUnitySymbols.gradle'
 **APPLY_PLUGINS**
 
 // Android Resolver Exclusions Start
 android {
-  packagingOptions {
+    ndkPath "**NDKPATH**"
+    ndkVersion "**NDKVERSION**"
+  packaging {
       exclude ('/lib/armeabi/*' + '*')
       exclude ('/lib/mips/*' + '*')
       exclude ('/lib/mips64/*' + '*')
@@ -15,13 +18,14 @@ android {
 android {
     namespace 'com.unity3d.player'
 
-    compileSdkVersion 31
+    compileSdk 31
     buildToolsVersion '30.0.3'
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 30
         ndk {
+            debugSymbolLevel **DEBUGSYMBOLLEVEL**
             abiFilters **ABIFILTERS**
         }
         versionCode **VERSIONCODE**
@@ -34,16 +38,16 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    lintOptions {
+    lint {
         abortOnError false
     }
 
-    aaptOptions {
+    androidResources {
         noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
         ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
     }
 
-    packagingOptions {
+    packaging {
         exclude ('/lib/armeabi/*' + '*')
         exclude ('/lib/mips/*' + '*')
         exclude ('/lib/mips64/*' + '*')
@@ -61,22 +65,22 @@ dependencies {
 // Android Resolver Dependencies Start
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Assets/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml:12
     implementation 'com.google.android.gms:play-services-ads:24.1.0' // Assets/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml:7
-    implementation 'com.google.android.gms:play-services-base:18.5.0' // Assets/Firebase/Editor/AppDependencies.xml:17
+    implementation 'com.google.android.gms:play-services-base:18.6.0' // Assets/Firebase/Editor/AppDependencies.xml:17
     implementation 'com.google.android.ump:user-messaging-platform:3.1.0' // Assets/GoogleMobileAds/Editor/GoogleUmpDependencies.xml:7
-    implementation 'com.google.firebase:firebase-analytics:22.2.0' // Assets/Firebase/Editor/FirestoreDependencies.xml:15
-    implementation 'com.google.firebase:firebase-analytics-unity:12.6.0' // Assets/Firebase/Editor/AnalyticsDependencies.xml:18
+    implementation 'com.google.firebase:firebase-analytics:22.4.0' // Assets/Firebase/Editor/FirestoreDependencies.xml:15
+    implementation 'com.google.firebase:firebase-analytics-unity:12.10.1' // Assets/Firebase/Editor/AnalyticsDependencies.xml:18
     implementation 'com.google.firebase:firebase-appcheck:18.0.0' // Assets/Firebase/Editor/AppCheckDependencies.xml:13
     implementation 'com.google.firebase:firebase-appcheck-debug:18.0.0' // Assets/Firebase/Editor/AppCheckDependencies.xml:15
     implementation 'com.google.firebase:firebase-appcheck-playintegrity:18.0.0' // Assets/Firebase/Editor/AppCheckDependencies.xml:17
-    implementation 'com.google.firebase:firebase-appcheck-unity:12.6.0' // Assets/Firebase/Editor/AppCheckDependencies.xml:24
-    implementation 'com.google.firebase:firebase-app-unity:12.6.0' // Assets/Firebase/Editor/AppDependencies.xml:22
+    implementation 'com.google.firebase:firebase-appcheck-unity:12.10.1' // Assets/Firebase/Editor/AppCheckDependencies.xml:24
+    implementation 'com.google.firebase:firebase-app-unity:12.10.1' // Assets/Firebase/Editor/AppDependencies.xml:22
     implementation 'com.google.firebase:firebase-auth:23.2.0' // Assets/Firebase/Editor/AuthDependencies.xml:13
-    implementation 'com.google.firebase:firebase-auth-unity:12.6.0' // Assets/Firebase/Editor/AuthDependencies.xml:20
+    implementation 'com.google.firebase:firebase-auth-unity:12.10.1' // Assets/Firebase/Editor/AuthDependencies.xml:20
     implementation 'com.google.firebase:firebase-common:21.0.0' // Assets/Firebase/Editor/AppDependencies.xml:13
-    implementation 'com.google.firebase:firebase-crashlytics-ndk:19.4.0' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:13
-    implementation 'com.google.firebase:firebase-crashlytics-unity:12.6.0' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:20
-    implementation 'com.google.firebase:firebase-firestore:25.1.2' // Assets/Firebase/Editor/FirestoreDependencies.xml:13
-    implementation 'com.google.firebase:firebase-firestore-unity:12.6.0' // Assets/Firebase/Editor/FirestoreDependencies.xml:20
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:19.4.2' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:13
+    implementation 'com.google.firebase:firebase-crashlytics-unity:12.10.1' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:20
+    implementation 'com.google.firebase:firebase-firestore:25.1.3' // Assets/Firebase/Editor/FirestoreDependencies.xml:13
+    implementation 'com.google.firebase:firebase-firestore-unity:12.10.1' // Assets/Firebase/Editor/FirestoreDependencies.xml:20
 // Android Resolver Dependencies End
 
     **DEPS**

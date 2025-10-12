@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.Advertisement.IosSupport;
 using System;
 
 public class AppTrackingTransparency : MonoBehaviour

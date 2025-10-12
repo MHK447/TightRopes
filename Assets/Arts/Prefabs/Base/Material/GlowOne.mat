@@ -29,10 +29,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Intensity: 1.07
-    - _OneSideBias: 1.39
+    - _Intensity: 1.43
+    - _OneSideBias: 2
     - _ScrollSpeed: 0.5
     m_Colors:
-    - _Color: {r: 0.10980392, g: 0.59607846, b: 0.87058824, a: 1}
+    - _Color: {r: 0, g: 0.3584906, b: 0.3584906, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
