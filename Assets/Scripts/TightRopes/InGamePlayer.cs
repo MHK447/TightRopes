@@ -447,7 +447,5 @@ public class InGamePlayer : MonoBehaviour
     {
         ProjectUtility.SetActiveCheck(ProductItemList[idx].gameObject, true);
         ProductItemList[idx].Init();
-        ProductItemList[idx].transform.localScale = Vector3.zero;
-        ProductItemList[idx].transform.DOScale(0.3f, 0.3f).SetEase(Ease.OutBack);
     }
 }

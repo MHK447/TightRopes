@@ -86,6 +86,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e2bad1a285ed497f85fef766782f472
+    m_Address: StageMap_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 422959811759b4acf9e553598a74be18
     m_Address: UI/Component/RewardEffect
     m_ReadOnly: 0

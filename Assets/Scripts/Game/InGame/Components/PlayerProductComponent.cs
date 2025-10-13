@@ -11,6 +11,8 @@ public class PlayerProductComponent : MonoBehaviour
     [SerializeField]
     private Rigidbody Rb;
 
+    private Vector3 localscale;
+
 
     void Awake()
     {
@@ -18,7 +20,7 @@ public class PlayerProductComponent : MonoBehaviour
         startPosition = transform.position;
         startLocalPosition = transform.localPosition;
         startRotation = transform.rotation;
-
+        localscale = transform.localScale;
         // 리지드바디 회전 제약 설정 (X, Y축 회전 고정, Z축만 자유)
         if (Rb != null)
         {
@@ -41,6 +43,7 @@ public class PlayerProductComponent : MonoBehaviour
             // Transform 위치와 회전 먼저 설정
             transform.localPosition = startLocalPosition;
             transform.rotation = startRotation;
+            transform.localScale = localscale;
 
             // 리지드바디 위치와 회전도 직접 설정
             Rb.position = startPosition;
@@ -52,6 +55,10 @@ public class PlayerProductComponent : MonoBehaviour
             // 물리 시뮬레이션 재시작
             Rb.WakeUp();
         }
+
+
+        transform.localScale = Vector3.zero;
+        transform.DOScale(localscale, 0.3f).SetEase(Ease.OutBack);
     }
 
 
@@ -72,10 +79,10 @@ public class PlayerProductComponent : MonoBehaviour
             // 강한 회전 토크 (와장창 굴러가는 느낌)
             Vector3 randomTorque = new Vector3(
                 Random.Range(-300f, 300f),
-                Random.Range(-400f, 400f), 
+                Random.Range(-400f, 400f),
                 Random.Range(-300f, 300f)
             );
-            
+
             Rb.AddTorque(randomTorque);
             Rb.AddForce(scatterForce, ForceMode.Impulse);
         }

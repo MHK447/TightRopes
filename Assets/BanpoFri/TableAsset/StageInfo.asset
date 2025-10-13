@@ -16,6 +16,13 @@ MonoBehaviour:
   - 1
   - 2
   - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
   mSecondKey: []
   mDataList:
   - _stage_idx: 1
@@ -37,6 +44,62 @@ MonoBehaviour:
   - _stage_idx: 3
     _end_goal_value: 150
     _prefab: StageMap_03
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000
+  - _stage_idx: 4
+    _end_goal_value: 150
+    _prefab: StageMap_04
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000
+  - _stage_idx: 5
+    _end_goal_value: 150
+    _prefab: StageMap_05
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000
+  - _stage_idx: 6
+    _end_goal_value: 150
+    _prefab: StageMap_06
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000
+  - _stage_idx: 7
+    _end_goal_value: 150
+    _prefab: StageMap_07
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000
+  - _stage_idx: 8
+    _end_goal_value: 150
+    _prefab: StageMap_08
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000
+  - _stage_idx: 9
+    _end_goal_value: 150
+    _prefab: StageMap_09
+    _base_balance_value: 20
+    _base_sway_value: 1.5
+    _end_balance_value: 80
+    _end_sway_value: 0.5
+    _cam_rot: 1affffffb4000000
+  - _stage_idx: 10
+    _end_goal_value: 150
+    _prefab: StageMap_10
     _base_balance_value: 20
     _base_sway_value: 1.5
     _end_balance_value: 80

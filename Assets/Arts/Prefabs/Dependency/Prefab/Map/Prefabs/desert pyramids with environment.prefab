@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7877468419587357377}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -77,13 +78,13 @@ Transform:
   - {fileID: 4662383311103490372}
   - {fileID: 4662383311896046197}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4771413555554393069
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 5788065407440840341, guid: e147e2c3f8f9dc44da6b470546dd88c8, type: 3}
@@ -134,7 +135,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1639343845145327545, guid: e147e2c3f8f9dc44da6b470546dd88c8, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e147e2c3f8f9dc44da6b470546dd88c8, type: 3}
 --- !u!4 &1814934327054641090 stripped
 Transform:
@@ -146,6 +151,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 7247836412923622243, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
@@ -208,7 +214,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: desert stone small 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7856893542125994697, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
 --- !u!4 &704566067973943088 stripped
 Transform:
@@ -220,6 +230,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 5866169315508456551, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
@@ -282,7 +293,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree small (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2019596701309726999, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
 --- !u!4 &4339977056569666092 stripped
 Transform:
@@ -294,6 +309,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 2787076768379390660, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
@@ -344,7 +360,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5349539549151247823, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
 --- !u!4 &4662383311896046197 stripped
 Transform:
@@ -356,6 +376,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 2803369780375394133, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
@@ -418,7 +439,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: stone small 6 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4063907709870254473, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
 --- !u!4 &5455532864530745333 stripped
 Transform:
@@ -430,6 +455,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 315290126939819650, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
@@ -492,7 +518,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: stone small 5 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8742880043367223248, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
 --- !u!4 &7580193111324517899 stripped
 Transform:
@@ -504,6 +534,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 7247836412923622243, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
@@ -566,7 +597,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: desert stone small 10 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7856893542125994697, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
 --- !u!4 &704566067769071039 stripped
 Transform:
@@ -578,6 +613,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 4993227503984627757, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
@@ -628,7 +664,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2926724205957433560, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
 --- !u!4 &2545152346959764827 stripped
 Transform:
@@ -640,6 +680,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8545071271329236387, guid: 2ba84dca5dc8f0f4ea82ea4dad6a9785, type: 3}
@@ -690,7 +731,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: water location desert pyramids
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2142866828947303141, guid: 2ba84dca5dc8f0f4ea82ea4dad6a9785, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ba84dca5dc8f0f4ea82ea4dad6a9785, type: 3}
 --- !u!4 &2000815145833195937 stripped
 Transform:
@@ -702,6 +747,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 2465726488859176464, guid: 37506a9a582ca9d4d8de2edb16f90a48, type: 3}
@@ -752,7 +798,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pyramid 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5942072892464652487, guid: 37506a9a582ca9d4d8de2edb16f90a48, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37506a9a582ca9d4d8de2edb16f90a48, type: 3}
 --- !u!4 &5722499420482121046 stripped
 Transform:
@@ -764,6 +814,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 7097666466360363347, guid: 0a22f50bca6ffbb47a0a192c685cfc7e, type: 3}
@@ -826,7 +877,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 528916384860065233, guid: 0a22f50bca6ffbb47a0a192c685cfc7e, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a22f50bca6ffbb47a0a192c685cfc7e, type: 3}
 --- !u!4 &317021557549461656 stripped
 Transform:
@@ -838,6 +893,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8611844077703596386, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
@@ -888,7 +944,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5391366967337257341, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
 --- !u!4 &1268565840566737013 stripped
 Transform:
@@ -900,6 +960,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 4993227503984627757, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
@@ -950,7 +1011,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2926724205957433560, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
 --- !u!4 &2545152346672390589 stripped
 Transform:
@@ -962,6 +1027,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 344607137170312604, guid: dd8d044b78c20f04b84b8a469fc91528, type: 3}
@@ -1024,7 +1090,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: desert stone small 8 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5247346798126148483, guid: dd8d044b78c20f04b84b8a469fc91528, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd8d044b78c20f04b84b8a469fc91528, type: 3}
 --- !u!4 &7609440251862312505 stripped
 Transform:
@@ -1036,6 +1106,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 5866169315508456551, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
@@ -1098,7 +1169,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree small
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2019596701309726999, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
 --- !u!4 &4339977057150631597 stripped
 Transform:
@@ -1110,6 +1185,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 2803369780375394133, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
@@ -1172,7 +1248,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: stone small 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4063907709870254473, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
 --- !u!4 &5455532865045099048 stripped
 Transform:
@@ -1184,6 +1264,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 7097666466360363347, guid: 0a22f50bca6ffbb47a0a192c685cfc7e, type: 3}
@@ -1246,7 +1327,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 528916384860065233, guid: 0a22f50bca6ffbb47a0a192c685cfc7e, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a22f50bca6ffbb47a0a192c685cfc7e, type: 3}
 --- !u!4 &317021558346119119 stripped
 Transform:
@@ -1258,6 +1343,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 3809220350437367002, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
@@ -1308,7 +1394,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8003357247959461890, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
 --- !u!4 &6453502617145437290 stripped
 Transform:
@@ -1320,6 +1410,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 6206712750056402232, guid: 4628409824966fd4abc1e1db57ad7a19, type: 3}
@@ -1370,7 +1461,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5396026172815011091, guid: 4628409824966fd4abc1e1db57ad7a19, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4628409824966fd4abc1e1db57ad7a19, type: 3}
 --- !u!4 &3475405872386564213 stripped
 Transform:
@@ -1382,6 +1477,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 2787076768379390660, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
@@ -1432,7 +1528,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.511
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5349539549151247823, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
 --- !u!4 &4662383311103490372 stripped
 Transform:
@@ -1444,6 +1544,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 3809220350437367002, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
@@ -1494,7 +1595,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass 2 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8003357247959461890, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
 --- !u!4 &6453502617400400275 stripped
 Transform:
@@ -1506,6 +1611,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8611844077703596386, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
@@ -1556,7 +1662,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5391366967337257341, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
 --- !u!4 &1268565839983942105 stripped
 Transform:
@@ -1568,6 +1678,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8495886727610786697, guid: 9482eb6425690c345bca1cfa09406394, type: 3}
@@ -1630,7 +1741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: desert stone small 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6932569882405144200, guid: 9482eb6425690c345bca1cfa09406394, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9482eb6425690c345bca1cfa09406394, type: 3}
 --- !u!4 &1780347082049751783 stripped
 Transform:
@@ -1642,6 +1757,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8545071271329236387, guid: 2ba84dca5dc8f0f4ea82ea4dad6a9785, type: 3}
@@ -1692,7 +1808,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: water location desert pyramids (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2142866828947303141, guid: 2ba84dca5dc8f0f4ea82ea4dad6a9785, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ba84dca5dc8f0f4ea82ea4dad6a9785, type: 3}
 --- !u!4 &2000815145118652133 stripped
 Transform:
@@ -1704,6 +1824,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8611844077703596386, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
@@ -1754,7 +1875,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5391366967337257341, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
 --- !u!4 &1268565840067156682 stripped
 Transform:
@@ -1766,6 +1891,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 4971407919185371459, guid: 4d2ddceca7cf22a40b5e057ba049dc66, type: 3}
@@ -1828,7 +1954,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree tilted
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1629523227224932965, guid: 4d2ddceca7cf22a40b5e057ba049dc66, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2ddceca7cf22a40b5e057ba049dc66, type: 3}
 --- !u!4 &3003794178327784252 stripped
 Transform:
@@ -1840,6 +1970,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 5866169315508456551, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
@@ -1902,7 +2033,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree small (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2019596701309726999, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
 --- !u!4 &4339977057628259445 stripped
 Transform:
@@ -1914,6 +2049,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 4993227503984627757, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
@@ -1964,7 +2100,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2926724205957433560, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
 --- !u!4 &2545152348333338109 stripped
 Transform:
@@ -1976,6 +2116,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 4971407919185371459, guid: 4d2ddceca7cf22a40b5e057ba049dc66, type: 3}
@@ -2038,7 +2179,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree tilted (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1629523227224932965, guid: 4d2ddceca7cf22a40b5e057ba049dc66, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2ddceca7cf22a40b5e057ba049dc66, type: 3}
 --- !u!4 &3003794178421953013 stripped
 Transform:
@@ -2050,6 +2195,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 7247836412923622243, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
@@ -2112,7 +2258,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: desert stone small 10 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7856893542125994697, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f160cbbed373cc7488efbdccf6e7ea4b, type: 3}
 --- !u!4 &704566068953722069 stripped
 Transform:
@@ -2124,6 +2274,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8495886727610786697, guid: 9482eb6425690c345bca1cfa09406394, type: 3}
@@ -2174,7 +2325,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: desert stone small 11 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6932569882405144200, guid: 9482eb6425690c345bca1cfa09406394, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9482eb6425690c345bca1cfa09406394, type: 3}
 --- !u!4 &1780347083537396379 stripped
 Transform:
@@ -2186,6 +2341,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 3809220350437367002, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
@@ -2236,7 +2392,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass 2 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8003357247959461890, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
 --- !u!4 &6453502617806398475 stripped
 Transform:
@@ -2248,6 +2408,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8172703773198652980, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
@@ -2310,7 +2471,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree bent (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3552606619360823163, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
 --- !u!4 &2033697447598879669 stripped
 Transform:
@@ -2322,6 +2487,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 3809220350437367002, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
@@ -2372,7 +2538,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass 2 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8003357247959461890, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
 --- !u!4 &6453502617767284997 stripped
 Transform:
@@ -2384,6 +2554,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 4993227503984627757, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
@@ -2434,7 +2605,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2926724205957433560, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e2c96882afbf9a438cece859507ce3f, type: 3}
 --- !u!4 &2545152348074058453 stripped
 Transform:
@@ -2446,6 +2621,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 5866169315508456551, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
@@ -2508,7 +2684,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree small (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2019596701309726999, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
 --- !u!4 &4339977057913233122 stripped
 Transform:
@@ -2520,6 +2700,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 2787076768379390660, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
@@ -2570,7 +2751,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5349539549151247823, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e62f18d2541164440ab785a59a56a35c, type: 3}
 --- !u!4 &4662383310520307217 stripped
 Transform:
@@ -2582,6 +2767,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 315290126939819650, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
@@ -2644,7 +2830,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: stone small 5 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8742880043367223248, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
 --- !u!4 &7580193112523669738 stripped
 Transform:
@@ -2656,6 +2846,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8172703773198652980, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
@@ -2706,7 +2897,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree bent
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3552606619360823163, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
 --- !u!4 &2033697447527635470 stripped
 Transform:
@@ -2718,6 +2913,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 2803369780375394133, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
@@ -2780,7 +2976,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: stone small 6 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4063907709870254473, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc5912af60153cf42ab6674ab6f8c028, type: 3}
 --- !u!4 &5455532864087225781 stripped
 Transform:
@@ -2792,6 +2992,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 3809220350437367002, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
@@ -2842,7 +3043,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass 2 (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8003357247959461890, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b6889f0b34b4440bf74e41fef12efa, type: 3}
 --- !u!4 &6453502618122424412 stripped
 Transform:
@@ -2854,6 +3059,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 344607137170312604, guid: dd8d044b78c20f04b84b8a469fc91528, type: 3}
@@ -2916,7 +3122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: desert stone small 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5247346798126148483, guid: dd8d044b78c20f04b84b8a469fc91528, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd8d044b78c20f04b84b8a469fc91528, type: 3}
 --- !u!4 &7609440252799923395 stripped
 Transform:
@@ -2928,6 +3138,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 5866169315508456551, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
@@ -2990,7 +3201,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree small (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2019596701309726999, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9f522154bec4f49b23973fe153fed1, type: 3}
 --- !u!4 &4339977058228455632 stripped
 Transform:
@@ -3002,6 +3217,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 7285651888474697850, guid: 30c6db028d9061e4fa1c6a915ad010e4, type: 3}
@@ -3052,7 +3268,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pyramid
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8574037103927912039, guid: 30c6db028d9061e4fa1c6a915ad010e4, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30c6db028d9061e4fa1c6a915ad010e4, type: 3}
 --- !u!4 &597208540116930899 stripped
 Transform:
@@ -3064,6 +3284,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8611844077703596386, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
@@ -3114,7 +3335,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5391366967337257341, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
 --- !u!4 &1268565841358788486 stripped
 Transform:
@@ -3126,6 +3351,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8172703773198652980, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
@@ -3188,7 +3414,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: palm tree bent (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3552606619360823163, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5370e8202e43bff4b9d4bdca6e624315, type: 3}
 --- !u!4 &2033697447094501581 stripped
 Transform:
@@ -3200,6 +3430,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 8611844077703596386, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
@@ -3250,7 +3481,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5391366967337257341, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfc3b9aa0c0efaa46a8540921ad0eae4, type: 3}
 --- !u!4 &1268565840909741959 stripped
 Transform:
@@ -3262,6 +3497,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7877468419587357376}
     m_Modifications:
     - target: {fileID: 315290126939819650, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
@@ -3324,7 +3560,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: stone small 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8742880043367223248, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfa641874af7d2f4fbefe10f17ed603c, type: 3}
 --- !u!4 &7580193111982685960 stripped
 Transform:
