@@ -27,7 +27,7 @@ MonoBehaviour:
     _end_sway_value: 0.5
     _cam_rot: 2a000000b4000000
   - _stage_idx: 2
-    _end_goal_value: 200
+    _end_goal_value: 150
     _prefab: StageMap_02
     _base_balance_value: 20
     _base_sway_value: 1.5
@@ -35,7 +35,7 @@ MonoBehaviour:
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
   - _stage_idx: 3
-    _end_goal_value: 300
+    _end_goal_value: 150
     _prefab: StageMap_03
     _base_balance_value: 20
     _base_sway_value: 1.5

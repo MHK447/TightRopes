@@ -272,6 +272,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3a2190b83b034b7988a49048a2e2bb9
+    m_Address: StageMap_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a74791df3acd44304b1e92614d1e4e5a
     m_Address: UI/Top/PanelFrame03_Topbar_Navy
     m_ReadOnly: 0
@@ -383,7 +388,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da983337f9487462ca9e7cc483fb4d10
-    m_Address: StageMap_02
+    m_Address: StageMap_03
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -399,6 +404,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e583354a851b44963b43287af844bbfc
     m_Address: UI/Popup/Popup_Slide02_Dark
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5c8ac6092e78214fb866cab5f020f2a
+    m_Address: Assets/Palmov Island/Low Poly Atmospheric Locations Pack/Materials/mat
+      main.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

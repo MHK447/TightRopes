@@ -21,6 +21,8 @@ public class GameRoot : Singleton<GameRoot>
 	[SerializeField]
 	private GameObject DebugConsoleObj;
 
+	[SerializeField]
+	private Joystick JoyStick;
 
 	[HideInInspector]
 	public LoadingBasic Loading;
@@ -268,6 +270,7 @@ public class GameRoot : Singleton<GameRoot>
 
 		GameRoot.instance.WaitTimeAndCallback(0.5f, () =>
 		{
+			//JoyStick.Init();
 			BgmOn();
 		});
 
@@ -460,7 +463,7 @@ public class GameRoot : Singleton<GameRoot>
 				action.Invoke();
 			};
 
-		
+
 
 			NextAction.Invoke();
 		}

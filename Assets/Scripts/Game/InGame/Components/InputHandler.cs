@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 using UnityEngine.EventSystems;
@@ -8,6 +9,8 @@ public class InputHandler
 {
     private int fixedUICount = 3; // Joystick_Head, Joystick, Joystick
 
+    private Camera Cam;
+
     public void OnTouch(Vector2 mousePosition)
     {
         if (!IsUITouched())
@@ -15,6 +18,11 @@ public class InputHandler
             //CheckRaycastTarget();
             CheckRaycastTarget2D(mousePosition);
         }
+    }
+
+    private void Start()
+    {
+        Cam = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().GetMainCam.GetCam;
     }
 
 
@@ -51,7 +59,12 @@ public class InputHandler
 
     private void CheckRaycastTarget2D(Vector2 mousePosition)
     {
-        Vector2 touchPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        if (Cam == null)
+        {
+            Cam = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().GetMainCam.GetCam;
+        }
+
+        Vector2 touchPosition = Cam.ScreenToWorldPoint(mousePosition);
 
         Ray2D ray = new Ray2D(touchPosition, Vector2.zero);
 

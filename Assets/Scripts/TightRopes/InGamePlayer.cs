@@ -220,7 +220,9 @@ public class InGamePlayer : MonoBehaviour
         Quaternion targetRot = Quaternion.Euler(0f, baseYRotation, smoothZ);
         Rb.MoveRotation(targetRot);
     }
+  
 
+    //터치형
     public void InputBalance()
     {
         if (IsDead) return;
@@ -266,6 +268,17 @@ public class InGamePlayer : MonoBehaviour
                 Debug.Log("오른쪽 터치 inputZ: " + inputZ);
             }
         }
+    }
+
+    // 조이스틱 입력을 받는 새로운 메서드 (방향과 세기 적용)
+    public void InputBalance(Vector3 inputVector)
+    {
+        if (IsDead) return;
+
+        // 조이스틱의 X축 입력을 inputZ에 적용 (방향과 세기 모두 반영)
+        inputZ += inputVector.x;
+        
+        Debug.Log("조이스틱 입력 - inputVector.x: " + inputVector.x + ", inputZ: " + inputZ);
     }
 
 
@@ -335,7 +348,7 @@ public class InGamePlayer : MonoBehaviour
         // 범위 체크
         if (zRot <= -BalanceValue || zRot >= BalanceValue)
         {
-            var dir = zRot > 0 ? Vector3.left : Vector3.right;
+            var dir = zRot > 0 ? Vector3.right : Vector3.left;
             OnTiltLimitReached(dir);
         }
     }

@@ -177,15 +177,15 @@ public class InGameStage : MonoBehaviour
         GameRoot.Instance.WaitTimeAndCallback(2f, () =>
         {
             GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.Hide();
-            GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(100, NextStage));
+            GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(100, () => NextStage(GameRoot.Instance.UserData.Stageidx.Value + 1)));
         });
     }
 
-    public void NextStage()
+    public void NextStage(int stageidx)
     {
         GameRoot.Instance.UserData.Highscorevalue = 0;
         // 스테이지 인덱스 증가
-        GameRoot.Instance.UserData.Stageidx.Value++;
+        GameRoot.Instance.UserData.Stageidx.Value = stageidx;
 
         // 로딩 화면 표시
         GameRoot.Instance.Loading.Show();
