@@ -40,7 +40,7 @@ MonoBehaviour:
     _base_sway_value: 1.5
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 1affffffb4000000
+    _cam_rot: 2a000000b4000000
   - _stage_idx: 3
     _end_goal_value: 150
     _prefab: StageMap_03

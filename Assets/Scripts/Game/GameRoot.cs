@@ -464,7 +464,6 @@ public class GameRoot : Singleton<GameRoot>
 			};
 
 
-
 			NextAction.Invoke();
 		}
 
