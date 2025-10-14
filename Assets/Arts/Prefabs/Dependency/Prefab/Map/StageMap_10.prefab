@@ -620,7 +620,18 @@ PrefabInstance:
       value: wild west railway station with environment (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2102809296014305782, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809295005007067, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809296323477918, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809296280642394, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809295781523071, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809295719635714, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809295739349817, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809295500066273, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809296302110449, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809296020389147, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
+    - {fileID: 2102809294762178072, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6009624636894347760, guid: 6b944bb77c4ec4815acd3db100d5dd86, type: 3}
