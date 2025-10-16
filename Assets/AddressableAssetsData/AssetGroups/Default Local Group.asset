@@ -427,6 +427,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: deff41cbfaa6547529b868b589c2fd60
+    m_Address: UI/Page/PageStage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e4b2c1ca2572b4762967f68bdb5e455c
     m_Address: SoundPlayer
     m_ReadOnly: 0

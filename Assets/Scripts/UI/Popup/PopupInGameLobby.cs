@@ -12,7 +12,8 @@ public class PopupInGameLobby : UIBase
     [SerializeField]
     private List<LobbyUpgradeComponent> LobbyUpgradeComponents = new List<LobbyUpgradeComponent>();
 
-
+    [SerializeField]
+    private Button StageBtn;
 
 
     [SerializeField]
@@ -24,6 +25,8 @@ public class PopupInGameLobby : UIBase
 
         // TapToStartText 스케일 애니메이션 설정
         StartTapToStartAnimation();
+
+        StageBtn.onClick.AddListener(OnStageBtnClick);
     }
 
 
@@ -55,6 +58,12 @@ public class PopupInGameLobby : UIBase
                 .SetEase(Ease.InOutSine)
                 .SetLoops(-1, LoopType.Yoyo);
         }
+    }
+
+
+    public void OnStageBtnClick()
+    {
+        GameRoot.Instance.UISystem.OpenUI<PageStage>();
     }
 
 }

@@ -2422,6 +2422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageClearEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 3370143106830243401, guid: 7500b6d09474b473796141c020e34c4a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

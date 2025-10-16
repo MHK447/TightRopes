@@ -131,6 +131,11 @@ public class InGameStage : MonoBehaviour
 
             foreach (var result in results)
             {
+                if(result.gameObject.layer == LayerMask.NameToLayer("UI"))
+                {
+                    return true;
+                }
+
                 if (result.gameObject.GetComponent<Button>() != null)
                 {
                     return true;
