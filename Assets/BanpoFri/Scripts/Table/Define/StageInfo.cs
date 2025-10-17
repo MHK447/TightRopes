@@ -62,6 +62,27 @@ namespace BanpoFri
 			get { return _cam_rot;}
 			set { _cam_rot = value;}
 		}
+		[SerializeField]
+		private string _image;
+		public string image
+		{
+			get { return _image;}
+			set { _image = value;}
+		}
+		[SerializeField]
+		private string _name;
+		public string name
+		{
+			get { return _name;}
+			set { _name = value;}
+		}
+		[SerializeField]
+		private string _image_color;
+		public string image_color
+		{
+			get { return _image_color;}
+			set { _image_color = value;}
+		}
 
     }
 

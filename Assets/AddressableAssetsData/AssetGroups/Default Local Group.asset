@@ -297,6 +297,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0e24c741e09f4e67903983f1e4dd134
+    m_Address: Atlas_UI_Map
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a1b1f95a4d8df4fe0a0c4e0208e8a1fe
     m_Address: UI/Popup/Popup_Pass
     m_ReadOnly: 0

@@ -70,6 +70,26 @@ MonoBehaviour:
     color: {r: 0.3372549, g: 1, b: 0, a: 1}
   - key_string: Upgrade_Blue
     color: {r: 0, g: 0.5254902, b: 0.7372549, a: 1}
+  - key_string: Stage_Color_01
+    color: {r: 0, g: 0.5254902, b: 0.7372549, a: 1}
+  - key_string: Stage_Color_02
+    color: {r: 0.3048906, g: 0.735849, b: 0.15619439, a: 1}
+  - key_string: Stage_Color_03
+    color: {r: 0.6808947, g: 0.7372549, b: 0.15686274, a: 1}
+  - key_string: Stage_Color_04
+    color: {r: 0.9245283, g: 0.6018064, b: 0.15263437, a: 1}
+  - key_string: Stage_Color_05
+    color: {r: 0.9254902, g: 0.15294118, b: 0.40514007, a: 1}
+  - key_string: Stage_Color_06
+    color: {r: 0.16927736, g: 0.15294118, b: 0.9254902, a: 1}
+  - key_string: Stage_Color_07
+    color: {r: 0.7084545, g: 0.8867924, b: 0.28025985, a: 1}
+  - key_string: Stage_Color_08
+    color: {r: 0.12691349, g: 0.8679245, b: 0.79621047, a: 1}
+  - key_string: Stage_Color_09
+    color: {r: 0.056069765, g: 0.7924528, b: 0.3768834, a: 1}
+  - key_string: Stage_Color_10
+    color: {r: 0.054901946, g: 0.7921569, b: 0.787229, a: 1}
   _eventImgaeColorDefines: []
   SkeletonGraphicMat: {fileID: 0}
   DisableSpriteMat: {fileID: 0}

@@ -63,7 +63,7 @@ public class PopupInGameLobby : UIBase
 
     public void OnStageBtnClick()
     {
-        GameRoot.Instance.UISystem.OpenUI<PageStage>();
+        GameRoot.Instance.UISystem.OpenUI<PageStage>(page => page.Init());
     }
 
 }
