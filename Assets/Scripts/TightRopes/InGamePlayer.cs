@@ -34,9 +34,6 @@ public class InGamePlayer : MonoBehaviour
     public int GoalStreet = 0;
 
 
-    [Header("Product Item")]
-    private int ProductItemCount = 0;
-
 
 
     [Header("레이스 이동 계산 변수들")]
@@ -97,7 +94,7 @@ public class InGamePlayer : MonoBehaviour
             ProjectUtility.SetActiveCheck(product.gameObject, false);
         }
 
-        ProductItemCount = 0;
+        GameRoot.Instance.UserData.RaceData.RaceProductCount.Value = 0;
 
         // EndTr 방향을 바라보도록 회전 설정
         Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
@@ -321,7 +318,7 @@ public class InGamePlayer : MonoBehaviour
             if (forwardDot > 0) // 앞으로 이동하는 경우만
             {
                 totalDistance += deltaDistance;
-                GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value = totalDistance;
+                GameRoot.Instance.UserData.RaceData.RaceProductCount.Value = totalDistance;
             }
 
             lastPosition = currentPosition;
@@ -408,7 +405,7 @@ public class InGamePlayer : MonoBehaviour
 
     public void EndGameClear()
     {
-        ProductItemCount = 0;
+        GameRoot.Instance.UserData.RaceData.RaceProductCount.Value = 0;
         randomZ = 0f;
         inputZ = 0f;
         Rb.linearVelocity = Vector3.zero;  // 이동 속도 초기화
@@ -423,9 +420,9 @@ public class InGamePlayer : MonoBehaviour
 
         IsDead = true;
 
-        if (GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value > GameRoot.Instance.UserData.Highscorevalue)
+        if (GameRoot.Instance.UserData.RaceData.RaceProductCount.Value > GameRoot.Instance.UserData.Highscorevalue)
         {
-            GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value;
+            GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceProductCount.Value;
             GameRoot.Instance.UISystem.OpenUI<PopupNewRecord>(null, EndGameClear);
         }
         else
@@ -438,8 +435,8 @@ public class InGamePlayer : MonoBehaviour
 
     public void AddProductItem()
     {
-        ProductItemCount++;
-        SetProductItem(ProductItemCount);
+        GameRoot.Instance.UserData.RaceData.RaceProductCount.Value++;
+        SetProductItem((int)GameRoot.Instance.UserData.RaceData.RaceProductCount.Value);
     }
 
 

@@ -20,7 +20,7 @@ public class PageStage : UIBase
 
     public void Init()
     {
-        int result = (GameRoot.Instance.UserData.Stageidx.Value - 1) / 5;
+        int result = ((GameRoot.Instance.UserData.Stageidx.Value - 1) / 5) + 1;
         StageGoalText.text = $"Chapter {result}";
         NextStageGoalText.text = $"Chapter {result + 1}";
 
@@ -30,10 +30,18 @@ public class PageStage : UIBase
 
 
         int idxs = 0;
-        for (int i = endgoal - 5; i < endgoal; ++i) 
+        for (int i = endgoal - 5; i < endgoal; ++i)
         {
             StageComponents[idxs].Set(i + 1);
             idxs++;
         }
+    }
+
+    public void Interaction(int stageidx , System.Action nextaction)
+    {
+        Init();
+        GameRoot.Instance.WaitTimeAndCallback(1.5f , nextaction);
+        GameRoot.Instance.WaitTimeAndCallback(2f , Hide);
+        StageComponents.Find(x=> x.GetStageIdx == stageidx)?.UnLockAction();
     }
 }

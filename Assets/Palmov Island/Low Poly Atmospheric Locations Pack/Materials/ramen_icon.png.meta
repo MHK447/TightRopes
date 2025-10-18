@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ramen_icon_0: -1651997448837830123
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

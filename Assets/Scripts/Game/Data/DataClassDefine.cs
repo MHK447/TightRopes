@@ -97,7 +97,7 @@ public class PlayerData
 
 public class RaceData
 {
-	public IReactiveProperty<float> RaceStreetProeprty = new ReactiveProperty<float>();
+	public IReactiveProperty<float> RaceProductCount = new ReactiveProperty<float>();
 
 	public IReactiveProperty<float> BalanceValueProperty = new ReactiveProperty<float>();
 
@@ -105,7 +105,7 @@ public class RaceData
 
 	public void DataClear()
 	{
-		RaceStreetProeprty.Value = 0;
+		RaceProductCount.Value = 0;
 		BalanceValueProperty.Value = 0;
 	}
 

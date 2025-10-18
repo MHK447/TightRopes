@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using BanpoFri;
+using DG.Tweening;
 
 
 public class RaceUIComponent : MonoBehaviour
@@ -21,6 +22,9 @@ public class RaceUIComponent : MonoBehaviour
     private StageInfoData InfoData;
 
     private CompositeDisposable disposables = new CompositeDisposable();
+    
+    private Tween sliderTween;
+    private float currentDisplayValue = 0f;
 
     void OnEnable()
     {
@@ -31,7 +35,7 @@ public class RaceUIComponent : MonoBehaviour
 
         RaceGoalText.text = $"{InfoData.end_goal_value}m";
 
-        GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Subscribe(RaceStatusCheck).AddTo(disposables);
+        GameRoot.Instance.UserData.RaceData.RaceProductCount.Subscribe(RaceStatusCheck).AddTo(disposables);
 
     }
 
@@ -39,19 +43,43 @@ public class RaceUIComponent : MonoBehaviour
     {
         if (InfoData == null) return;
 
+        var count = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.ProductEntityCount;
+        var targetSliderValue = (float)value / (float)count;
 
-        GoalSlider.value = (float)value / (float)InfoData.end_goal_value;
-        CurRaceText.text = $"{value.ToString("F0")}m";
+        // 기존 트윈이 있다면 중단
+        if (sliderTween != null && sliderTween.IsActive())
+        {
+            sliderTween.Kill();
+        }
+
+        // 슬라이더와 텍스트를 부드럽게 애니메이션
+        sliderTween = DOTween.To(() => currentDisplayValue, x => {
+            currentDisplayValue = x;
+            GoalSlider.value = currentDisplayValue / count;
+            CurRaceText.text = $"{currentDisplayValue.ToString("F0")}m";
+        }, value, 0.5f).SetEase(Ease.OutQuart);
     }
 
     void OnDisable()
     {
         disposables.Clear();
+        
+        // 트윈 정리
+        if (sliderTween != null && sliderTween.IsActive())
+        {
+            sliderTween.Kill();
+        }
     }
 
     void OnDestroy()
     {
         disposables.Clear();
+        
+        // 트윈 정리
+        if (sliderTween != null && sliderTween.IsActive())
+        {
+            sliderTween.Kill();
+        }
     }
 
 }

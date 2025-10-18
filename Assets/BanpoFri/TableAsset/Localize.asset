@@ -42,6 +42,11 @@ MonoBehaviour:
   - balance_upgrade_desc_5
   - balance_upgrade_desc_6
   - balance_upgrade_desc_7
+  - str_stage_name_01
+  - str_stage_name_02
+  - str_stage_name_03
+  - str_stage_name_04
+  - str_stage_name_05
   mSecondKey: []
   mDataList:
   - _idx: fish_name_1
@@ -159,4 +164,24 @@ MonoBehaviour:
   - _idx: balance_upgrade_desc_7
     _ko: BALANCE UP!!
     _en: BALANCE UP!!
+    _ja: 
+  - _idx: str_stage_name_01
+    _ko: "\uD574\uC801 \uC12C"
+    _en: 
+    _ja: 
+  - _idx: str_stage_name_02
+    _ko: "\uCD95\uAD6C\uC7A5"
+    _en: 
+    _ja: 
+  - _idx: str_stage_name_03
+    _ko: "\uCEA0\uD551\uC7A5"
+    _en: 
+    _ja: 
+  - _idx: str_stage_name_04
+    _ko: "\uC2A4\uD551\uD06C\uC2A4"
+    _en: 
+    _ja: 
+  - _idx: str_stage_name_05
+    _ko: "\uC77C\uBCF8 4\uCE35\uC11D\uD0D1"
+    _en: 
     _ja: 

@@ -41,6 +41,8 @@ public class InGameStage : MonoBehaviour
     private List<ProductEntityComponent> ProductEntityList = new List<ProductEntityComponent>();
 
 
+    public int ProductEntityCount{ get { return ProductEntityList.Count; } }
+
     public void StartPlaying()
     {
         ProjectUtility.SetActiveCheck(ClearEffectObj, false);
@@ -157,7 +159,7 @@ public class InGameStage : MonoBehaviour
 
         int incomevalue = (int)(GameRoot.Instance.UserData.Incomemultivalue * 100);
 
-        System.Numerics.BigInteger rewardvalue = (System.Numerics.BigInteger)Mathf.Round(GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value) *  incomevalue;
+        System.Numerics.BigInteger rewardvalue = (System.Numerics.BigInteger)Mathf.Round(GameRoot.Instance.UserData.RaceData.RaceProductCount.Value) *  incomevalue;
 
         rewardvalue = rewardvalue / 100;
 
@@ -214,7 +216,7 @@ public class InGameStage : MonoBehaviour
     {
         GameStartCheck();
 
-        if (GameRoot.Instance.UserData.RaceData.RaceStreetProeprty.Value >= Player.GoalStreet && CurState == InGameState.Playing)
+        if (GameRoot.Instance.UserData.RaceData.RaceProductCount.Value >= Player.GoalStreet && CurState == InGameState.Playing)
         {
             StageClearEnd();
         }
