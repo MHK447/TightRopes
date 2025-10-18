@@ -660,6 +660,7 @@ MonoBehaviour:
   GoalSlider: {fileID: 8616280021702038784}
   RaceGoalText: {fileID: 2675291812663727127}
   CurRaceText: {fileID: 8431417569099757778}
+  StageProductImg: {fileID: 5904897124961894281}
 --- !u!1 &7386030674260714007
 GameObject:
   m_ObjectHideFlags: 0

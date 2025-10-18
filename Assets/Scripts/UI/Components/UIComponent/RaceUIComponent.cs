@@ -17,6 +17,9 @@ public class RaceUIComponent : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI CurRaceText;
 
+    [SerializeField]
+    private Image StageProductImg;
+
     private int RaceStreet = 0;
 
     private StageInfoData InfoData;
@@ -37,6 +40,8 @@ public class RaceUIComponent : MonoBehaviour
 
         GameRoot.Instance.UserData.RaceData.RaceProductCount.Subscribe(RaceStatusCheck).AddTo(disposables);
 
+
+        StageProductImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, InfoData.product_img);
     }
 
     public void RaceStatusCheck(float value)

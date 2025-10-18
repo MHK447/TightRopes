@@ -159,8 +159,12 @@ public class InGameStage : MonoBehaviour
 
         int incomevalue = (int)(GameRoot.Instance.UserData.Incomemultivalue * 100);
 
-        System.Numerics.BigInteger rewardvalue = (System.Numerics.BigInteger)Mathf.Round(GameRoot.Instance.UserData.RaceData.RaceProductCount.Value) *  incomevalue;
+        System.Numerics.BigInteger rewardvalue = (System.Numerics.BigInteger)Mathf.Round(GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value) *  incomevalue;
 
+        if(rewardvalue < 0)
+        {
+            rewardvalue = 0;
+        }
         rewardvalue = rewardvalue / 100;
 
         ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, rewardvalue, () =>
@@ -186,6 +190,14 @@ public class InGameStage : MonoBehaviour
             GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.Hide();
             GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(100, () => NextStage(GameRoot.Instance.UserData.Stageidx.Value + 1)));
         });
+    }
+
+    public void StageClearCheck()
+    {
+        if (GameRoot.Instance.UserData.RaceData.RaceProductCount.Value >= ProductEntityList.Count)
+        {
+            StageClearEnd();
+        }
     }
 
     public void NextStage(int stageidx)
@@ -215,11 +227,6 @@ public class InGameStage : MonoBehaviour
     void Update()
     {
         GameStartCheck();
-
-        if (GameRoot.Instance.UserData.RaceData.RaceProductCount.Value >= Player.GoalStreet && CurState == InGameState.Playing)
-        {
-            StageClearEnd();
-        }
     }
 
     public void HighScoreInit()

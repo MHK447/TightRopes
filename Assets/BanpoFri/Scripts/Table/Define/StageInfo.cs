@@ -83,6 +83,13 @@ namespace BanpoFri
 			get { return _image_color;}
 			set { _image_color = value;}
 		}
+		[SerializeField]
+		private string _product_img;
+		public string product_img
+		{
+			get { return _product_img;}
+			set { _product_img = value;}
+		}
 
     }
 

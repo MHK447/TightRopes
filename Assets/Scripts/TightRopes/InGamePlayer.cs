@@ -217,7 +217,7 @@ public class InGamePlayer : MonoBehaviour
         Quaternion targetRot = Quaternion.Euler(0f, baseYRotation, smoothZ);
         Rb.MoveRotation(targetRot);
     }
-  
+
 
     //터치형
     public void InputBalance()
@@ -274,7 +274,7 @@ public class InGamePlayer : MonoBehaviour
 
         // 조이스틱의 X축 입력을 inputZ에 적용 (방향과 세기 모두 반영)
         inputZ += inputVector.x;
-        
+
         Debug.Log("조이스틱 입력 - inputVector.x: " + inputVector.x + ", inputZ: " + inputZ);
     }
 
@@ -318,7 +318,7 @@ public class InGamePlayer : MonoBehaviour
             if (forwardDot > 0) // 앞으로 이동하는 경우만
             {
                 totalDistance += deltaDistance;
-                GameRoot.Instance.UserData.RaceData.RaceProductCount.Value = totalDistance;
+                GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value = totalDistance;
             }
 
             lastPosition = currentPosition;
@@ -368,7 +368,7 @@ public class InGamePlayer : MonoBehaviour
                     HighScoreCheck();
                 });
         }
-        
+
         IsDeadWait = true;
 
         // Rigidbody 제약 다 해제
@@ -412,6 +412,7 @@ public class InGamePlayer : MonoBehaviour
         Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화 
         InGameBase.GetMainCam.SetFocus(false);
         InGameBase.StageMap.RetryGame();
+        GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value = 0;
     }
 
     public void HighScoreCheck()
@@ -437,6 +438,9 @@ public class InGamePlayer : MonoBehaviour
     {
         GameRoot.Instance.UserData.RaceData.RaceProductCount.Value++;
         SetProductItem((int)GameRoot.Instance.UserData.RaceData.RaceProductCount.Value);
+
+
+        GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.StageClearCheck();
     }
 
 

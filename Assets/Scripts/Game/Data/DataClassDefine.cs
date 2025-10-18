@@ -38,7 +38,7 @@ public class FacilityData
 public class SelectFoodUpgradeData
 {
 	public int FoodIdx = 0;
-	
+
 	public int FoodCount = 0;
 
 	public void ClearFoodData()
@@ -50,11 +50,11 @@ public class SelectFoodUpgradeData
 
 	public void SelectFoodUpgrade(int foodidx)
 	{
-		if(FoodIdx == foodidx)
+		if (FoodIdx == foodidx)
 		{
 			FoodCount += 1;
 		}
-		else 
+		else
 		{
 			FoodIdx = foodidx;
 			FoodCount = 0;
@@ -80,7 +80,7 @@ public class NoticeData
 	public int NotiIdx = 0;
 	public Transform Target;
 
-	public NoticeData(int notiidx , Transform target)
+	public NoticeData(int notiidx, Transform target)
 	{
 		NotiIdx = notiidx;
 		Target = target;
@@ -98,10 +98,11 @@ public class PlayerData
 public class RaceData
 {
 	public IReactiveProperty<float> RaceProductCount = new ReactiveProperty<float>();
+	public IReactiveProperty<float> RaceDistanceProperty = new ReactiveProperty<float>();
 
 	public IReactiveProperty<float> BalanceValueProperty = new ReactiveProperty<float>();
 
-	
+
 
 	public void DataClear()
 	{
