@@ -86,6 +86,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bd2dbabbfcac4a88a54b1fd27bff15e
+    m_Address: UI/InGame/BalanceFloatingUIComponent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3c959cdeefa244e9a8065cd9e9fa774a
     m_Address: UI/Popup/PopupInGameLobby
     m_ReadOnly: 0
@@ -199,6 +204,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c801c7ea03ce415b9431fef47df858f
     m_Address: UI/Top/PanelFrame04_TopbarDivided_White
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f3d931ec1dc94677856a2493fb56cb5
+    m_Address: UI/Page/PageScreenTouch
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -40,6 +40,8 @@ public class InGameStage : MonoBehaviour
     [SerializeField]
     private List<ProductEntityComponent> ProductEntityList = new List<ProductEntityComponent>();
 
+    [HideInInspector]
+    public bool IsTutorialScreen = false;
 
     public int ProductEntityCount{ get { return ProductEntityList.Count; } }
 

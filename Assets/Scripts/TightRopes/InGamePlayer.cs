@@ -2,6 +2,7 @@ using UnityEngine;
 using BanpoFri;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEditor.SceneManagement;
 public class InGamePlayer : MonoBehaviour
 {
     [SerializeField]
@@ -52,7 +53,7 @@ public class InGamePlayer : MonoBehaviour
 
     private BoxCollider Col;
 
-
+    private Vector3 TutorialDir = Vector3.zero;
 
     public void Init()
     {
@@ -173,7 +174,7 @@ public class InGamePlayer : MonoBehaviour
         // 3초 주기 방향 타이머 업데이트
         directionTimer += Time.deltaTime;
 
-        if (directionTimer >= directionDuration)
+        if (directionTimer >= directionDuration && !InGameBase.StageMap.IsTutorialScreen)
         {
             directionTimer = 0f;
 
@@ -193,7 +194,7 @@ public class InGamePlayer : MonoBehaviour
         // 기존 미세 흔들림 로직 (더 작은 범위로 조정)
         BanlanceDeltime += Time.deltaTime;
 
-        if (BanlanceDeltime >= RandBanlanceTime)
+        if (BanlanceDeltime >= RandBanlanceTime && !InGameBase.StageMap.IsTutorialScreen)
         {
             BanlanceDeltime = 0f;
             randomZ += currentDirection == -1 ? -SwayValue : SwayValue;
@@ -225,11 +226,11 @@ public class InGamePlayer : MonoBehaviour
         if (IsDead) return;
 
         // A, D 입력 반영 (유니티 에디터용)
-        if (Input.GetKey(KeyCode.A) && !IsDead)
+        if (Input.GetKey(KeyCode.A) && !IsDead && TutorialDir != Vector3.left)
         {
             inputZ -= 1f;
         }
-        else if (Input.GetKey(KeyCode.D) && !IsDead)
+        else if (Input.GetKey(KeyCode.D) && !IsDead && TutorialDir != Vector3.right)
         {
             inputZ += 1f;
         }
@@ -252,13 +253,13 @@ public class InGamePlayer : MonoBehaviour
             // 화면 중앙을 기준으로 좌우 판단
             float screenCenterX = Screen.width * 0.5f;
 
-            if (inputPosition.x < screenCenterX)
+            if (inputPosition.x < screenCenterX && TutorialDir != Vector3.left)
             {
                 // 왼쪽 터치
                 inputZ -= 1f;
                 Debug.Log("왼쪽 터치 inputZ: " + inputZ);
             }
-            else
+            else if(TutorialDir != Vector3.right)
             {
                 // 오른쪽 터치
                 inputZ += 1f;
@@ -284,7 +285,7 @@ public class InGamePlayer : MonoBehaviour
         if (IsDead) return;
         if (InGameBase == null) return;
         if (InGameBase.StageMap.CurState != InGameStage.InGameState.Playing) return;
-
+        if (InGameBase.StageMap.IsTutorialScreen) return;
 
         RaceCalcUpdate();
 
@@ -300,7 +301,7 @@ public class InGamePlayer : MonoBehaviour
 
     public void RaceCalcUpdate()
     {
-        if (IsDeadWait || IsDead) return;
+        if (IsDeadWait || IsDead || InGameBase.StageMap.IsTutorialScreen) return;
         // 1초마다 거리 계산 및 업데이트
         distanceUpdateTimer += Time.deltaTime;
 
@@ -327,7 +328,23 @@ public class InGamePlayer : MonoBehaviour
     }
 
 
-
+    public void StopPlayer(bool value, Vector3 dir)
+    {
+        if (value)
+        {
+            Rb.constraints = RigidbodyConstraints.FreezeAll;
+            InGameBase.StageMap.IsTutorialScreen = true;
+            Anim.Play("Idle");
+            TutorialDir = dir;
+        }
+        else
+        {
+            Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            InGameBase.StageMap.IsTutorialScreen = false;
+            Anim.Play("Walk");
+            TutorialDir = Vector3.zero;
+        }
+    }
 
 
 
@@ -346,7 +363,20 @@ public class InGamePlayer : MonoBehaviour
         if (zRot <= -BalanceValue || zRot >= BalanceValue)
         {
             var dir = zRot > 0 ? Vector3.right : Vector3.left;
-            OnTiltLimitReached(dir);
+            var reversedir = zRot > 0 ? Vector3.left : Vector3.right;
+
+            if (GameRoot.Instance.UserData.Stageidx.Value == 1)
+            {
+                GameRoot.Instance.UISystem.OpenUI<PageScreenTouch>(popup => popup.Set(dir == Vector3.right), () =>
+                {
+                    StopPlayer(false, reversedir);
+                });
+                StopPlayer(true, reversedir);
+            }
+            else
+            {
+                OnTiltLimitReached(dir);
+            }
         }
     }
 

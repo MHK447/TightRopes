@@ -49,7 +49,7 @@ public class BalanceUIComponent : MonoBehaviour
 
     public void SetBalanceValue(int anglevalue)
     {
-        float dangevalue = (100 - anglevalue) * 0.01f;
+        float dangevalue = (120 - anglevalue) * 0.01f;
 
         LeftDangerImg.fillAmount = dangevalue;
         RightDangeImg.fillAmount = dangevalue;

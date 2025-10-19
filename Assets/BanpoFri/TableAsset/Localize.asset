@@ -47,6 +47,8 @@ MonoBehaviour:
   - str_stage_name_03
   - str_stage_name_04
   - str_stage_name_05
+  - str_touch_hold_left
+  - str_touch_hold_right
   mSecondKey: []
   mDataList:
   - _idx: fish_name_1
@@ -183,5 +185,13 @@ MonoBehaviour:
     _ja: 
   - _idx: str_stage_name_05
     _ko: "\uC77C\uBCF8 4\uCE35\uC11D\uD0D1"
+    _en: 
+    _ja: 
+  - _idx: str_touch_hold_left
+    _ko: Hold the left side.
+    _en: 
+    _ja: 
+  - _idx: str_touch_hold_right
+    _ko: Hold the right side.
     _en: 
     _ja: 

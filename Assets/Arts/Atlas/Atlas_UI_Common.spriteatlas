@@ -81,6 +81,7 @@ SpriteAtlas:
     - dfb954707c18f4f189e7aa8f964fe344: 21300000
     - 70359a8018ff34da2bb0230f650309e1: 21300000
     - 5725fe90d97e2aa4fb361466a0895f57: 21300000
+    - b69bd2a03068b47569953b5ccdde0e6b: 21300000
     - e5a428a07ba2f48d586deec2437ecf50: 21300000
     - 712ec01171340214c86836ea4a934bc4: 21300000
     - a756d231f49c8420d9376657e6ebb8c0: 21300000
@@ -116,6 +117,7 @@ SpriteAtlas:
     - 5841a33592c5d4d6ab931690641bc40d: 21300000
     - 2b0cc935727f34ec7a90358b444bcb9e: 21300000
     - e75c71451e7bd488c9b89314465ef546: 21300000
+    - 7654905589a6f4f0aa15219860f64769: 21300000
     - aea13975a8ac44b28873a89238f327e3: 21300000
     - f742f495452524be78a432218c8cce53: 21300000
     - 50bbf7956b8a94468b4ee67ad3ce48d7: 21300000
@@ -205,6 +207,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: dfb954707c18f4f189e7aa8f964fe344, type: 3}
   - {fileID: 21300000, guid: 70359a8018ff34da2bb0230f650309e1, type: 3}
   - {fileID: 21300000, guid: 5725fe90d97e2aa4fb361466a0895f57, type: 3}
+  - {fileID: 21300000, guid: b69bd2a03068b47569953b5ccdde0e6b, type: 3}
   - {fileID: 21300000, guid: e5a428a07ba2f48d586deec2437ecf50, type: 3}
   - {fileID: 21300000, guid: 712ec01171340214c86836ea4a934bc4, type: 3}
   - {fileID: 21300000, guid: a756d231f49c8420d9376657e6ebb8c0, type: 3}
@@ -240,6 +243,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5841a33592c5d4d6ab931690641bc40d, type: 3}
   - {fileID: 21300000, guid: 2b0cc935727f34ec7a90358b444bcb9e, type: 3}
   - {fileID: 21300000, guid: e75c71451e7bd488c9b89314465ef546, type: 3}
+  - {fileID: 21300000, guid: 7654905589a6f4f0aa15219860f64769, type: 3}
   - {fileID: 21300000, guid: aea13975a8ac44b28873a89238f327e3, type: 3}
   - {fileID: 21300000, guid: f742f495452524be78a432218c8cce53, type: 3}
   - {fileID: 21300000, guid: 50bbf7956b8a94468b4ee67ad3ce48d7, type: 3}
@@ -328,6 +332,7 @@ SpriteAtlas:
   - Common_Product_10
   - Common_Icon_Reddot
   - Common_Btn_Default_Point
+  - Pictoicon_Tap
   - Pictoicon_Alert 1
   - Common_Icon_Goods_Gem
   - Common_Icon_Auto
@@ -363,6 +368,7 @@ SpriteAtlas:
   - Pictoicon_Fish 1
   - Common_Product_4
   - Common_Icon_Setting
+  - test155
   - Common_Frame_S0_R25
   - Common_Lightning_1
   - Pictoicon_Check 1
