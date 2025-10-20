@@ -55,9 +55,9 @@ public class UpgradeSystem
 
         var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-        float swayvalue = stageinfotd.base_sway_value;
+        float productswayvalue = GameRoot.Instance.UserData.RaceData.RaceProductCount.Value * stageinfotd.product_sway_value;
 
-      
+        float swayvalue = stageinfotd.base_sway_value + productswayvalue;
 
         for (int i = 0; i < upgradeorder; i++)
         {

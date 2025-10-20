@@ -42,6 +42,13 @@ namespace BanpoFri
 			set { _base_sway_value = value;}
 		}
 		[SerializeField]
+		private float _product_sway_value;
+		public float product_sway_value
+		{
+			get { return _product_sway_value;}
+			set { _product_sway_value = value;}
+		}
+		[SerializeField]
 		private int _end_balance_value;
 		public int end_balance_value
 		{

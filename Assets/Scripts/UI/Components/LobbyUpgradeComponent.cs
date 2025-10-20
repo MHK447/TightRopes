@@ -40,9 +40,6 @@ public class LobbyUpgradeComponent : MonoBehaviour
     [SerializeField]
     private Image UpgradeBtnImg;
 
-
-
-
     [SerializeField]
     private Image BgImg;
 
@@ -67,6 +64,17 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
     private Color DefaultColor;
 
+
+    //Ad Active Check
+    private bool IsAdReady = false;
+    private bool WatchAd = false;
+
+    [SerializeField]
+    private GameObject UpgradeAdRoot;
+
+    [SerializeField]
+    private GameObject UpgradeRoot;
+
     void Awake()
     {
         UpgradeBtn.onClick.AddListener(OnClickUpgradeBtn);
@@ -77,6 +85,10 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
     public void Set(int upgradeidx)
     {
+        IsAdReady = false;
+
+        WatchAd = false;
+
         UpgradeIdx = upgradeidx;
 
         UpgradeData = GameRoot.Instance.UserData.Upgradedatas[upgradeidx];
@@ -113,16 +125,19 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
     public void SetUpgradeValue()
     {
-        LevelText.text = UpgradeData.Upgradelevel.ToString();
-        UpgradeCost = GameRoot.Instance.UpgradeSystem.GetUpgradeCost(UpgradeIdx, UpgradeData.Upgradelevel.Value);
+        LevelText.text = UpgradeData.Upgradeternallevel.ToString();
+        UpgradeCost = GameRoot.Instance.UpgradeSystem.GetUpgradeCost(UpgradeIdx, UpgradeData.Upgradeternallevel);
 
         UpgradeCostText.text = ProjectUtility.CalculateMoneyToString(UpgradeCost);
-
-        UpgradeBtn.interactable = GameRoot.Instance.UserData.Money.Value >= UpgradeCost;
 
         UpgradeBtnImg.color = UpgradeBtn.interactable ? DefaultColor : Config.Instance.GetImageColor("Bg_Gray");
 
         SetUpgradeImg();
+
+        ProjectUtility.SetActiveCheck(UpgradeAdRoot, IsAdReady && !WatchAd);
+        ProjectUtility.SetActiveCheck(UpgradeRoot, !IsAdReady || WatchAd);
+
+        UpgradeBtn.interactable = GameRoot.Instance.UserData.Money.Value >= UpgradeCost || UpgradeAdRoot.activeSelf;
     }
 
     public void SetUpgradeImg()
@@ -153,19 +168,39 @@ public class LobbyUpgradeComponent : MonoBehaviour
     {
         if (GameRoot.Instance.UserData.Money.Value >= UpgradeCost)
         {
-            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
-            UpgradeData.Upgradelevel.Value += 1;
-            UpgradeData.Upgradeternallevel += 1;
-
-            if (UpgradeData.Upgradeidx == (int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade)
+            UppgradeLevelUp();
+        }
+        else if (IsAdReady && !WatchAd)
+        {
+            GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
             {
-                GameRoot.Instance.UpgradeSystem.InComeUpgrade();
-            }
+                WatchAd = true;
+                UppgradeLevelUp();
+            });
+        }
+    }
 
-            DirectionUpgrade();
-            SetUpgradeValue();
-            SetInComeValue();
+    public void UppgradeLevelUp()
+    {
+        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
+        UpgradeData.Upgradelevel.Value += 1;
+        UpgradeData.Upgradeternallevel += 1;
 
+        if (UpgradeData.Upgradeidx == (int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade)
+        {
+            GameRoot.Instance.UpgradeSystem.InComeUpgrade();
+        }
+        CheckAdReady();
+        DirectionUpgrade();
+        SetUpgradeValue();
+        SetInComeValue();
+    }
+
+    public void CheckAdReady()
+    {
+        if (GameRoot.Instance.UserData.Money.Value < UpgradeCost)
+        {
+            IsAdReady = true;
         }
     }
 

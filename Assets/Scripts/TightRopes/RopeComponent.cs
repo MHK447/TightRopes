@@ -2,6 +2,7 @@ using UnityEngine;
 using BanpoFri;
 using System.Collections;
 using System;
+using DG.Tweening;
 
 public class RopeComponent : MonoBehaviour
 {
@@ -41,9 +42,8 @@ public class RopeComponent : MonoBehaviour
         // 초기 intensity를 -10으로 설정
 
         StageMap = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap;
-
-
-        var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder;
+        
+        var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeternalOrder;
 
         RopeMat = Config.Instance.GetRopeUpgradeMat(level);
 
@@ -54,6 +54,23 @@ public class RopeComponent : MonoBehaviour
             SetMaterialIntensity(minIntensity);
         }
 
+        SetRopeScale();
+
+    }
+
+
+    public void SetRopeScale()
+    {
+        float basescale = 0.25f;
+        float level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder * 0.1f;
+        
+        Vector3 targetScale = new Vector3(basescale + level, RopeObj.transform.localScale.y, basescale + level);
+        
+        // 기존 트윈이 있다면 중단
+        RopeObj.transform.DOKill();
+        
+        // 부드러운 스케일 트윈 애니메이션 (0.3초 동안 Ease.OutBack 효과)
+        RopeObj.transform.DOScale(targetScale, 0.3f).SetEase(Ease.OutBack);
     }
 
 
@@ -71,6 +88,7 @@ public class RopeComponent : MonoBehaviour
 
 
         OnUpgradeEffectComplete = endaction;
+
 
         // 업그레이드 효과 애니메이션 시작
         StartCoroutine(UpgradeEffectCoroutine(newMaterial));
@@ -116,6 +134,9 @@ public class RopeComponent : MonoBehaviour
         // 1단계: intensity를 -10에서 3으로 증가 (화이트 emission 연출)
         yield return StartCoroutine(AnimateIntensity(minIntensity, maxIntensity, animationDuration * 0.4f));
 
+
+        SetRopeScale();
+        
         // 2단계: 머티리얼 변경
         if (ropeRenderer != null)
         {
@@ -128,6 +149,7 @@ public class RopeComponent : MonoBehaviour
 
         // 잠시 대기 (변경된 머티리얼을 보여주기 위해)
         yield return new WaitForSeconds(0.2f);
+
 
         // 3단계: intensity를 3에서 -10으로 감소
         yield return StartCoroutine(AnimateIntensity(maxIntensity, minIntensity, animationDuration * 0.4f));

@@ -197,6 +197,9 @@ public class InGamePlayer : MonoBehaviour
         if (BanlanceDeltime >= RandBanlanceTime && !InGameBase.StageMap.IsTutorialScreen)
         {
             BanlanceDeltime = 0f;
+
+            SwayValue = GameRoot.Instance.UpgradeSystem.RopeUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder);
+            
             randomZ += currentDirection == -1 ? -SwayValue : SwayValue;
         }
 

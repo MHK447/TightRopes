@@ -16,8 +16,22 @@ public class PopupInGameLobby : UIBase
     private Button StageBtn;
 
 
+
     [SerializeField]
     private TextMeshProUGUI TapToStartText;
+
+
+    //TEXT 
+
+    [SerializeField]
+    private Image BgImg;
+
+    [SerializeField]
+    private Image MapImg;
+
+    [SerializeField]
+    private TextMeshProUGUI MapText;
+
 
     protected override void Awake()
     {
@@ -37,6 +51,17 @@ public class PopupInGameLobby : UIBase
         for (int i = 0; i < LobbyUpgradeComponents.Count; i++)
         {
             LobbyUpgradeComponents[i].Set(i);
+        }
+
+        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
+
+        var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+        if(td != null)
+        {
+            MapImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Map, td.image);
+            MapText.text = Tables.Instance.GetTable<Localize>().GetString(td.name);
+            BgImg.color = Config.Instance.GetImageColor(td.image_color);
         }
     }
 

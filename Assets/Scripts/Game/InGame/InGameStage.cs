@@ -208,6 +208,11 @@ public class InGameStage : MonoBehaviour
         // 스테이지 인덱스 증가
         GameRoot.Instance.UserData.Stageidx.Value = stageidx;
 
+        foreach(var upgrade in GameRoot.Instance.UserData.Upgradedatas)
+        {
+            upgrade.Upgradelevel.Value = 1;
+        }
+
         // 로딩 화면 표시
         GameRoot.Instance.Loading.Show();
 
@@ -223,6 +228,10 @@ public class InGameStage : MonoBehaviour
             // 새 스테이지 로드
             GameRoot.Instance.StartCoroutine(GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().WaitStageLoad());
         });
+
+
+
+        GameRoot.Instance.UserData.Save();
     }
 
 

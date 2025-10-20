@@ -82,5 +82,15 @@ public class UpgradeData
     }
 
 
+    public int GetUpgradeternalOrder
+    {
+        get 
+        {
+            return ((Upgradeternallevel - 1) / 5);
+        }
+    }
+
+
+
    
 }
