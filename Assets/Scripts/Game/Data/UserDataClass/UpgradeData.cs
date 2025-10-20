@@ -67,10 +67,10 @@ public partial class UserDataSystem
 
 public class UpgradeData
 {
-    public int Upgradeternallevel { get; set; } = 0;
+    public int Upgradeternallevel { get; set; } = 1;
 
     public int Upgradeidx { get; set; } = 0;
-    public IReactiveProperty<int> Upgradelevel { get; set; } = new ReactiveProperty<int>(0);
+    public IReactiveProperty<int> Upgradelevel { get; set; } = new ReactiveProperty<int>(1);
 
 
     public int GetUpgradeOrder 

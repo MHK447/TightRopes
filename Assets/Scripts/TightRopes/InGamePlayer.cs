@@ -2,7 +2,8 @@ using UnityEngine;
 using BanpoFri;
 using System.Collections.Generic;
 using DG.Tweening;
-using UnityEditor.SceneManagement;
+
+
 public class InGamePlayer : MonoBehaviour
 {
     [SerializeField]
@@ -199,7 +200,7 @@ public class InGamePlayer : MonoBehaviour
             BanlanceDeltime = 0f;
 
             SwayValue = GameRoot.Instance.UpgradeSystem.RopeUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder);
-            
+
             randomZ += currentDirection == -1 ? -SwayValue : SwayValue;
         }
 
