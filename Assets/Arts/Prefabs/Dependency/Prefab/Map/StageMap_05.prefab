@@ -230,7 +230,7 @@ Transform:
   m_GameObject: {fileID: 8149746024696049449}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -162.4, y: 141.2, z: 251.8}
+  m_LocalPosition: {x: -162.4, y: 311.5, z: 89.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -314,6 +314,7 @@ MonoBehaviour:
   - {fileID: 5945676048407815882}
   - {fileID: 5907245266502086660}
   - {fileID: 2807070925853967667}
+  IsTutorialScreen: 0
 --- !u!1001 &144519012837483410
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using BanpoFri;
+using DG.Tweening;
+using UniRx;
 
 public class InGameCamera : MonoBehaviour
 {
@@ -31,6 +33,11 @@ public class InGameCamera : MonoBehaviour
     private float moveDuration = 1f;
     private float moveElapsedTime = 0f;
 
+    private float BaseFieldOfView = 50f;
+
+    CompositeDisposable disposables = new CompositeDisposable();
+
+
     void Awake()
     {
         IsFocus = true;
@@ -45,13 +52,20 @@ public class InGameCamera : MonoBehaviour
 
         var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
         var stageData = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
-        
+
         // 카메라 로테이션 설정
         Vector3 cameraRotation = new Vector3(stageData.cam_rot[0], stageData.cam_rot[1], 0);
         DirectionLightTr.rotation = Quaternion.Euler(cameraRotation);
 
         // 카메라 위치 초기화
         ResetCameraPosition();
+
+        disposables.Clear();
+
+        GameRoot.Instance.UserData.RaceData.RaceProductCount.Subscribe(count =>
+        {
+            SetFieldOfView((int)count);
+        }).AddTo(disposables);
     }
 
     private void ResetCameraPosition()
@@ -116,7 +130,18 @@ public class InGameCamera : MonoBehaviour
 
             // 카메라가 플레이어를 바라보도록 회전
             transform.LookAt(playerTransform.position + Vector3.up * 1f); // 플레이어보다 약간 위를 바라봄
+
         }
+    }
+
+
+    public void SetFieldOfView(int count, float duration = 0.5f)
+    {
+        float plusvalue = 2.5f * count;
+        float targetFOV = BaseFieldOfView + plusvalue;
+
+        // DOTween을 사용해서 부드럽게 FOV 변경
+        Cam.DOFieldOfView(targetFOV, duration).SetEase(Ease.OutQuad);
     }
 
 
@@ -141,7 +166,7 @@ public class InGameCamera : MonoBehaviour
         moveStartPosition = transform.position;
         moveTargetPosition = targetPosition;
         moveStartRotation = transform.rotation;
-        
+
         if (lookAtTarget.HasValue)
         {
             Vector3 direction = (lookAtTarget.Value - targetPosition).normalized;
@@ -173,7 +198,7 @@ public class InGameCamera : MonoBehaviour
         }
 
         transform.position = targetPosition;
-        
+
         if (lookAtTarget.HasValue)
         {
             transform.LookAt(lookAtTarget.Value);
@@ -206,13 +231,13 @@ public class InGameCamera : MonoBehaviour
         {
             moveElapsedTime += Time.deltaTime;
             float t = moveElapsedTime / moveDuration;
-            
+
             // Ease-in-out 곡선 적용
             t = t * t * (3f - 2f * t);
 
             // 위치 보간
             transform.position = Vector3.Lerp(moveStartPosition, moveTargetPosition, t);
-            
+
             // 회전 보간
             transform.rotation = Quaternion.Lerp(moveStartRotation, moveTargetRotation, t);
 
@@ -222,7 +247,7 @@ public class InGameCamera : MonoBehaviour
         // 최종 위치와 회전 설정
         transform.position = moveTargetPosition;
         transform.rotation = moveTargetRotation;
-        
+
         isMoving = false;
     }
 }
