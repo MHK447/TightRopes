@@ -43,7 +43,7 @@ public class InGameStage : MonoBehaviour
     [HideInInspector]
     public bool IsTutorialScreen = false;
 
-    public int ProductEntityCount{ get { return ProductEntityList.Count; } }
+    public int ProductEntityCount { get { return ProductEntityList.Count; } }
 
     public void StartPlaying()
     {
@@ -61,7 +61,7 @@ public class InGameStage : MonoBehaviour
 
             GameRoot.Instance.UserData.RaceData.DataClear();
 
-            foreach(var product in ProductEntityList)
+            foreach (var product in ProductEntityList)
             {
                 product.Init();
             }
@@ -84,7 +84,7 @@ public class InGameStage : MonoBehaviour
 
     private void GameStartCheck()
     {
-        
+
 
         bool inputDetected = false;
 
@@ -117,8 +117,8 @@ public class InGameStage : MonoBehaviour
 
     private bool IsPointerOverUI(Vector2 screenPosition)
     {
-            
-        if(CurState != InGameState.WaitPlay)
+
+        if (CurState != InGameState.WaitPlay)
             return false;
 
         // UI 위에 있는지 체크 (EventSystem 사용)
@@ -135,7 +135,7 @@ public class InGameStage : MonoBehaviour
 
             foreach (var result in results)
             {
-                if(result.gameObject.layer == LayerMask.NameToLayer("UI"))
+                if (result.gameObject.layer == LayerMask.NameToLayer("UI"))
                 {
                     return true;
                 }
@@ -161,9 +161,9 @@ public class InGameStage : MonoBehaviour
 
         int incomevalue = (int)(GameRoot.Instance.UserData.Incomemultivalue * 100);
 
-        System.Numerics.BigInteger rewardvalue = (System.Numerics.BigInteger)Mathf.Round(GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value) *  incomevalue;
+        System.Numerics.BigInteger rewardvalue = (System.Numerics.BigInteger)Mathf.Round(GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value) * incomevalue;
 
-        if(rewardvalue < 0)
+        if (rewardvalue < 0)
         {
             rewardvalue = 0;
         }
@@ -190,7 +190,19 @@ public class InGameStage : MonoBehaviour
         GameRoot.Instance.WaitTimeAndCallback(2f, () =>
         {
             GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.Hide();
-            GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(100, () => NextStage(GameRoot.Instance.UserData.Stageidx.Value + 1)));
+
+
+            int incomevalue = (int)(GameRoot.Instance.UserData.Incomemultivalue * 100);
+
+            System.Numerics.BigInteger rewardvalue = (System.Numerics.BigInteger)Mathf.Round(GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value) * incomevalue;
+
+            if (rewardvalue < 0)
+            {
+                rewardvalue = 0;
+            }
+            rewardvalue = rewardvalue / 100;
+
+            GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(rewardvalue, () => NextStage(GameRoot.Instance.UserData.Stageidx.Value + 1)));
         });
     }
 
@@ -208,7 +220,7 @@ public class InGameStage : MonoBehaviour
         // 스테이지 인덱스 증가
         GameRoot.Instance.UserData.Stageidx.Value = stageidx;
 
-        foreach(var upgrade in GameRoot.Instance.UserData.Upgradedatas)
+        foreach (var upgrade in GameRoot.Instance.UserData.Upgradedatas)
         {
             upgrade.Upgradelevel.Value = 1;
         }

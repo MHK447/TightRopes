@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 4415113453871814279}
   - component: {fileID: 4010672320176637644}
   - component: {fileID: 9051705374089090961}
-  - component: {fileID: 3681580387100237689}
   m_Layer: 5
   m_Name: HUD_Material
   m_TagString: Untagged
@@ -276,22 +275,6 @@ CanvasRenderer:
   m_GameObject: {fileID: 4702708619656918335}
   m_CullTransparentMesh: 1
 --- !u!114 &9051705374089090961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4702708619656918335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 289f98a2822934e5e958041eec7ab332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoneyText: {fileID: 846779475639898591}
-  MoneyRoot: {fileID: 1824166090387471412}
-  CashText: {fileID: 0}
-  CashBtn: {fileID: 0}
---- !u!114 &3681580387100237689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

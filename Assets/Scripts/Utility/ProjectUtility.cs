@@ -275,7 +275,6 @@ public class ProjectUtility
         switch ((Config.RewardType)(int)Config.RewardType.Currency)
         {
             case Config.RewardType.Currency:
-                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, rewardIndex, amount);
 
                 var currencyHud = GameRoot.Instance.UISystem.GetUI<HudTotal>();
                 if (currencyHud != null && currencyHud.gameObject.activeInHierarchy)
@@ -289,7 +288,7 @@ public class ProjectUtility
                     }
 
                     
-                    PlayGoodsEffect(Vector3.zero, (int)Config.RewardType.Currency, rewardIndex, 0, amount, true, OnEnd, 0f, "", null, false, true, pos);
+                    PlayGoodsEffect(Vector3.zero, (int)Config.RewardType.Currency, rewardIndex, 0, amount, true, OnEnd, 0f, "", null, true, true, pos);
                 }
                 break;
 

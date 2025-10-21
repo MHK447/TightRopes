@@ -108,10 +108,7 @@ public class InGameSystem
 
                 GameRoot.Instance.WaitTimeAndCallback(0.1f, () =>
                 {
-
-                    // 나머지 초기화
                     GameRoot.Instance.TutorialSystem.ClearRegisiter();
-                    GameRoot.Instance.UserData.Money.Value = 0;
                     GameRoot.Instance.UserData.Save();
 
                     if (!Init)

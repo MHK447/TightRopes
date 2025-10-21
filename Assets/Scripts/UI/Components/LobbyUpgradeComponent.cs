@@ -46,19 +46,13 @@ public class LobbyUpgradeComponent : MonoBehaviour
     [SerializeField]
     private UpgradeState State;
 
-
-
-
-
     private UpgradeData UpgradeData;
-
-
 
     [SerializeField]
     private Button UpgradeBtn;
 
     private System.Numerics.BigInteger UpgradeCost;
-
+    
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -130,14 +124,14 @@ public class LobbyUpgradeComponent : MonoBehaviour
 
         UpgradeCostText.text = ProjectUtility.CalculateMoneyToString(UpgradeCost);
 
-        UpgradeBtnImg.color = UpgradeBtn.interactable ? DefaultColor : Config.Instance.GetImageColor("Bg_Gray");
-
         SetUpgradeImg();
 
         ProjectUtility.SetActiveCheck(UpgradeAdRoot, IsAdReady && !WatchAd);
         ProjectUtility.SetActiveCheck(UpgradeRoot, !IsAdReady || WatchAd);
 
         UpgradeBtn.interactable = GameRoot.Instance.UserData.Money.Value >= UpgradeCost || UpgradeAdRoot.activeSelf;
+
+        UpgradeBtnImg.color = UpgradeBtn.interactable ? DefaultColor : Config.Instance.GetImageColor("Bg_Gray");
     }
 
     public void SetUpgradeImg()
@@ -168,21 +162,25 @@ public class LobbyUpgradeComponent : MonoBehaviour
     {
         if (GameRoot.Instance.UserData.Money.Value >= UpgradeCost)
         {
-            UppgradeLevelUp();
+            UppgradeLevelUp(false);
         }
         else if (IsAdReady && !WatchAd)
         {
             GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
             {
                 WatchAd = true;
-                UppgradeLevelUp();
+                UppgradeLevelUp(true);
             });
         }
     }
 
-    public void UppgradeLevelUp()
+    public void UppgradeLevelUp(bool free)
     {
-        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
+        if (!free)
+        {
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
+        }
+
         UpgradeData.Upgradelevel.Value += 1;
         UpgradeData.Upgradeternallevel += 1;
 

@@ -315,7 +315,7 @@ public partial class UserDataSystem
 
     public void SyncHUDCurrency(int currencyID = -1)
     {
-        if (currencyID < 0)
+        if (currencyID > 0)
         {
             HUDGarnet.Value = Garnet.Value;
             HUDCash.Value = Cash.Value;

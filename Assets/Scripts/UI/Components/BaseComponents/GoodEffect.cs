@@ -260,6 +260,7 @@ public class GoodEffect : MonoBehaviour
                 hitEffect.SetActive(true);
                 icon.gameObject.transform.localScale = iconIdleScale;
                 itemCnt.gameObject.SetActive(false);
+
             }
             if (Bg != null) Bg.gameObject.SetActive(false);
             if (Frame != null) Frame.gameObject.SetActive(false);
@@ -381,7 +382,8 @@ public class GoodEffect : MonoBehaviour
 
                 if(icon != null)
                     ProjectUtility.SetActiveCheck(icon.gameObject, false);
-
+                
+                GameRoot.Instance.UserData.SyncHUDCurrency(goodsIdx);
 
                 SoundPlayer.Instance.PlaySound("get");
 

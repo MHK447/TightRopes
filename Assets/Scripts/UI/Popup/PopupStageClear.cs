@@ -26,9 +26,9 @@ public class PopupStageClear : UIBase
     [SerializeField]
     private Button BaseRewardBtn;
 
-    private int RewardValue = 0;
-    private int currentDisplayRewardValue = 0;
-    private int currentDisplayAdRewardValue = 0;
+    private System.Numerics.BigInteger RewardValue = 0;
+    private System.Numerics.BigInteger currentDisplayRewardValue = 0;
+    private System.Numerics.BigInteger currentDisplayAdRewardValue = 0;
     private System.Action OnNextStageCallback;
 
     [Header("Animation Settings")]
@@ -59,7 +59,7 @@ public class PopupStageClear : UIBase
         BaseRewardBtn.gameObject.SetActive(false);
     }
 
-    public void Set(int rewardvalue, System.Action onNextStageCallback = null)
+    public void Set(System.Numerics.BigInteger rewardvalue, System.Action onNextStageCallback = null)
     {
         RewardValue = rewardvalue;
         currentDisplayRewardValue = 0;
@@ -150,20 +150,22 @@ public class PopupStageClear : UIBase
 
     private void StartRewardCountUp()
     {
-        // 베이스 리워드 카운트업
-        DOTween.To(() => currentDisplayRewardValue, x =>
+        // 베이스 리워드 카운트업 - BigInteger를 double로 변환해서 애니메이션
+        double baseRewardDouble = (double)RewardValue;
+        DOTween.To(() => (double)currentDisplayRewardValue, x =>
         {
-            currentDisplayRewardValue = x;
+            currentDisplayRewardValue = new System.Numerics.BigInteger(x);
             RewardBaseValueText.text = ProjectUtility.CalculateMoneyToString(currentDisplayRewardValue);
-        }, RewardValue, countUpDuration)
+        }, baseRewardDouble, countUpDuration)
         .SetEase(Ease.OutQuart);
 
-        // 광고 리워드 카운트업 (약간의 딜레이)
-        DOTween.To(() => currentDisplayAdRewardValue, x =>
+        // 광고 리워드 카운트업 (약간의 딜레이) - BigInteger를 double로 변환해서 애니메이션
+        double adRewardDouble = (double)(RewardValue * 2);
+        DOTween.To(() => (double)currentDisplayAdRewardValue, x =>
         {
-            currentDisplayAdRewardValue = x;
+            currentDisplayAdRewardValue = new System.Numerics.BigInteger(x);
             RewardAdValueText.text = ProjectUtility.CalculateMoneyToString(currentDisplayAdRewardValue);
-        }, RewardValue * 2, countUpDuration)
+        }, adRewardDouble, countUpDuration)
         .SetEase(Ease.OutQuart)
         .SetDelay(0.2f);
     }
