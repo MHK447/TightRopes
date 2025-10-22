@@ -154,6 +154,8 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     public Material EnableSpriteMat;
     public Material ImgAddtiveMat;
 
+    public List<Material> TextMaterialList = new List<Material>();
+
 
 
 

@@ -62,6 +62,7 @@ public class PopupInGameLobby : UIBase
             MapImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Map, td.image);
             MapText.text = Tables.Instance.GetTable<Localize>().GetString(td.name);
             BgImg.color = Config.Instance.GetImageColor(td.image_color);
+            MapText.fontSharedMaterial = Config.Instance.TextMaterialList[stageidx - 1];
         }
     }
 

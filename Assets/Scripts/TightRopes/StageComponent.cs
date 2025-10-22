@@ -43,6 +43,7 @@ public class StageComponent : MonoBehaviour
             StageImg.color = stageidx <= GameRoot.Instance.UserData.Stageidx.Value ? Color.white : Color.black;
 
             StageNameText.text = Tables.Instance.GetTable<Localize>().GetString(stageinfotd.name);
+            StageNameText.fontSharedMaterial = Config.Instance.TextMaterialList[stageidx - 1];
             StageColorImg.color = Config.Instance.GetImageColor(stageinfotd.image_color);
             ProjectUtility.SetActiveCheck(LockObj, stageidx > GameRoot.Instance.UserData.Stageidx.Value);
             ProjectUtility.SetActiveCheck(NoneLockObj, stageidx <= GameRoot.Instance.UserData.Stageidx.Value);

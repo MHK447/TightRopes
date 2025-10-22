@@ -47,6 +47,11 @@ MonoBehaviour:
   - str_stage_name_03
   - str_stage_name_04
   - str_stage_name_05
+  - str_stage_name_06
+  - str_stage_name_07
+  - str_stage_name_08
+  - str_stage_name_09
+  - str_stage_name_10
   - str_touch_hold_left
   - str_touch_hold_right
   mSecondKey: []
@@ -168,23 +173,43 @@ MonoBehaviour:
     _en: BALANCE UP!!
     _ja: 
   - _idx: str_stage_name_01
-    _ko: "\uD574\uC801 \uC12C"
+    _ko: STAGE 1
     _en: 
     _ja: 
   - _idx: str_stage_name_02
-    _ko: "\uCD95\uAD6C\uC7A5"
+    _ko: STAGE 2
     _en: 
     _ja: 
   - _idx: str_stage_name_03
-    _ko: "\uCEA0\uD551\uC7A5"
+    _ko: STAGE 3
     _en: 
     _ja: 
   - _idx: str_stage_name_04
-    _ko: "\uC2A4\uD551\uD06C\uC2A4"
+    _ko: STAGE 4
     _en: 
     _ja: 
   - _idx: str_stage_name_05
-    _ko: "\uC77C\uBCF8 4\uCE35\uC11D\uD0D1"
+    _ko: STAGE 5
+    _en: 
+    _ja: "\uADF8\uB9B0"
+  - _idx: str_stage_name_06
+    _ko: STAGE 6
+    _en: 
+    _ja: 
+  - _idx: str_stage_name_07
+    _ko: STAGE 7
+    _en: 
+    _ja: 
+  - _idx: str_stage_name_08
+    _ko: STAGE 8
+    _en: 
+    _ja: 
+  - _idx: str_stage_name_09
+    _ko: STAGE 9
+    _en: 
+    _ja: 
+  - _idx: str_stage_name_10
+    _ko: STAGE 10
     _en: 
     _ja: 
   - _idx: str_touch_hold_left

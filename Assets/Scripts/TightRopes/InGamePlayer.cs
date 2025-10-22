@@ -379,7 +379,7 @@ public class InGamePlayer : MonoBehaviour
             }
             else
             {
-                OnTiltLimitReached(dir);
+                OnTiltLimitReached(reversedir);
             }
         }
     }

@@ -73,25 +73,36 @@ MonoBehaviour:
   - key_string: Stage_Color_01
     color: {r: 0, g: 0.5254902, b: 0.7372549, a: 1}
   - key_string: Stage_Color_02
-    color: {r: 0.3048906, g: 0.735849, b: 0.15619439, a: 1}
+    color: {r: 0.99215686, g: 1, b: 0.22352941, a: 1}
   - key_string: Stage_Color_03
-    color: {r: 0.6808947, g: 0.7372549, b: 0.15686274, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - key_string: Stage_Color_04
-    color: {r: 0.9245283, g: 0.6018064, b: 0.15263437, a: 1}
+    color: {r: 0.9245283, g: 0.9137255, b: 0.15263437, a: 1}
   - key_string: Stage_Color_05
     color: {r: 0.9254902, g: 0.15294118, b: 0.40514007, a: 1}
   - key_string: Stage_Color_06
-    color: {r: 0.16927736, g: 0.15294118, b: 0.9254902, a: 1}
+    color: {r: 0.60784316, g: 0.9254902, b: 0.15294118, a: 1}
   - key_string: Stage_Color_07
     color: {r: 0.7084545, g: 0.8867924, b: 0.28025985, a: 1}
   - key_string: Stage_Color_08
-    color: {r: 0.12691349, g: 0.8679245, b: 0.79621047, a: 1}
+    color: {r: 0.5254902, g: 0.83137256, b: 1, a: 1}
   - key_string: Stage_Color_09
-    color: {r: 0.056069765, g: 0.7924528, b: 0.3768834, a: 1}
+    color: {r: 0.40784314, g: 0.5019608, b: 0.5568628, a: 1}
   - key_string: Stage_Color_10
-    color: {r: 0.054901946, g: 0.7921569, b: 0.787229, a: 1}
+    color: {r: 0.056069765, g: 0.7924528, b: 0.26666668, a: 1}
   _eventImgaeColorDefines: []
   SkeletonGraphicMat: {fileID: 0}
   DisableSpriteMat: {fileID: 0}
   EnableSpriteMat: {fileID: 0}
   ImgAddtiveMat: {fileID: 0}
+  TextMaterialList:
+  - {fileID: 2100000, guid: ad7810873000143c083b408a70916d1f, type: 2}
+  - {fileID: 2100000, guid: fb1ce52e2484043678697346d1a42980, type: 2}
+  - {fileID: 2100000, guid: 8dafb4fd698eb415f997bd7a378f82ed, type: 2}
+  - {fileID: 2100000, guid: cd043999f20d34a239cac6de02c48bed, type: 2}
+  - {fileID: 2100000, guid: e5bf2b2b444d14b8198804cd9b5d837c, type: 2}
+  - {fileID: 2100000, guid: 0d7b0b5aa24fd4a47924c43015a3396e, type: 2}
+  - {fileID: 2100000, guid: 04411ba8015964cc0ac46ad213261865, type: 2}
+  - {fileID: 2100000, guid: 8dafb4fd698eb415f997bd7a378f82ed, type: 2}
+  - {fileID: 2100000, guid: 64cc86da1a1f249d9925255c4bdd113e, type: 2}
+  - {fileID: 2100000, guid: 0d7b0b5aa24fd4a47924c43015a3396e, type: 2}

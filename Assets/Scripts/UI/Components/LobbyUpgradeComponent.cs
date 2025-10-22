@@ -52,7 +52,7 @@ public class LobbyUpgradeComponent : MonoBehaviour
     private Button UpgradeBtn;
 
     private System.Numerics.BigInteger UpgradeCost;
-    
+
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -101,7 +101,7 @@ public class LobbyUpgradeComponent : MonoBehaviour
     void OnDestroy()
     {
         disposables.Clear();
-    }
+    }   
 
     void OnDisable()
     {
