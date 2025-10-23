@@ -18,6 +18,9 @@ public class InGamePlayer : MonoBehaviour
     [SerializeField]
     private List<PlayerProductComponent> ProductItemList = new List<PlayerProductComponent>();
 
+    [SerializeField]
+    private GameObject CycleRoot;
+
 
 
     private InGameBase InGameBase;
@@ -67,6 +70,8 @@ public class InGamePlayer : MonoBehaviour
     private BoxCollider Col;
 
     private Vector3 TutorialDir = Vector3.zero;
+
+    private float CycleSpeed = 0f;
 
 
     private PopupInGame PopupInGame;
@@ -137,6 +142,12 @@ public class InGamePlayer : MonoBehaviour
         currentDirection = Random.Range(0, 2) == 0 ? -1 : 1; // 시작 시 랜덤 방향 선택
         randomZ = 0f;
         inputZ = 0f;
+
+        var getcyclecount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount);
+
+        CycleSpeed = getcyclecount * 3;
+
+        ProjectUtility.SetActiveCheck(CycleRoot.gameObject, getcyclecount > 0);
     }
 
 
@@ -151,7 +162,8 @@ public class InGamePlayer : MonoBehaviour
 
         Col.enabled = true;
         Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-        Anim.Play("Walk");
+        var aniname = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount) > 0 ? "Idle" : "Walk";
+        Anim.Play(aniname);
         IsDead = false;
         IsDeadWait = false;
 
@@ -202,7 +214,7 @@ public class InGamePlayer : MonoBehaviour
             BoosterOff();
             return;
         }
-        
+
 
         // 부스터 활성화 중에는 공중에서 부드럽게 날아가는 효과
         // 목표 지점으로 향하는 방향 계산
@@ -217,13 +229,13 @@ public class InGamePlayer : MonoBehaviour
         if (currentHeight >= minBoosterSpeedHeight)
         {
             // 충분히 높은 곳에 있을 때만 부스터 속도 적용
-            currentSpeed = boosterSpeed;
+            currentSpeed = boosterSpeed + CycleSpeed;
             Debug.Log($"부스터 고속 모드 - 높이: {currentHeight:F2}m, 속도: {currentSpeed}");
         }
         else
         {
             // 낮은 곳에 있거나 내려오는 중일 때는 일반 속도
-            currentSpeed = forwardSpeed;
+            currentSpeed = forwardSpeed + CycleSpeed;
             Debug.Log($"부스터 일반 모드 - 높이: {currentHeight:F2}m, 속도: {currentSpeed}");
         }
 
@@ -420,7 +432,7 @@ public class InGamePlayer : MonoBehaviour
 
         // 기본 전진 이동
         Vector3 velocity = Rb.linearVelocity; // 현재 속도 유지
-        velocity = directionToEnd * forwardSpeed + Vector3.up * velocity.y;
+        velocity = directionToEnd * (forwardSpeed + CycleSpeed) + Vector3.up * velocity.y;
         Rb.linearVelocity = velocity;
     }
 
@@ -492,9 +504,10 @@ public class InGamePlayer : MonoBehaviour
         }
         else
         {
+            var aniname = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount) > 0 ? "Idle" : "Walk";
             Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             InGameBase.StageMap.IsTutorialScreen = false;
-            Anim.Play("Walk");
+            Anim.Play(aniname);
             TutorialDir = Vector3.zero;
         }
     }
@@ -568,7 +581,8 @@ public class InGamePlayer : MonoBehaviour
         // 애니메이션을 날아가는 상태로 변경 (있다면)
         if (Anim != null)
         {
-            Anim.Play("Walk"); // 또는 부스터 전용 애니메이션이 있다면 그것을 사용
+            var aniname = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount) > 0 ? "Idle" : "Walk";
+            Anim.Play(aniname); // 또는 부스터 전용 애니메이션이 있다면 그것을 사용
         }
     }
 
@@ -608,7 +622,8 @@ public class InGamePlayer : MonoBehaviour
         // 애니메이션을 걷기 상태로 복원
         if (Anim != null)
         {
-            Anim.Play("Walk");
+            var aniname = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount) > 0 ? "Idle" : "Walk";
+            Anim.Play(aniname);
         }
     }
 
@@ -648,6 +663,25 @@ public class InGamePlayer : MonoBehaviour
         Rb.AddForce(bounceDir * bouncePower, ForceMode.Impulse);
 
         Anim.Play("Falling", 0, 0f);
+    }
+
+
+    public void CycleAction()
+    {
+        var count = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount);
+
+
+        if (count == 1)
+        {
+            ProjectUtility.SetActiveCheck(CycleRoot.gameObject, true);
+        }
+
+        GameRoot.Instance.EffectSystem.MultiPlay<UpgradeEffect>(CycleRoot.transform.position, (effect) =>
+        {
+            effect.SetAutoRemove(true, 2.5f);
+        });
+
+
     }
 
 

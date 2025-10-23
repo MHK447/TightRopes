@@ -58,6 +58,8 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         ShopDailyPurchaseCnt,
         TryTowerClear,
         UseADTicketCnt,
+
+        AdCycleCount,
     }
 
     public enum WeaponType
@@ -89,6 +91,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         Navi_Start,
         FreeGemCount,
         AdGemCount,
+        AdCycleCount,
     }
 
 

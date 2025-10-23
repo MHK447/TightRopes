@@ -15,6 +15,9 @@ public class PopupInGameLobby : UIBase
     [SerializeField]
     private Button StageBtn;
 
+    [SerializeField]
+    private AdCycleComponent AdCycleComponent;
+
 
 
     [SerializeField]
@@ -63,6 +66,8 @@ public class PopupInGameLobby : UIBase
             MapText.text = Tables.Instance.GetTable<Localize>().GetString(td.name);
             BgImg.color = Config.Instance.GetImageColor(td.image_color);
             MapText.fontSharedMaterial = Config.Instance.TextMaterialList[stageidx - 1];
+
+            AdCycleComponent.Init();
         }
     }
 

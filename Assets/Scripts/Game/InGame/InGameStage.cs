@@ -206,6 +206,8 @@ public class InGameStage : MonoBehaviour
         });
     }
 
+    
+
     public void StageClearCheck()
     {
         if (GameRoot.Instance.UserData.RaceData.RaceProductCount.Value >= ProductEntityList.Count)
