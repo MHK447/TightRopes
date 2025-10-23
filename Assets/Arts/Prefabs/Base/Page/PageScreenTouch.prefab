@@ -573,11 +573,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915746942872298320, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250.7
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 915746942872298320, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 915746942872298320, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -656,11 +656,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 21857040525777067, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 21857040525777067, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 21857040525777067, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_LocalScale.x
@@ -724,19 +724,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915746942872298320, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250.7
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 915746942872298320, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 915746942872298320, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 29.050049
+      value: 213
       objectReference: {fileID: 0}
     - target: {fileID: 915746942872298320, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 5433375454732825302, guid: ba23a296e29844273963320289d2e686, type: 3}
       propertyPath: m_Pivot.y

@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d5c6eb46f5a94363804a6b35b5c08cb
+    m_Address: InGame/FireWorkEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ddce761f390f014aa94071f8c1c0812
     m_Address: UI/Popup/PopupToastmessage
     m_ReadOnly: 0

@@ -54,7 +54,7 @@ public class InGameStage : MonoBehaviour
 
             GameRoot.Instance.UISystem.GetUI<HudTotal>()?.Hide();
             GameRoot.Instance.UISystem.GetUI<PopupInGameLobby>()?.Hide();
-            GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
+            GameRoot.Instance.UISystem.OpenUI<PopupInGame>(popup=> popup.Init());
             Player.PlayGame();
             HighScoreInit();
             RopeComponent.Init();

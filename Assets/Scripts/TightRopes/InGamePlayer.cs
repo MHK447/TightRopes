@@ -51,10 +51,25 @@ public class InGamePlayer : MonoBehaviour
 
     private float BalanceValue = 0;
 
+    [Header("부스터 변수")]
+    private bool isBoosterActive = false;
+    private float boosterDuration = 2f;
+    private float boosterTimer = 0f;
+    private float boosterHeight = 7f; // 부스터 시 떠오르는 높이
+    private float boosterSpeed = 15f; // 부스터 시 이동 속도 증가
+    private float minBoosterSpeedHeight = 2f; // 이 높이 이상에서만 부스터 속도 적용
+    private Vector3 originalPosition;
+    private bool wasConstraintsFrozen = false;
+    private bool isGrounded = true; // 땅에 닿아있는지 확인
+    private float groundCheckDistance = 0.5f; // 땅 체크 거리 (증가)
+    private LayerMask groundLayerMask = -1; // 땅으로 인식할 레이어 (기본값: 모든 레이어)
 
     private BoxCollider Col;
 
     private Vector3 TutorialDir = Vector3.zero;
+
+
+    private PopupInGame PopupInGame;
 
     public void Init()
     {
@@ -65,6 +80,7 @@ public class InGamePlayer : MonoBehaviour
 
 
         InGameBase = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>();
+
 
 
         ReadyPlayr();
@@ -132,6 +148,7 @@ public class InGamePlayer : MonoBehaviour
 
     public void PlayGame()
     {
+
         Col.enabled = true;
         Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         Anim.Play("Walk");
@@ -149,11 +166,110 @@ public class InGamePlayer : MonoBehaviour
         if (InGameBase.StageMap.CurState != InGameStage.InGameState.Playing) return;
         if (IsDead) return;
 
+        UpdateBooster();
         InputBalance();
         ApplyForwardMovement();
-        ApplySwingMovement();
+        if (!isBoosterActive) // 부스터 활성화 시에는 흔들림 적용 안함
+        {
+            ApplySwingMovement();
+        }
         //DeadCheck();
-        CheckTiltLimit();
+        if (!isBoosterActive) // 부스터 활성화 시에는 기울기 체크 안함
+        {
+            CheckTiltLimit();
+        }
+    }
+
+    private void UpdateBooster()
+    {
+        if (!isBoosterActive) return;
+
+        boosterTimer += Time.deltaTime;
+
+        // 부스터 시간이 다 되면 종료
+        if (boosterTimer >= boosterDuration)
+        {
+            BoosterOff();
+            return;
+        }
+
+        // 땅에 닿았는지 체크 (Raycast 사용)
+        CheckGrounded();
+
+        // 땅에 닿으면 부스터 종료
+        if (isGrounded && boosterTimer > 0.5f) // 0.5초 후부터 땅 체크 (점프 직후 바로 종료 방지)
+        {
+            BoosterOff();
+            return;
+        }
+        
+
+        // 부스터 활성화 중에는 공중에서 부드럽게 날아가는 효과
+        // 목표 지점으로 향하는 방향 계산
+        Vector3 directionToEnd = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
+        directionToEnd.y = 0; // Y축 이동 제거 (수평 이동만)
+
+        // 현재 높이 확인 (원래 위치 기준)
+        float currentHeight = transform.position.y - originalPosition.y;
+
+        // 높이에 따른 속도 결정
+        float currentSpeed;
+        if (currentHeight >= minBoosterSpeedHeight)
+        {
+            // 충분히 높은 곳에 있을 때만 부스터 속도 적용
+            currentSpeed = boosterSpeed;
+            Debug.Log($"부스터 고속 모드 - 높이: {currentHeight:F2}m, 속도: {currentSpeed}");
+        }
+        else
+        {
+            // 낮은 곳에 있거나 내려오는 중일 때는 일반 속도
+            currentSpeed = forwardSpeed;
+            Debug.Log($"부스터 일반 모드 - 높이: {currentHeight:F2}m, 속도: {currentSpeed}");
+        }
+
+        // 계산된 속도로 이동
+        Vector3 boosterVelocity = directionToEnd * currentSpeed;
+
+        // Y축 속도는 현재 속도 유지 (중력 영향 받도록)
+        boosterVelocity.y = Rb.linearVelocity.y;
+
+        Rb.linearVelocity = boosterVelocity;
+
+        // 부스터 중에는 회전을 목표 방향으로 고정
+        if (directionToEnd != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToEnd);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 3f);
+        }
+    }
+
+    private void CheckGrounded()
+    {
+        // 플레이어 발 아래로 Raycast를 쏴서 땅 감지
+        Vector3 rayOrigin = transform.position;
+        Vector3 rayDirection = Vector3.down;
+
+        // Raycast로 땅 체크 (플레이어 자신의 콜라이더는 제외)
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, groundCheckDistance, ~0, QueryTriggerInteraction.Ignore))
+        {
+            // 자기 자신의 콜라이더가 아닌 경우만 땅으로 인식
+            if (hit.collider != Col)
+            {
+                isGrounded = true;
+                Debug.DrawRay(rayOrigin, rayDirection * groundCheckDistance, Color.green);
+            }
+            else
+            {
+                isGrounded = false;
+                Debug.DrawRay(rayOrigin, rayDirection * groundCheckDistance, Color.red);
+            }
+        }
+        else
+        {
+            isGrounded = false;
+            Debug.DrawRay(rayOrigin, rayDirection * groundCheckDistance, Color.red);
+        }
     }
 
     private float targetZ = 0f;
@@ -233,10 +349,12 @@ public class InGamePlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && !IsDead && TutorialDir != Vector3.left)
         {
             inputZ -= 1f;
+            GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.ArrowClick(true);
         }
         else if (Input.GetKey(KeyCode.D) && !IsDead && TutorialDir != Vector3.right)
         {
             inputZ += 1f;
+            GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.ArrowClick(false);
         }
 
         // 터치 입력 처리 (모바일용) - A, D 키와 동일하게 계속 누르고 있는 동안 적용
@@ -262,12 +380,14 @@ public class InGamePlayer : MonoBehaviour
                 // 왼쪽 터치
                 inputZ -= 1f;
                 Debug.Log("왼쪽 터치 inputZ: " + inputZ);
+                GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.ArrowClick(true);
             }
-            else if(TutorialDir != Vector3.right)
+            else if (TutorialDir != Vector3.right)
             {
                 // 오른쪽 터치
                 inputZ += 1f;
                 Debug.Log("오른쪽 터치 inputZ: " + inputZ);
+                GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.ArrowClick(false);
             }
         }
     }
@@ -290,6 +410,7 @@ public class InGamePlayer : MonoBehaviour
         if (InGameBase == null) return;
         if (InGameBase.StageMap.CurState != InGameStage.InGameState.Playing) return;
         if (InGameBase.StageMap.IsTutorialScreen) return;
+        if (isBoosterActive) return; // 부스터 활성화 시에는 UpdateBooster에서 이동 처리
 
         RaceCalcUpdate();
 
@@ -306,6 +427,34 @@ public class InGamePlayer : MonoBehaviour
     public void RaceCalcUpdate()
     {
         if (IsDeadWait || IsDead || InGameBase.StageMap.IsTutorialScreen) return;
+
+        // 부스터 활성화 시에도 거리 계산은 계속 진행
+        if (isBoosterActive)
+        {
+            // 부스터 중에는 더 자주 거리 업데이트 (더 빠르게 이동하므로)
+            distanceUpdateTimer += Time.deltaTime;
+
+            if (distanceUpdateTimer >= distanceUpdateInterval * 0.5f) // 2배 빠르게 업데이트
+            {
+                Vector3 currentPosition = this.transform.position;
+                float deltaDistance = Vector3.Distance(currentPosition, lastPosition);
+
+                Vector3 moveDirection = (currentPosition - lastPosition).normalized;
+                Vector3 endDirection = (InGameBase.StageMap.EndTr.position - transform.position).normalized;
+                endDirection.y = 0;
+                float forwardDot = Vector3.Dot(moveDirection, endDirection);
+
+                if (forwardDot > 0)
+                {
+                    totalDistance += deltaDistance;
+                    GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value = totalDistance;
+                }
+
+                lastPosition = currentPosition;
+                distanceUpdateTimer = 0f;
+            }
+            return;
+        }
         // 1초마다 거리 계산 및 업데이트
         distanceUpdateTimer += Time.deltaTime;
 
@@ -381,6 +530,85 @@ public class InGamePlayer : MonoBehaviour
             {
                 OnTiltLimitReached(reversedir);
             }
+        }
+    }
+
+
+    public void BoosterOn()
+    {
+        if (isBoosterActive || IsDead) return;
+
+        Debug.Log("부스터 활성화!");
+
+        Anim.SetBool("Jump", true);
+
+        GameRoot.Instance.EffectSystem.MultiPlay<FireWorkEffect>
+        (new Vector3(this.transform.position.x, this.transform.position.y - 1, this.transform.position.z),
+         (effect) =>
+        {
+            effect.SetAutoRemove(true, 1f);
+        });
+
+        // 부스터 상태 활성화
+        isBoosterActive = true;
+        boosterTimer = 0f;
+        isGrounded = false; // 부스터 시작 시 공중 상태로 설정
+
+        // 현재 위치 저장
+        originalPosition = transform.position;
+
+        // 물리 제약 해제하여 자유롭게 움직일 수 있도록 함
+        wasConstraintsFrozen = (Rb.constraints == RigidbodyConstraints.FreezeAll);
+        Rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+
+        // 위로 떠오르는 힘 적용
+        Vector3 upwardForce = Vector3.up * boosterHeight;
+        Rb.AddForce(upwardForce, ForceMode.Impulse);
+
+        // 애니메이션을 날아가는 상태로 변경 (있다면)
+        if (Anim != null)
+        {
+            Anim.Play("Walk"); // 또는 부스터 전용 애니메이션이 있다면 그것을 사용
+        }
+    }
+
+    private void BoosterOff()
+    {
+        if (!isBoosterActive) return;
+
+        Debug.Log("부스터 종료!");
+
+
+        Anim.SetBool("Jump", false);
+        // 부스터 상태 비활성화
+        isBoosterActive = false;
+        boosterTimer = 0f;
+
+        // 원래 물리 제약 복원
+        if (wasConstraintsFrozen)
+        {
+            Rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        }
+
+        // 부드럽게 원래 상태로 복귀
+        // 현재 속도를 줄여서 자연스럽게 착지하도록 함
+        Vector3 currentVelocity = Rb.linearVelocity;
+        currentVelocity.x *= 0.5f; // X축 속도 감소
+        currentVelocity.z *= 0.5f; // Z축 속도 감소
+        Rb.linearVelocity = currentVelocity;
+
+        // 회전값 초기화 (기울기 변수들도 초기화)
+        randomZ = 0f;
+        inputZ = 0f;
+
+        // 애니메이션을 걷기 상태로 복원
+        if (Anim != null)
+        {
+            Anim.Play("Walk");
         }
     }
 
