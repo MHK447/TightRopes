@@ -198,12 +198,6 @@ public class InGamePlayer : MonoBehaviour
 
         boosterTimer += Time.deltaTime;
 
-        // 부스터 시간이 다 되면 종료
-        if (boosterTimer >= boosterDuration)
-        {
-            BoosterOff();
-            return;
-        }
 
         // 땅에 닿았는지 체크 (Raycast 사용)
         CheckGrounded();
@@ -214,6 +208,12 @@ public class InGamePlayer : MonoBehaviour
             BoosterOff();
             return;
         }
+        else if(boosterTimer >= 1.5f)
+        {
+            BoosterOff();
+            return;
+        }
+
 
 
         // 부스터 활성화 중에는 공중에서 부드럽게 날아가는 효과

@@ -36,6 +36,8 @@ public class InGameCamera : MonoBehaviour
     private float BaseFieldOfView = 50f;
 
     CompositeDisposable disposables = new CompositeDisposable();
+    
+    private Vector3 savedDirectionLightRotation; // DirectionLightTr의 목표 rotation 저장
 
 
     void Awake()
@@ -55,8 +57,22 @@ public class InGameCamera : MonoBehaviour
 
         // 카메라 로테이션 설정
         Vector3 cameraRotation = new Vector3(stageData.cam_rot[0], stageData.cam_rot[1], 0);
-        DirectionLightTr.rotation = Quaternion.Euler(cameraRotation);
-
+        
+        // DirectionLightTr이 카메라의 자식인지 확인하고 적절한 rotation 설정
+        if (DirectionLightTr.parent == transform)
+        {
+            // 자식 오브젝트인 경우 localRotation 사용
+            DirectionLightTr.localRotation = Quaternion.Euler(cameraRotation);
+        }
+        else
+        {
+            // 독립적인 오브젝트인 경우 world rotation 사용
+            DirectionLightTr.rotation = Quaternion.Euler(cameraRotation);
+        }
+        
+        savedDirectionLightRotation = cameraRotation; // 목표 rotation 저장
+        Debug.Log($"DirectionLightTr rotation set to: {cameraRotation}, actual rotation: {DirectionLightTr.rotation.eulerAngles}");
+        
         // 카메라 위치 초기화
         ResetCameraPosition();
 
@@ -108,7 +124,7 @@ public class InGameCamera : MonoBehaviour
         if (!isDirectionSet && CurInGameBase.StageMap.EndTr != null)
         {
             // 카메라 위치가 초기화되지 않았다면 다시 시도
-            ResetCameraPosition();
+            //ResetCameraPosition();
 
             // StartTr에서 EndTr로의 방향을 기준으로 뒤쪽 방향 계산
             Vector3 forwardDirection = (CurInGameBase.StageMap.EndTr.position - CurInGameBase.StageMap.StartTr.position).normalized;
@@ -133,7 +149,6 @@ public class InGameCamera : MonoBehaviour
 
         }
     }
-
 
     public void SetFieldOfView(int count, float duration = 0.5f)
     {

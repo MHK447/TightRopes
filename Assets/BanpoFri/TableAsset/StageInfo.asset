@@ -46,7 +46,7 @@ MonoBehaviour:
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 2a000000b4000000
+    _cam_rot: 3200000000000000
     _image: MapIcon_02
     _name: str_stage_name_02
     _image_color: Stage_Color_02
@@ -59,7 +59,7 @@ MonoBehaviour:
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 1affffffb4000000
+    _cam_rot: 3200000000000000
     _image: MapIcon_03
     _name: str_stage_name_03
     _image_color: Stage_Color_03
@@ -72,7 +72,7 @@ MonoBehaviour:
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 1affffffb4000000
+    _cam_rot: 3200000000000000
     _image: MapIcon_04
     _name: str_stage_name_04
     _image_color: Stage_Color_04
