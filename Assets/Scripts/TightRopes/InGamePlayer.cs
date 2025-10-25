@@ -590,9 +590,6 @@ public class InGamePlayer : MonoBehaviour
     {
         if (!isBoosterActive) return;
 
-        Debug.Log("부스터 종료!");
-
-
         Anim.SetBool("Jump", false);
         // 부스터 상태 비활성화
         isBoosterActive = false;

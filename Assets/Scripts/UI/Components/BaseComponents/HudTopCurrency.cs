@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using BanpoFri;
 using UnityEngine.UI;
@@ -22,7 +23,7 @@ public class HudTopCurrency : MonoBehaviour
 
 
     private CompositeDisposable disposables = new CompositeDisposable();
-    private readonly int[] CurrencyValues = new int[3];
+    private readonly BigInteger[] CurrencyValues = new BigInteger[3];
     private Tweener[] Tweeners = new Tweener[3];
 
 
@@ -55,12 +56,12 @@ public class HudTopCurrency : MonoBehaviour
 
     private void SetTexts()
     {
-        if (MoneyText) MoneyText.text = ProjectUtility.CalculateMoneyToString((System.Numerics.BigInteger)CurrencyValues[0]);
+        if (MoneyText) MoneyText.text = ProjectUtility.CalculateMoneyToString(CurrencyValues[0]);
     }
     public void SyncReward()
     {
-        CurrencyValues[0] = (int)GameRoot.Instance.UserData.Money.Value;
-        CurrencyValues[1] = (int)GameRoot.Instance.UserData.Cash.Value;
+        CurrencyValues[0] = GameRoot.Instance.UserData.Money.Value;
+        CurrencyValues[1] = GameRoot.Instance.UserData.Cash.Value;
         SetTexts();
     }
 
@@ -74,7 +75,7 @@ public class HudTopCurrency : MonoBehaviour
             {
                 if (!gameObject.activeInHierarchy)
                 {
-                    CurrencyValues[0] = (int)x;
+                    CurrencyValues[0] = x;
                     return;
                 }
 
@@ -84,14 +85,22 @@ public class HudTopCurrency : MonoBehaviour
                     Tweeners[0] = null;
                 }
 
-                Tweeners[0] = DOTween.To(() => CurrencyValues[0],
-                (int v) => CurrencyValues[0] = v,
-                (int)x,
+                // BigInteger는 DOTween에서 직접 지원하지 않으므로 float로 변환하여 애니메이션
+                var startValue = (float)CurrencyValues[0];
+                var endValue = (float)x;
+                
+                Tweeners[0] = DOTween.To(() => startValue,
+                v => {
+                    CurrencyValues[0] = new BigInteger(v);
+                    startValue = v;
+                },
+                endValue,
                  0.5f)
       .SetEase(Ease.Linear)
       .SetUpdate(true)
       .OnComplete(() =>
       {
+          CurrencyValues[0] = x; // 정확한 최종값 설정
           Tweeners[0] = null;
       });
 

@@ -155,7 +155,7 @@ public class LobbyUpgradeComponent : MonoBehaviour
         }
 
         if (UpgradeData.Upgradeidx == (int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade)
-            BgImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Money_{UpgradeData.GetUpgradeOrder}");
+            BgImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Money_{UpgradeData.GetUpgradeternalOrder}");
     }
 
     public void OnClickUpgradeBtn()

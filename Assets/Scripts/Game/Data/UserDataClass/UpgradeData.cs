@@ -91,6 +91,15 @@ public class UpgradeData
     }
 
 
+    public int GetInComeLevel
+    {
+        get
+        {
+            return ((Upgradelevel.Value) / 6);
+        }
+    }
+
+
 
    
 }

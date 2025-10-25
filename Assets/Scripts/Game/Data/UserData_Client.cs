@@ -338,7 +338,7 @@ public partial class UserDataSystem
                             break;
                         case (int)Config.CurrencyID.Money:
                             {
-                                Money.Value += (int)rewardCnt;
+                                Money.Value += rewardCnt;
                             }
                             break;
                     }

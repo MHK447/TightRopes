@@ -122,6 +122,13 @@ public class CheatWindow : MonoBehaviour
         GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.NextStage((int)convert);
     }
 
+    public void StageClearCheat()
+    {
+        GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(2000000000000000000, () => {
+            GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.NextStage(GameRoot.Instance.UserData.Stageidx.Value + 1);
+        }));
+    }
+
     public void AddHeroUnit()
     {
 

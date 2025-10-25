@@ -36,6 +36,19 @@ public class PopupStageClear : UIBase
     [SerializeField] private float textAppearDuration = 0.5f;
     [SerializeField] private float countUpDuration = 1.5f;
 
+
+    [SerializeField]
+    private Transform GroupTr;
+
+    [SerializeField]
+    private Transform GropTr2;
+
+    [SerializeField]
+    private Image MoneyIconImg;
+
+    [SerializeField]
+    private TextMeshProUGUI MoneyValueText;
+
     protected override void Awake()
     {
         base.Awake();
@@ -55,7 +68,6 @@ public class PopupStageClear : UIBase
         RewardBaseValueText.alpha = 0f;
 
         // 버튼들도 초기에 숨김
-        AdRewardBtn.gameObject.SetActive(false);
         BaseRewardBtn.gameObject.SetActive(false);
     }
 
@@ -69,6 +81,9 @@ public class PopupStageClear : UIBase
         // 초기 텍스트 설정
         RewardAdValueText.text = ProjectUtility.CalculateMoneyToString(0);
         RewardBaseValueText.text = ProjectUtility.CalculateMoneyToString(0);
+
+        ProjectUtility.SetActiveCheck(GroupTr.gameObject, false);
+        ProjectUtility.SetActiveCheck(GropTr2.gameObject , true);
 
         // 애니메이션 시작
         StartCoroutine(PlayStageClearAnimation());
@@ -91,17 +106,22 @@ public class PopupStageClear : UIBase
 
     private void ProceedToNextStage()
     {
-        Hide();
+        ProjectUtility.SetActiveCheck(GroupTr.gameObject, true);
+        ProjectUtility.SetActiveCheck(GropTr2.gameObject , false);
 
-        GameRoot.Instance.UISystem.OpenUI<PageStage>(popup => popup.Interaction(GameRoot.Instance.UserData.Stageidx.Value + 1, () =>
+        DirectionNextMoney(() =>
         {
-            // 다음 스테이지로 넘어가기
-            if (OnNextStageCallback != null)
-            {
-                OnNextStageCallback.Invoke();
-            }
-        }));
+            Hide();
 
+            GameRoot.Instance.UISystem.OpenUI<PageStage>(popup => popup.Interaction(GameRoot.Instance.UserData.Stageidx.Value + 1, () =>
+            {
+                // 다음 스테이지로 넘어가기
+                if (OnNextStageCallback != null)
+                {
+                    OnNextStageCallback.Invoke();
+                }
+            }));
+        });
     }
 
     private IEnumerator PlayStageClearAnimation()
@@ -188,4 +208,36 @@ public class PopupStageClear : UIBase
             .SetDelay(0.2f);
     }
 
+
+
+    public void DirectionNextMoney(System.Action completeaction)
+    {
+        var upgradedata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade];
+
+        MoneyIconImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Money_{upgradedata.GetUpgradeternalOrder}");
+        MoneyValueText.text = $"x{GameRoot.Instance.UserData.Incomemultivalue.ToString("0.0")}";
+
+
+
+        // GroupTr을 3초 동안 회전시키고 1초 대기 후 완료 처리
+        GroupTr.transform.DORotate(new Vector3(0, 1800, 0), 2f, RotateMode.FastBeyond360)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                GameRoot.Instance.UpgradeSystem.StageClearInComeLevelUp();
+
+                // 회전 완료 후 이미지와 텍스트 업데이트
+                var updatedUpgradedata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade];
+
+                MoneyIconImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Money_{upgradedata.GetUpgradeternalOrder}");
+
+                MoneyValueText.text = $"x{GameRoot.Instance.UserData.Incomemultivalue.ToString("0.0")}";
+
+                // 회전 완료 후 1초 대기
+                DOVirtual.DelayedCall(1f, () =>
+                {
+                    completeaction?.Invoke();
+                });
+            });
+    }
 }

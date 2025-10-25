@@ -64,7 +64,7 @@ public class UpgradeSystem
             swayvalue -= ProjectUtility.PercentCalc(swayvalue, 10);
         }
 
-        if(swayvalue <= stageinfotd.end_sway_value)
+        if (swayvalue <= stageinfotd.end_sway_value)
         {
             swayvalue = stageinfotd.end_sway_value;
         }
@@ -91,7 +91,7 @@ public class UpgradeSystem
             balancevalue += ProjectUtility.PercentCalc(balancevalue, 20);
         }
 
-        if(balancevalue >= stageinfotd.end_balance_value)
+        if (balancevalue >= stageinfotd.end_balance_value)
         {
             balancevalue = stageinfotd.end_balance_value;
         }
@@ -122,6 +122,26 @@ public class UpgradeSystem
 
             GameRoot.Instance.UserData.Incomestartupgrade = (int)directincomevalue;
         }
+    }
+
+    public void StageClearInComeLevelUp()
+    {
+        var finddata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeType.MoneyMultiUpgrade];
+
+        if (finddata == null) return;
+
+        int currentLevel = finddata.Upgradeternallevel;
+        int nextMultipleOfSix = ((currentLevel / 6) + 1) * 6;
+
+
+        var plusvalue = nextMultipleOfSix - finddata.Upgradeternallevel;
+
+        for(int i = 0; i <plusvalue; i++)
+        {
+            InComeUpgrade();
+        }
+
+        finddata.Upgradeternallevel = finddata.Upgradeternallevel + plusvalue;
     }
 
 
