@@ -30,7 +30,7 @@ public class BalanceUIComponent : MonoBehaviour
         GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Subscribe(StatusSliderCheck).AddTo(disposables);
 
 
-        SetBalanceValue((int)GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade].GetUpgradeOrder));
+        SetBalanceValue(GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade].GetUpgradeOrder));
     }
 
     public void StatusSliderCheck(float value)
@@ -47,7 +47,7 @@ public class BalanceUIComponent : MonoBehaviour
     }
 
 
-    public void SetBalanceValue(int anglevalue)
+    public void SetBalanceValue(float anglevalue)
     {
         float dangevalue = (120 - anglevalue) * 0.01f;
 
@@ -60,8 +60,6 @@ public class BalanceUIComponent : MonoBehaviour
         CurPosSlider.maxValue = slidervalue;
 
         CurPosSlider.value = 0;
-
-
     }
 
 

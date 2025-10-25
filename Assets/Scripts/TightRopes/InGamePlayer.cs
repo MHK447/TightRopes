@@ -10,7 +10,7 @@ public class InGamePlayer : MonoBehaviour
     private Rigidbody Rb;
 
     [SerializeField]
-    private float forwardSpeed = 5f;
+    private float forwardSpeed = 6f;
 
     [SerializeField]
     private Animator Anim;
@@ -59,7 +59,7 @@ public class InGamePlayer : MonoBehaviour
     private float boosterDuration = 2f;
     private float boosterTimer = 0f;
     private float boosterHeight = 7f; // 부스터 시 떠오르는 높이
-    private float boosterSpeed = 15f; // 부스터 시 이동 속도 증가
+    private float boosterSpeed = 16f; // 부스터 시 이동 속도 증가
     private float minBoosterSpeedHeight = 2f; // 이 높이 이상에서만 부스터 속도 적용
     private Vector3 originalPosition;
     private bool wasConstraintsFrozen = false;
@@ -101,7 +101,14 @@ public class InGamePlayer : MonoBehaviour
 
 
         SwayValue = GameRoot.Instance.UpgradeSystem.RopeUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder);
-        BalanceValue = GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade].GetUpgradeOrder);
+
+        var finddata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade];
+
+        var plusvalue = 1 + finddata.GetUpgradeOrder * 0.2f;
+
+        BalanceValue =
+         GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade]
+         .GetUpgradeOrder) * plusvalue;
 
         lastPosition = this.transform.position;
         totalDistance = 0f;
@@ -208,7 +215,7 @@ public class InGamePlayer : MonoBehaviour
             BoosterOff();
             return;
         }
-        else if(boosterTimer >= 1.5f)
+        else if (boosterTimer >= 1.5f)
         {
             BoosterOff();
             return;
@@ -230,13 +237,11 @@ public class InGamePlayer : MonoBehaviour
         {
             // 충분히 높은 곳에 있을 때만 부스터 속도 적용
             currentSpeed = boosterSpeed + CycleSpeed;
-            Debug.Log($"부스터 고속 모드 - 높이: {currentHeight:F2}m, 속도: {currentSpeed}");
         }
         else
         {
             // 낮은 곳에 있거나 내려오는 중일 때는 일반 속도
             currentSpeed = forwardSpeed + CycleSpeed;
-            Debug.Log($"부스터 일반 모드 - 높이: {currentHeight:F2}m, 속도: {currentSpeed}");
         }
 
         // 계산된 속도로 이동
@@ -300,6 +305,9 @@ public class InGamePlayer : MonoBehaviour
 
     private void ApplySwingMovement()
     {
+        // 부스터 활성화 시에는 자동 흔들림 적용 안함
+        if (isBoosterActive) return;
+
         // 3초 주기 방향 타이머 업데이트
         directionTimer += Time.deltaTime;
 
@@ -328,8 +336,18 @@ public class InGamePlayer : MonoBehaviour
             BanlanceDeltime = 0f;
 
             SwayValue = GameRoot.Instance.UpgradeSystem.RopeUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder);
-
-            randomZ += currentDirection == -1 ? -SwayValue : SwayValue;
+            var getcount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.FirstSwayAdd);
+            // 처음 카운트가 0일 때만 빠르게 기울기
+            if (getcount == 0)
+            {
+                // 첫 번째 기울기는 더 크게 적용
+                randomZ += currentDirection == -1 ? -SwayValue * 6f : SwayValue * 6f;
+            }
+            else
+            {
+                // 일반적인 기울기 적용
+                randomZ += currentDirection == -1 ? -SwayValue : SwayValue;
+            }
         }
 
 
@@ -522,26 +540,28 @@ public class InGamePlayer : MonoBehaviour
         float zRot = transform.eulerAngles.z;
         if (zRot > 180f) zRot -= 360f;
 
-        // 변환된 값을 BalanceValueProperty에 전달
-        GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Value = -zRot;
-
+    
         // 범위 체크
         if (zRot <= -BalanceValue || zRot >= BalanceValue)
         {
             var dir = zRot > 0 ? Vector3.right : Vector3.left;
             var reversedir = zRot > 0 ? Vector3.left : Vector3.right;
 
-            if (GameRoot.Instance.UserData.Stageidx.Value == 1)
+            var getcount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.TutorialStageCount);
+
+            if (GameRoot.Instance.UserData.Stageidx.Value == 1 && getcount <= 3)
             {
                 GameRoot.Instance.UISystem.OpenUI<PageScreenTouch>(popup => popup.Set(dir == Vector3.right), () =>
-                {
+                {   
+                    GameRoot.Instance.UserData.AddRecordCount(Config.RecordCountKeys.FirstSwayAdd, 1);
+                    GameRoot.Instance.UserData.AddRecordCount(Config.RecordCountKeys.TutorialStageCount, 1);
                     StopPlayer(false, reversedir);
                 });
                 StopPlayer(true, reversedir);
             }
             else
             {
-                OnTiltLimitReached(reversedir);
+                OnTiltLimitReached(dir);
             }
         }
     }

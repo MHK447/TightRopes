@@ -29,7 +29,7 @@ MonoBehaviour:
     _end_goal_value: 100
     _prefab: StageMap_01
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -42,7 +42,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_02
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -55,7 +55,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_03
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -68,7 +68,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_04
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -81,7 +81,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_05
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -94,7 +94,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_06
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -107,7 +107,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_07
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -120,7 +120,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_08
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -133,7 +133,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_09
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5
@@ -146,7 +146,7 @@ MonoBehaviour:
     _end_goal_value: 150
     _prefab: StageMap_10
     _base_balance_value: 20
-    _base_sway_value: 0.1
+    _base_sway_value: 0.2
     _product_sway_value: 0.4
     _end_balance_value: 80
     _end_sway_value: 0.5

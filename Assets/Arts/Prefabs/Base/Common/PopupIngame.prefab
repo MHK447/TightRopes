@@ -1085,6 +1085,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1625889995720209679, guid: da7ab0e8de0b7464aac19f5c86a917c8, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1654999266757759826, guid: da7ab0e8de0b7464aac19f5c86a917c8, type: 3}
       propertyPath: LeftDangerImg
       value: 

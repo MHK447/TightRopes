@@ -6,8 +6,10 @@ using BanpoFri;
 public class ContentsOpenSystem : MonoBehaviour
 {
     public enum ContentsOpenType
-    {
+    { 
         Interstitial = 1,
+        BoosterOpen = 2,
+        AdCycleOpen = 3,
     }
 
 
@@ -17,24 +19,16 @@ public class ContentsOpenSystem : MonoBehaviour
 
         var td = Tables.Instance.GetTable<ContentsOpenCheck>().GetData((int)opentype);
 
-        //var stageidx = GameRoot.Instance.UserData.Stagedata.Stageidx.Value;
-
         if(td != null)
         {
-           
-
-            // if(stageidx > td.stage_idx)
-            // {
-            //     isopencheck = true;
-            // }
-            // // else if(stageidx == td.stage_idx && findfacility.IsOpen)
-            // {
-            //     isopencheck = true;
-            // }
+            if(td.stage_idx <= GameRoot.Instance.UserData.Stageidx.Value)
+            {
+                isopencheck = true;
+                return isopencheck;
+            }
         }
 
         return isopencheck;
-
     }
 
 

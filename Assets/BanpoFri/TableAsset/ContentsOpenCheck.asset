@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mFirstKey:
   - 1
+  - 2
+  - 3
   mSecondKey: []
   mDataList:
   - _idx: 1
-    _stage_idx: 1
+    _stage_idx: 4
+  - _idx: 2
+    _stage_idx: 6
+  - _idx: 3
+    _stage_idx: 2

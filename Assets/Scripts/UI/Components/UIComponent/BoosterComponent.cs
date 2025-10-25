@@ -35,6 +35,9 @@ public class BoosterComponent : MonoBehaviour
         
         // 버튼 비활성화
         BoosterBtn.interactable = false;
+
+        ProjectUtility.SetActiveCheck(this.gameObject, 
+        GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.BoosterOpen));
     }
 
     public void OnClickBoosterBtn()

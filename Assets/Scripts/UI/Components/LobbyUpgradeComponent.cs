@@ -69,6 +69,10 @@ public class LobbyUpgradeComponent : MonoBehaviour
     [SerializeField]
     private GameObject UpgradeRoot;
 
+
+    [SerializeField]
+    private GameObject ClickFxObj;
+
     void Awake()
     {
         UpgradeBtn.onClick.AddListener(OnClickUpgradeBtn);
@@ -92,6 +96,8 @@ public class LobbyUpgradeComponent : MonoBehaviour
         UpgradeData.Upgradelevel.Subscribe(x => { SetUpgradeValue(); }).AddTo(disposables);
 
         GameRoot.Instance.UserData.Money.Subscribe(x => { SetUpgradeValue(); }).AddTo(disposables);
+
+        ClickFxObj.SetActive(false);
 
         SetInComeValue();
 
@@ -172,6 +178,11 @@ public class LobbyUpgradeComponent : MonoBehaviour
                 UppgradeLevelUp(true);
             });
         }
+
+
+        ClickFxObj.SetActive(false);
+        ClickFxObj.SetActive(true);
+
     }
 
     public void UppgradeLevelUp(bool free)

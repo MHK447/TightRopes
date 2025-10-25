@@ -92,6 +92,8 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         FreeGemCount,
         AdGemCount,
         AdCycleCount,
+        TutorialStageCount,
+        FirstSwayAdd,
     }
 
 
