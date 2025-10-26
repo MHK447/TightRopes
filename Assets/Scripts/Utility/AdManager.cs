@@ -396,6 +396,12 @@ public class AdManager : MonoBehaviour
     // 리워드 광고 표시
     public void ShowRewardedAd(System.Action rewardAction, bool skipRewardIfNotReady = true)
     {
+        if(GameRoot.Instance.TutorialSystem.IsActive())
+        {
+            rewardAction?.Invoke();
+            return;
+        }
+
         if (!isInitialized)
         {
             Debug.LogWarning("광고 SDK가 초기화되지 않았습니다.");

@@ -453,19 +453,74 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 635159988872963045, guid: bd1f4166c35c746299efd86678c44b9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5010708677668297621}
+    - targetCorrespondingSourceObject: {fileID: 635159988872963045, guid: bd1f4166c35c746299efd86678c44b9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 125757602516213333}
   m_SourcePrefab: {fileID: 100100000, guid: bd1f4166c35c746299efd86678c44b9f, type: 3}
 --- !u!114 &129433800215947114 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 95254264835653495, guid: bd1f4166c35c746299efd86678c44b9f, type: 3}
   m_PrefabInstance: {fileID: 43275011516160029}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 597066432378977272}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d846726451fb4dc5bac626d99048cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &597066432378977272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 635159988872963045, guid: bd1f4166c35c746299efd86678c44b9f, type: 3}
+  m_PrefabInstance: {fileID: 43275011516160029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5010708677668297621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597066432378977272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4573c76313bdd6946a5da4956bd290dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  Target: {fileID: 597066432378977272}
+--- !u!114 &125757602516213333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597066432378977272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!224 &3981172372928501755 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4009973104138964966, guid: bd1f4166c35c746299efd86678c44b9f, type: 3}

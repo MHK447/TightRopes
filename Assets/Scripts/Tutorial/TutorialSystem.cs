@@ -9,6 +9,8 @@ public enum TutorialIdent
 {
     None,
     NextStageBtn,
+    
+    AdCycleBtn,
 }
 
 public class TutorialSystem

@@ -143,9 +143,16 @@ public class InGamePlayer : MonoBehaviour
         randomZ = 0f;
         inputZ = 0f;
 
+
+        CycleAdInit();
+    }
+
+
+    public void CycleAdInit()
+    {
         var getcyclecount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount);
 
-        CycleSpeed = getcyclecount * 3;
+        CycleSpeed = getcyclecount * 2;
 
         ProjectUtility.SetActiveCheck(CycleRoot.gameObject, getcyclecount > 0);
     }
@@ -167,13 +174,13 @@ public class InGamePlayer : MonoBehaviour
          GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade]
          .GetUpgradeOrder) * plusvalue;
 
-         if(BalanceValue >= 50)
-         {
+        if (BalanceValue >= 50)
+        {
             BalanceValue = 83;
-         }
+        }
 
         Col.enabled = true;
-        Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         var aniname = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount) > 0 ? "Idle" : "Walk";
         Anim.Play(aniname);
         IsDead = false;
@@ -528,7 +535,7 @@ public class InGamePlayer : MonoBehaviour
         else
         {
             var aniname = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount) > 0 ? "Idle" : "Walk";
-            Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             InGameBase.StageMap.IsTutorialScreen = false;
             Anim.Play(aniname);
             TutorialDir = Vector3.zero;
@@ -694,13 +701,7 @@ public class InGamePlayer : MonoBehaviour
 
     public void CycleAction()
     {
-        var count = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount);
-
-
-        if (count == 1)
-        {
-            ProjectUtility.SetActiveCheck(CycleRoot.gameObject, true);
-        }
+        CycleAdInit();
 
         GameRoot.Instance.EffectSystem.MultiPlay<UpgradeEffect>(CycleRoot.transform.position, (effect) =>
         {

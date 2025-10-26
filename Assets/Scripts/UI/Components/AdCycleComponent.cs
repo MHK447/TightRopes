@@ -20,6 +20,8 @@ public class AdCycleComponent : MonoBehaviour
     public void Init()
     {
         SetCycleCount(GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount));
+
+        ProjectUtility.SetActiveCheck(this.gameObject, GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.AdCycleOpen));
     }
 
     public void OnClickUpgradeBtn()

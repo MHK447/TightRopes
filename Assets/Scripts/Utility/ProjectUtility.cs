@@ -269,6 +269,14 @@ public class ProjectUtility
         return sb.ToString();
     }
 
+    public static void Vibrate()
+    {
+        if(GameRoot.Instance.UserData.Optiondata.Vibration)
+        {
+            Handheld.Vibrate();
+        }
+    }
+
 
     public static void SetRewardAndEffect(int rewardType, int rewardIndex, System.Numerics.BigInteger amount, System.Action OnEnd = null)
     {

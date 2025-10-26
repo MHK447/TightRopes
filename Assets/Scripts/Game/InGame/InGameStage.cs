@@ -79,6 +79,13 @@ public class InGameStage : MonoBehaviour
         GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.Hide();
         Player.ReadyPlayr();
         GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().GetMainCam.SetFocus(true);
+
+
+
+        if (!GameRoot.Instance.TutorialSystem.IsClearTuto(TutorialSystem.Tuto_1) && GameRoot.Instance.UserData.Stageidx.Value == 2)
+        {
+            GameRoot.Instance.TutorialSystem.StartTutorial(TutorialSystem.Tuto_1, true);
+        }
     }
 
 

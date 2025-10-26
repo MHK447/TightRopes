@@ -59,7 +59,9 @@ public class UpgradeSystem
 
         float swayvalue = stageinfotd.base_sway_value + productswayvalue;
 
-        for (int i = 0; i < upgradeorder; i++)
+        var adcyclecount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.AdCycleCount);
+
+        for (int i = 0; i < upgradeorder + adcyclecount; i++)
         {
             swayvalue -= ProjectUtility.PercentCalc(swayvalue, 10);
         }

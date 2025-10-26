@@ -30,7 +30,7 @@ MonoBehaviour:
     _prefab: StageMap_01
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.4
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 2a000000b4000000

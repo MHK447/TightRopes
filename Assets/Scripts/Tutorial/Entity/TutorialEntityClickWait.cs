@@ -27,6 +27,8 @@ public class TutorialEntityClickWait : TutorialEntity
     private Vector2 ClickableOffsetMin;
     [SerializeField]
     private Vector2 ClickableOffsetMax;
+    [SerializeField]
+    private Vector3 maskPositionOffset = Vector3.zero;
 
 
     [SerializeField]
@@ -126,6 +128,7 @@ public class TutorialEntityClickWait : TutorialEntity
                         maskTrans.anchorMax = viewportPointMax;
                         maskTrans.offsetMin = Vector2.zero;
                         maskTrans.offsetMax = Vector2.zero;
+                        maskTrans.anchoredPosition3D += maskPositionOffset;
                     }
 
                 }
@@ -164,6 +167,7 @@ public class TutorialEntityClickWait : TutorialEntity
                         maskTrans.anchorMax = viewportPointMax;
                         maskTrans.offsetMin = Vector2.zero;
                         maskTrans.offsetMax = Vector2.zero;
+                        maskTrans.anchoredPosition3D += maskPositionOffset;
                     }
                 }
             }

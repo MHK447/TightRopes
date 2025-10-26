@@ -61,7 +61,7 @@ public class PageStageClearReward : UIBase
         {
 
             Hide();
-            ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue, () =>
+            ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue * 3, () =>
          {
              GameRoot.Instance.WaitTimeAndCallback(1f, () =>
              {
