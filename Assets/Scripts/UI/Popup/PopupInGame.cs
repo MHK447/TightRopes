@@ -30,12 +30,23 @@ public class PopupInGame : UIBase
     public void Init()
     {
         BoosterComponent.Init();
-
+        BalanceUIComponent.Init();
+        RaceUIComponent.Init();
         
         
         // 화살표 초기 스케일 설정
         LeftArrowImg.transform.localScale = Vector3.zero;
         RightArrowImg.transform.localScale = Vector3.zero; // Right는 X축 반전
+
+        
+    }
+
+
+    public void StageEnd()
+    {
+        ProjectUtility.SetActiveCheck(BoosterComponent.gameObject , false);
+        ProjectUtility.SetActiveCheck(BalanceUIComponent.gameObject , false);
+        ProjectUtility.SetActiveCheck(RaceUIComponent.gameObject , false);
     }
 
 
@@ -84,6 +95,9 @@ public class PopupInGame : UIBase
             else isRightArrowAnimating = false;
         });
     }
+
+
+
 
 
 

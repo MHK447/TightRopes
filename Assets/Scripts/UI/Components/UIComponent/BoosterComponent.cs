@@ -22,6 +22,8 @@ public class BoosterComponent : MonoBehaviour
 
     public void Init()
     {
+        ProjectUtility.SetActiveCheck(this.gameObject, true);
+
         // 초기 상태 설정
         deltime = 0f;
         isBoosterReady = false;

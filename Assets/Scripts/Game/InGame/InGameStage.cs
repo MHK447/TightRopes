@@ -54,7 +54,7 @@ public class InGameStage : MonoBehaviour
 
             GameRoot.Instance.UISystem.GetUI<HudTotal>()?.Hide();
             GameRoot.Instance.UISystem.GetUI<PopupInGameLobby>()?.Hide();
-            GameRoot.Instance.UISystem.OpenUI<PopupInGame>(popup=> popup.Init());
+            GameRoot.Instance.UISystem.OpenUI<PopupInGame>(popup => popup.Init());
             Player.PlayGame();
             HighScoreInit();
             RopeComponent.Init();
@@ -169,16 +169,18 @@ public class InGameStage : MonoBehaviour
         }
         rewardvalue = rewardvalue / 100;
 
-        ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, rewardvalue, () =>
-        {
-            GameRoot.Instance.WaitTimeAndCallback(1f, () =>
-            {
-                GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() =>
-                {
-                    ReadyPlayingGame();
-                }));
-            });
-        });
+        GameRoot.Instance.UISystem.OpenUI<PageStageClearReward>(popup => popup.Set(Mathf.RoundToInt(GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value), rewardvalue));
+
+        // ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, rewardvalue, () =>
+        // {
+        //     GameRoot.Instance.WaitTimeAndCallback(1f, () =>
+        //     {
+        //         GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() =>
+        //         {
+        //             ReadyPlayingGame();
+        //         }));
+        //     });
+        // });
     }
 
     public void StageClearEnd()
@@ -206,7 +208,7 @@ public class InGameStage : MonoBehaviour
         });
     }
 
-    
+
 
     public void StageClearCheck()
     {
@@ -218,6 +220,7 @@ public class InGameStage : MonoBehaviour
 
     public void NextStage(int stageidx)
     {
+        GameRoot.Instance.UserData.ResetRecordCount(Config.RecordCountKeys.AdCycleCount, 0);
         GameRoot.Instance.UserData.Highscorevalue = 0;
         // 스테이지 인덱스 증가
         GameRoot.Instance.UserData.Stageidx.Value = stageidx;

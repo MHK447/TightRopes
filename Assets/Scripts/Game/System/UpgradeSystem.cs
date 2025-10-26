@@ -96,6 +96,11 @@ public class UpgradeSystem
             balancevalue = stageinfotd.end_balance_value;
         }
 
+        if(balancevalue > 50)
+        {
+            balancevalue = 50;
+        }
+
 
 
         return balancevalue;

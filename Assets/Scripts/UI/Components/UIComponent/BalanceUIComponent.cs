@@ -18,13 +18,11 @@ public class BalanceUIComponent : MonoBehaviour
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    void OnEnable()
-    {
-        Init();
-    }
 
     public void Init()
     {
+        ProjectUtility.SetActiveCheck(this.gameObject , true);
+
         disposables.Clear();
 
         GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Subscribe(StatusSliderCheck).AddTo(disposables);

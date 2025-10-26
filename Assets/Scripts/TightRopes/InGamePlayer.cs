@@ -102,13 +102,6 @@ public class InGamePlayer : MonoBehaviour
 
         SwayValue = GameRoot.Instance.UpgradeSystem.RopeUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder);
 
-        var finddata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade];
-
-        var plusvalue = 1 + finddata.GetUpgradeOrder * 0.2f;
-
-        BalanceValue =
-         GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade]
-         .GetUpgradeOrder) * plusvalue;
 
         lastPosition = this.transform.position;
         totalDistance = 0f;
@@ -166,6 +159,18 @@ public class InGamePlayer : MonoBehaviour
 
     public void PlayGame()
     {
+        var finddata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade];
+
+        var plusvalue = 1 + finddata.GetUpgradeOrder * 0.2f;
+
+        BalanceValue =
+         GameRoot.Instance.UpgradeSystem.BalanceUpgradeValue(GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.BalanceUpgrade]
+         .GetUpgradeOrder) * plusvalue;
+
+         if(BalanceValue >= 50)
+         {
+            BalanceValue = 83;
+         }
 
         Col.enabled = true;
         Rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
@@ -540,7 +545,9 @@ public class InGamePlayer : MonoBehaviour
         float zRot = transform.eulerAngles.z;
         if (zRot > 180f) zRot -= 360f;
 
-    
+        // 변환된 값을 BalanceValueProperty에 전달
+        GameRoot.Instance.UserData.RaceData.BalanceValueProperty.Value = -zRot;
+
         // 범위 체크
         if (zRot <= -BalanceValue || zRot >= BalanceValue)
         {
@@ -549,10 +556,10 @@ public class InGamePlayer : MonoBehaviour
 
             var getcount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.TutorialStageCount);
 
-            if (GameRoot.Instance.UserData.Stageidx.Value == 1 && getcount <= 3)
+            if (GameRoot.Instance.UserData.Stageidx.Value == 1 && getcount <= 1)
             {
                 GameRoot.Instance.UISystem.OpenUI<PageScreenTouch>(popup => popup.Set(dir == Vector3.right), () =>
-                {   
+                {
                     GameRoot.Instance.UserData.AddRecordCount(Config.RecordCountKeys.FirstSwayAdd, 1);
                     GameRoot.Instance.UserData.AddRecordCount(Config.RecordCountKeys.TutorialStageCount, 1);
                     StopPlayer(false, reversedir);
@@ -671,6 +678,8 @@ public class InGamePlayer : MonoBehaviour
         // 위로 + 뒤로 큰 힘을 가해서 튕겨나가게
         Vector3 bounceDir = dir;
         float bouncePower = 20f; // 원하는 튕김 세기 (값 조절 가능)
+
+        GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.StageEnd();
 
         foreach (var product in ProductItemList)
         {

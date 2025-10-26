@@ -377,6 +377,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6067d99f086f4718ba483973bc09ebe
+    m_Address: UI/Page/PageStageClearReward
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c7a1092cf31ef4ddcae7552b5d37686d
     m_Address: UI/Popup/Popup_Signup
     m_ReadOnly: 0

@@ -29,8 +29,10 @@ public class RaceUIComponent : MonoBehaviour
     private Tween sliderTween;
     private float currentDisplayValue = 0f;
 
-    void OnEnable()
+    public void Init()
     {
+        ProjectUtility.SetActiveCheck(this.gameObject, true);
+
         var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
         InfoData = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
