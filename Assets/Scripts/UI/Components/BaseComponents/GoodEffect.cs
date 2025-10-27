@@ -121,6 +121,8 @@ public class GoodEffect : MonoBehaviour
             if (Bg != null) Bg.gameObject.SetActive(false);
             if (Frame != null) Frame.gameObject.SetActive(false);
 
+            SoundPlayer.Instance.PlaySound("get_coin");
+
             OnEnd?.Invoke();
 
             //SoundPlayer.Instance.PlaySound("get");

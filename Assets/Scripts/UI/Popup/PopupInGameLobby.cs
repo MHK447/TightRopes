@@ -97,4 +97,16 @@ public class PopupInGameLobby : UIBase
         GameRoot.Instance.UISystem.OpenUI<PageStage>(page => page.Init());
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        SoundPlayer.Instance.PlayBGM("bgm");
+        SoundPlayer.Instance.SetBGMVolume(0.1f);
+    }
+
+    void OnDisable()
+    {
+        SoundPlayer.Instance.SetBGMVolume(0f);
+    }
+
 }

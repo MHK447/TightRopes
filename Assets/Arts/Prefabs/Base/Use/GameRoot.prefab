@@ -1231,7 +1231,7 @@ MonoBehaviour:
   AdManager: {fileID: 1167453929045138712}
   inAppPurchaseManager: {fileID: 4449524919486717860}
   attManager: {fileID: 6570024072948638994}
-  UILock: {fileID: 927367955552756237}
+  UILock: {fileID: 4049272753500038268}
 --- !u!222 &4615111472151539500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2012,11 +2012,6 @@ PrefabInstance:
       addedObject: {fileID: 4921402601802082611}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
---- !u!1 &927367955552756237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 132536, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
-  m_PrefabInstance: {fileID: 927367955552888757}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &927367955552788177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 178532, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}

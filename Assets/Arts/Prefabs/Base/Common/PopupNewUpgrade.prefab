@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 915976988769525936}
   - component: {fileID: 5383223260958054766}
   - component: {fileID: 299123595089943107}
+  - component: {fileID: 1296671629000848779}
   m_Layer: 0
   m_Name: PopupNewUpgrade
   m_TagString: Untagged
@@ -329,6 +330,24 @@ MonoBehaviour:
   touchLockTime: 0.5
   UpgradeDescText: {fileID: 686448743832121355}
   BalanceUIComponent: {fileID: 3743378398234771610}
+--- !u!114 &1296671629000848779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575456115777603097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97afc556caea1c44969477eb7ddec74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConformX: 1
+  ConformY: 1
+  ConformTop: 1
+  ConformBottom: 1
+  MarginTopIfNoSafeArea: 0
+  Logging: 0
 --- !u!1 &4886314867783883829
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6682107120597384051, guid: 41309970361210c42ac8c7d7049dbfb1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 6682107120597384051, guid: 41309970361210c42ac8c7d7049dbfb1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

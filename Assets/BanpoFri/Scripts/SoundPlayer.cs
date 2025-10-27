@@ -115,6 +115,8 @@ public class SoundPlayer : SingletonScriptableObject<SoundPlayer>, ILoader
 
     public void RecoveryBGM()
     {
+        if(BGMSource == null) return;
+
         BGMSource.clip = recoveryBGMClip;
         BGMSource.Play();
     }

@@ -110,6 +110,14 @@ public partial class UserDataSystem
         GameNotifications.Clear();
         BuyInappIds.Clear();
 
+        Tutorial.Clear();
+        for (int i = 0; i < flatBufferUserData.TutorialLength; i++)
+        {
+            var item = flatBufferUserData.Tutorial(i);
+            Tutorial.Add(item);
+        }
+
+
 
         Money.Value = HUDMoney.Value = BigInteger.Parse(flatBufferUserData.Money);
 

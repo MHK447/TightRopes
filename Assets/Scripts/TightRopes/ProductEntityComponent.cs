@@ -32,6 +32,7 @@ public class ProductEntityComponent : MonoBehaviour
             {
                 if (this.gameObject.activeSelf)
                 {
+                    SoundPlayer.Instance.PlaySound("item_get");
                     other.GetComponent<InGamePlayer>().AddProductItem();
                 }
 

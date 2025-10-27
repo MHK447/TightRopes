@@ -28,7 +28,7 @@ public class TutorialEntityClickWait : TutorialEntity
     [SerializeField]
     private Vector2 ClickableOffsetMax;
     [SerializeField]
-    private Vector3 maskPositionOffset = Vector3.zero;
+    private Vector2 clickObjOffset = Vector2.zero;
 
 
     [SerializeField]
@@ -86,8 +86,8 @@ public class TutorialEntityClickWait : TutorialEntity
                                     var pivot = new Vector2(0.5f - rect.pivot.x, 0.5f - rect.pivot.y);
                                     var size = new Vector2(rect.rect.width, rect.rect.height);
                                     convert = convert + (size * rect.lossyScale * pivot);
-                                    viewportPointMin = new Vector2((convert.x + ClickableOffsetMin.x - (rect.rect.width * rect.lossyScale.x * paddingValue / 2f)) / Screen.width, (convert.y + ClickableOffsetMin.y - (rect.rect.height * rect.lossyScale.y * (paddingValue + paddingAddYValue) / 2f)) / Screen.height);
-                                    viewportPointMax = new Vector2((convert.x + ClickableOffsetMax.x + (rect.rect.width * rect.lossyScale.x * paddingValue / 2f)) / Screen.width, (convert.y + ClickableOffsetMax.y + (rect.rect.height * rect.lossyScale.y * (paddingValue + paddingAddYValue) / 2f)) / Screen.height);
+                                    viewportPointMin = new Vector2((convert.x - (rect.rect.width * rect.lossyScale.x * paddingValue / 2f)) / Screen.width, (convert.y  - (rect.rect.height * rect.lossyScale.y * (paddingValue + paddingAddYValue) / 2f)) / Screen.height);
+                                    viewportPointMax = new Vector2((convert.x + (rect.rect.width * rect.lossyScale.x * paddingValue / 2f)) / Screen.width, (convert.y + (rect.rect.height * rect.lossyScale.y * (paddingValue + paddingAddYValue) / 2f)) / Screen.height);
 
                                     ClickAble = new Rect(new Vector2(convert.x - (rect.rect.width * rect.lossyScale.x * paddingValue / 2f), convert.y - (rect.rect.height * rect.lossyScale.y * (paddingValue + paddingAddYValue) / 2f)), size * rect.lossyScale * (paddingValue + paddingAddYValue));
                                 }
@@ -101,9 +101,9 @@ public class TutorialEntityClickWait : TutorialEntity
                                         return;
                                     }
 
-                                    var worldMin = rect.TransformPoint(new Vector2(rect.rect.xMin + ClickableOffsetMin.x, rect.rect.yMin + ClickableOffsetMin.y) * paddingValue);
+                                    var worldMin = rect.TransformPoint(new Vector2(rect.rect.xMin , rect.rect.yMin ) * paddingValue);
                                     viewportPointMin = cam.WorldToViewportPoint(worldMin);
-                                    var worldMax = rect.TransformPoint(new Vector2(rect.rect.xMax + ClickableOffsetMax.x, rect.rect.yMax + ClickableOffsetMax.y) * paddingValue);
+                                    var worldMax = rect.TransformPoint(new Vector2(rect.rect.xMax , rect.rect.yMax) * paddingValue);
                                     viewportPointMax = cam.WorldToViewportPoint(worldMax);
 
                                     var ScreenMin = cam.WorldToScreenPoint(worldMin);
@@ -117,8 +117,11 @@ public class TutorialEntityClickWait : TutorialEntity
                                 break;
                         }
                     }
-                    clickobj.GetComponent<RectTransform>().anchorMin = viewportPointMin;
-                    clickobj.GetComponent<RectTransform>().anchorMax = viewportPointMax;
+                    
+                    var clickRect = clickobj.GetComponent<RectTransform>();
+                    clickRect.anchorMin = viewportPointMin + ClickableOffsetMin;
+                    clickRect.anchorMax = viewportPointMax + ClickableOffsetMax;
+                    clickRect.anchoredPosition += clickObjOffset;
                     clickobj.SetActive(true);
 
                     if (mask)
@@ -128,7 +131,6 @@ public class TutorialEntityClickWait : TutorialEntity
                         maskTrans.anchorMax = viewportPointMax;
                         maskTrans.offsetMin = Vector2.zero;
                         maskTrans.offsetMax = Vector2.zero;
-                        maskTrans.anchoredPosition3D += maskPositionOffset;
                     }
 
                 }
@@ -158,6 +160,7 @@ public class TutorialEntityClickWait : TutorialEntity
                     var clickRect = clickobj.GetComponent<RectTransform>();
                     clickRect.anchorMin = viewportPointMin;
                     clickRect.anchorMax = viewportPointMax;
+                    clickRect.anchoredPosition += clickObjOffset;
 
                     ClickAble = RectTransformToScreenSpace(clickRect);
                     if (mask)
@@ -167,7 +170,6 @@ public class TutorialEntityClickWait : TutorialEntity
                         maskTrans.anchorMax = viewportPointMax;
                         maskTrans.offsetMin = Vector2.zero;
                         maskTrans.offsetMax = Vector2.zero;
-                        maskTrans.anchoredPosition3D += maskPositionOffset;
                     }
                 }
             }

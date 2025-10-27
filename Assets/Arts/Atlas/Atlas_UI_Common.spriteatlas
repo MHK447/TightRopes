@@ -96,6 +96,7 @@ SpriteAtlas:
     - 38565fa2114314db1a91a802eaa76e60: 21300000
     - 37be62b2a4e9b154a923503c1800929b: 21300000
     - 4bddbab2bbef4a44a8ee8f3541f0e85a: 21300000
+    - 6b8c0fd2fbb5a2446a0db97f0c633431: 21300000
     - d7419fd278d274bcbbf46a7db41e5095: 21300000
     - 8aaf9fd210eb24b44bd04b92af54ee36: 21300000
     - 878da233615924fc29c1d1e1898f6857: 21300000
@@ -225,6 +226,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 38565fa2114314db1a91a802eaa76e60, type: 3}
   - {fileID: 21300000, guid: 37be62b2a4e9b154a923503c1800929b, type: 3}
   - {fileID: 21300000, guid: 4bddbab2bbef4a44a8ee8f3541f0e85a, type: 3}
+  - {fileID: 21300000, guid: 6b8c0fd2fbb5a2446a0db97f0c633431, type: 3}
   - {fileID: 21300000, guid: d7419fd278d274bcbbf46a7db41e5095, type: 3}
   - {fileID: 21300000, guid: 8aaf9fd210eb24b44bd04b92af54ee36, type: 3}
   - {fileID: 21300000, guid: 878da233615924fc29c1d1e1898f6857, type: 3}
@@ -353,6 +355,7 @@ SpriteAtlas:
   - Pictoicon_Like 1
   - Common_Frame_R16
   - Common_Icon_ShopGems_03
+  - Common_Frame_S0_R0
   - Pictoicon_Hourglass 1
   - Common_Frame_SelectRewardBg_Legendary
   - Pictoicon_Life 1

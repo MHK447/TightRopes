@@ -271,12 +271,9 @@ public class ProjectUtility
 
     public static void Vibrate()
     {
-        if(GameRoot.Instance.UserData.Optiondata.Vibration)
-        {
-            Handheld.Vibrate();
-        }
+        if (GameRoot.Instance.UserData.Vib)
+            BanpoFriNative.Vibrate();
     }
-
 
     public static void SetRewardAndEffect(int rewardType, int rewardIndex, System.Numerics.BigInteger amount, System.Action OnEnd = null)
     {
@@ -337,10 +334,6 @@ public class ProjectUtility
         if (endPos == default(UnityEngine.Vector3))
             endPos = GameRoot.Instance.GetRewardEndPos(rewardType, rewardIdx, curui);
 
-        if (reward)
-        {
-            GameRoot.Instance.UserData.SetReward(rewardType, rewardIdx, value, false);
-        }
 
 
         ProjectUtility.GoodsGetEffect(

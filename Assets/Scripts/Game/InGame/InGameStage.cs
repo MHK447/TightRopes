@@ -70,6 +70,12 @@ public class InGameStage : MonoBehaviour
 
     public void ReadyPlayingGame()
     {
+
+        if (!GameRoot.Instance.TutorialSystem.IsClearTuto(TutorialSystem.Tuto_1) && GameRoot.Instance.UserData.Stageidx.Value == 2)
+        {
+            GameRoot.Instance.TutorialSystem.StartTutorial(TutorialSystem.Tuto_1, true);
+        }
+
         GameRoot.Instance.UserData.RaceData.DataClear();
         ProjectUtility.SetActiveCheck(ClearEffectObj, false);
         ActiveHighScoreObj(false);
@@ -81,11 +87,6 @@ public class InGameStage : MonoBehaviour
         GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().GetMainCam.SetFocus(true);
 
 
-
-        if (!GameRoot.Instance.TutorialSystem.IsClearTuto(TutorialSystem.Tuto_1) && GameRoot.Instance.UserData.Stageidx.Value == 2)
-        {
-            GameRoot.Instance.TutorialSystem.StartTutorial(TutorialSystem.Tuto_1, true);
-        }
     }
 
 
@@ -116,7 +117,7 @@ public class InGameStage : MonoBehaviour
             }
         }
 
-        if (inputDetected && !Player.IsDead && !Player.IsDeadWait)
+        if (inputDetected && !Player.IsDead && !Player.IsDeadWait && !GameRoot.Instance.TutorialSystem.IsActive())
         {
             StartPlaying();
         }
@@ -176,7 +177,7 @@ public class InGameStage : MonoBehaviour
         }
         rewardvalue = rewardvalue / 100;
 
-        GameRoot.Instance.UISystem.OpenUI<PageStageClearReward>(popup => popup.Set(Mathf.RoundToInt(GameRoot.Instance.UserData.RaceData.RaceDistanceProperty.Value), rewardvalue));
+        GameRoot.Instance.UISystem.OpenUI<PageStageClearReward>(popup => popup.Set(Mathf.RoundToInt(GameRoot.Instance.UserData.Highscorevalue), rewardvalue));
 
         // ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, rewardvalue, () =>
         // {
@@ -195,6 +196,10 @@ public class InGameStage : MonoBehaviour
         ProjectUtility.SetActiveCheck(ClearEffectObj, true);
         SetState(InGameState.WaitPlay);
         Player.StageClearEnd();
+
+        SoundPlayer.Instance.PlaySound("explosion");
+
+        GameRoot.Instance.UISystem.GetUI<PageScreenTouch>()?.Hide();
 
         GameRoot.Instance.WaitTimeAndCallback(2f, () =>
         {

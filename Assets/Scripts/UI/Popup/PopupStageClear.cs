@@ -73,6 +73,8 @@ public class PopupStageClear : UIBase
 
     public void Set(System.Numerics.BigInteger rewardvalue, System.Action onNextStageCallback = null)
     {
+        SoundPlayer.Instance.PlaySound("Win");
+
         RewardValue = rewardvalue;
         currentDisplayRewardValue = 0;
         currentDisplayAdRewardValue = 0;
@@ -232,6 +234,8 @@ public class PopupStageClear : UIBase
                 MoneyIconImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Money_{upgradedata.GetUpgradeternalOrder}");
 
                 MoneyValueText.text = $"x{GameRoot.Instance.UserData.Incomemultivalue.ToString("0.0")}";
+
+                SoundPlayer.Instance.PlaySound("upgrade_value");
 
                 // 회전 완료 후 1초 대기
                 DOVirtual.DelayedCall(1f, () =>

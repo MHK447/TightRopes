@@ -154,6 +154,11 @@ public class InGamePlayer : MonoBehaviour
 
         CycleSpeed = getcyclecount * 2;
 
+        if(CycleSpeed > 10)
+        {
+            CycleSpeed = 10;
+        }
+
         ProjectUtility.SetActiveCheck(CycleRoot.gameObject, getcyclecount > 0);
     }
 
@@ -575,7 +580,7 @@ public class InGamePlayer : MonoBehaviour
             }
             else
             {
-                OnTiltLimitReached(dir);
+                OnTiltLimitReached(GameRoot.Instance.UserData.Stageidx.Value == 1 ? dir : reversedir);
             }
         }
     }
@@ -746,7 +751,7 @@ public class InGamePlayer : MonoBehaviour
 
         if (GameRoot.Instance.UserData.RaceData.RaceProductCount.Value > GameRoot.Instance.UserData.Highscorevalue)
         {
-            GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceProductCount.Value;
+            GameRoot.Instance.UserData.Highscorevalue = (int)GameRoot.Instance.UserData.RaceData.RaceProductCount.Value * 10;
             GameRoot.Instance.UISystem.OpenUI<PopupNewRecord>(null, EndGameClear);
         }
         else

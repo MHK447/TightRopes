@@ -17,7 +17,7 @@ public class PageStageClearReward : UIBase
     [SerializeField]
     private Button RewardBtn;
 
-    [SerializeField]
+    [SerializeField]    
     private Button AdRewardBtn;
 
     private BigInteger RewardValue = 0;
@@ -32,7 +32,7 @@ public class PageStageClearReward : UIBase
 
     public void Set(int distance, BigInteger reward)
     {
-        DistanceText.text = distance.ToString();
+        DistanceText.text = $"{distance}m";
 
         RewardValue = reward;
 

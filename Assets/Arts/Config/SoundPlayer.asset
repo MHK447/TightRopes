@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDatas:
   - soundKey: bgm
-    audioData: {fileID: 8300000, guid: f9a5b1b5d68f0444e91c9be777185a6c, type: 3}
-    Volume: 0.3
+    audioData: {fileID: 8300000, guid: 4ca00336cd1d6472fad2bab2bd578e0e, type: 3}
+    Volume: 0.1
   - soundKey: btn
     audioData: {fileID: 8300000, guid: 3e3f161166ba72041a40891bd268001f, type: 3}
     Volume: 1
@@ -72,6 +72,21 @@ MonoBehaviour:
     Volume: 1
   - soundKey: newcontents
     audioData: {fileID: 8300000, guid: 97cc4d9d46617eb42a67d8d605e33105, type: 3}
+    Volume: 1
+  - soundKey: item_get
+    audioData: {fileID: 8300000, guid: 1785b3fd9dd89405898c2d0d21e91529, type: 3}
+    Volume: 0.7
+  - soundKey: Win
+    audioData: {fileID: 8300000, guid: df3067433289844cb862e7f2d29e6838, type: 3}
+    Volume: 1
+  - soundKey: explosion
+    audioData: {fileID: 8300000, guid: 1b0a38adc298a4fe08eba90aaefa8286, type: 3}
+    Volume: 1
+  - soundKey: get_coin
+    audioData: {fileID: 8300000, guid: cb6f4dc395abd418186177e70c9b86b4, type: 3}
+    Volume: 1
+  - soundKey: upgrade_value
+    audioData: {fileID: 8300000, guid: e417ff4844c874486ba718a06ddaf00b, type: 3}
     Volume: 1
   TestAudioClip: {fileID: 0}
   TestEditorVolume: 1

@@ -66,6 +66,12 @@ public class UpgradeSystem
             swayvalue -= ProjectUtility.PercentCalc(swayvalue, 10);
         }
 
+          for (int i = 0; i <  adcyclecount; i++)
+        {
+            swayvalue -= ProjectUtility.PercentCalc(swayvalue, 5);
+        }
+
+
         if (swayvalue <= stageinfotd.end_sway_value)
         {
             swayvalue = stageinfotd.end_sway_value;
@@ -143,7 +149,7 @@ public class UpgradeSystem
 
         var plusvalue = nextMultipleOfSix - finddata.Upgradeternallevel;
 
-        for(int i = 0; i <plusvalue; i++)
+        for(int i = 0; i < plusvalue; i++)
         {
             InComeUpgrade();
         }
@@ -154,7 +160,14 @@ public class UpgradeSystem
 
     public BigInteger GetUpgradeCost(int idx, int level)
     {
-        return Tables.Instance.GetTable<UpgradeInfo>().GetData(idx).GetCost(idx, level);
+        int levelvalue = level;
+        if(idx == (int)UpgradeType.MoneyMultiUpgrade)
+        {
+            var stageidx = 5 * (GameRoot.Instance.UserData.Stageidx.Value - 1);
+            levelvalue = level - stageidx;
+        }
+
+        return Tables.Instance.GetTable<UpgradeInfo>().GetData(idx).GetCost(idx, levelvalue);
     }
 
 
