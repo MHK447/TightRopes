@@ -95,7 +95,7 @@ public class PopupStageClear : UIBase
     {
         GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
         {
-            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue * 2);
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue * 3);
             ProceedToNextStage();
         });
     }

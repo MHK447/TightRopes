@@ -22,7 +22,7 @@ public class BoosterComponent : MonoBehaviour
 
     public void Init()
     {
-        ProjectUtility.SetActiveCheck(this.gameObject, true);
+        ProjectUtility.SetActiveCheck(this.gameObject, false);
 
         // 초기 상태 설정
         deltime = 0f;
@@ -38,8 +38,8 @@ public class BoosterComponent : MonoBehaviour
         // 버튼 비활성화
         BoosterBtn.interactable = false;
 
-        ProjectUtility.SetActiveCheck(this.gameObject, 
-        GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.BoosterOpen));
+        // ProjectUtility.SetActiveCheck(this.gameObject, 
+        // GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.BoosterOpen));
     }
 
     public void OnClickBoosterBtn()
