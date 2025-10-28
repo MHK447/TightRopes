@@ -224,7 +224,7 @@ public class InGameStage : MonoBehaviour
 
     public void StageClearCheck()
     {
-        if (GameRoot.Instance.UserData.RaceData.RaceProductCount.Value >= ProductEntityList.Count)
+        if (ProductEntityList.Count(x => x.gameObject.activeSelf) == 0)
         {
             StageClearEnd();
         }

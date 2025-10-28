@@ -167,6 +167,11 @@ public class InGamePlayer : MonoBehaviour
     {
         Anim.Play("Idle");
         IsDead = true;
+        
+        // 이동 완전히 멈추기
+        Rb.linearVelocity = Vector3.zero;  // 이동 속도 초기화
+        Rb.angularVelocity = Vector3.zero; // 회전 속도 초기화
+        Rb.constraints = RigidbodyConstraints.FreezeAll; // 모든 움직임 고정
     }
 
     public void PlayGame()
@@ -766,9 +771,6 @@ public class InGamePlayer : MonoBehaviour
     {
         GameRoot.Instance.UserData.RaceData.RaceProductCount.Value++;
         SetProductItem((int)GameRoot.Instance.UserData.RaceData.RaceProductCount.Value);
-
-
-        GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.StageClearCheck();
     }
 
 

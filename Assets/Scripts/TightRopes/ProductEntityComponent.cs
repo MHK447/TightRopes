@@ -25,18 +25,19 @@ public class ProductEntityComponent : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         ProjectUtility.Vibrate();
-        
+
         if (other.gameObject.tag == "Player")
         {
             this.transform.DOScale(0, 0.5f).SetEase(Ease.OutBack).OnComplete(() =>
             {
                 if (this.gameObject.activeSelf)
                 {
-                    SoundPlayer.Instance.PlaySound("item_get");
-                    other.GetComponent<InGamePlayer>().AddProductItem();
-                }
+                   SoundPlayer.Instance.PlaySound("item_get");
+                    ProjectUtility.SetActiveCheck(this.gameObject, false);
 
-                ProjectUtility.SetActiveCheck(this.gameObject, false);
+                    GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.StageClearCheck();
+                    GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.Player.AddProductItem();
+                }
             });
         }
     }

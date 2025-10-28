@@ -81,7 +81,7 @@ MonoBehaviour:
     Volume: 1
   - soundKey: explosion
     audioData: {fileID: 8300000, guid: 1b0a38adc298a4fe08eba90aaefa8286, type: 3}
-    Volume: 1
+    Volume: 0.7
   - soundKey: get_coin
     audioData: {fileID: 8300000, guid: cb6f4dc395abd418186177e70c9b86b4, type: 3}
     Volume: 1

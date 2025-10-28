@@ -43,7 +43,7 @@ MonoBehaviour:
     _prefab: StageMap_02
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.4
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 3200000000000000
@@ -56,7 +56,7 @@ MonoBehaviour:
     _prefab: StageMap_03
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.5
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 3200000000000000
@@ -69,7 +69,7 @@ MonoBehaviour:
     _prefab: StageMap_04
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.5
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 3200000000000000
@@ -82,7 +82,7 @@ MonoBehaviour:
     _prefab: StageMap_05
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.5
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
@@ -95,7 +95,7 @@ MonoBehaviour:
     _prefab: StageMap_06
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.6
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
@@ -108,7 +108,7 @@ MonoBehaviour:
     _prefab: StageMap_07
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.6
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
@@ -121,7 +121,7 @@ MonoBehaviour:
     _prefab: StageMap_08
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.6
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
@@ -134,7 +134,7 @@ MonoBehaviour:
     _prefab: StageMap_09
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.6
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
@@ -147,7 +147,7 @@ MonoBehaviour:
     _prefab: StageMap_10
     _base_balance_value: 20
     _base_sway_value: 0.2
-    _product_sway_value: 0.6
+    _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
