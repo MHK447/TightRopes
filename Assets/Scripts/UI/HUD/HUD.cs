@@ -37,7 +37,7 @@ public class HUD : UIBase
 
         GameRoot.Instance.UserData.SyncHUDCurrency();
 
-        MoneyText.text = Utility.CalculateMoneyToString(GameRoot.Instance.UserData.Money.Value);
+        MoneyText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.Money.Value);
         CashText.text = GameRoot.Instance.UserData.Cash.Value.ToString();
 
 

@@ -4,6 +4,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using BanpoFri;
+using UniRx;
+using UniRx.Async;
 
 public class GameRoot : Singleton<GameRoot>
 {
@@ -52,6 +54,9 @@ public class GameRoot : Singleton<GameRoot>
 	public ShopSystem ShopSystem { get; private set; } = new ShopSystem();
 
 	public UpgradeSystem UpgradeSystem { get; private set; } = new UpgradeSystem();
+
+	
+    public UnityMainThreadDispatcher MainThreadDispatcher;
 
 	[SerializeField]
 	private ATTManager attManager;
@@ -395,12 +400,6 @@ public class GameRoot : Singleton<GameRoot>
 		}
 	}
 
-	IEnumerator waitTimeAndCallback(float time, System.Action callback)
-	{
-		yield return new WaitForSeconds(time);
-		callback?.Invoke();
-	}
-
 	IEnumerator waitFrameAndCallback(int frame, System.Action callback)
 	{
 		for (int i = 0; i < frame; i++)
@@ -410,10 +409,30 @@ public class GameRoot : Singleton<GameRoot>
 
 	}
 
-	public void WaitTimeAndCallback(float time, System.Action callback)
-	{
-		StartCoroutine(waitTimeAndCallback(time, callback));
-	}
+    IEnumerator waitTimeAndCallback(float time, System.Action callback)
+    {
+        yield return new WaitForSeconds(time);
+        callback?.Invoke();
+    }
+
+    IEnumerator waitRealTimeAndCallback(float time, System.Action callback)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        callback?.Invoke();
+    }
+
+    public Coroutine WaitStageAndCallback(float time, System.Action callback)
+    {
+        return StartCoroutine(waitTimeAndCallback(time, callback));
+    }
+
+    public Coroutine WaitTimeAndCallback(float time, System.Action callback)
+    {
+        return StartCoroutine(waitTimeAndCallback(time, callback));
+    }
+
+
+
 
 	public void WaitFrameAndCallback(int frame, System.Action callback)
 	{

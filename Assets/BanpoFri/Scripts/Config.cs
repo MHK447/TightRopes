@@ -86,6 +86,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
     public enum RecordCountKeys
     {
+        FirstEcpm,
         Init,
         StartStage,
         Navi_Start,
@@ -94,6 +95,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         AdCycleCount,
         TutorialStageCount,
         FirstSwayAdd,
+        AdWatchCount,
     }
 
 

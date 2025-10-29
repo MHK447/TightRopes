@@ -13,7 +13,7 @@ public class InGameTimeUI : InGameFloatingUI
 
     public void SetTime(int time)
     {
-        TimeText.text = Utility.GetTimeStringFormattingShort(time);
+        TimeText.text = ProjectUtility.GetTimeStringFormattingShort(time);
     }
 
 }

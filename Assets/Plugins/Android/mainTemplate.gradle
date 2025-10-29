@@ -4,8 +4,6 @@ apply from: '../shared/keepUnitySymbols.gradle'
 
 // Android Resolver Exclusions Start
 android {
-    ndkPath "**NDKPATH**"
-    ndkVersion "**NDKVERSION**"
   packaging {
       exclude ('/lib/armeabi/*' + '*')
       exclude ('/lib/mips/*' + '*')
@@ -64,6 +62,16 @@ dependencies {
     
 // Android Resolver Dependencies Start
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Assets/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml:12
+    implementation 'com.android.installreferrer:installreferrer:2.1' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:7
+    implementation 'com.applovin:applovin-sdk:13.5.0' // Assets/MaxSdk/AppLovin/Editor/Dependencies.xml:4
+    implementation 'com.appsflyer:af-android-sdk:6.17.3' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:5
+    implementation 'com.appsflyer:purchase-connector:2.2.0' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:8
+    implementation 'com.appsflyer:unity-wrapper:6.17.7' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:6
+    implementation 'com.facebook.android:facebook-applinks:[18.0.0,19)' // Assets/FacebookSDK/Plugins/Editor/Dependencies.xml:6
+    implementation 'com.facebook.android:facebook-core:[18.0.0,19)' // Assets/FacebookSDK/Plugins/Editor/Dependencies.xml:5
+    implementation 'com.facebook.android:facebook-gamingservices:[18.0.0,19)' // Assets/FacebookSDK/Plugins/Editor/Dependencies.xml:9
+    implementation 'com.facebook.android:facebook-login:[18.0.0,19)' // Assets/FacebookSDK/Plugins/Editor/Dependencies.xml:7
+    implementation 'com.facebook.android:facebook-share:[18.0.0,19)' // Assets/FacebookSDK/Plugins/Editor/Dependencies.xml:8
     implementation 'com.google.android.gms:play-services-ads:24.1.0' // Assets/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml:7
     implementation 'com.google.android.gms:play-services-base:18.6.0' // Assets/Firebase/Editor/AppDependencies.xml:17
     implementation 'com.google.android.ump:user-messaging-platform:3.1.0' // Assets/GoogleMobileAds/Editor/GoogleUmpDependencies.xml:7
@@ -81,6 +89,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-unity:12.10.1' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:20
     implementation 'com.google.firebase:firebase-firestore:25.1.3' // Assets/Firebase/Editor/FirestoreDependencies.xml:13
     implementation 'com.google.firebase:firebase-firestore-unity:12.10.1' // Assets/Firebase/Editor/FirestoreDependencies.xml:20
+    implementation 'com.parse.bolts:bolts-android:1.4.0' // Assets/FacebookSDK/Plugins/Editor/Dependencies.xml:4
 // Android Resolver Dependencies End
 
     **DEPS**

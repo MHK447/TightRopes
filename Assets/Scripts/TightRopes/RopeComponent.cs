@@ -83,7 +83,7 @@ public class RopeComponent : MonoBehaviour
             isAnimating = false;
         }
 
-        var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeOrder;
+        var level = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.RopeUpgrade].GetUpgradeternalOrder;
         Material newMaterial = Config.Instance.GetRopeUpgradeMat(level);
 
 
