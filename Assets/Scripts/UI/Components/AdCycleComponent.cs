@@ -26,7 +26,7 @@ public class AdCycleComponent : MonoBehaviour
 
     public void OnClickUpgradeBtn()
     {
-        GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
+        GameRoot.Instance.PluginSystem.ADProp.ShowRewardAD(TpMaxProp.AdRewardType.AdCycle, (result) =>
         {
             GameRoot.Instance.UserData.AddRecordCount(Config.RecordCountKeys.AdCycleCount, 1);
 

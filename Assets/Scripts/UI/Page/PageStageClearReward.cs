@@ -57,7 +57,7 @@ public class PageStageClearReward : UIBase
 
     private void OnAdRewardBtnClick()
     {
-        GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
+        GameRoot.Instance.PluginSystem.ADProp.ShowRewardAD(TpMaxProp.AdRewardType.StageClearReward, (result) =>
         {
 
             Hide();

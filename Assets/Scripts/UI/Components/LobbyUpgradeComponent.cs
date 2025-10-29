@@ -172,7 +172,7 @@ public class LobbyUpgradeComponent : MonoBehaviour
         }
         else if (IsAdReady && !WatchAd)
         {
-            GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
+            GameRoot.Instance.PluginSystem.ADProp.ShowRewardAD(TpMaxProp.AdRewardType.UpgradeReward, (result) =>
             {
                 WatchAd = true;
                 UppgradeLevelUp(true);

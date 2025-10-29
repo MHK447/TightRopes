@@ -14,16 +14,16 @@ using AppsFlyerSDK;
 public class TpMaxProp
 {
 #if UNITY_ANDROID
-    string adInterstitialUnitId = "b15bab938c80d5b4";
-    string adRewardUnitId = "16261794c11f3520";
-    string adBannerUnitId = "bbed0c0b94d7ba56";
+    string adInterstitialUnitId = "62751adb8135faf6";
+    string adRewardUnitId = "72d64fae972ee4d7";
+    string adBannerUnitId = "76e194fcc58c9b82";
     string adAppOpenUnitId = "b0c92a35413261f4";
     string amazone_inter_id = "dc92b8fc-e3c2-4865-90a1-3b92c4f0bdc2";
     string amazone_reward_id = "7641dcdf-6189-4988-ad12-14821ea6099f";
 #else
-    string adInterstitialUnitId = "e2c1e107ea9f16a1";
-    string adRewardUnitId = "fa45cba72ca2dcf6";
-    string adBannerUnitId = "2aae3e2aa973ed00";
+    string adInterstitialUnitId = "5bea03d4dfc08aca";
+    string adRewardUnitId = "dafe4c3242b8e122";
+    string adBannerUnitId = "775db57eecbf1c49";
     string adAppOpenUnitId = "02d72dd41598886f";
     string amazone_inter_id = "d4a26539-a502-4433-9f84-7ebf11dcea0a";
     string amazone_reward_id = "fb6bc6e8-5e23-424e-a2a9-d33099968607";
@@ -39,21 +39,10 @@ public class TpMaxProp
     public enum AdRewardType
     {
         None = -1,
-        StageResultReward = 1,
-        ChoiceReroll = 2,
-        AddBlock = 3,
-        AddSkill = 4,
-        InGameAddAdBock = 5,
-        Revival = 6,
-        StageBonusReward = 7,
-        TrainingUpgrade = 8,
-        AdPass = 9,
-        Energy = 10,
-        LuckyChoice = 11,
-        InsufficientSilverCoin = 12,
-        LuckySpinReroll = 13,
-        RestoreSkills = 14,
-        Attendance = 15,
+        AdCycle = 0,
+        ResultReward = 1,
+        StageClearReward = 2,
+        UpgradeReward = 3,
     }
 
     public enum AdInterType

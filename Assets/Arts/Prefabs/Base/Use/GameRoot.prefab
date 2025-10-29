@@ -1230,6 +1230,7 @@ MonoBehaviour:
   Loading: {fileID: 0}
   AdManager: {fileID: 1167453929045138712}
   inAppPurchaseManager: {fileID: 4449524919486717860}
+  MainThreadDispatcher: {fileID: 0}
   attManager: {fileID: 6570024072948638994}
   UILock: {fileID: 4049272753500038268}
 --- !u!222 &4615111472151539500
@@ -1516,8 +1517,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400672, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410584, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11414302, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431488, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
@@ -1875,6 +1888,10 @@ PrefabInstance:
     - target: {fileID: 5381448849821817531, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660205284470628916, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 32767
       objectReference: {fileID: 0}
     - target: {fileID: 6152090493718965721, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.y
