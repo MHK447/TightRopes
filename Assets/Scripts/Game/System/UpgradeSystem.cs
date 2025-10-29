@@ -63,12 +63,12 @@ public class UpgradeSystem
 
         for (int i = 0; i < upgradeorder + adcyclecount; i++)
         {
-            swayvalue -= ProjectUtility.PercentCalc(swayvalue, 10);
+            swayvalue -= ProjectUtility.PercentCalc(swayvalue, 15);
         }
 
           for (int i = 0; i <  adcyclecount; i++)
         {
-            swayvalue -= ProjectUtility.PercentCalc(swayvalue, 5);
+            swayvalue -= ProjectUtility.PercentCalc(swayvalue, 10);
         }
 
 

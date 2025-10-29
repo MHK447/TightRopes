@@ -585,7 +585,7 @@ public class InGamePlayer : MonoBehaviour
             }
             else
             {
-                OnTiltLimitReached(GameRoot.Instance.UserData.Stageidx.Value == 1 ? dir : reversedir);
+                OnTiltLimitReached(GameRoot.Instance.UserData.Stageidx.Value == 3 ? dir : reversedir);
             }
         }
     }

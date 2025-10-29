@@ -216,6 +216,8 @@ public class InGameStage : MonoBehaviour
             }
             rewardvalue = rewardvalue / 100;
 
+            rewardvalue *= 5;
+
             GameRoot.Instance.UISystem.OpenUI<PopupStageClear>(popup => popup.Set(rewardvalue, () => NextStage(GameRoot.Instance.UserData.Stageidx.Value + 1)));
         });
     }

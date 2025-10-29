@@ -26,18 +26,18 @@ MonoBehaviour:
   mSecondKey: []
   mDataList:
   - _stage_idx: 1
-    _end_goal_value: 100
+    _end_goal_value: 150
     _prefab: StageMap_01
     _base_balance_value: 20
     _base_sway_value: 0.2
     _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 2a000000b4000000
-    _image: MapIcon_01
+    _cam_rot: 1affffffb4000000
+    _image: MapIcon_08
     _name: str_stage_name_01
-    _image_color: Stage_Color_01
-    _product_img: Common_Product_1
+    _image_color: Stage_Color_08
+    _product_img: Common_Product_8
   - _stage_idx: 2
     _end_goal_value: 150
     _prefab: StageMap_02
@@ -46,24 +46,24 @@ MonoBehaviour:
     _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 3200000000000000
-    _image: MapIcon_02
+    _cam_rot: 1affffffb4000000
+    _image: MapIcon_07
     _name: str_stage_name_02
-    _image_color: Stage_Color_02
-    _product_img: Common_Product_2
+    _image_color: Stage_Color_07
+    _product_img: Common_Product_7
   - _stage_idx: 3
-    _end_goal_value: 150
+    _end_goal_value: 100
     _prefab: StageMap_03
     _base_balance_value: 20
     _base_sway_value: 0.2
     _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 3200000000000000
-    _image: MapIcon_03
+    _cam_rot: 2a000000b4000000
+    _image: MapIcon_01
     _name: str_stage_name_03
-    _image_color: Stage_Color_03
-    _product_img: Common_Product_3
+    _image_color: Stage_Color_01
+    _product_img: Common_Product_1
   - _stage_idx: 4
     _end_goal_value: 150
     _prefab: StageMap_04
@@ -72,11 +72,11 @@ MonoBehaviour:
     _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 3200000000000000
-    _image: MapIcon_04
+    _cam_rot: 1affffffb4000000
+    _image: MapIcon_05
     _name: str_stage_name_04
-    _image_color: Stage_Color_04
-    _product_img: Common_Product_4
+    _image_color: Stage_Color_05
+    _product_img: Common_Product_5
   - _stage_idx: 5
     _end_goal_value: 150
     _prefab: StageMap_05
@@ -85,11 +85,11 @@ MonoBehaviour:
     _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 1affffffb4000000
-    _image: MapIcon_05
+    _cam_rot: 3200000000000000
+    _image: MapIcon_02
     _name: str_stage_name_05
-    _image_color: Stage_Color_05
-    _product_img: Common_Product_5
+    _image_color: Stage_Color_02
+    _product_img: Common_Product_2
   - _stage_idx: 6
     _end_goal_value: 150
     _prefab: StageMap_06
@@ -98,11 +98,11 @@ MonoBehaviour:
     _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 1affffffb4000000
-    _image: MapIcon_06
+    _cam_rot: 3200000000000000
+    _image: MapIcon_03
     _name: str_stage_name_06
-    _image_color: Stage_Color_06
-    _product_img: Common_Product_6
+    _image_color: Stage_Color_03
+    _product_img: Common_Product_3
   - _stage_idx: 7
     _end_goal_value: 150
     _prefab: StageMap_07
@@ -112,10 +112,10 @@ MonoBehaviour:
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
-    _image: MapIcon_07
+    _image: MapIcon_10
     _name: str_stage_name_07
-    _image_color: Stage_Color_07
-    _product_img: Common_Product_7
+    _image_color: Stage_Color_10
+    _product_img: Common_Product_10
   - _stage_idx: 8
     _end_goal_value: 150
     _prefab: StageMap_08
@@ -124,11 +124,11 @@ MonoBehaviour:
     _product_sway_value: 0.3
     _end_balance_value: 80
     _end_sway_value: 0.5
-    _cam_rot: 1affffffb4000000
-    _image: MapIcon_08
+    _cam_rot: 3200000000000000
+    _image: MapIcon_04
     _name: str_stage_name_08
-    _image_color: Stage_Color_08
-    _product_img: Common_Product_8
+    _image_color: Stage_Color_04
+    _product_img: Common_Product_4
   - _stage_idx: 9
     _end_goal_value: 150
     _prefab: StageMap_09
@@ -138,10 +138,10 @@ MonoBehaviour:
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
-    _image: MapIcon_09
+    _image: MapIcon_06
     _name: str_stage_name_09
-    _image_color: Stage_Color_09
-    _product_img: Common_Product_9
+    _image_color: Stage_Color_06
+    _product_img: Common_Product_6
   - _stage_idx: 10
     _end_goal_value: 150
     _prefab: StageMap_10
@@ -151,7 +151,7 @@ MonoBehaviour:
     _end_balance_value: 80
     _end_sway_value: 0.5
     _cam_rot: 1affffffb4000000
-    _image: MapIcon_10
+    _image: MapIcon_09
     _name: str_stage_name_10
-    _image_color: Stage_Color_10
-    _product_img: Common_Product_10
+    _image_color: Stage_Color_09
+    _product_img: Common_Product_9

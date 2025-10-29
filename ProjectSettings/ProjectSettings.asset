@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: BanpoFri
-  productName: TighAndRope(Touch)
+  productName: TighAndRope
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -165,12 +165,12 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.banpofri.tightandrope
-    iPhone: com.banpofri.mergepuzzlecom
+    iPhone: com.banpofri.tightandrope
   buildNumber:
     Bratwurst: 0
     Standalone: 0
     VisionOS: 0
-    iPhone: 2
+    iPhone: 1
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 16
@@ -241,7 +241,7 @@ PlayerSettings:
   metalCompileShaderBinary: 0
   iOSRenderExtraFrameOnPause: 0
   iosCopyPluginsCodeInsteadOfSymlink: 0
-  appleDeveloperTeamID: 5H92VF2ZC8
+  appleDeveloperTeamID: 5S856TV96A
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
   VisionOSManualSigningProvisioningProfileID: 
@@ -304,115 +304,115 @@ PlayerSettings:
   - m_BuildTarget: iPhone
     m_Icons:
     - m_Textures:
-      - {fileID: 2800000, guid: e380e091e00354db79a452f295102737, type: 3}
+      - {fileID: 2800000, guid: 8ee4114353f6744a9a49c13d3908951c, type: 3}
       m_Width: 180
       m_Height: 180
       m_Kind: 0
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 077b44120495d45b4afe7c515e46bae5, type: 3}
+      - {fileID: 2800000, guid: 8041bac8968394182a83efeb8ad0c788, type: 3}
       m_Width: 120
       m_Height: 120
       m_Kind: 0
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 3b9ee2c2479e24d28ab620623b442b4d, type: 3}
+      - {fileID: 2800000, guid: 138745776ce9047a78ec7bf7d56037fd, type: 3}
       m_Width: 167
       m_Height: 167
       m_Kind: 0
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 420a3f21753554e428a11b25417f745a, type: 3}
+      - {fileID: 2800000, guid: 8d29c0fdf1ba4403fa16db84cd2832c5, type: 3}
       m_Width: 152
       m_Height: 152
       m_Kind: 0
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: b230387bc7b234f9881d48a8e75618bc, type: 3}
+      - {fileID: 2800000, guid: b0226714efa1b440abd39ad8991d93d6, type: 3}
       m_Width: 76
       m_Height: 76
       m_Kind: 0
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 077b44120495d45b4afe7c515e46bae5, type: 3}
+      - {fileID: 2800000, guid: 8041bac8968394182a83efeb8ad0c788, type: 3}
       m_Width: 120
       m_Height: 120
       m_Kind: 3
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 5b6afe71a9af0400d88a5e54d7bdc6ef, type: 3}
+      - {fileID: 2800000, guid: 87caa273094e34f798a5d07e4b9bf5ee, type: 3}
       m_Width: 80
       m_Height: 80
       m_Kind: 3
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 5b6afe71a9af0400d88a5e54d7bdc6ef, type: 3}
+      - {fileID: 2800000, guid: 87caa273094e34f798a5d07e4b9bf5ee, type: 3}
       m_Width: 80
       m_Height: 80
       m_Kind: 3
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 7630558d7bcdf4f86984a76a634a3c0a, type: 3}
+      - {fileID: 2800000, guid: 65796331c4f6a421c869dac4b42dc68a, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 3
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 8fd622920995d49b78d7f07493f2eef7, type: 3}
+      - {fileID: 2800000, guid: 94b4077a16e404d41ae8c6f32673522f, type: 3}
       m_Width: 87
       m_Height: 87
       m_Kind: 1
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: a477151d2a4c54a8f9b3d75690fff55e, type: 3}
+      - {fileID: 2800000, guid: 9c687129dd59f463392d5e21a59ad21f, type: 3}
       m_Width: 58
       m_Height: 58
       m_Kind: 1
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 77a2a74427a124ef7bd053d261bdef7b, type: 3}
+      - {fileID: 2800000, guid: 3efa71cf0949f48a0931b4bac64af261, type: 3}
       m_Width: 29
       m_Height: 29
       m_Kind: 1
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: a477151d2a4c54a8f9b3d75690fff55e, type: 3}
+      - {fileID: 2800000, guid: 9c687129dd59f463392d5e21a59ad21f, type: 3}
       m_Width: 58
       m_Height: 58
       m_Kind: 1
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 77a2a74427a124ef7bd053d261bdef7b, type: 3}
+      - {fileID: 2800000, guid: 3efa71cf0949f48a0931b4bac64af261, type: 3}
       m_Width: 29
       m_Height: 29
       m_Kind: 1
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 9a88e7913eacb4ddbb5453ef92552f72, type: 3}
+      - {fileID: 2800000, guid: b7ac5380a90f04b28b2d841ae4273d00, type: 3}
       m_Width: 60
       m_Height: 60
       m_Kind: 2
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 7630558d7bcdf4f86984a76a634a3c0a, type: 3}
+      - {fileID: 2800000, guid: 65796331c4f6a421c869dac4b42dc68a, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 2
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 7630558d7bcdf4f86984a76a634a3c0a, type: 3}
+      - {fileID: 2800000, guid: 65796331c4f6a421c869dac4b42dc68a, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 2
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 132ba6c4c0d0d401c8977af20ef3827b, type: 3}
+      - {fileID: 2800000, guid: 8ba1464e05cfe4f5d943fb6e5e4dd877, type: 3}
       m_Width: 20
       m_Height: 20
       m_Kind: 2
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 6ef66b1723ef5451eb7be3ff0ea3909a, type: 3}
+      - {fileID: 2800000, guid: f29579e691e4c410aabd2d1732a27383, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 4
@@ -519,6 +519,9 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_StaticBatching: 1
     m_DynamicBatching: 0
+  - m_BuildTarget: iPhone
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs:
   - m_BuildTarget: MacStandaloneSupport
@@ -578,6 +581,9 @@ PlayerSettings:
   - serializedVersion: 3
     m_BuildTarget: Android
     m_Formats: 02000000
+  - serializedVersion: 3
+    m_BuildTarget: iOS
+    m_Formats: 03000000
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -862,7 +868,7 @@ PlayerSettings:
     WebGL: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
-    iPhone: RH_AutoComplete;DOTWEEN;AMPLIFY_SHADER_EDITOR
+    iPhone: RH_AutoComplete;DOTWEEN;AMPLIFY_SHADER_EDITOR;BANPOFRI_LOG
     tvOS: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture: {}

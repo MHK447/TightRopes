@@ -39,7 +39,7 @@ public class StageComponent : MonoBehaviour
             StageIdx = stageidx;
 
 
-            StageImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Map, $"MapIcon_{stageidx:00}");
+            StageImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Map, stageinfotd.image);
             StageImg.color = stageidx <= GameRoot.Instance.UserData.Stageidx.Value ? Color.white : Color.black;
 
             StageNameText.text = Tables.Instance.GetTable<Localize>().GetString(stageinfotd.name);

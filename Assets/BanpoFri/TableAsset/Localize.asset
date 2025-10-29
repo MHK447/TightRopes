@@ -213,10 +213,10 @@ MonoBehaviour:
     _en: 
     _ja: 
   - _idx: str_touch_hold_left
-    _ko: Hold the left side.
+    _ko: Press and hold on the left side.
     _en: 
     _ja: 
   - _idx: str_touch_hold_right
-    _ko: Hold the right side.
+    _ko: Press and hold on the right side.
     _en: 
     _ja: 

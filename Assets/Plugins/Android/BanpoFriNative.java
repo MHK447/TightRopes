@@ -121,17 +121,20 @@ public class BanpoFriNative {
         v.cancel();
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
         {
-            VibrationEffect vibrationEffect = VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK);
+            // EFFECT_HEAVY_CLICK로 변경하여 강한 진동 생성
+            VibrationEffect vibrationEffect = VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK);
             v.vibrate(vibrationEffect);
         }
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) 
         {
-            v.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
+            // 진동 시간을 50ms로 늘리고 최대 세기(255) 사용
+            v.vibrate(VibrationEffect.createOneShot(50, 255));
         } 
         else 
         {
             //deprecated in API 26 
-            v.vibrate(milliseconds);
+            // 진동 시간을 50ms로 늘림
+            v.vibrate(50);
         }
     }
 
