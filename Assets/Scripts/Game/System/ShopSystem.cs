@@ -39,6 +39,10 @@ public class ShopSystem
 
     public int daily_reward_reset_time = 0;
 
+    public ReactiveProperty<bool> NoInterstitialAds = new ReactiveProperty<bool>(false);
+
+    public ReactiveProperty<bool> NoRewardedAds = new ReactiveProperty<bool>(false);
+
     public void Create()
     {
         // 타이머 초기화

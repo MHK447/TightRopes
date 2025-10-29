@@ -4,6 +4,8 @@ apply from: '../shared/keepUnitySymbols.gradle'
 
 // Android Resolver Exclusions Start
 android {
+    ndkPath "**NDKPATH**"
+    ndkVersion "**NDKVERSION**"
   packaging {
       exclude ('/lib/armeabi/*' + '*')
       exclude ('/lib/mips/*' + '*')

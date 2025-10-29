@@ -318,7 +318,7 @@ public class PluginSystem
 #if UNITY_ANDROID && !UNITY_EDITOR
         if (_playReviewInfo == null)
         {
-            TreepllaNative.OpenURL(googleStoreURL);
+            BanpoFriNative.OpenURL(googleStoreURL);
             return;
         }
         GameRoot.Instance.StartCoroutine(ReviewInProgressAfter());
@@ -356,7 +356,7 @@ public class PluginSystem
         _playReviewInfo = null; // Reset the object
         if (launchFlowOperation.Error != ReviewErrorCode.NoError)
         {
-            TreepllaNative.OpenURL(googleStoreURL);
+            BanpoFriNative.OpenURL(googleStoreURL);
             // Log error. For example, using requestFlowOperation.Error.ToString().
             TpLog.Log(launchFlowOperation.Error.ToString());
             yield break;
