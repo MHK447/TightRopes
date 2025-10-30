@@ -222,7 +222,7 @@ public class ATTManager : MonoBehaviour
         Debug.Log($"광고 SDK에 ATT 상태 알림: {isAuthorized}");
         
         // Google Mobile Ads에 알림
-        if (GameRoot.Instance != null && GameRoot.Instance.GetAdManager != null)
+        if (GameRoot.Instance != null)
         {
             // AdManager에 ATT 상태 전달 (필요시 AdManager에 메서드 추가)
         }

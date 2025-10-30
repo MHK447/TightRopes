@@ -628,12 +628,7 @@ public class AdManager : MonoBehaviour
         Debug.Log($"전면 광고 로드됨: {IsInterAdLoaded}");
         Debug.Log($"네트워크 상태: {Application.internetReachability}");
 
-        // ATT 상태 확인
-        if (GameRoot.Instance.GetATTManager != null)
-        {
-            Debug.Log($"ATT 권한: {GameRoot.Instance.GetATTManager.GetTrackingStatusString()}");
-        }
-
+    
         Debug.Log("===================");
     }
 

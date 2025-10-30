@@ -4,6 +4,19 @@ using UnityEngine;
 using UniRx;
 using BanpoFri;
 
+
+public enum InAppPurchaseLocation
+{
+    none = -1,
+    shop = 0,
+    popup = 1,
+    hud,
+    nomoney,
+    other,
+    banner,
+}
+
+
 public class ShopSystem
 {
     public System.DateTime ResetTime { get; private set; }
@@ -35,13 +48,16 @@ public class ShopSystem
     private float currentInterAdTimer = 0f;
     private bool isInterAdReady = false;
 
-    public int stage_energy_consume =0;
+    public int stage_energy_consume = 0;
 
     public int daily_reward_reset_time = 0;
 
     public ReactiveProperty<bool> NoInterstitialAds = new ReactiveProperty<bool>(false);
 
     public ReactiveProperty<bool> NoRewardedAds = new ReactiveProperty<bool>(false);
+
+
+    public InAppPurchaseLocation curLocation = InAppPurchaseLocation.none;
 
     public void Create()
     {
@@ -65,31 +81,11 @@ public class ShopSystem
         {
             currentInterAdTimer += 1f;
 
-            // 설정된 시간에 도달하면 광고 표시 준비
-            if (currentInterAdTimer >= InterAdTime)
-            {
-                TryShowInterstitialAd();
-            }
+           
         }
     }
 
 
-
-    // 인터스티셜 광고 표시 시도
-    public void TryShowInterstitialAd()
-    {
-        // 튜토리얼 중이거나 UI가 활성화된 상태일 때는 광고 표시 안함
-        if (GameRoot.Instance.TutorialSystem.IsActive()) return;
-        if (!GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.Interstitial)) return;
-
-        currentInterAdTimer = 0f;
-        // 광고 표시 및 타이머 초기화
-        GameRoot.Instance.GetAdManager.ShowInterstitialAd(() =>
-        {
-            // 광고가 끝나면 타이머 초기화
-            Debug.Log("인터스티셜 광고가 표시되었습니다.");
-        });
-    }
 
     // 광고 표시 시간 설정 (초 단위)
     public void SetInterAdTime(float seconds)

@@ -96,6 +96,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         TutorialStageCount,
         FirstSwayAdd,
         AdWatchCount,
+        BuyInAppCountTotal,
     }
 
 

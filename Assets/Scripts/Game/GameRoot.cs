@@ -23,17 +23,13 @@ public class GameRoot : Singleton<GameRoot>
 	[SerializeField]
 	private GameObject DebugConsoleObj;
 
-	[SerializeField]
-	private Joystick JoyStick;
 
 	[HideInInspector]
 	public LoadingBasic Loading;
-	[SerializeField]
-	private AdManager AdManager;
-	[SerializeField]
-	private InAppPurchaseManager inAppPurchaseManager;
 
-	public InAppPurchaseManager GetInAppPurchaseManager { get { return inAppPurchaseManager; } }
+
+    public InAppPurchaseManager InAppPurchaseManager;
+
 
 	public RectTransform GetMainCanvasTR { get { return MainCanvas.transform as RectTransform; } }
 	public UISystem UISystem { get; private set; } = new UISystem();
@@ -58,13 +54,7 @@ public class GameRoot : Singleton<GameRoot>
 	
     public UnityMainThreadDispatcher MainThreadDispatcher;
 
-	[SerializeField]
-	private ATTManager attManager;
-	public ATTManager GetATTManager { get { return attManager; } }
-
 	private Queue<System.Action> PauseActions = new Queue<System.Action>();
-
-	public AdManager GetAdManager { get { return AdManager; } }
 
 	public GameObject UILock;
 	private static bool InitTry = false;
@@ -223,9 +213,9 @@ public class GameRoot : Singleton<GameRoot>
 		//TouchStartActions.Clear();
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		PluginSystem.Init();
-		//InAppPurchaseManager = GetComponent<InAppPurchaseManager>();
-		//if (InAppPurchaseManager != null)
-		//	InAppPurchaseManager.Init();
+		InAppPurchaseManager = GetComponent<InAppPurchaseManager>();
+		if (InAppPurchaseManager != null)
+			InAppPurchaseManager.Init();
 		//SnapshotCam = SnapshotCamera.MakeSnapshotCamera("SnapShot");
 		//SnapshotCam.transform.SetParent(this.transform);
 		//SnapshotCam.transform.position = new Vector3(0f, 0f, -1f);
@@ -266,12 +256,10 @@ public class GameRoot : Singleton<GameRoot>
 		InGameSystem.Create();
 		GameNotification.Create();
 		ShopSystem.Create();
-		GameRoot.instance.inAppPurchaseManager.InitializePurchasing();
+		GameRoot.instance.InAppPurchaseManager.InitializePurchasing();
 
 		InitRequestAtlas();
 
-		// ATT 권한 요청 초기화 (iOS에서만)
-		InitializeATTManager();
 
 		GameRoot.instance.WaitTimeAndCallback(0.5f, () =>
 		{
@@ -296,36 +284,11 @@ public class GameRoot : Singleton<GameRoot>
 		}
 	}
 
-	private void InitializeATTManager()
-	{
-		// ATTManager가 아직 없다면 동적으로 생성
-		if (attManager == null)
-		{
-			GameObject attManagerObj = new GameObject("ATTManager");
-			attManager = attManagerObj.AddComponent<ATTManager>();
-			DontDestroyOnLoad(attManagerObj);
-		}
-
-		// 이벤트 연결
-		if (attManager != null)
-		{
-			attManager.OnATTResponse += OnATTResponseReceived;
-		}
-	}
-
 	private void OnATTResponseReceived(bool isAuthorized)
 	{
 		Debug.Log($"ATT 권한 응답 받음: {isAuthorized}");
 
-		// 광고 SDK에 ATT 상태 전달 및 초기화
-		if (AdManager != null)
-		{
-			// iOS에서는 ATT 권한 완료 후 AdMob 초기화
-			if (Application.platform == RuntimePlatform.IPhonePlayer)
-			{
-				AdManager.InitializeAdsAfterATT(isAuthorized);
-			}
-		}
+
 
 		// 필요시 다른 추적 관련 SDK들에도 상태 전달
 	}
