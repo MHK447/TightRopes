@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912a891cef2e54effa8e405a97152f58, type: 3}
   m_Name: AppNameLocalize
   m_EditorClassIdentifier: 
-  en: MergeFoodPuzzle
-  ko: MergeFoodPuzzle
-  ja: MergeFoodPuzzle
-  de: MergeFoodPuzzle
-  es: MergeFoodPuzzle
-  fr: MergeFoodPuzzle
-  zhHans: MergeFoodPuzzle
-  zhHant: MergeFoodPuzzle
+  en: Epic Rope Run
+  ko: Epic Rope Run
+  ja: Epic Rope Run
+  de: Epic Rope Run
+  es: Epic Rope Run
+  fr: Epic Rope Run
+  zhHans: Epic Rope Run
+  zhHant: Epic Rope Run

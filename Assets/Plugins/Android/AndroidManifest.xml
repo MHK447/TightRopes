@@ -10,6 +10,17 @@
     </activity>
     <!--This was added by the AnalyticsFixPropertyRemover. If you want to prevent the generation of this, have "AnalyticsFixPropertyRemover" included in a comment-->
     <property tools:node="removeAll" />
+    <activity android:name="com.facebook.unity.FBUnityLoginActivity" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+    <activity android:name="com.facebook.unity.FBUnityDialogsActivity" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+    <activity android:name="com.facebook.unity.FBUnityGamingServicesFriendFinderActivity" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+    <activity android:name="com.facebook.unity.FBUnityAppLinkActivity" android:exported="true" />
+    <activity android:name="com.facebook.unity.FBUnityDeepLinkingActivity" android:exported="true" />
+    <activity android:name="com.facebook.unity.FBUnityGameRequestActivity" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="fb1647023216725369" />
+    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="ccb46842bc956742054a6aa24da00655" />
+    <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" android:value="true" />
+    <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value="true" />
+    <provider android:name="com.facebook.FacebookContentProvider" android:authorities="com.facebook.app.FacebookContentProvider1647023216725369" android:exported="true" />
   </application>
   <!-- Permissions -->
   <uses-permission android:name="android.permission.INTERNET" />
