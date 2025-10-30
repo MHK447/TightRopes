@@ -33,6 +33,7 @@ public class InGameBase : InGameMode
         
         // 스테이지 로드 완료 후 로딩 숨기기
         GameRoot.Instance.Loading.Hide(true);
+        
     }
 
 
