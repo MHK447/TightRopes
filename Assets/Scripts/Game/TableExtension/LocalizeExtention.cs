@@ -19,11 +19,11 @@ namespace BanpoFri
             }
             switch(GameRoot.Instance.UserData.Language)
             {
-                case Config.Language.en:
+                case Language.en:
                     return data.en;
-                case Config.Language.ko:
+                case Language.ko:
                     return data.ko;
-                case Config.Language.ja:
+                case Language.ja:
                     return data.ja;
                 default:
                     return data.en;

@@ -28,7 +28,7 @@ public class GameRoot : Singleton<GameRoot>
 	public LoadingBasic Loading;
 
 
-    public InAppPurchaseManager InAppPurchaseManager;
+	public InAppPurchaseManager InAppPurchaseManager;
 
 
 	public RectTransform GetMainCanvasTR { get { return MainCanvas.transform as RectTransform; } }
@@ -51,8 +51,8 @@ public class GameRoot : Singleton<GameRoot>
 
 	public UpgradeSystem UpgradeSystem { get; private set; } = new UpgradeSystem();
 
-	
-    public UnityMainThreadDispatcher MainThreadDispatcher;
+
+	public UnityMainThreadDispatcher MainThreadDispatcher;
 
 	private Queue<System.Action> PauseActions = new Queue<System.Action>();
 
@@ -334,16 +334,29 @@ public class GameRoot : Singleton<GameRoot>
 
 		var count = GameRoot.instance.UserData.GetRecordCount(Config.RecordCountKeys.Init);
 
-
-		if (count == 0)
+		if (GameRoot.Instance.UserData.Stageidx.Value == 1 && count == 0)
 		{
+			if (UserData.UUID == 0)
+				UserData.SetUUID(ProjectUtility.GetUUID());
+
 			GameRoot.instance.UserData.AddRecordCount(Config.RecordCountKeys.Init, 1);
 			SetNativeLanguage();
+
+			PluginSystem.InitMax(() =>
+			{
+				PluginSystem.AnalyticsProp.AllEvent(IngameEventType.None, "install");
+			});
+
+
 		}
 		else
 		{
 
+			PluginSystem.InitMax();
+
+			Config.Instance.UpdateFallbackOrder(UserData.Language);
 		}
+
 
 	}
 
@@ -372,27 +385,27 @@ public class GameRoot : Singleton<GameRoot>
 
 	}
 
-    IEnumerator waitTimeAndCallback(float time, System.Action callback)
-    {
-        yield return new WaitForSeconds(time);
-        callback?.Invoke();
-    }
+	IEnumerator waitTimeAndCallback(float time, System.Action callback)
+	{
+		yield return new WaitForSeconds(time);
+		callback?.Invoke();
+	}
 
-    IEnumerator waitRealTimeAndCallback(float time, System.Action callback)
-    {
-        yield return new WaitForSecondsRealtime(time);
-        callback?.Invoke();
-    }
+	IEnumerator waitRealTimeAndCallback(float time, System.Action callback)
+	{
+		yield return new WaitForSecondsRealtime(time);
+		callback?.Invoke();
+	}
 
-    public Coroutine WaitStageAndCallback(float time, System.Action callback)
-    {
-        return StartCoroutine(waitTimeAndCallback(time, callback));
-    }
+	public Coroutine WaitStageAndCallback(float time, System.Action callback)
+	{
+		return StartCoroutine(waitTimeAndCallback(time, callback));
+	}
 
-    public Coroutine WaitTimeAndCallback(float time, System.Action callback)
-    {
-        return StartCoroutine(waitTimeAndCallback(time, callback));
-    }
+	public Coroutine WaitTimeAndCallback(float time, System.Action callback)
+	{
+		return StartCoroutine(waitTimeAndCallback(time, callback));
+	}
 
 
 

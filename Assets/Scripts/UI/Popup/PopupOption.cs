@@ -39,7 +39,7 @@ public class PopupOption : UIBase
         MusicToggle.setToggleListener(OnClickBGM);
 
         var list = new List<string>();
-        for (Config.Language lang = Config.Language.en; lang <= Config.Language.ja; lang++)
+        for (Language lang = Language.en; lang <= Language.ja; lang++)
         {
             list.Add(Tables.Instance.GetTable<Localize>().GetString($"str_popup_option_language_{lang.ToString()}"));
         }
@@ -59,13 +59,13 @@ public class PopupOption : UIBase
 
     private void OnClickSelectLang(int index)
     {
-        Config.Language curLang = GameRoot.Instance.UserData.Language;
+        Language curLang = GameRoot.Instance.UserData.Language;
         switch (index)
         {
-            case 0: curLang = Config.Language.en; break;
-            case 1: curLang = Config.Language.ko; break;
-            case 2: curLang = Config.Language.ja; break;
-            default: curLang = Config.Language.en; break;
+            case 0: curLang = Language.en; break;
+            case 1: curLang = Language.ko; break;
+            case 2: curLang = Language.ja; break;
+            default: curLang = Language.en; break;
         }
 
         GameRoot.Instance.UserData.Language = curLang;
@@ -123,9 +123,9 @@ public class PopupOption : UIBase
        int idx = 0;
        switch (GameRoot.Instance.UserData.Language)
        {
-           case Config.Language.en: idx = 0; break;
-           case Config.Language.ko: idx = 1; break;
-           case Config.Language.ja: idx = 2; break;
+           case Language.en: idx = 0; break;
+           case Language.ko: idx = 1; break;
+           case Language.ja: idx = 2; break;
            default: idx = 0; break;
        }
 

@@ -49,25 +49,88 @@ public class PopupInGameLobby : UIBase
 
     public void Init()
     {
-        GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.SetState(InGameStage.InGameState.WaitPlay);
-
-        for (int i = 0; i < LobbyUpgradeComponents.Count; i++)
+        try
         {
-            LobbyUpgradeComponents[i].Set(i);
+            if (GameRoot.Instance?.InGameSystem?.GetInGame<InGameBase>()?.StageMap != null)
+            {
+                GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.SetState(InGameStage.InGameState.WaitPlay);
+            }
+            else
+            {
+                Debug.LogError("[PopupInGameLobby] StageMap is null");
+            }
+
+            for (int i = 0; i < LobbyUpgradeComponents.Count; i++)
+            {
+                if (LobbyUpgradeComponents[i] != null)
+                {
+                    LobbyUpgradeComponents[i].Set(i);
+                }
+                else
+                {
+                    Debug.LogError($"[PopupInGameLobby] LobbyUpgradeComponent at index {i} is null");
+                }
+            }
+
+            var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
+
+            var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+            if(td != null)
+            {
+                if (MapImg != null)
+                {
+                    MapImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Map, td.image);
+                }
+                else
+                {
+                    Debug.LogError("[PopupInGameLobby] MapImg is null");
+                }
+
+                if (MapText != null)
+                {
+                    MapText.text = Tables.Instance.GetTable<Localize>().GetString(td.name);
+                    
+                    if (Config.Instance?.TextMaterialList != null && stageidx > 0 && stageidx <= Config.Instance.TextMaterialList.Count)
+                    {
+                        MapText.fontSharedMaterial = Config.Instance.TextMaterialList[stageidx - 1];
+                    }
+                    else
+                    {
+                        Debug.LogError($"[PopupInGameLobby] TextMaterialList is null or index out of range. stageidx: {stageidx}");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("[PopupInGameLobby] MapText is null");
+                }
+
+                if (BgImg != null)
+                {
+                    BgImg.color = Config.Instance.GetImageColor(td.image_color);
+                }
+                else
+                {
+                    Debug.LogError("[PopupInGameLobby] BgImg is null");
+                }
+
+                if (AdCycleComponent != null)
+                {
+                    AdCycleComponent.Init();
+                }
+                else
+                {
+                    Debug.LogError("[PopupInGameLobby] AdCycleComponent is null");
+                }
+            }
+            else
+            {
+                Debug.LogError($"[PopupInGameLobby] StageInfo data not found for stageidx: {stageidx}");
+            }
         }
-
-        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
-
-        var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
-
-        if(td != null)
+        catch (System.Exception e)
         {
-            MapImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Map, td.image);
-            MapText.text = Tables.Instance.GetTable<Localize>().GetString(td.name);
-            BgImg.color = Config.Instance.GetImageColor(td.image_color);
-            MapText.fontSharedMaterial = Config.Instance.TextMaterialList[stageidx - 1];
-
-            AdCycleComponent.Init();
+            Debug.LogError($"[PopupInGameLobby] Exception in Init: {e.Message}\n{e.StackTrace}");
         }
     }
 

@@ -22,7 +22,7 @@ public partial class UserDataSystem
     public bool SlowGraphic = false;
     public long UUID { get; private set; } = 0;
 
-    public Config.Language Language = Config.Language.ko;
+    public Language Language = Language.ko;
     public IReactiveProperty<int> Garnet { get; private set; } = new ReactiveProperty<int>(0);
     public IReactiveProperty<int> UpgradeStone { get; private set; } = new ReactiveProperty<int>(0);
     public IReactiveProperty<int> Cash { get; private set; } = new ReactiveProperty<int>(0);
@@ -177,7 +177,7 @@ public partial class UserDataSystem
 
         ChangeDataMode(LastMode == GameType.Event ? DataState.Event : DataState.Main);
 
-        Language = (Config.Language)System.Enum.Parse(typeof(Config.Language), flatBufferUserData.Optiondata.Value.Language);
+        Language = (Language)System.Enum.Parse(typeof(Language), flatBufferUserData.Optiondata.Value.Language);
         Bgm = flatBufferUserData.Optiondata.Value.Bgm;
         Effect = flatBufferUserData.Optiondata.Value.Effect;
         SlowGraphic = flatBufferUserData.Optiondata.Value.Slowgraphic;

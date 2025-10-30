@@ -221,7 +221,20 @@ public class InGameSystem
             // });
 
             NextAction();
-            GameRoot.Instance.UISystem.OpenUI<PopupInGameLobby>(popup=> popup.Init());
+
+
+            ActionQueue.Enqueue(() => {
+                GameRoot.Instance.UISystem.OpenUI<PopupInGameLobby>(popup=> {
+                     popup.Init();
+                     NextAction();
+                });
+            });
+
+
+            ActionQueue.Enqueue(() => {
+                GameRoot.Instance.PluginSystem.ShowBanner(MaxSdkBase.BannerPosition.BottomCenter);
+                NextAction();
+            });
         }
 
         NextAction();

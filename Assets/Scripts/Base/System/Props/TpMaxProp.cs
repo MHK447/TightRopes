@@ -48,8 +48,7 @@ public class TpMaxProp
     public enum AdInterType
     {
         None = -1,
-        NormalBattle,
-        Tower,
+        Stage,
     }
 
     private AdRewardType adType = AdRewardType.None;
@@ -364,7 +363,7 @@ public class TpMaxProp
     public void ShowInterstitialAD(AdInterType idx)
     {
 
-#if TREEPLLA_LOG
+#if BANPOFRI_LOG
         TpLog.Log("ShowInterstitialAD");
         return;
 #endif
@@ -425,7 +424,7 @@ public class TpMaxProp
         //         onRewardResult(false);
         //     }
         // });
-#if UNITY_EDITOR || TREEPLLA_LOG
+#if UNITY_EDITOR || BANPOFRI_LOG
         listenerRewardedAd?.Invoke(true);
         GameRoot.Instance.Loading.Hide(true);
         onRewardResult(true);

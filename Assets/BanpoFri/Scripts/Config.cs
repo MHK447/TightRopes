@@ -5,6 +5,53 @@ using UnityEngine.U2D;
 using System.Linq;
 using BanpoFri;
 
+
+    public enum Language
+    {
+        en,
+        ko,
+        es,
+        ja,
+        ptbr,
+        th,
+        tw,
+        vi,
+        bg,
+        cn,
+        cs,
+        da,
+        nl,
+        et,
+        fi,
+        fr,
+        de,
+        el,
+        hu,
+        id,
+        it,
+        lv,
+        lt,
+        no,
+        pl,
+        pt,
+        ro,
+        ru,
+        sk,
+        sl,
+        sv,
+        tr,
+        ua
+
+    }
+
+
+[System.Serializable]
+public class FontDefine
+{
+    public Language country;
+    public Font font;
+}
+
 [System.Serializable]
 public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoader
 {
@@ -14,13 +61,6 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         Great,
         Basic,
         Sad,
-    }
-
-    public enum Language
-    {
-        en = 0,
-        ko = 1,
-        ja = 2,
     }
 
     public enum InGameUpgradeIdx
@@ -120,6 +160,14 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
     [SerializeField]
     private List<Material> RopeUpgradeMat = new List<Material>();
+
+    [SerializeField]
+    private Font mainfont;
+    [SerializeField]
+    private List<FontDefine> _fontDefines = new List<FontDefine>();
+
+
+
     public List<ColorDefine> TextColorDefines
     {
         get
@@ -209,6 +257,40 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
         return Color.white;
     }
+
+    public void UpdateFallbackOrder(Language CurLangauge)
+    {
+        if (CurLangauge != Language.ja &&
+            CurLangauge != Language.tw) return;
+
+        // foreach (var name in mainfont.fontNames)
+        //     Debug.Log("before :" + name);
+
+        var list = mainfont.fontNames.ToList();
+
+        var font = _fontDefines.Where(x => x.country == CurLangauge).FirstOrDefault();
+        if (font != null)
+        {
+            list.Remove(font.font.fontNames[0]);
+            list.Insert(1, font.font.fontNames[0]);
+
+            var new_array = new string[list.Count];
+
+            for (int i = 0; i < mainfont.fontNames.Length; i++)
+            {
+                new_array[i] = list[i];
+            }
+
+            mainfont.fontNames = new_array;
+
+            new_array = null;
+
+            // foreach (var name in mainfont.fontNames)
+            //     Debug.Log("after :" + name);
+
+        }
+    }
+
 
 
     public void Load()

@@ -4,8 +4,6 @@ apply from: '../shared/keepUnitySymbols.gradle'
 
 // Android Resolver Exclusions Start
 android {
-    ndkPath "**NDKPATH**"
-    ndkVersion "**NDKVERSION**"
   packaging {
       exclude ('/lib/armeabi/*' + '*')
       exclude ('/lib/mips/*' + '*')
@@ -74,11 +72,16 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.+' // Assets/MaxSdk/Mediation/InMobi/Editor/Dependencies.xml:6
     implementation 'com.android.support:support-v4:25.3.1' // Facebook.Unity.Editor.AndroidSupportLibraryResolver.addSupportLibraryDependency
     implementation 'com.applovin.mediation:bidmachine-adapter:3.5.0.0' // Assets/MaxSdk/Mediation/BidMachine/Editor/Dependencies.xml:8
+    implementation 'com.applovin.mediation:bytedance-adapter:7.7.0.2.0' // Assets/MaxSdk/Mediation/ByteDance/Editor/Dependencies.xml:8
     implementation 'com.applovin.mediation:facebook-adapter:[6.20.0.0]' // Assets/MaxSdk/Mediation/Facebook/Editor/Dependencies.xml:8
+    implementation 'com.applovin.mediation:fyber-adapter:8.4.0.0' // Assets/MaxSdk/Mediation/Fyber/Editor/Dependencies.xml:4
+    implementation 'com.applovin.mediation:google-adapter:[24.7.0.0]' // Assets/MaxSdk/Mediation/Google/Editor/Dependencies.xml:5
     implementation 'com.applovin.mediation:inmobi-adapter:10.8.8.0' // Assets/MaxSdk/Mediation/InMobi/Editor/Dependencies.xml:4
+    implementation 'com.applovin.mediation:ironsource-adapter:9.0.0.0.0' // Assets/MaxSdk/Mediation/IronSource/Editor/Dependencies.xml:4
     implementation 'com.applovin.mediation:mintegral-adapter:16.10.11.0' // Assets/MaxSdk/Mediation/Mintegral/Editor/Dependencies.xml:8
     implementation 'com.applovin.mediation:moloco-adapter:4.2.1.0' // Assets/MaxSdk/Mediation/Moloco/Editor/Dependencies.xml:4
     implementation 'com.applovin.mediation:unityads-adapter:4.16.3.0' // Assets/MaxSdk/Mediation/UnityAds/Editor/Dependencies.xml:4
+    implementation 'com.applovin.mediation:vungle-adapter:7.6.0.0' // Assets/MaxSdk/Mediation/Vungle/Editor/Dependencies.xml:4
     implementation 'com.applovin.mediation:yandex-adapter:7.16.1.0' // Assets/MaxSdk/Mediation/Yandex/Editor/Dependencies.xml:4
     implementation 'com.applovin:applovin-sdk:13.5.0' // Assets/MaxSdk/AppLovin/Editor/Dependencies.xml:4
     implementation 'com.appsflyer:af-android-sdk:6.17.3' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:5

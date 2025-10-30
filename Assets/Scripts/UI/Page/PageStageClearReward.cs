@@ -17,7 +17,7 @@ public class PageStageClearReward : UIBase
     [SerializeField]
     private Button RewardBtn;
 
-    [SerializeField]    
+    [SerializeField]
     private Button AdRewardBtn;
 
     private BigInteger RewardValue = 0;
@@ -41,7 +41,12 @@ public class PageStageClearReward : UIBase
 
     private void OnRewardBtnClick()
     {
+        if (GameRoot.Instance.UserData.Stageidx.Value > 1)
+        {
+            GameRoot.Instance.PluginSystem.ADProp.ShowInterstitialAD(TpMaxProp.AdInterType.Stage);
+        }
 
+        
         Hide();
         ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue, () =>
       {

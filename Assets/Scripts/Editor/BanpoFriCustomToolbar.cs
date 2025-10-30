@@ -96,7 +96,7 @@ public class TreepllaCustomToolbar
                 toolbar_Lang.style.paddingLeft = 6;
 
 
-                List<string> langsList = new List<string>(Enum.GetNames(typeof(Config.Language)));
+                List<string> langsList = new List<string>(Enum.GetNames(typeof(Language)));
                 for (int i = 0; i < langsList.Count; i++)
                 {
                     toolbar_Lang.menu.AppendAction(langsList[i], (drop) => {
@@ -108,9 +108,9 @@ public class TreepllaCustomToolbar
                         {
 
                             var editor_LangCode = drop.name;
-                            Config.Language curLang;
+                            Language curLang;
 
-                            System.Enum.TryParse<Config.Language>(editor_LangCode, out curLang);
+                            System.Enum.TryParse<Language>(editor_LangCode, out curLang);
                             GameRoot.Instance.UserData.Language = curLang;
 
                             foreach (var ls in LocalizeString.Localizelist)

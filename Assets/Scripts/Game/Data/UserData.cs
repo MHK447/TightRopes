@@ -60,6 +60,11 @@ public partial class UserDataSystem
         DataState = DataState.None;
     }
 
+    public void SetUUID(long uuid)
+    {
+        UUID = uuid;
+    }
+
     public void Load()
     {
         var filePath = GameRoot.Instance.UserData.GetBackUpSaveFilePath("backup");

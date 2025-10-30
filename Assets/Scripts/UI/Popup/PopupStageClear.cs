@@ -102,6 +102,12 @@ public class PopupStageClear : UIBase
 
     public void OnBaseRewardBtnClick()
     {
+        if(GameRoot.Instance.UserData.Stageidx.Value > 1)
+        {
+            GameRoot.Instance.PluginSystem.ADProp.ShowInterstitialAD(TpMaxProp.AdInterType.Stage);
+        }
+
+
         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue);
         ProceedToNextStage();
     }

@@ -150,7 +150,7 @@ public class PluginSystem
 
             ADProp.Init();
 #if !UNITY_EDITOR
-#if TREEPLLA_LOG
+#if BANPOFRI_LOG
             //Amazon.EnableLogging(true);
             //Amazon.EnableTesting(true);
 #endif
