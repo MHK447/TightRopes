@@ -204,11 +204,11 @@ public class GameRoot : Singleton<GameRoot>
 			yield break;
 		}
 
-#if BANPOFRI_LOG
-		DebugConsoleObj.SetActive(true);
-#else
-		DebugConsoleObj.SetActive(false);
-#endif
+// #if BANPOFRI_LOG
+// 		DebugConsoleObj.SetActive(true);
+// #else
+// 		DebugConsoleObj.SetActive(false);
+// #endif
 
 		//TouchStartActions.Clear();
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;

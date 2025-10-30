@@ -18,7 +18,7 @@ public class TutorialEntity : MonoBehaviour
             ProjectUtility.SetActiveCheck(active, true);
         }
 
-        TpLog.Log(this.name);
+        BpLog.Log(this.name);
     }
 
     protected virtual void Done()

@@ -139,7 +139,7 @@ public class TpMaxProp
             if (SystemInfo.systemMemorySize < 1024 * 4)
             {
                 preload = false;
-                TpLog.Log("[AdManager] 메모리 용량이 너무 작아서 광고사전로드를 사용하지 않습니다.");
+                BpLog.Log("[AdManager] 메모리 용량이 너무 작아서 광고사전로드를 사용하지 않습니다.");
             }
 #endif
 
@@ -251,6 +251,8 @@ public class TpMaxProp
 
     public void InitializeBannerAds(MaxSdkBase.BannerPosition bPos)
     {
+        BpLog.Log($"[InitializeBannerAds] Starting banner initialization at position: {bPos}");
+        
         Observable.FromEvent<Action<string, MaxSdkBase.AdInfo>, (string adUnitId, MaxSdkBase.AdInfo adInfo)>(
             h => (adUnitId, adInfo) => h((adUnitId, adInfo)),
             h => MaxSdkCallbacks.Banner.OnAdClickedEvent += h,
@@ -301,52 +303,52 @@ public class TpMaxProp
 
         isBanner = true;
 
-
     }
 
     private void OnBannerAdsClickedEvent(string id, MaxSdkBase.AdInfo adInfo)
     {
 #if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_Click _ " + id);
+        BpLog.Log("OnBannerAds_Click _ " + id);
 #endif
     }
     private void OnBannerAdsCollapsedEvent(string id, MaxSdkBase.AdInfo adInfo)
     {
 #if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_Collapsed _ " + id);
+        BpLog.Log("OnBannerAds_Collapsed _ " + id);
 #endif
     }
     private void OnBannerAdsExpandedEvent(string id, MaxSdkBase.AdInfo adInfo)
     {
 #if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_Expanded _ " + id);
+        BpLog.Log("OnBannerAds_Expanded _ " + id);
 #endif
     }
     private void OnBannerAdLoadedEvent(string id, MaxSdkBase.AdInfo adInfo)
     {
-#if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_Loaded _ " + id);
-#endif
+        BpLog.Log("OnBannerAds_Loaded _ " + id);
+        
+        // 배너가 로드되면 자동으로 표시 (이미 ShowBanner가 호출되었다면)
+        if (isShowBanner)
+        {
+            MaxSdk.ShowBanner(adBannerUnitId);
+        }
     }
     private void OnBannerAdLoadFailedEvent(string id, MaxSdkBase.ErrorInfo errorInfo)
     {
-#if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_LoadFailed _ " + id + " _ " + errorInfo.Code + " _ msg = " + errorInfo.Message);
-#endif
+        BpLog.Log("OnBannerAds_LoadFailed _ " + id + " _ " + errorInfo.Code + " _ msg = " + errorInfo.Message);
     }
 
 
 
     public void ShowBannerAD(MaxSdkBase.BannerPosition bannerPos)
     {
-
-        UnityEngine.Debug.Log("Banner Show ===== " + bannerPos.ToString());
         MaxSdk.StartBannerAutoRefresh(adBannerUnitId);
+        
         MaxSdk.UpdateBannerPosition(adBannerUnitId, bannerPos);
+        
         MaxSdk.ShowBanner(adBannerUnitId);
 
         isShowBanner = true;
-
     }
 
 
@@ -583,7 +585,7 @@ public class TpMaxProp
     private void OnInterstitialRevenuePaidEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         // Interstitial ad revenue paid. Use this callback to track user revenue.
-        TpLog.Log("Interstitial revenue paid");
+        BpLog.Log("Interstitial revenue paid");
 
 
         OnInterPaidAction?.Invoke();
@@ -707,7 +709,7 @@ public class TpMaxProp
     private void OnRewardedAdRevenuePaidEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         // Rewarded ad revenue paid. Use this callback to track user revenue.
-        TpLog.Log("Rewarded ad revenue paid");
+        BpLog.Log("Rewarded ad revenue paid");
 
 
         double revenue = adInfo.Revenue;
@@ -770,31 +772,31 @@ public class TpMaxProp
     private void OnBannerAdsClickedEvent(string id)
     {
 #if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_Click _ " + id);
+        BpLog.Log("OnBannerAds_Click _ " + id);
 #endif
     }
     private void OnBannerAdsCollapsedEvent(string id)
     {
 #if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_Collapsed _ " + id);
+        BpLog.Log("OnBannerAds_Collapsed _ " + id);
 #endif
     }
     private void OnBannerAdsExpandedEvent(string id)
     {
 #if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_Expanded _ " + id);
+        BpLog.Log("OnBannerAds_Expanded _ " + id);
 #endif
     }
     private void OnBannerAdLoadedEvent(string id)
     {
 #if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_Loaded _ " + id);
+        BpLog.Log("OnBannerAds_Loaded _ " + id);
 #endif
     }
     private void OnBannerAdLoadFailedEvent(string id, int errorCode)
     {
 #if UNITY_EDITOR
-        TpLog.Log("OnBannerAds_LoadFailed _ " + id + " _ " + errorCode);
+        BpLog.Log("OnBannerAds_LoadFailed _ " + id + " _ " + errorCode);
 #endif
     }
 

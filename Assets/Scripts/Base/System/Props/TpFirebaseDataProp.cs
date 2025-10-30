@@ -43,7 +43,7 @@ public class TpFirebaseDataProp
             if (saveData == null)
                 return;
 
-            TpLog.Log($"binary str : {Convert.ToBase64String(saveData)}");
+            BpLog.Log($"binary str : {Convert.ToBase64String(saveData)}");
 
             var userData = new FirebaseUserData()
             {

@@ -138,7 +138,7 @@ public class PluginSystem
 
         MaxSdkCallbacks.OnSdkInitializedEvent += sdkConfiguration =>
         {
-            TpLog.Log("MAX SDK Initialized");
+            BpLog.Log("MAX SDK Initialized");
 #if UNITY_IOS || UNITY_IPHONE || UNITY_EDITOR
             // AdSettings.setDataProcessingOptions( new String[] {} );
             if (MaxSdkUtils.CompareVersions(UnityEngine.iOS.Device.systemVersion, "14.5") != MaxSdkUtils.VersionComparisonResult.Lesser)
@@ -180,6 +180,7 @@ public class PluginSystem
             MaxSdk.SetCreativeDebuggerEnabled(false);
         };
         MaxSdk.SetSdkKey("kEMm9P5L89OR0kvrUxOrTTVN9dqKyRhNPrdPnpPGfIfE4VF8qn99egv-sLgnKP8oEBmF9yAWGW1eTOBAvr-qo_");
+         
         MaxSdk.InitializeSdk();
         initMax = true;
     }
@@ -206,18 +207,18 @@ public class PluginSystem
 
                 if (deepLinkEventArgs.isDeferred())
                 {
-                    TpLog.Log("OnDeepLink This is a deferred deep link");
+                    BpLog.Log("OnDeepLink This is a deferred deep link");
                 }
                 else
                 {
-                    TpLog.Log("OnDeepLink This is a direct deep link");
+                    BpLog.Log("OnDeepLink This is a direct deep link");
                 }
 
-                TpLog.Log("Deep link on");
+                BpLog.Log("Deep link on");
                 var deeplinks = GetDeepLinkParamsDictionary(deepLinkEventArgs);
                 foreach (var i in deeplinks)
                 {
-                    TpLog.Log($"key ; {i.Key} value {i.Value.ToString()}");
+                    BpLog.Log($"key ; {i.Key} value {i.Value.ToString()}");
                 }
                 var deepLinkValue = deepLinkEventArgs.getDeepLinkValue();
                 if (!string.IsNullOrEmpty(deepLinkValue) && deepLinkValue != AppsFlyer.getAppsFlyerId())
@@ -226,10 +227,10 @@ public class PluginSystem
                 }
                 break;
             case DeepLinkStatus.NOT_FOUND:
-                TpLog.Log("Deep link not found");
+                BpLog.Log("Deep link not found");
                 break;
             default:
-                TpLog.Log("Deep link error");
+                BpLog.Log("Deep link error");
                 break;
         }
     }
@@ -263,7 +264,7 @@ public class PluginSystem
             friend_user_id = AppsFlyer.getAppsFlyerId()
         };
 
-        TpLog.Log($"sendData  user_id:{sendData.user_id} friend_user_id:{sendData.friend_user_id}");
+        BpLog.Log($"sendData  user_id:{sendData.user_id} friend_user_id:{sendData.friend_user_id}");
 
         using (var request = new UnityWebRequest(InviteFriendServerURL, "POST"))
         {
@@ -274,7 +275,7 @@ public class PluginSystem
             await request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.Success)
             {
-                TpLog.Log("PostInviteFriend Success");
+                BpLog.Log("PostInviteFriend Success");
                 //logs
                 List<TpParameter> parameters = new List<TpParameter>();
                 parameters.Add(new TpParameter("invite_user", user_id));
@@ -283,7 +284,7 @@ public class PluginSystem
             }
             else
             {
-                TpLog.Log("PostInviteFriend Failed");
+                BpLog.Log("PostInviteFriend Failed");
             }
         }
         WaitUserData = false;
@@ -325,7 +326,7 @@ public class PluginSystem
 #elif UNITY_IOS && !UNITY_EDITOR
         if (UnityEngine.iOS.Device.RequestStoreReview())
         {
-            TpLog.Log("UnityEngine.iOS.Device.RequestStoreReview");
+            BpLog.Log("UnityEngine.iOS.Device.RequestStoreReview");
         }
         else
         {
@@ -342,7 +343,7 @@ public class PluginSystem
         if (requestFlowOperation.Error != ReviewErrorCode.NoError)
         {
             // Log error. For example, using requestFlowOperation.Error.ToString().
-            TpLog.Log(requestFlowOperation.Error.ToString());
+            BpLog.Log(requestFlowOperation.Error.ToString());
             yield break;
         }
         _playReviewInfo = requestFlowOperation.GetResult();
@@ -358,7 +359,7 @@ public class PluginSystem
         {
             BanpoFriNative.OpenURL(googleStoreURL);
             // Log error. For example, using requestFlowOperation.Error.ToString().
-            TpLog.Log(launchFlowOperation.Error.ToString());
+            BpLog.Log(launchFlowOperation.Error.ToString());
             yield break;
         }
     }
@@ -366,7 +367,18 @@ public class PluginSystem
 
     public void ShowBanner(MaxSdk.BannerPosition pos)
     {
-        if (!ADProp.isBanner) { ADProp.InitializeBannerAds(pos); }
+        
+        if (!initMax)
+        {
+            InitMax(() => ShowBanner(pos));
+            return;
+        }
+        
+        if (!ADProp.isBanner) 
+        { 
+            ADProp.InitializeBannerAds(pos); 
+        }
+        
         ADProp.ShowBannerAD(pos);
     }
 
@@ -397,7 +409,7 @@ public class PluginSystem
         }
         else
         {
-            TpLog.Log("Failed to Initialize the Facebook SDK");
+            BpLog.Log("Failed to Initialize the Facebook SDK");
         }
     }
 
@@ -417,12 +429,12 @@ public class PluginSystem
 
     public void OnTokenReceived(object sender, Firebase.Messaging.TokenReceivedEventArgs token)
     {
-        TpLog.Log("Received Registration Token: " + token.Token);
+        BpLog.Log("Received Registration Token: " + token.Token);
     }
 
     public void OnMessageReceived(object sender, Firebase.Messaging.MessageReceivedEventArgs e)
     {
-        TpLog.Log("Received a new message from: " + e.Message.From);
+        BpLog.Log("Received a new message from: " + e.Message.From);
     }
 
     public void OnApplicationPause(bool value)
@@ -576,7 +588,7 @@ public class PluginSystem
                 //case "BY": //벨라루스
                 {
                     appOpenAvailable = false;
-                    TpLog.Log("AppOpenAvailable");
+                    BpLog.Log("AppOpenAvailable");
                 }
                 break;
         }

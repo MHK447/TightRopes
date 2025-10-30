@@ -197,7 +197,7 @@ namespace BanpoFri
 
         public void Init()
         {
-            TpLog.Log("[IAP] UNITY_IAP init");
+            BpLog.Log("[IAP] UNITY_IAP init");
             var module = StandardPurchasingModule.Instance();
 #if UNITY_EDITOR
             module.useFakeStoreAlways = true;
@@ -210,7 +210,7 @@ namespace BanpoFri
             prevTransactionID = new ReactiveProperty<string>();
             prevTransactionID.Subscribe(transactionId =>
             {
-                TpLog.Log("[IAP] prevTransactionID : " + transactionId);
+                BpLog.Log("[IAP] prevTransactionID : " + transactionId);
             });
         }
 
@@ -290,12 +290,12 @@ namespace BanpoFri
                     var p = storeController.products.WithID(productId);
                     if (p != null && p.availableToPurchase)
                     {
-                        TpLog.Log(string.Format("[IAP]Purchasing product asychronously: '{0}'", p.definition.id));
+                        BpLog.Log(string.Format("[IAP]Purchasing product asychronously: '{0}'", p.definition.id));
                         processPurchaseType = ProcessPurchaseType.BuyProduct;
                         buyProductStream = new Subject<ProcessPurchaseStreamData>();
                         buyProductStream.AsObservable().Take(1).Subscribe(x =>
                         {
-                            TpLog.Log("[IAP] process purchase ended: " + x.result + " - " + x.productId);
+                            BpLog.Log("[IAP] process purchase ended: " + x.result + " - " + x.productId);
                             processPurchaseType = ProcessPurchaseType.Initialzing;
                             onCompeleteAction?.Invoke(x.result);
                         });
@@ -305,17 +305,17 @@ namespace BanpoFri
                     }
                     else
                     {
-                        TpLog.Log("[IAP] BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+                        BpLog.Log("[IAP] BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
                     }
                 }
                 else
                 {
-                    TpLog.Log("[IAP] BuyProductID FAIL. Not initialized.");
+                    BpLog.Log("[IAP] BuyProductID FAIL. Not initialized.");
                 }
             }
             catch (Exception e)
             {
-                TpLog.Log("[IAP] BuyProductID: FAIL. Exception during purchase. " + e);
+                BpLog.Log("[IAP] BuyProductID: FAIL. Exception during purchase. " + e);
             }
         }
 
@@ -323,13 +323,13 @@ namespace BanpoFri
         {
             if (!IsInitialized())
             {
-                TpLog.Log("[IAP] RestorePurchases FAIL. Not initialized.");
+                BpLog.Log("[IAP] RestorePurchases FAIL. Not initialized.");
                 return;
             }
 
             if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXPlayer)
             {
-                TpLog.Log("[IAP] RestorePurchases started ...");
+                BpLog.Log("[IAP] RestorePurchases started ...");
 
                 buyProductStream = new Subject<ProcessPurchaseStreamData>();
                 restoreTransactionStream = new Subject<ProcessPurchaseStreamData>();
@@ -343,13 +343,13 @@ namespace BanpoFri
                     string productId = x.Item1;
                     Result result = x.Item2;
                     bool isTimeout = x.Item3;
-                    TpLog.Log($"[IAP] RestorePurchases: productId = {productId}, result = {result}, isTimeout = {isTimeout}");
+                    BpLog.Log($"[IAP] RestorePurchases: productId = {productId}, result = {result}, isTimeout = {isTimeout}");
                     processPurchaseType = ProcessPurchaseType.Initialzing;
                     onCompeleteAction?.Invoke(result);
                 });
                 extensionProvider.GetExtension<IAppleExtensions>().RestoreTransactions((result, msg) =>
                     {
-                        TpLog.Log($"[IAP] RestoreTransactions Result: {result}, msg: {msg}");
+                        BpLog.Log($"[IAP] RestoreTransactions Result: {result}, msg: {msg}");
                         if (false == result)
                         {
                             disposeSignal.Dispose();
@@ -374,19 +374,19 @@ namespace BanpoFri
                     }
                 }
 
-                TpLog.Log("[IAP] RestorePurchases: " + recovery);
+                BpLog.Log("[IAP] RestorePurchases: " + recovery);
                 onCompeleteAction?.Invoke(recovery ? Result.Success : Result.Failed);
             }
             else
             {
-                TpLog.Log("[IAP] RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
+                BpLog.Log("[IAP] RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
                 onCompeleteAction?.Invoke(Result.Failed);
             }
         }
 
         public void OnInitialized(IStoreController sc, IExtensionProvider ep)
         {
-            TpLog.Log("[IAP] OnInitialized : PASS");
+            BpLog.Log("[IAP] OnInitialized : PASS");
 
             storeController = sc;
             extensionProvider = ep;
@@ -399,13 +399,13 @@ namespace BanpoFri
 
         public void OnInitializeFailed(InitializationFailureReason reason)
         {
-            TpLog.Log("[IAP] OnInitializeFailed InitializationFailureReason:" + reason);
+            BpLog.Log("[IAP] OnInitializeFailed InitializationFailureReason:" + reason);
         }
 
 
         public void OnInitializeFailed(InitializationFailureReason error, string message)
         {
-            TpLog.Log($"OnInitializeFailed InitializationFailureReason:{error} " + message);
+            BpLog.Log($"OnInitializeFailed InitializationFailureReason:{error} " + message);
         }
 
         public void OnPurchaseFailed(UnityEngine.Purchasing.Product product, PurchaseFailureReason failureReason)
@@ -414,7 +414,7 @@ namespace BanpoFri
 
         private Subject<bool> FetchProducts()
         {
-            TpLog.Log("[IAP] FetchProducts");
+            BpLog.Log("[IAP] FetchProducts");
 
             HashSet<ProductDefinition> hashSet = new HashSet<ProductDefinition>();
             Subject<bool> fetchStream = new Subject<bool>();
@@ -423,12 +423,12 @@ namespace BanpoFri
                 storeController.FetchAdditionalProducts(hashSet,
                     () =>
                     {
-                        TpLog.Log("[IAP] fetchSuccess");
+                        BpLog.Log("[IAP] fetchSuccess");
                         fetchStream.OnNext(true);
                     },
                     (e, str) =>
                     {
-                        TpLog.Log($"fetchFailed, {e} / {str}");
+                        BpLog.Log($"fetchFailed, {e} / {str}");
                         fetchStream.OnNext(false);
                     });
             }
@@ -447,7 +447,7 @@ namespace BanpoFri
             bool isInitUserData = GameRoot.Instance.UserData != null && GameRoot.Instance.UserData.CurMode != null;
             if (!isInitUserData)
             {
-                TpLog.LogError($"User data is not initialized. id : {id}, priceCode : {priceCode}, price : {price}, orderId : {orderId}");
+                BpLog.LogError($"User data is not initialized. id : {id}, priceCode : {priceCode}, price : {price}, orderId : {orderId}");
             }
 
             if (isInitUserData)
@@ -483,7 +483,7 @@ namespace BanpoFri
                     }
 
                     bool isPendingProduct = prevTransactionID.Value == productTransactionID;
-                    TpLog.Log("[IAP] Pending Product : " + isPendingProduct);
+                    BpLog.Log("[IAP] Pending Product : " + isPendingProduct);
                     if (isPendingProduct)
                     {
                         string userId = string.Empty;
@@ -509,7 +509,7 @@ namespace BanpoFri
 
         public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
         {
-            TpLog.Log(string.Format("[IAP] OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}, PurchaseFailureDescription: {2}", product.definition.storeSpecificId,
+            BpLog.Log(string.Format("[IAP] OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}, PurchaseFailureDescription: {2}", product.definition.storeSpecificId,
                 failureDescription.reason, failureDescription.message));
 
             if (Application.platform == RuntimePlatform.Android) // Android는 Pending 상품을 다시 재구매할 경우 DuplicateTransaction 발생하고 ProcessPurchase 자동호출
@@ -538,7 +538,7 @@ namespace BanpoFri
                         Observable.Timer(TimeSpan.FromSeconds(5)).Select(_ => true)  // 타임아웃
                     ).Take(1).Subscribe(isTimeout =>
                     {
-                        TpLog.Log($"[IAP] iap process wait timeout => {isTimeout}");
+                        BpLog.Log($"[IAP] iap process wait timeout => {isTimeout}");
                         if (false == isTimeout)
                         {
                             return;
@@ -571,13 +571,13 @@ namespace BanpoFri
             {
                 return storeController.products.WithID(productID);
             }
-            TpLog.LogError("product attempted to get unknown product " + productID);
+            BpLog.LogError("product attempted to get unknown product " + productID);
             return null;
         }
 
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs e)
         {
-            TpLog.Log("[IAP] ProcessPurchase Start");
+            BpLog.Log("[IAP] ProcessPurchase Start");
 
             ProcessPurchaseType purchaseType = processPurchaseType;
             try
@@ -589,10 +589,10 @@ namespace BanpoFri
                     string productId = e.purchasedProduct.definition.id;
                     if (TryRestoreNonConsumableItem(productId)) // 비소모성 상품을 이전에 구매한 경우, 복원 처리
                     {
-                        TpLog.Log("[IAP] ProcessPurchase restore non-consumable item : " + productId);
+                        BpLog.Log("[IAP] ProcessPurchase restore non-consumable item : " + productId);
                         return PurchaseProcessingResult.Complete;
                     }
-                    TpLog.Log("[IAP] ProcessPurchase skip restore on initializing: " + productId);
+                    BpLog.Log("[IAP] ProcessPurchase skip restore on initializing: " + productId);
                     return PurchaseProcessingResult.Pending;
                 }
 
@@ -617,13 +617,13 @@ namespace BanpoFri
 
                 if (ProcessPurchaseType.BuyProduct == purchaseType)
                 {
-                    TpLog.Log("[IAP] Not expected receipt : " + e.purchasedProduct.definition.id);
+                    BpLog.Log("[IAP] Not expected receipt : " + e.purchasedProduct.definition.id);
                     buyProductStream.OnNext(new ProcessPurchaseStreamData() { result = Result.Failed, productId = e.purchasedProduct.definition.id });
                 }
             }
             catch (Exception exception)
             {
-                TpLog.Log("[IAP] ProcessPurchase exception : " + exception);
+                BpLog.Log("[IAP] ProcessPurchase exception : " + exception);
             }
 
             return PurchaseProcessingResult.Complete;
@@ -641,7 +641,7 @@ namespace BanpoFri
                 {
                     if (TryRestoreNonConsumableItem(apple.productID))
                     {
-                        TpLog.Log("[IAP] ProcessPurchase restore non-consumable item : " + apple.productID);
+                        BpLog.Log("[IAP] ProcessPurchase restore non-consumable item : " + apple.productID);
                         restoreTransactionStream.OnNext(new ProcessPurchaseStreamData() { result = Result.Success, productId = apple.productID });
                     }
                 }
@@ -652,7 +652,7 @@ namespace BanpoFri
                 string transactionReceipt = extensionProvider.GetExtension<IAppleExtensions>().GetTransactionReceiptForProduct(product);
                 if (false == string.IsNullOrEmpty(transactionReceipt) && null != receipt)
                 {
-                    TpLog.Log("[IAP] ProcessPurchase validate receipt : " + receipt.productID);
+                    BpLog.Log("[IAP] ProcessPurchase validate receipt : " + receipt.productID);
                     ISendData sendData = ToAppleSendData(product, receipt, transactionReceipt);
                     ValidateReceipt(product, sendData);
                     tryValidate = true;
@@ -675,14 +675,14 @@ namespace BanpoFri
             {
                 foreach (var google in googleReceipts)
                 {
-                    TpLog.Log("[IAP] ProcessPurchase google.productID : " + google.productID);
+                    BpLog.Log("[IAP] ProcessPurchase google.productID : " + google.productID);
                     if (receipts.PayloadData.jsonData.orderId == google.orderID)
                     {
                         if (google.productID == purchasedProduct.definition.id)
                         {
                             if (google.purchaseState == GooglePurchaseState.Purchased)
                             {
-                                TpLog.Log("[IAP] ProcessPurchase validate receipt : " + google.productID);
+                                BpLog.Log("[IAP] ProcessPurchase validate receipt : " + google.productID);
                                 ISendData sendData = ToGoogleSendData(purchasedProduct, google, receipts);
                                 ValidateReceipt(purchasedProduct, sendData);
                                 validateReceipt = true;
@@ -704,20 +704,20 @@ namespace BanpoFri
 
             StartCoroutine(PostJson(JsonUtility.ToJson(sendData), sendData, serverUrl, () =>
             {
-                TpLog.Log("[IAP] ValidateReceipt Confirm Pending Purchase : " + product.definition.id);
+                BpLog.Log("[IAP] ValidateReceipt Confirm Pending Purchase : " + product.definition.id);
                 storeController.ConfirmPendingPurchase(product); // 결제지연 완료 (finishTransaction)
                 SendInAppPurchaseEvent(sendData, product.transactionID);
                 buyProductStream.OnNext(new ProcessPurchaseStreamData() { result = Result.Success, productId = product.definition.id });
             }, (error) =>
             {
-                TpLog.Log("[IAP] ValidateReceipt Failed : " + error);
+                BpLog.Log("[IAP] ValidateReceipt Failed : " + error);
                 buyProductStream.OnNext(new ProcessPurchaseStreamData() { result = Result.Failed, productId = product.definition.id });
                 if (error == ReceiptValidationError.ConnectionError) // 인터넷 연결 끊김으로, 보상을 미지급한 케이스가 발생할 수 있음으로 결제버튼을 다시 누를 수 있도록 유도 
                 {
-                    TpLog.Log("[IAP] ValidateReceipt ConnectionError");
+                    BpLog.Log("[IAP] ValidateReceipt ConnectionError");
                     GameRoot.Instance.UISystem.OpenUI<PopupToastmessage>(popup =>
                     {
-                        TpLog.Log("[IAP] ValidateReceipt ConnectionError Toast");
+                        BpLog.Log("[IAP] ValidateReceipt ConnectionError Toast");
                         popup.Show(Tables.Instance.GetTable<Localize>().GetString("str_iap_not_received_toast_title"), Tables.Instance.GetTable<Localize>().GetString("str_iap_not_received_toast_desc"));
                     });
                 }
@@ -754,7 +754,7 @@ namespace BanpoFri
                 if (!GameRoot.Instance.UserData.BuyInappIds.Contains(VIPForever))
                 {
                     GameRoot.Instance.UserData.BuyInappIds.Add(VIPForever);
-                    TpLog.Log("restored VIPForever");
+                    BpLog.Log("restored VIPForever");
                 }
 
                 return true;
@@ -765,7 +765,7 @@ namespace BanpoFri
                 if (!GameRoot.Instance.UserData.BuyInappIds.Contains(VIPForeverSale))
                 {
                     GameRoot.Instance.UserData.BuyInappIds.Add(VIPForeverSale);
-                    TpLog.Log("restored VIPForeverSale");
+                    BpLog.Log("restored VIPForeverSale");
                 }
 
                 return true;
@@ -776,7 +776,7 @@ namespace BanpoFri
                 if (!GameRoot.Instance.UserData.BuyInappIds.Contains(BlessNoAds))
                 {
                     GameRoot.Instance.UserData.BuyInappIds.Add(BlessNoAds);
-                    TpLog.Log("restored BlessNoAds");
+                    BpLog.Log("restored BlessNoAds");
                 }
                 return true;
             }
@@ -836,7 +836,7 @@ namespace BanpoFri
 
         IEnumerator PostJson(string jsonSendData, ISendData data, string serverURL, System.Action OnSuccess, System.Action<ReceiptValidationError> OnFail = null, bool log = true)
         {
-            TpLog.Log("[IAP] purchase information Test: PostJson : " + jsonSendData);
+            BpLog.Log("[IAP] purchase information Test: PostJson : " + jsonSendData);
 
             using (UnityWebRequest www = new UnityWebRequest(serverURL, "POST"))
             {
@@ -848,12 +848,12 @@ namespace BanpoFri
 
                 if (www.result == UnityWebRequest.Result.ConnectionError)
                 {
-                    TpLog.LogError(www.error);
+                    BpLog.LogError(www.error);
                     OnFail?.Invoke(ReceiptValidationError.ConnectionError);
                 }
                 else
                 {
-                    TpLog.Log("[IAP] result :" + www.downloadHandler.text);
+                    BpLog.Log("[IAP] result :" + www.downloadHandler.text);
                     ReturnData resultData = JsonUtility.FromJson<ReturnData>(www.downloadHandler.text);
                     if (resultData != null)
                     {
@@ -861,14 +861,14 @@ namespace BanpoFri
                         {
                             case 0:
                                 {
-                                    TpLog.Log("[IAP] purchase information Test: Purchase Fail");
+                                    BpLog.Log("[IAP] purchase information Test: Purchase Fail");
                                     // fail
                                     OnFail?.Invoke(ReceiptValidationError.InvalidReceipt);
                                 }
                                 break;
                             case 1:
                                 {
-                                    TpLog.Log("[IAP] purchase information Test: Purchase Success");
+                                    BpLog.Log("[IAP] purchase information Test: Purchase Success");
                                     OnSuccess?.Invoke();
                                     //logs
                                     if (log)
@@ -878,13 +878,13 @@ namespace BanpoFri
                                 break;
                             case 3:
                                 {
-                                    TpLog.Log("[IAP] purchase information Test: Purchase Duplicate");
+                                    BpLog.Log("[IAP] purchase information Test: Purchase Duplicate");
                                     OnFail?.Invoke(ReceiptValidationError.DuplicateReceipt);
                                 }
                                 break;
                             default:
                                 {
-                                    TpLog.LogError($"dont exist result type, text: {www.downloadHandler.text}");
+                                    BpLog.LogError($"dont exist result type, text: {www.downloadHandler.text}");
                                     OnFail?.Invoke(ReceiptValidationError.Unknown);
                                 }
                                 break;
@@ -892,7 +892,7 @@ namespace BanpoFri
                     }
                     else
                     {
-                        TpLog.LogError($"file is not json, text: {www.downloadHandler.text}");
+                        BpLog.LogError($"file is not json, text: {www.downloadHandler.text}");
                         OnFail?.Invoke(ReceiptValidationError.JsonParsingFailed);
                     }
                 }

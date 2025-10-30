@@ -197,7 +197,7 @@ public partial class UserDataSystem
         if (state == DataState)
             return;
 
-        TpLog.Log($"ChangeDataMode:{state.ToString()}");
+        BpLog.Log($"ChangeDataMode:{state.ToString()}");
         switch (state)
         {
             case DataState.Main:

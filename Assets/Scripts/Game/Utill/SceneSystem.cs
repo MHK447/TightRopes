@@ -18,7 +18,7 @@ public class SceneSystem
     {
         if(!dicScenePath.ContainsKey(type))
         {
-            TpLog.LogError($"SceneSystem::ChangeScene type: {type.ToString()} is not found key");
+            BpLog.LogError($"SceneSystem::ChangeScene type: {type.ToString()} is not found key");
             return;
         }        
 

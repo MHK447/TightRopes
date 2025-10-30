@@ -72,7 +72,7 @@ public class TpPlatformLoginProp
             this._appleAuthManager = new AppleAuthManager(deserializer);
             this._appleAuthManager.SetCredentialsRevokedCallback(result =>
             {
-                TpLog.Log("Received revoked callback " + result);
+                BpLog.Log("Received revoked callback " + result);
                 PlayerPrefs.DeleteKey(AppleUserIdKey);
             });
         }
@@ -101,24 +101,24 @@ public class TpPlatformLoginProp
                                         if (enumerator.MoveNext())
                                         {
                                             GoogleSignIn.SignInException error = (GoogleSignIn.SignInException)enumerator.Current;
-                                            TpLog.LogError("Got Error: " + error.Status + " " + error.Message);
+                                            BpLog.LogError("Got Error: " + error.Status + " " + error.Message);
                                         }
                                         else
                                         {
-                                            TpLog.LogError("Got Unexpected Exception?!?" + task.Exception);
+                                            BpLog.LogError("Got Unexpected Exception?!?" + task.Exception);
                                         }
                                     }
                                 }
                                 else if (task.IsCanceled)
                                 {
-                                    TpLog.LogError("Canceled");
+                                    BpLog.LogError("Canceled");
                                 }
                                 else
                                 {
-                                    TpLog.Log("Welcome: " + task.Result.DisplayName + "!");
-                                    TpLog.Log("Email = " + task.Result.Email);
-                                    TpLog.Log("Google ID Token = " + task.Result.IdToken);
-                                    TpLog.Log("Email = " + task.Result.Email);
+                                    BpLog.Log("Welcome: " + task.Result.DisplayName + "!");
+                                    BpLog.Log("Email = " + task.Result.Email);
+                                    BpLog.Log("Google ID Token = " + task.Result.IdToken);
+                                    BpLog.Log("Email = " + task.Result.Email);
                                     SignInFirebase(type, user => { }, task.Result.IdToken);
 
                                     LoginPlatform = LoginPlatformType.Google;
@@ -160,7 +160,7 @@ public class TpPlatformLoginProp
                                     error =>
                                     {
                                         var authorizationErrorCode = error.GetAuthorizationErrorCode();
-                                        TpLog.LogWarning("Error while trying to get credential state " + authorizationErrorCode.ToString() + " " + error.ToString());
+                                        BpLog.LogWarning("Error while trying to get credential state " + authorizationErrorCode.ToString() + " " + error.ToString());
                                     });
                             }
                             else
@@ -196,7 +196,7 @@ public class TpPlatformLoginProp
                                     {
                                         // If Quick Login fails, we should show the normal sign in with apple menu, to allow for a normal Sign In with apple
                                         var authorizationErrorCode = error.GetAuthorizationErrorCode();
-                                        TpLog.LogWarning("Quick Login Failed " + authorizationErrorCode.ToString() + " " + error.ToString());
+                                        BpLog.LogWarning("Quick Login Failed " + authorizationErrorCode.ToString() + " " + error.ToString());
                                     });
                             }
                         }
@@ -211,12 +211,12 @@ public class TpPlatformLoginProp
                                     if (FB.IsLoggedIn)
                                     {
                                         var aToken = Facebook.Unity.AccessToken.CurrentAccessToken;
-                                        TpLog.Log($"facebook user id : {aToken.UserId}");
+                                        BpLog.Log($"facebook user id : {aToken.UserId}");
                                         SignInFirebase(LoginPlatformType.Facebook, user => { }, aToken.TokenString);
                                     }
                                     else
                                     {
-                                        TpLog.LogWarning("facebook Login Failed");
+                                        BpLog.LogWarning("facebook Login Failed");
                                     }
                                 });
                             }
@@ -263,11 +263,11 @@ public class TpPlatformLoginProp
                                 if (enumerator.MoveNext())
                                 {
                                     GoogleSignIn.SignInException error = (GoogleSignIn.SignInException)enumerator.Current;
-                                    TpLog.LogError("Got Error: " + error.Status + " " + error.Message);
+                                    BpLog.LogError("Got Error: " + error.Status + " " + error.Message);
                                 }
                                 else
                                 {
-                                    TpLog.LogError("Got Unexpected Exception?!?" + task.Exception);
+                                    BpLog.LogError("Got Unexpected Exception?!?" + task.Exception);
                                 }
                             }
                             firebaseUserCallback(null);
@@ -275,16 +275,16 @@ public class TpPlatformLoginProp
                         }
                         else if (task.IsCanceled)
                         {
-                            TpLog.LogError("Canceled");
+                            BpLog.LogError("Canceled");
                             firebaseUserCallback(null);
                             state = LoginState.None;
                         }
                         else
                         {
-                            TpLog.Log("Welcome: " + task.Result.DisplayName + "!");
-                            TpLog.Log("Email = " + task.Result.Email);
-                            TpLog.Log("Google ID Token = " + task.Result.IdToken);
-                            TpLog.Log("Email = " + task.Result.Email);
+                            BpLog.Log("Welcome: " + task.Result.DisplayName + "!");
+                            BpLog.Log("Email = " + task.Result.Email);
+                            BpLog.Log("Google ID Token = " + task.Result.IdToken);
+                            BpLog.Log("Email = " + task.Result.Email);
                             LoginPlatform = LoginPlatformType.Google;
                             IsLogin = true;
                             SignInFirebase(loginType, firebaseUserCallback, task.Result.IdToken);
@@ -309,12 +309,12 @@ public class TpPlatformLoginProp
                             if (FB.IsLoggedIn)
                             {
                                 var aToken = Facebook.Unity.AccessToken.CurrentAccessToken;
-                                TpLog.Log($"facebook user id : {aToken.UserId}");
+                                BpLog.Log($"facebook user id : {aToken.UserId}");
                                 SignInFirebase(LoginPlatformType.Facebook, firebaseUserCallback, aToken.TokenString);
                             }
                             else
                             {
-                                TpLog.LogWarning("facebook Login Failed");
+                                BpLog.LogWarning("facebook Login Failed");
                             }
 
                             state = LoginState.None;
@@ -333,7 +333,7 @@ public class TpPlatformLoginProp
                         loginArgs,
                         credential =>
                         {
-                            TpLog.LogWarning("appleconnect ");
+                            BpLog.LogWarning("appleconnect ");
                             // If a sign in with apple succeeds, we should have obtained the credential with the user id, name, and email, save it
                             var appleIdCredential = credential as IAppleIDCredential;
                             if (appleIdCredential != null)
@@ -356,7 +356,7 @@ public class TpPlatformLoginProp
                         error =>
                         {
                             var authorizationErrorCode = error.GetAuthorizationErrorCode();
-                            TpLog.LogWarning("Sign in with Apple failed " + authorizationErrorCode.ToString() + " " + error.ToString());
+                            BpLog.LogWarning("Sign in with Apple failed " + authorizationErrorCode.ToString() + " " + error.ToString());
                             firebaseUserCallback(null);
                             state = LoginState.None;
                         });
@@ -386,7 +386,7 @@ public class TpPlatformLoginProp
         }
 
 
-        TpLog.Log($"curauth:{auth.CurrentUser}");
+        BpLog.Log($"curauth:{auth.CurrentUser}");
 
         auth.
         SignInWithCredentialAsync(credential)
@@ -399,12 +399,12 @@ public class TpPlatformLoginProp
         fUser = null;
         if (task.IsCanceled)
         {
-            TpLog.Log("Firebase auth was canceled");
+            BpLog.Log("Firebase auth was canceled");
             firebaseUserCallback(null);
         }
         else if (task.IsFaulted)
         {
-            TpLog.Log("Firebase auth failed");
+            BpLog.Log("Firebase auth failed");
             firebaseUserCallback(null);
         }
         else
@@ -412,7 +412,7 @@ public class TpPlatformLoginProp
             fUser = task.Result;
             if (fUser != null)
             {
-                TpLog.Log("Firebase auth completed | User ID:" + fUser.UserId);
+                BpLog.Log("Firebase auth completed | User ID:" + fUser.UserId);
                 firebaseUserCallback(fUser);
             }
         }

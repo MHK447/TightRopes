@@ -197,7 +197,6 @@ public class InGameSystem
 
 
             ActionQueue.Enqueue(() => {
-                GameRoot.Instance.PluginSystem.ShowBanner(MaxSdkBase.BannerPosition.BottomCenter);
                 NextAction();
             });
         }

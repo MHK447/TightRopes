@@ -22,7 +22,7 @@ public class InGameBase : InGameMode
 
     public IEnumerator WaitStageLoad()
     {
-        if(StageMap != null)
+        if (StageMap != null)
         {
             Destroy(StageMap.gameObject);
         }
@@ -30,10 +30,10 @@ public class InGameBase : InGameMode
         SetStage(GameRoot.Instance.UserData.Stageidx.Value);
         yield return new WaitUntil(() => StageMap != null);
         GetMainCam.Init();
-        
+
         // 스테이지 로드 완료 후 로딩 숨기기
         GameRoot.Instance.Loading.Hide(true);
-        
+
     }
 
 
@@ -51,6 +51,9 @@ public class InGameBase : InGameMode
                 StageMap = handle.Result.GetComponent<InGameStage>();
                 StageMap.CallStartGame();
             };
+
+
+            GameRoot.Instance.PluginSystem.ShowBanner(MaxSdkBase.BannerPosition.BottomCenter);
         }
     }
 
