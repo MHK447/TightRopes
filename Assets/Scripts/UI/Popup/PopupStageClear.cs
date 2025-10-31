@@ -85,7 +85,7 @@ public class PopupStageClear : UIBase
         RewardBaseValueText.text = ProjectUtility.CalculateMoneyToString(0);
 
         ProjectUtility.SetActiveCheck(GroupTr.gameObject, false);
-        ProjectUtility.SetActiveCheck(GropTr2.gameObject , true);
+        ProjectUtility.SetActiveCheck(GropTr2.gameObject, true);
 
         // 애니메이션 시작
         StartCoroutine(PlayStageClearAnimation());
@@ -102,7 +102,7 @@ public class PopupStageClear : UIBase
 
     public void OnBaseRewardBtnClick()
     {
-        if(GameRoot.Instance.UserData.Stageidx.Value > 1)
+        if (GameRoot.Instance.UserData.Stageidx.Value > 1)
         {
             GameRoot.Instance.PluginSystem.ADProp.ShowInterstitialAD(TpMaxProp.AdInterType.Stage);
         }
@@ -115,7 +115,7 @@ public class PopupStageClear : UIBase
     private void ProceedToNextStage()
     {
         ProjectUtility.SetActiveCheck(GroupTr.gameObject, true);
-        ProjectUtility.SetActiveCheck(GropTr2.gameObject , false);
+        ProjectUtility.SetActiveCheck(GropTr2.gameObject, false);
 
         DirectionNextMoney(() =>
         {
@@ -222,7 +222,8 @@ public class PopupStageClear : UIBase
     {
         var upgradedata = GameRoot.Instance.UserData.Upgradedatas[(int)UpgradeSystem.UpgradeType.MoneyMultiUpgrade];
 
-        MoneyIconImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Money_{upgradedata.GetUpgradeternalOrder}");
+        var upgradeorderimg = upgradedata.GetUpgradeternalOrder > 11 ? 11 : upgradedata.GetUpgradeternalOrder;
+        MoneyIconImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Money_{upgradeorderimg}");
         MoneyValueText.text = $"x{GameRoot.Instance.UserData.Incomemultivalue.ToString("0.0")}";
 
 

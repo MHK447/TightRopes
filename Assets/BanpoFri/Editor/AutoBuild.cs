@@ -5,6 +5,11 @@ using UnityEditor.AddressableAssets.Build;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 using UnityEditor;
+using System.IO;
+
+#if UNITY_IOS
+using UnityEditor.iOS.Xcode;     // ✅ 여기
+#endif
 
 public class AutoBuild
 {
@@ -199,4 +204,56 @@ public class AutoBuild
 			EditorApplication.Exit(kErrorCode);
 		}
 	}
+
+	#if UNITY_IOS
+    [UnityEditor.Callbacks.PostProcessBuild]
+    public static void PatchMetalDisplayLink(BuildTarget target, string pathToBuiltProject)
+    {
+        if (target != BuildTarget.iOS)
+            return;
+
+        string[] possiblePaths =
+        {
+            Path.Combine(pathToBuiltProject, "Classes/UnityAppController.h"),
+            Path.Combine(pathToBuiltProject, "UnityFramework/UnityAppController.h")
+        };
+
+        string targetFile = null;
+        foreach (var path in possiblePaths)
+        {
+            if (File.Exists(path))
+            {
+                targetFile = path;
+                break;
+            }
+        }
+
+        if (targetFile == null)
+        {
+            Debug.LogWarning("[MetalDisplayLink] UnityAppController.h 파일을 찾지 못했습니다.");
+            return;
+        }
+
+        string content = File.ReadAllText(targetFile);
+        string before = "#define UNITY_USES_METAL_DISPLAY_LINK (UNITY_HAS_IOSSDK_17_0 || UNITY_HAS_TVOSSDK_17_0)";
+        string after = "#define UNITY_USES_METAL_DISPLAY_LINK 0";
+
+        if (content.Contains(before))
+        {
+            content = content.Replace(before, after);
+            File.WriteAllText(targetFile, content);
+            Debug.Log("✅ [MetalDisplayLink] 자동 패치 완료");
+        }
+        else if (!content.Contains(after))
+        {
+            content = after + "\n" + content;
+            File.WriteAllText(targetFile, content);
+            Debug.Log("✅ [MetalDisplayLink] define 상단 추가");
+        }
+        else
+        {
+            Debug.Log("✅ [MetalDisplayLink] 이미 적용됨");
+        }
+    }
+#endif
 }

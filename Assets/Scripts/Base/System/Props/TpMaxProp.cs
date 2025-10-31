@@ -404,6 +404,11 @@ public class TpMaxProp
 
     public void ShowRewardAD(AdRewardType type, System.Action<bool> OnSuccess)
     {
+        if(GameRoot.Instance.TutorialSystem.IsActive())
+        {
+            OnSuccess?.Invoke(true);
+            return;
+        }
 
         // switch (type)
         // {

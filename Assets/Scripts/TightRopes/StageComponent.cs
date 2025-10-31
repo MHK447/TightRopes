@@ -28,7 +28,7 @@ public class StageComponent : MonoBehaviour
 
     private int StageIdx = 0;
 
-    public int GetStageIdx{ get { return StageIdx; } }
+    public int GetStageIdx { get { return StageIdx; } }
 
     public void Set(int stageidx)
     {
@@ -37,13 +37,19 @@ public class StageComponent : MonoBehaviour
         if (stageinfotd != null)
         {
             StageIdx = stageidx;
+            var fontvalue = StageIdx % Config.Instance.TextMaterialList.Count;
+
+            if(fontvalue == 0)
+            {
+                fontvalue = Config.Instance.TextMaterialList.Count - 1;
+            }
 
 
             StageImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Map, stageinfotd.image);
             StageImg.color = stageidx <= GameRoot.Instance.UserData.Stageidx.Value ? Color.white : Color.black;
 
-            StageNameText.text = Tables.Instance.GetTable<Localize>().GetString(stageinfotd.name);
-            StageNameText.fontSharedMaterial = Config.Instance.TextMaterialList[stageidx - 1];
+            StageNameText.text = $"STAGE {stageidx}";
+            StageNameText.fontSharedMaterial = Config.Instance.TextMaterialList[fontvalue - 1];
             StageColorImg.color = Config.Instance.GetImageColor(stageinfotd.image_color);
             ProjectUtility.SetActiveCheck(LockObj, stageidx > GameRoot.Instance.UserData.Stageidx.Value);
             ProjectUtility.SetActiveCheck(NoneLockObj, stageidx <= GameRoot.Instance.UserData.Stageidx.Value);
@@ -54,26 +60,26 @@ public class StageComponent : MonoBehaviour
     {
         // 스케일 애니메이션 시퀀스 생성
         Sequence unlockSequence = DOTween.Sequence();
-        
+
         // 1. 스케일을 1.2배로 키우기 (0.3초)
         unlockSequence.Append(transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBack));
-        
+
         // 2. 원래 크기로 돌아가기 (0.2초)
         unlockSequence.Append(transform.DOScale(1f, 0.2f).SetEase(Ease.InBack));
-        
+
         // 3. 애니메이션 완료 후 UI 상태 변경
         unlockSequence.OnComplete(() =>
         {
             // Lock 오브젝트 비활성화
             ProjectUtility.SetActiveCheck(LockObj, false);
-            
+
             // NoneLock 오브젝트 활성화
             ProjectUtility.SetActiveCheck(NoneLockObj, true);
-            
+
             // 스테이지 이미지 색상을 흑백에서 컬러로 변경
             StageImg.DOColor(Color.white, 0.5f).SetEase(Ease.OutQuad);
         });
-        
+
         // 애니메이션 시작
         unlockSequence.Play();
     }

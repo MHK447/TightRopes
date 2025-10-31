@@ -59,12 +59,20 @@ public class PopupInGameLobby : UIBase
 
         var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-        if(td != null)
+        if (td != null)
         {
             MapImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Map, td.image);
-            MapText.text = Tables.Instance.GetTable<Localize>().GetString(td.name);
+            MapText.text = $"STAGE {stageidx}";
             BgImg.color = Config.Instance.GetImageColor(td.image_color);
-            MapText.fontSharedMaterial = Config.Instance.TextMaterialList[stageidx - 1];
+
+            var fontvalue = GameRoot.Instance.UserData.Stageidx.Value % Config.Instance.TextMaterialList.Count;
+
+            if (fontvalue == 0)
+            {
+                fontvalue = Config.Instance.TextMaterialList.Count - 1;
+            }
+
+            MapText.fontSharedMaterial = Config.Instance.TextMaterialList[fontvalue - 1];
 
             AdCycleComponent.Init();
         }
