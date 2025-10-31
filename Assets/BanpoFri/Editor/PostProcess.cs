@@ -5,7 +5,6 @@ using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
 
 namespace BanpoFri
 {
@@ -17,265 +16,324 @@ namespace BanpoFri
         [PostProcessBuildAttribute(int.MaxValue)]
         public static void OnPostProcessBuild(BuildTarget buildTarget, string buildPath)
         {
-            if (buildTarget == BuildTarget.iOS)
+            var plistPath = Path.Combine(buildPath, "Info.plist");
+            var plist = new PlistDocument();
+            plist.ReadFromFile(plistPath);
+
+            plist.root.SetBoolean("ITSAppUsesNonExemptEncryption", false);
+            plist.root.SetString("NSLocationWhenInUseUsageDescription", "A simple text that describes why your app needs the location");
+            plist.root.SetString("NSAdvertisingAttributionReportEndpoint", "https://appsflyer-skadnetwork.com/");
+
+            plist.root.SetString("GIDClientID", "578839573876-ogba7bsg52klk4likatitomflq8thku5.apps.googleusercontent.com");
+            //plist.root.SetString("NSUserTrackingUsageDescription", "This identifier will be used to deliver personalized ads to you.");
+            //plist.root.SetString("FacebookAppID", "580882013229001");
+
+            var array = plist.root.CreateArray("CFBundleURLTypes");
+            var urlDict = array.AddDict();
+            var urlInnerArray = urlDict.CreateArray("CFBundleURLSchemes");
+            urlInnerArray.AddString("com.googleusercontent.apps.578839573876-ogba7bsg52klk4likatitomflq8thku5");
+
+            var urlDict2 = array.AddDict();
+            var urlInnerArray2 = urlDict2.CreateArray("CFBundleURLSchemes");
+            urlInnerArray2.AddString("treepllablockclash");
+
+            var ids = new string[] {
+                "22mmun2rn5",
+                "238da6jt44",
+                "24t9a8vw3c",
+                "24zw6aqk47",
+                "252b5q8x7y",
+                "275upjj5gd",
+                "294l99pt4k",
+                "2fnua5tdw4",
+                "2u9pt9hc89",
+                "32z4fx6l9h",
+                "3l6bd9hu43",
+                "3qcr597p9d",
+                "3qy4746246",
+                "3rd42ekr43",
+                "3sh42y64q3",
+                "424m5254lk",
+                "4468km3ulz",
+                "44jx6755aq",
+                "44n7hlldy6",
+                "47vhws6wlr",
+                "488r3q3dtq",
+                "4dzt52r2t5",
+                "4fzdc2evr5",
+                "4mn522wn87",
+                "4pfyvq9l8r",
+                "4w7y6s5ca2",
+                "523jb4fst2",
+                "52fl2v3hgk",
+                "54nzkqm89y",
+                "578prtvx9j",
+                "5a6flpkh64",
+                "5l3tpt7t6e",
+                "5lm9lj6jb7",
+                "5tjdwbrq8w",
+                "6964rsfnh4",
+                "6g9af3uyq4",
+                "6p4ks3rnbw",
+                "6v7lgmsu45",
+                "6xzpu9s2p8",
+                "737z793b9f",
+                "74b6s63p6l",
+                "7953jerfzd",
+                "79pbpufp6p",
+                "7fmhfwg9en",
+                "7rz58n8ntl",
+                "7ug5zh24hu",
+                "84993kbrcf",
+                "89z7zv988g",
+                "8c4e2ghe7u",
+                "8m87ys6875",
+                "8r8llnkz5a",
+                "8s468mfl3y",
+                "97r2b46745",
+                "9b89h5y424",
+                "9g2aggbj52",
+                "9nlqeag3gk",
+                "9rd848q2bz",
+                "9t245vhmpl",
+                "9vvzujtq5s",
+                "9yg77x724h",
+                "a2p9lx4jpn",
+                "a7xqa6mtl2",
+                "a8cz6cu7e5",
+                "av6w8kgt66",
+                "b9bk5wbcq9",
+                "bxvub5ada5",
+                "c3frkrj4fj",
+                "c6k4g5qg8m",
+                "cg4yq2srnc",
+                "cj5566h2ga",
+                "cp8zw746q7",
+                "cs644xg564",
+                "cstr6suwn9",
+                "dbu4b84rxf",
+                "dkc879ngq3",
+                "dzg6xy7pwj",
+                "e5fvkxwrpn",
+                "ecpz2srf59",
+                "eh6m2bh4zr",
+                "ejvt5qm6ak",
+                "f38h382jlk",
+                "f73kdq92p3",
+                "f7s53z58qe",
+                "feyaarzu9v",
+                "g28c52eehv",
+                "g2y4y55b64",
+                "g6gcrrvk4p",
+                "ggvn48r87g",
+                "glqzh8vgby",
+                "gta8lk7p23",
+                "gta9lk7p23",
+                "h65wbv5k3f",
+                "hb56zgv37p",
+                "hdw39hrw9y",
+                "hs6bdukanm",
+                "k674qkevps",
+                "k6y4y55b64",
+                "kbd757ywx3",
+                "kbmxgpxpgc",
+                "klf5c3l5u5",
+                "krvm3zuq6h",
+                "lr83yxwka7",
+                "ludvb6z3bs",
+                "m297p6643m",
+                "m5mvw97r93",
+                "m8dbw4sv7c",
+                "mlmmfzh3r3",
+                "mls7yz5dvl",
+                "mp6xlyr22a",
+                "mqn7fxpca7",
+                "mtkv5xtk9e",
+                "n38lu8286q",
+                "n66cz3y3bx",
+                "n6fk4nfna4",
+                "n9x2a789qt",
+                "nzq8sh4pbs",
+                "p78axxw29g",
+                "ppxm28t8ap",
+                "prcb7njmu6",
+                "pwa73g5rt2",
+                "pwdxu55a5a",
+                "qqp299437r",
+                "qu637u8glc",
+                "r45fhb6rf7",
+                "rvh3l7un93",
+                "rx5hdcabgc",
+                "s39g8k73mm",
+                "s69wq72ugq",
+                "su67r6k2v3",
+                "t38b2kh725",
+                "t6d3zquu66",
+                "tl55sbb4fm",
+                "u679fj5vs4",
+                "uw77j35x4d",
+                "v4nxqhlyqp",
+                "v72qych5uu",
+                "v79kvwwj4g",
+                "v9wttpbfk9",
+                "vcra2ehyfk",
+                "vutu7akeur",
+                "w9q455wk68",
+                "wg4vff78zm",
+                "wzmmz9fp6w",
+                "x44k69ngh6",
+                "x5l83yy675",
+                "x8jxxk4ff5",
+                "x8uqf25wch",
+                "xy9t38ct57",
+                "y45688jllp",
+                "y5ghdn5j9k",
+                "yclnxrl5pm",
+                "ydx93a7ass",
+                "z24wtl6j62",
+                "zmvfpc5aq8",
+                "zq492l623r"
+            };
+
+            var arraySKAdNetworkItems = plist.root.CreateArray("SKAdNetworkItems");
+
+            foreach (var id in ids)
             {
-                string projectPath = PBXProject.GetPBXProjectPath(buildPath);
-                int exitCode1_1 = ExecuteCommand("perl", $"-i -0pe 's!ln -sF \\\\\"\\$PROJECT_DIR/Il2CppOutputProject\\\\\" \\\\\"\\$CONFIGURATION_TEMP_DIR/artifacts/arm64/buildstate\\\\\"\\\\nln -sF \\\\\"\\$PROJECT_DIR/Libraries\\\\\" \\\\\"\\$CONFIGURATION_TEMP_DIR/artifacts/arm64/buildstate\\\\\"!ln -sF \\\\\"\\$PROJECT_DIR/Il2CppOutputProject\\\\\" \\\\\"\\$CONFIGURATION_TEMP_DIR/artifacts/arm64/buildstate/Il2CppOutputProject\\\\\"\\\\nln -sF \\\\\"\\$PROJECT_DIR/Libraries\\\\\" \\\\\"\\$CONFIGURATION_TEMP_DIR/artifacts/arm64/buildstate/Libraries\\\\\"!g' '{projectPath}'");
-                UnityEngine.Debug.Log($"projectPath sed exitCode1_1:{exitCode1_1}, projectPath:{projectPath}");
-
-                var plistPath = Path.Combine(buildPath, "Info.plist");
-                var plist = new PlistDocument();
-                plist.ReadFromFile(plistPath);
-
-                plist.root.SetBoolean("ITSAppUsesNonExemptEncryption", false);
-                plist.root.SetString("NSUserTrackingUsageDescription", "개인에게 최적화된 광고를 제공하기 위해 사용자의 광고 활동 정보를 수집합니다.");
-                //plist.root.SetString("FacebookAppID", "580882013229001");
-
-                var ids = new string[]
-                {
-                    "488r3q3dtq",
-                    "5a6flpkh64",
-                    "x44k69ngh6",
-                    "22mmun2rn5",
-                    "wg4vff78zm",
-                    "f73kdq92p3",
-                    "zmvfpc5aq8",
-                    "yclnxrl5pm",
-                    "mp6xlyr22a",
-                    "hs6bdukanm",
-                    "v72qych5uu",
-                    "k674qkevps",
-                    "prcb7njmu6",
-                    "5lm9lj6jb7",
-                    "3rd42ekr43",
-                    "5tjdwbrq8w",
-                    "4468km3ulz",
-                    "424m5254lk",
-                    "f7s53z58qe",
-                    "ppxm28t8ap",
-                    "ydx93a7ass",
-                    "mlmmfzh3r3",
-                    "32z4fx6l9h",
-                    "w9q455wk68",
-                    "cstr6suwn9",
-                    "m8dbw4sv7c",
-                    "3qy4746246",
-                    "zq492l623r",
-                    "8s468mfl3y",
-                    "av6w8kgt66",
-                    "t38b2kh725",
-                    "lr83yxwka7",
-                    "9t245vhmpl",
-                    "s39g8k73mm",
-                    "v79kvwwj4g",
-                    "2u9pt9hc89",
-                    "4dzt52r2t5",
-                    "9rd848q2bz",
-                    "f38h382jlk",
-                    "tl55sbb4fm",
-                    "4pfyvq9l8r",
-                    "4fzdc2evr5",
-                    "glqzh8vgby",
-                    "578prtvx9j",
-                    "7ug5zh24hu",
-                    "wzmmz9fp6w",
-                    "3sh42y64q3",
-                    "c6k4g5qg8m",
-                    "kbd757ywx3",
-                    "238da6jt44",
-                    "44jx6755aq",
-                    "v9wttpbfk9",
-                    "n38lu8286q",
-                    "294l99pt4k",
-                };
-
-                var arraySKAdNetworkItems = plist.root.CreateArray("SKAdNetworkItems");
-                foreach (var id in ids)
-                {
-                    var dictSKAdNetworkIdentifier_FAN = arraySKAdNetworkItems.AddDict();
-                    dictSKAdNetworkIdentifier_FAN.SetString("SKAdNetworkIdentifier", $"{id}.skadnetwork");
-                }
-
-                File.WriteAllText(plistPath, plist.WriteToString());
-
-                var project = new PBXProject();
-                project.ReadFromFile(projectPath);
-
-                var targetGuid = project.GetUnityMainTargetGuid();
-                project.AddCapability(targetGuid, PBXCapabilityType.InAppPurchase);
-                project.SetBuildProperty(targetGuid, "ENABLE_BITCODE", "NO");
-
-                foreach (var tg in new[] { targetGuid, project.GetUnityFrameworkTargetGuid() })
-                {
-                    project.SetBuildProperty(tg, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
-                }
-                project.SetBuildProperty(targetGuid, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "YES");
-
-                if (UseMax)
-                {
-                    var loadInst = AssetDatabase.LoadAssetAtPath<AppNameLocalize>("Assets/BanpoFri/Editor/AppNameLocalize.asset");
-                    if (loadInst != null)
-                    {
-                        System.Action<string, string> SaveLocalFile = (localizeString, localeCode) => {
-                            var path = GetLocalFilePath(buildPath, localeCode, project, targetGuid);
-                            var localizedDescriptionLine = "\"CFBundleDisplayName\" = \"" + localizeString + "\";\n";
-                            if (File.Exists(path))
-                            {
-                                var output = new List<string>();
-                                var lines = File.ReadAllLines(path);
-                                var keyUpdated = false;
-                                foreach (var line in lines)
-                                {
-                                    if (line.Contains("CFBundleDisplayName"))
-                                    {
-                                        output.Add(localizedDescriptionLine);
-                                        keyUpdated = true;
-                                    }
-                                    else
-                                    {
-                                        output.Add(line);
-                                    }
-                                }
-                                if (!keyUpdated)
-                                {
-                                    output.Add(localizedDescriptionLine);
-                                }
-                                File.WriteAllText(path, string.Join("\n", output.ToArray()) + "\n");
-                            }
-                            else
-                            {
-                                File.WriteAllText(path, "/* Localized versions of Info.plist keys - Generated by AL MAX plugin */\n" + localizedDescriptionLine);
-                            }
-                        };
-                        SaveLocalFile(loadInst.en, "en");
-                        SaveLocalFile(loadInst.ko, "ko");
-                        SaveLocalFile(loadInst.ja, "ja");
-                        SaveLocalFile(loadInst.de, "de");
-                        SaveLocalFile(loadInst.es, "es");
-                        SaveLocalFile(loadInst.fr, "fr");
-                        SaveLocalFile(loadInst.zhHans, "zh-Hans");
-                        SaveLocalFile(loadInst.zhHant, "zh-Hant");
-                    }
-
-                    var loadAttInst = AssetDatabase.LoadAssetAtPath<IosAttLocalize>("Assets/BanpoFri/Editor/IosAttLocalize.asset");
-                    if (loadAttInst != null)
-                    {
-                        System.Action<string, string> SaveLocalFile = (localizeString, localeCode) =>
-                        {
-                            var path = GetLocalFilePath(buildPath, localeCode, project, targetGuid);
-                            var localizedDescriptionLine = "\"NSUserTrackingUsageDescription\" = \"" + localizeString + "\";\n";
-                            if (File.Exists(path))
-                            {
-                                var output = new List<string>();
-                                var lines = File.ReadAllLines(path);
-                                var keyUpdated = false;
-                                foreach (var line in lines)
-                                {
-                                    if (line.Contains("NSUserTrackingUsageDescription"))
-                                    {
-                                        output.Add(localizedDescriptionLine);
-                                        keyUpdated = true;
-                                    }
-                                    else
-                                    {
-                                        output.Add(line);
-                                    }
-                                }
-                                if (!keyUpdated)
-                                {
-                                    output.Add(localizedDescriptionLine);
-                                }
-                                File.WriteAllText(path, string.Join("\n", output.ToArray()) + "\n");
-                            }
-                        };
-                        SaveLocalFile(loadAttInst.en, "en");
-                        SaveLocalFile(loadAttInst.ko, "ko");
-                        SaveLocalFile(loadAttInst.ja, "ja");
-                        SaveLocalFile(loadAttInst.de, "de");
-                        SaveLocalFile(loadAttInst.es, "es");
-                        SaveLocalFile(loadAttInst.fr, "fr");
-                        SaveLocalFile(loadAttInst.zhHans, "zh-Hans");
-                        SaveLocalFile(loadAttInst.zhHant, "zh-Hant");
-                    }
-                }
-                else
-                {
-                    var localizeList = new List<string> { "Base.lproj", "ko.lproj", "ja.lproj", "en.lproj" };
-                    Dictionary<string, string> folders = new Dictionary<string, string>();
-                    foreach (var data in localizeList)
-                    {
-                        if (!Directory.Exists(buildPath + data))
-                            Directory.CreateDirectory(buildPath + "/" + data);
-                        else
-                        {
-                            FileUtil.DeleteFileOrDirectory(buildPath + data);
-                            Directory.CreateDirectory(buildPath + "/" + data);
-                        }
-                        FileUtil.CopyFileOrDirectory(Application.dataPath + $"/BanpoFri/IosAppName/{data}/InfoPlist.strings", buildPath + "/" + data + "/InfoPlist.strings");
-                        folders.Add(data, "./");
-                    }
-
-                    foreach (var folder in folders)
-                    {
-                        string guid = project.AddFolderReference(folder.Value + folder.Key, folder.Key, PBXSourceTree.Source);
-                        project.AddFileToBuild(targetGuid, guid);
-                    }
-                }
-
-                project.WriteToFile(projectPath);
-
-                // get entitlements path
-                string[] idArray = Application.identifier.Split('.');
-                var entitlementsPath = $"Unity-iPhone/{idArray[idArray.Length - 1]}.entitlements";
-
-                var capManager = new ProjectCapabilityManager(projectPath, entitlementsPath, null, targetGuid);
-                capManager.AddPushNotifications(true);
-                capManager.AddSignInWithApple();
-                capManager.WriteToFile();
+                var dictSKAdNetworkIdentifier_FAN = arraySKAdNetworkItems.AddDict();
+                dictSKAdNetworkIdentifier_FAN.SetString("SKAdNetworkIdentifier", $"{id}.skadnetwork");
             }
+
+            File.WriteAllText(plistPath, plist.WriteToString());
+
+            var projectPath = PBXProject.GetPBXProjectPath(buildPath);
+            var project = new PBXProject();
+            project.ReadFromFile(projectPath);
+
+            var targetGuid = project.GetUnityMainTargetGuid();
+            project.AddCapability(targetGuid, PBXCapabilityType.InAppPurchase);
+            project.SetBuildProperty(targetGuid, "ENABLE_BITCODE", "NO");
+
+            var frameworkguid = project.GetUnityFrameworkTargetGuid();
+            project.SetBuildProperty(frameworkguid, "ENABLE_BITCODE", "NO");
+            project.SetBuildProperty(frameworkguid, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
+
+            string bridgingHeaderFileName = "Unity-iPhone-Bridging-Header.h";
+            //string bridgingHeaderFilePath = Path.Combine(buildPath,"Libraries", "Plugins", "iOS", bridgingHeaderFileName);
+            project.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", bridgingHeaderFileName);
+        
+            //var fileGuid = project.AddFile(Path.Combine(buildPath, "GoogleService-Info.plist"), Path.Combine(buildPath, "GoogleService-Info.plist"));
+            //project.AddFileToBuild(targetGuid, fileGuid);
+
+            if (UseMax)
+            {
+                var loadInst = AssetDatabase.LoadAssetAtPath<AppNameLocalize>("Assets/Treeplla/Editor/AppNameLocalize.asset");
+                if (loadInst != null)
+                {
+                    System.Action<string, string> SaveLocalFile = (localizeString, localeCode) =>
+                    {
+                        var path = GetMaxLocalFilePath(buildPath, localeCode);
+                        var localizedDescriptionLine = "\"CFBundleDisplayName\" = \"" + localizeString + "\";\n";
+                        // File already exists, update it in case the value changed between builds.
+                        if (File.Exists(path))
+                        {
+                            var output = new List<string>();
+                            var lines = File.ReadAllLines(path);
+                            var keyUpdated = false;
+                            foreach (var line in lines)
+                            {
+                                if (line.Contains("CFBundleDisplayName"))
+                                {
+                                    output.Add(localizedDescriptionLine);
+                                    keyUpdated = true;
+                                }
+                                else
+                                {
+                                    output.Add(line);
+                                }
+                            }
+
+                            if (!keyUpdated)
+                            {
+                                output.Add(localizedDescriptionLine);
+                            }
+
+                            File.WriteAllText(path, string.Join("\n", output.ToArray()) + "\n");
+                        }
+                    };
+                    SaveLocalFile(loadInst.en, "en");
+                    SaveLocalFile(loadInst.ko, "ko");
+                    SaveLocalFile(loadInst.ja, "ja");
+                    SaveLocalFile(loadInst.de, "de");
+                    SaveLocalFile(loadInst.es, "es");
+                    SaveLocalFile(loadInst.fr, "fr");
+                    SaveLocalFile(loadInst.zhHans, "zh-Hans");
+                    SaveLocalFile(loadInst.zhHant, "zh-Hant");
+                }
+            }
+            else
+            {
+                var localizeList = new List<string>();
+                localizeList.Add("Base.lproj");
+                localizeList.Add("ko.lproj");
+                localizeList.Add("ja.lproj");
+                localizeList.Add("en.lproj");
+
+                Dictionary<string, string> folders = new Dictionary<string, string>();
+                foreach (var data in localizeList)
+                {
+                    if (!Directory.Exists(buildPath + data))
+                        Directory.CreateDirectory(buildPath + "/" + data);
+                    else
+                    {
+                        FileUtil.DeleteFileOrDirectory(buildPath + data);
+                        Directory.CreateDirectory(buildPath + "/" + data);
+                    }
+
+                    FileUtil.CopyFileOrDirectory(Application.dataPath + $"/Treeplla/IosAppName/{data}/InfoPlist.strings", buildPath + "/" + data + "/InfoPlist.strings");
+                    folders.Add(data, "./");
+                }
+
+                foreach (var folder in folders)
+                {
+                    string guid = project.AddFolderReference(folder.Value + folder.Key, folder.Key, PBXSourceTree.Source);
+                    project.AddFileToBuild(targetGuid, guid);
+                }
+            }
+
+
+            project.WriteToFile(projectPath);
+
+            // get entitlements path
+            string[] idArray = Application.identifier.Split('.');
+            var entitlementsPath = $"Unity-iPhone/{idArray[idArray.Length - 1]}.entitlements";
+
+            // create capabilities manager
+            var capManager = new ProjectCapabilityManager(projectPath, entitlementsPath, null, targetGuid);
+
+            // Add necessary capabilities
+            capManager.AddPushNotifications(true);
+            capManager.AddSignInWithApple();
+            capManager.AddAssociatedDomains(new string[]{"applinks:blockclash.onelink.me"});
+
+
+            // Write to file
+            capManager.WriteToFile();
+
+            var projectInString = File.ReadAllText(projectPath);
+
+            projectInString = projectInString.Replace("ENABLE_BITCODE = YES;",
+                $"ENABLE_BITCODE = NO;");
+            File.WriteAllText(projectPath, projectInString);
         }
 
-        private static string GetLocalFilePath(string buildPath, string localeCode, PBXProject project, string targetguid)
+        private static string GetMaxLocalFilePath(string buildPath, string localeCode)
         {
-            var resourcesDirectoryPath = Path.Combine(buildPath, "Localize");
+            var resourcesDirectoryPath = Path.Combine(buildPath, AppLovinMaxResourcesDirectoryName);
             var localeSpecificDirectoryName = localeCode + ".lproj";
             var localeSpecificDirectoryPath = Path.Combine(resourcesDirectoryPath, localeSpecificDirectoryName);
-            var infoPlistStringsFilePath = Path.Combine(localeSpecificDirectoryPath, "InfoPlist.strings");
-
-            if (!Directory.Exists(resourcesDirectoryPath))
-                Directory.CreateDirectory(resourcesDirectoryPath);
-
-            if (!Directory.Exists(localeSpecificDirectoryPath))
-            {
-                Directory.CreateDirectory(localeSpecificDirectoryPath);
-                var localeSpecificDirectoryRelativePath = Path.Combine("Localize", localeSpecificDirectoryName);
-                var guid = project.AddFolderReference(localeSpecificDirectoryRelativePath, localeSpecificDirectoryRelativePath);
-                project.AddFileToBuild(targetguid, guid);
-            }
-            return infoPlistStringsFilePath;
-        }
-
-        private static int ExecuteCommand(string command, string args)
-        {
-            Process process = new Process();
-            process.StartInfo.FileName = command;
-            process.StartInfo.Arguments = args;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.RedirectStandardError = true;
-
-            process.Start();
-            process.WaitForExit();
-
-            string output = process.StandardOutput.ReadToEnd();
-            string error = process.StandardError.ReadToEnd();
-            if (!string.IsNullOrEmpty(output))
-                UnityEngine.Debug.Log(output);
-            if (!string.IsNullOrEmpty(error))
-                UnityEngine.Debug.LogError(error);
-
-            return process.ExitCode;
+            return Path.Combine(localeSpecificDirectoryPath, "InfoPlist.strings");
         }
     }
 }
+
 #endif

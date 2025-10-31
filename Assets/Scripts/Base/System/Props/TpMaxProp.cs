@@ -366,7 +366,7 @@ public class TpMaxProp
     {
 
 #if BANPOFRI_LOG
-        TpLog.Log("ShowInterstitialAD");
+        BpLog.Log("ShowInterstitialAD");
         return;
 #endif
 
