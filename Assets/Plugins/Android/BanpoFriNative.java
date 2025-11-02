@@ -112,6 +112,7 @@ public class BanpoFriNative {
         java.lang.System.exit(0);
     }
 
+
     public static void vibrate(int milliseconds)
     {
         Vibrator v = (Vibrator) UnityPlayer.currentActivity.getSystemService(Context.VIBRATOR_SERVICE);
@@ -121,23 +122,20 @@ public class BanpoFriNative {
         v.cancel();
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
         {
-            // EFFECT_HEAVY_CLICK로 변경하여 강한 진동 생성
-            VibrationEffect vibrationEffect = VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK);
+            VibrationEffect vibrationEffect = VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK);
             v.vibrate(vibrationEffect);
         }
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) 
         {
-            // 진동 시간을 50ms로 늘리고 최대 세기(255) 사용
-            v.vibrate(VibrationEffect.createOneShot(50, 255));
+            v.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
         } 
         else 
         {
             //deprecated in API 26 
-            // 진동 시간을 50ms로 늘림
-            v.vibrate(50);
+            v.vibrate(milliseconds);
         }
     }
-
+    
     public static String getCertificateFingerprint(Context context) 
     {
         String TAG = "CertificateFingerprint";

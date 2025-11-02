@@ -46,7 +46,7 @@ public class PageStageClearReward : UIBase
             GameRoot.Instance.PluginSystem.ADProp.ShowInterstitialAD(TpMaxProp.AdInterType.Stage);
         }
 
-        
+
         Hide();
         ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue, () =>
       {
@@ -62,21 +62,17 @@ public class PageStageClearReward : UIBase
 
     private void OnAdRewardBtnClick()
     {
-        GameRoot.Instance.PluginSystem.ADProp.ShowRewardAD(TpMaxProp.AdRewardType.StageClearReward, (result) =>
-        {
-
-            Hide();
-            ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue * 3, () =>
+        Hide();
+        ProjectUtility.SetRewardAndEffect((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue * 3, () =>
          {
-             GameRoot.Instance.WaitTimeAndCallback(1f, () =>
-             {
-                 GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() =>
-                      {
-                          GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.ReadyPlayingGame();
-                      }));
+         GameRoot.Instance.WaitTimeAndCallback(1f, () =>
+         {
+             GameRoot.Instance.UISystem.OpenUI<PageFade>(popup => popup.Set(() =>
+                  {
+                      GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().StageMap.ReadyPlayingGame();
+                  }));
              });
          });
-        });
     }
 
 

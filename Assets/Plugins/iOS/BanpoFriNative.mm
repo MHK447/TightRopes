@@ -95,7 +95,7 @@ extern "C" {
     const void vibrate()
     {
         // 1520: 중간 세기, 1521: 강한 세기
-        AudioServicesPlaySystemSound(1520);
+        AudioServicesPlaySystemSound(1519);
     }
 }
 extern "C" char* getDeviceLanguage(){
